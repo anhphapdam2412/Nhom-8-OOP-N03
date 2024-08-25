@@ -1,5 +1,5 @@
-package Bai tap OOP;
-
 public class Number {
+    public int i;
+   }
     
-}
+
