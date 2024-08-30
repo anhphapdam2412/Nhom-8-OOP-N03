@@ -1,0 +1,1 @@
+System.out.println("Factorial of 5 is: " + result);
