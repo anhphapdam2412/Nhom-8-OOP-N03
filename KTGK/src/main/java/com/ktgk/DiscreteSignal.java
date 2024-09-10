@@ -27,12 +27,12 @@ public class DiscreteSignal extends Signal{
 
     
     public void displaySignal() {
-        System.out.println("Input Signal x: " + Arrays.toString(x));
-        System.out.println("Output Signal y: " + Arrays.toString(y));
+        System.out.println("Tín hiệu đầu vào x: " + Arrays.toString(x));
+        System.out.println("Tín hiệu đầu ra y: " + Arrays.toString(y));
     }
 
     @Override
     public void displaySignalType() {
-        System.out.println("This is a Discrete Signal.");
+        System.out.println("Tín hiệu rời rạc.");
     }
 }
