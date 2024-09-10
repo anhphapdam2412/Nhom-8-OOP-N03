@@ -1,3 +1,5 @@
+import AC1.IaCExercise1;
+
 public class app {
 
     public static void main(String[] args){
@@ -24,6 +26,6 @@ public class app {
         System.out.println(nnCollection);
 
         //Ex1
-        InterfacesExercise1 Ex1 = new InterfacesExercise1();
+        IaCExercise1 Ex1 = new IaCExercise1();
     }
 }
