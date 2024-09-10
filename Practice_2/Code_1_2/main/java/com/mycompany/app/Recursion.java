@@ -1,9 +1,8 @@
-public class Recursion {
-	long factorial(long number) {
-		if(number <= 1) {
-			return 1;
-		}else {
-			return number * factorial(number - 1);
-		}
-	}
+
+cleanTheHouse() {
+ static String message = “I’m ”
+ message = message + “so ”
+ shout(message + “tired of this!”)
+ cleanTheHouse()
 }
+
