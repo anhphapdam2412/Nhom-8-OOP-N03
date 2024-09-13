@@ -1,4 +1,4 @@
-package com.ktgk;
+
 import java.util.Arrays;
 
 public class DiscreteSignal extends Signal{

@@ -1,4 +1,4 @@
-package com.ktgk;
+package com.example;
 
 public class Radar {
     // Phương thức tính toán theo công thức [2]

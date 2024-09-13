@@ -1,4 +1,4 @@
-package com.ktgk;
+package com.example;
 
 public class Main {
 

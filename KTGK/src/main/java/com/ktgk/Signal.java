@@ -1,4 +1,4 @@
-package com.ktgk;
+package com.example;
 
 public abstract class Signal {
     // in kieu tin hieu
