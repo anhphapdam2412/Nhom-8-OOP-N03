@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -14,14 +15,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller">
    <children>
       <Label layoutX="383.0" layoutY="32.0" text="Quản Lý Học Sinh">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <GridPane layoutX="7.0" layoutY="99.0" prefHeight="250.0" prefWidth="980.0">
+      <GridPane layoutX="7.0" layoutY="99.0" prefHeight="250.0" prefWidth="980.0" >
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="148.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="193.0" />
@@ -42,8 +43,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="A" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField prefHeight="25.0" prefWidth="174.0" promptText="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <TextField prefHeight="25.0" prefWidth="174.0" promptText="A" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label text="Họ Đệm" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
@@ -69,28 +76,42 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="Mã học sinh" textFill="#0000005d" GridPane.columnIndex="1" />
+            <Label text="Mã học sinh" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <RadioButton mnemonicParsing="false" text="Nam (mặc định là Nữ)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Label text="Phường/Xã/Thị Trấn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <ChoiceBox prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <DatePicker accessibleRole="COMBO_BOX" prefHeight="25.0" prefWidth="194.0" promptText="aaa" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="provinceChoiceBox" prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+            <Label text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label text="Tỉnh/Thành Phố" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="districtChoiceBox" prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="Số Điện Thoại" GridPane.columnIndex="3" />
-            <TextField opacity="0.4" prefHeight="25.0" prefWidth="352.0" text="0123456789" GridPane.columnIndex="4" />
-            <Label text="Emai (Tùy chọn)l" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="Số 123, Phố ABC" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="example@example.com" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label text="Chi tiết" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <TextField prefHeight="25.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Label text="Emai (Tùy chọn)" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField prefHeight="25.0" prefWidth="174.0" promptText="Số 123, Phố ABC" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <TextField prefHeight="25.0" prefWidth="174.0" promptText="example@example.com" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Label text="Chi tiết" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Label text="Mã Định Danh" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField opacity="0.4" prefHeight="25.0" prefWidth="178.0" text="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField prefHeight="25.0" prefWidth="178.0" promptText="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label prefHeight="17.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6" />
             <ChoiceBox prefHeight="25.0" prefWidth="65.0" GridPane.columnIndex="7" />
             <Label GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Label text="Phường/Xã/Thị Trấn" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="wardChoiceBox" prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button layoutX="331.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">
