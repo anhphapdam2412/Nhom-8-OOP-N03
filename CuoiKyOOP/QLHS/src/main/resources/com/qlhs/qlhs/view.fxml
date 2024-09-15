@@ -1,16 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="202.0" layoutY="14.0" text="Quản Lý Học Sinh">
+      <Label layoutX="383.0" layoutY="32.0" text="Quản Lý Học Sinh">
          <font>
-            <Font size="25.0" />
+            <Font size="29.0" />
          </font>
       </Label>
+      <GridPane layoutX="7.0" layoutY="99.0" prefHeight="250.0" prefWidth="980.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="148.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="193.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="0.0" prefWidth="28.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="198.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="66.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="81.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="135.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="A" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Họ Đệm" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Tên" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Ngày Sinh" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Giới Tính" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Mã Học Sinh">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Mã học sinh" textFill="#0000005d" GridPane.columnIndex="1" />
+            <RadioButton mnemonicParsing="false" text="Nam (mặc định là Nữ)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label text="Phường/Xã/Thị Trấn" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <ChoiceBox prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label text="Số Điện Thoại" GridPane.columnIndex="3" />
+            <TextField opacity="0.4" prefHeight="25.0" prefWidth="352.0" text="0123456789" GridPane.columnIndex="4" />
+            <Label text="Emai (Tùy chọn)l" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="Số 123, Phố ABC" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField opacity="0.4" prefHeight="25.0" prefWidth="174.0" text="example@example.com" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label text="Chi tiết" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label text="Mã Định Danh" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField opacity="0.4" prefHeight="25.0" prefWidth="178.0" text="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label prefHeight="17.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6" />
+            <ChoiceBox prefHeight="25.0" prefWidth="65.0" GridPane.columnIndex="7" />
+            <Label GridPane.columnIndex="6" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Button layoutX="331.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="565.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="451.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TableView layoutX="10.0" layoutY="403.0" prefHeight="391.0" prefWidth="980.0">
+        <columns>
+          <TableColumn prefWidth="99.0" text="Mã HS" />
+          <TableColumn prefWidth="171.0" text="Họ Đệm" />
+            <TableColumn minWidth="0.0" prefWidth="76.0" text="Tên" />
+            <TableColumn prefWidth="99.0" text="Ngày Sinh" />
+            <TableColumn prefWidth="62.0" text="Giới Tính" />
+            <TableColumn prefWidth="127.0" text="Mã Định Danh" />
+            <TableColumn prefWidth="59.0" text="SĐT" />
+            <TableColumn prefWidth="55.0" text="Email" />
+            <TableColumn prefWidth="48.0" text="Lớp" />
+            <TableColumn prefWidth="114.0" text="Địa chỉ" />
+            <TableColumn prefWidth="68.0" text="Ghi Chú" />
+        </columns>
+      </TableView>
+      <ChoiceBox layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="144.0" />
    </children>
 </Pane>

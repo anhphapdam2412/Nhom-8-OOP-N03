@@ -11,8 +11,8 @@ public class QLHSApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QLHSApplication.class.getResource("view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600.0, 400.0);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
+        stage.setTitle("Quản Lý Học Sinh");
         stage.setScene(scene);
         stage.show();
     }
