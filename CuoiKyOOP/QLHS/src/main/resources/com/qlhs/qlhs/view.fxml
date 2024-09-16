@@ -9,30 +9,35 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller">
+   <Pane fx:id="thongTinHocSinh">
+
    <children>
-      <Label layoutX="383.0" layoutY="32.0" text="Quản Lý Học Sinh">
+      <Label layoutX="383.0" layoutY="20.0" text="Quản Lý Học Sinh">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <GridPane layoutX="7.0" layoutY="99.0" prefHeight="250.0" prefWidth="980.0" >
+
+      <GridPane layoutX="7.0" layoutY="99.0" prefHeight="250.0" prefWidth="980.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="148.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="193.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="0.0" prefWidth="28.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="0.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="91.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="198.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="66.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="81.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="135.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="168.0" />
          </columnConstraints>
+
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -42,108 +47,381 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
+
          <children>
-            <TextField prefHeight="25.0" prefWidth="174.0" promptText="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="hoDem_TF" prefHeight="25.0" prefWidth="174.0" promptText="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField prefHeight="25.0" prefWidth="174.0" promptText="A" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               </cursor>
+            </TextField>
+
+            <TextField fx:id="ten_TF" prefHeight="25.0" prefWidth="174.0" promptText="A" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+               </cursor>
+            </TextField>
+
             <Label text="Họ Đệm" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+
             <Label text="Tên" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+
             <Label text="Ngày Sinh" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <DatePicker fx:id="ngaySinh_Date" accessibleRole="COMBO_BOX" prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
             <Label text="Giới Tính" GridPane.rowIndex="3">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <RadioButton fx:id="gioiTinh_Btn" mnemonicParsing="false" text="Nam (mặc định là Nữ)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
             <Label text="Mã Học Sinh">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+
             <Label text="Mã học sinh" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
-               </font></Label>
-            <RadioButton mnemonicParsing="false" text="Nam (mặc định là Nữ)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker accessibleRole="COMBO_BOX" prefHeight="25.0" prefWidth="194.0" promptText="aaa" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="provinceChoiceBox" prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-            <Label text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+               </font>
+            </Label>
+
+
+
+
             <Label text="Tỉnh/Thành Phố" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="districtChoiceBox" prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="TTP_CB" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+
+            <Label text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="QH_CB" prefHeight="25.0" prefWidth="205.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+
+            <Label text="Phường/Xã/Thị Trấn" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="PX_CB" prefHeight="25.0" prefWidth="203.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+
+
             <Label text="Số Điện Thoại" GridPane.columnIndex="3" />
-            <TextField prefHeight="25.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="4">
+
+            <TextField fx:id="SDT_TF" prefHeight="25.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <Label text="Emai (Tùy chọn)" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="174.0" promptText="Số 123, Phố ABC" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               </cursor>
+            </TextField>
+
+            <Label text="Email (Tùy chọn)" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+            <TextField fx:id="email_TF" prefHeight="25.0" prefWidth="174.0" promptText="example@example.com" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField prefHeight="25.0" prefWidth="174.0" promptText="example@example.com" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
+               </cursor>
+            </TextField>
+
             <Label text="Chi tiết" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+
+            <TextField fx:id="chiTiet_TF" prefHeight="25.0" prefWidth="174.0" promptText="Số 123, Phố ABC" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+
             <Label text="Mã Định Danh" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="178.0" promptText="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label prefHeight="17.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6" />
-            <ChoiceBox prefHeight="25.0" prefWidth="65.0" GridPane.columnIndex="7" />
+
+            <TextField fx:id="maDinhDanh_TF" prefHeight="25.0" prefWidth="178.0" promptText="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label prefHeight="17.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+
             <Label GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Label text="Phường/Xã/Thị Trấn" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="wardChoiceBox" prefHeight="25.0" prefWidth="144.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="lop_TF" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="7" />
+
          </children>
       </GridPane>
+
       <Button layoutX="331.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+
       <Button layoutX="565.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="451.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+
+      <Button fx:id="luu_Btn" layoutX="451.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView layoutX="10.0" layoutY="403.0" prefHeight="391.0" prefWidth="980.0">
-        <columns>
-          <TableColumn prefWidth="99.0" text="Mã HS" />
-          <TableColumn prefWidth="171.0" text="Họ Đệm" />
-            <TableColumn minWidth="0.0" prefWidth="76.0" text="Tên" />
-            <TableColumn prefWidth="99.0" text="Ngày Sinh" />
-            <TableColumn prefWidth="62.0" text="Giới Tính" />
-            <TableColumn prefWidth="127.0" text="Mã Định Danh" />
-            <TableColumn prefWidth="59.0" text="SĐT" />
-            <TableColumn prefWidth="55.0" text="Email" />
-            <TableColumn prefWidth="48.0" text="Lớp" />
-            <TableColumn prefWidth="114.0" text="Địa chỉ" />
-            <TableColumn prefWidth="68.0" text="Ghi Chú" />
-        </columns>
+
+      <TableView fx:id="tableView" layoutX="10.0" layoutY="403.0" prefHeight="391.0" prefWidth="980.0">
+         <columns>
+            <TableColumn fx:id="sttColumn" prefWidth="45.0" text="STT" />
+            <TableColumn fx:id="maHSColumn" prefWidth="92.0" text="Mã HS" />
+            <TableColumn fx:id="hoDemColumn" prefWidth="144.0" text="Họ Đệm" />
+            <TableColumn fx:id="tenColumn" minWidth="0.0" prefWidth="63.0" text="Tên" />
+            <TableColumn fx:id="ngaySinhColumn" prefWidth="92.0" text="Ngày Sinh" />
+            <TableColumn fx:id="gioiTinhColumn" prefWidth="56.0" text="Giới Tính" />
+            <TableColumn fx:id="maDinhDanhColumn" prefWidth="102.0" text="Mã Định Danh" />
+            <TableColumn fx:id="sdtColumn" prefWidth="55.0" text="SĐT" />
+            <TableColumn fx:id="emailColumn" prefWidth="64.0" text="Email" />
+            <TableColumn fx:id="lopColumn" prefWidth="28.0" text="Lớp" />
+            <TableColumn fx:id="diaChiColumn" prefWidth="144.0" text="Địa chỉ" />
+            <TableColumn fx:id="ghiChuColumn" prefWidth="94.0" text="Ghi Chú" />
+         </columns>
       </TableView>
-      <ChoiceBox layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="144.0" />
+
+
+      <Label layoutX="696.0" layoutY="379.0" text="Tìm Kiếm">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+
+      <TextField fx:id="timKiem_TF" layoutX="762.0" layoutY="375.0" prefHeight="25.0" prefWidth="227.0" />
    </children>
-</Pane>
+   </Pane>
+
+
+         <Pane fx:id="bangDiem">
+      <children>
+         <Label layoutX="383.0" layoutY="20.0" text="Quản Lý Học Sinh">
+            <font>
+               <Font size="29.0" />
+            </font>
+         </Label>
+         <GridPane layoutX="10.0" layoutY="174.0" prefHeight="123.0" prefWidth="980.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="0.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" prefWidth="0.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="0.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" prefWidth="0.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="0.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" prefWidth="0.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="59.0" prefWidth="59.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="0.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" prefWidth="0.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="0.0" prefWidth="80.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" prefWidth="0.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label text="Ngữ Văn">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Vật lí" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Toán" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Hóa học" GridPane.columnIndex="3">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Sinh học" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Thể dục" GridPane.columnIndex="12">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Địa lý" GridPane.columnIndex="6">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Lịch sử" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="GDCD" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Tiếng Anh" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Tin học" GridPane.columnIndex="9" GridPane.rowIndex="2">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Âm nhạc" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Công nghệ" GridPane.columnIndex="9">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <TextField prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" />
+               <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <TextField GridPane.columnIndex="4" />
+               <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
+               <TextField GridPane.columnIndex="13" />
+               <TextField GridPane.columnIndex="10" GridPane.rowIndex="1" />
+               <TextField GridPane.columnIndex="10" GridPane.rowIndex="2" />
+               <TextField GridPane.columnIndex="7" GridPane.rowIndex="2" />
+               <TextField GridPane.columnIndex="7" GridPane.rowIndex="1" />
+               <TextField GridPane.columnIndex="7" />
+               <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
+               <TextField GridPane.columnIndex="10" />
+            </children>
+         </GridPane>
+         <Button layoutX="331.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <Button layoutX="565.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <Button fx:id="luuDiem_Btn" layoutX="451.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <TableView fx:id="tableDiemView" layoutX="10.0" layoutY="403.0" prefHeight="391.0" prefWidth="980.0">
+            <columns>
+               <TableColumn prefWidth="45.0" text="STT" />
+               <TableColumn prefWidth="70.0" text="Mã HS" />
+               <TableColumn prefWidth="130.0" text="Họ Đệm" />
+               <TableColumn minWidth="0.0" prefWidth="60.0" text="Tên" />
+               <TableColumn prefWidth="90.0" text="Ngày Sinh" />
+               <TableColumn prefWidth="40.0" text="Nam" />
+               <TableColumn prefWidth="35.0" text="NV" />
+               <TableColumn prefWidth="35.0" text="T" />
+               <TableColumn prefWidth="35.0" text="VL" />
+               <TableColumn prefWidth="35.0" text="HH" />
+               <TableColumn prefWidth="35.0" text="SH" />
+               <TableColumn prefWidth="35.0" text="LS" />
+               <TableColumn prefWidth="35.0" text="ĐL" />
+               <TableColumn fx:id="ghiChuColumn2" prefWidth="45.0" text="GDCD" />
+               <TableColumn fx:id="ghiChuColumn3" prefWidth="35.0" text="TA" />
+               <TableColumn fx:id="ghiChuColumn4" prefWidth="35.0" text="CN" />
+               <TableColumn fx:id="ghiChuColumn5" prefWidth="35.0" text="ÂN" />
+               <TableColumn fx:id="ghiChuColumn6" prefWidth="35.0" text="TH" />
+               <TableColumn fx:id="ghiChuColumn7" prefWidth="40.0" text="TD" />
+               <TableColumn fx:id="ghiChuColumn71" prefWidth="73.0" text="Ghi chú" />
+            </columns>
+         </TableView>
+<!--         <ChoiceBox fx:id="bangDiem_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />-->
+         <Label layoutX="696.0" layoutY="379.0" text="Tìm Kiếm">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <TextField fx:id="timKiemDiem_TF" layoutX="762.0" layoutY="375.0" prefHeight="25.0" prefWidth="227.0" />
+         <GridPane layoutX="10.0" layoutY="107.0" prefHeight="51.0" prefWidth="980.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="63.0" prefWidth="69.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="105.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="56.0" prefWidth="99.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="264.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="17.0" prefWidth="55.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="61.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="72.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="87.0" prefWidth="105.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="129.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="24.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label text="Mã HS">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label prefWidth="42.0" text="Lớp" GridPane.columnIndex="4">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label text="Ngày Sinh" GridPane.columnIndex="7">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label text="Họ và tên" GridPane.columnIndex="2">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label text="Label" GridPane.columnIndex="1">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label text="Label" GridPane.columnIndex="3">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label text="Label" GridPane.columnIndex="5">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+               <Label text="Label" GridPane.columnIndex="8">
+                  <font>
+                     <Font size="17.0" />
+                  </font>
+               </Label>
+            </children>
+         </GridPane>
+      
+
+      </children>
+   </Pane>
+   <ChoiceBox fx:id="bang_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />
+</AnchorPane>

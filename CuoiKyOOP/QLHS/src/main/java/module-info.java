@@ -10,6 +10,9 @@ module com.qlhs.qlhs {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
 
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+
     opens com.qlhs.qlhs to javafx.fxml;
     exports com.qlhs.qlhs;
 }
