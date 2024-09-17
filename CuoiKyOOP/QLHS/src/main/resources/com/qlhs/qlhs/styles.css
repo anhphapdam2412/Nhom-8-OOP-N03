@@ -1,0 +1,3 @@
+.combo-box-popup {
+    -fx-max-height: 300px; /* Giới hạn chiều cao của popup để hiển thị tối đa 15 mục */
+}

@@ -1,7 +1,7 @@
 package com.qlhs.qlhs;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -21,6 +21,24 @@ import java.io.FileReader;
 import java.io.IOException;
 public class Controller {
 
+    @FXML
+    private TextField hoDem_TF;
+    @FXML
+    private TextField ten_TF;
+    @FXML
+    private TextField SDT_TF;
+    @FXML
+    private TextField maDinhDanh_TF;
+    @FXML
+    private TextField email_TF;
+    @FXML
+    private TextField lop_TF;
+    @FXML
+    private TextField chiTiet_TF;
+    @FXML
+    private RadioButton gioiTinh_Btn;
+    @FXML
+    private DatePicker ngaySinh_Date;
     @FXML
     private ChoiceBox<String> TTP_CB; // ChoiceBox for Tỉnh Thành Phố
     @FXML
@@ -64,9 +82,10 @@ public class Controller {
             }
         });
         loadProvincesFromCSV();
+
     }
     public void loadProvincesFromCSV() {
-        String filePath = "D:/PKA/Code/OOP/Bai tap OOP/CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
+        String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -121,5 +140,24 @@ public class Controller {
             Set<String> wards = districtWardMap.get(selectedDistrict);
             PX_CB.getItems().addAll(wards);  // Thêm các xã/phường tương ứng
         }
+    }
+
+    @FXML
+    private void lamMoi(){
+//        System.out.println("Làm mới được kích hoạt!");
+//        System.out.println("textFie123123ld1: " + hoDem_TF.getText());
+        hoDem_TF.clear();
+//        System.out.println("textFiel123167567567d1: " + hoDem_TF.getText());
+        ten_TF.clear();
+        SDT_TF.clear();
+        maDinhDanh_TF.clear();
+        email_TF.clear();
+        lop_TF.clear();
+        chiTiet_TF.clear();
+        gioiTinh_Btn.setSelected(false);
+        ngaySinh_Date.setValue(null);
+        TTP_CB.setValue(null);
+        QH_CB.setValue(null);
+        PX_CB.setValue(null);
     }
 }
