@@ -230,7 +230,6 @@
       <TextField fx:id="timKiem_TF" layoutX="762.0" layoutY="375.0" prefHeight="25.0" prefWidth="227.0" />
    </children>
    </Pane>
-   <ChoiceBox fx:id="bang_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />
 
 
          <Pane fx:id="bangDiem">
@@ -332,7 +331,7 @@
                <TextField fx:id="theDuc" GridPane.columnIndex="10" GridPane.rowIndex="2" />
                <TextField fx:id="tinHoc" GridPane.columnIndex="10" GridPane.rowIndex="1" />
                <TextField fx:id="ngoaiNgu" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-               <TextField fx:id="DGCD" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+               <TextField fx:id="GDCD" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                <TextField fx:id="diaLy" GridPane.columnIndex="7" />
                <TextField fx:id="lichSu" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                <TextField fx:id="congNghe" GridPane.columnIndex="10" />
@@ -353,11 +352,11 @@
                <Font size="15.0" />
             </font>
          </Button>
-         <TableView fx:id="tableDiemView" layoutX="10.0" layoutY="403.0" prefHeight="391.0" prefWidth="980.0">
+         <TableView fx:id="tableDiemView" layoutX="10.0" layoutY="403.0" maxWidth="980.0" minWidth="980.0" prefHeight="391.0" prefWidth="980.0">
             <columns>
                <TableColumn prefWidth="45.0" text="STT" />
-               <TableColumn prefWidth="70.0" text="Mã HS" />
-               <TableColumn prefWidth="130.0" text="Họ Đệm" />
+               <TableColumn prefWidth="90.0" text="Mã HS" />
+               <TableColumn prefWidth="140.0" text="Họ Đệm" />
                <TableColumn minWidth="0.0" prefWidth="60.0" text="Tên" />
                <TableColumn prefWidth="90.0" text="Ngày Sinh" />
                <TableColumn prefWidth="40.0" text="Nam" />
@@ -371,10 +370,9 @@
                <TableColumn prefWidth="45.0" text="GDCD" />
                <TableColumn prefWidth="35.0" text="NN" />
                <TableColumn prefWidth="35.0" text="CN" />
-               <TableColumn prefWidth="35.0" text="ÂN" />
                <TableColumn prefWidth="35.0" text="TH" />
-               <TableColumn prefWidth="40.0" text="TD" />
-               <TableColumn prefWidth="73.0" text="Ghi chú" />
+               <TableColumn prefWidth="35.0" text="TD" />
+               <TableColumn prefWidth="84.0" text="Ghi chú" />
             </columns>
          </TableView>
 <!--         <ChoiceBox fx:id="bangDiem_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />-->
@@ -444,8 +442,9 @@
                </Label>
             </children>
          </GridPane>
-      
+
 
       </children>
    </Pane>
+   <ChoiceBox fx:id="bang_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />
 </AnchorPane>

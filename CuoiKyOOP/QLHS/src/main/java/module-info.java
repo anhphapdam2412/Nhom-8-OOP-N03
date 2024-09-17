@@ -11,6 +11,7 @@ module com.qlhs.qlhs {
     requires com.almasb.fxgl.all;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+    requires java.sql;
 
     opens com.qlhs.qlhs to javafx.fxml;
     exports com.qlhs.qlhs;

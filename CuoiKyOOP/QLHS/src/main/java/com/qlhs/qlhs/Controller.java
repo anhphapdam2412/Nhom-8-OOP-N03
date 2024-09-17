@@ -62,7 +62,7 @@ public class Controller {
     @FXML
     private TextField diaLy;
     @FXML
-    private TextField DGCD;
+    private TextField GDCD;
     @FXML
     private TextField ngoaiNgu;
     @FXML
@@ -202,7 +202,7 @@ public class Controller {
         sinhHoc.clear();
         lichSu.clear();
         diaLy.clear();
-        DGCD.clear();
+        GDCD.clear();
         ngoaiNgu.clear();
         congNghe.clear();
         tinHoc.clear();
