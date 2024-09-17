@@ -74,6 +74,7 @@
       <artifactId>ikonli-javafx</artifactId>
       <version>12.3.1</version>
     </dependency>
+
     <dependency>
       <groupId>org.kordamp.bootstrapfx</groupId>
       <artifactId>bootstrapfx-core</artifactId>
@@ -120,16 +121,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi</artifactId>
-      <version>5.2.3</version> <!-- Sử dụng phiên bản mới nhất -->
-    </dependency>
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>5.2.3</version> <!-- Sử dụng phiên bản mới nhất -->
-    </dependency>
-    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
       <version>4.4</version>
@@ -146,6 +137,51 @@
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
       <version>2.24.0</version> <!-- Use the latest version -->
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+      <version>1.9.0</version> <!-- Hoặc phiên bản mới nhất -->
+    </dependency>
+    <!-- Apache POI Core Library -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>5.2.3</version> <!-- Hoặc phiên bản mới nhất -->
+    </dependency>
+
+    <!-- Apache POI OOXML Library -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>5.2.3</version> <!-- Hoặc phiên bản mới nhất -->
+    </dependency>
+
+    <!-- Apache POI OOXML Schemas (optional) -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>5.2.3</version> <!-- Hoặc phiên bản mới nhất -->
+    </dependency>
+
+    <!-- XML Beans (required for POI OOXML) -->
+    <dependency>
+      <groupId>org.apache.xmlbeans</groupId>
+      <artifactId>xmlbeans</artifactId>
+      <version>5.1.1</version> <!-- Hoặc phiên bản mới nhất -->
+    </dependency>
+
+    <!-- Common Logging Library (required by POI) -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.2</version> <!-- Hoặc phiên bản mới nhất -->
+    </dependency>
+    <!-- Apache Commons CSV -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+      <version>1.9.0</version> <!-- Hoặc phiên bản mới nhất -->
     </dependency>
   </dependencies>
 
