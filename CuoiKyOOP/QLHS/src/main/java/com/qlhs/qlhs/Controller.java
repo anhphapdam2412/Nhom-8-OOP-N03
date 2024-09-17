@@ -40,11 +40,39 @@ public class Controller {
     @FXML
     private DatePicker ngaySinh_Date;
     @FXML
-    private ChoiceBox<String> TTP_CB; // ChoiceBox for Tỉnh Thành Phố
+    private ComboBox<String> TTP_CB; // ComboBox for Tỉnh Thành Phố
     @FXML
-    private ChoiceBox<String> QH_CB;  // ChoiceBox for Quận Huyện
+    private ComboBox<String> QH_CB;  // ComboBox for Quận Huyện
     @FXML
-    private ChoiceBox<String> PX_CB;  // ChoiceBox for Phường Xã
+    private ComboBox<String> PX_CB;  // ComboBox for Phường Xã
+
+
+    @FXML
+    private TextField nguVan;
+    @FXML
+    private TextField toan;
+    @FXML
+    private TextField vatLi;
+    @FXML
+    private TextField hoaHoc;
+    @FXML
+    private TextField sinhHoc;
+    @FXML
+    private TextField lichSu;
+    @FXML
+    private TextField diaLy;
+    @FXML
+    private TextField DGCD;
+    @FXML
+    private TextField ngoaiNgu;
+    @FXML
+    private TextField congNghe;
+    @FXML
+    private TextField tinHoc;
+    @FXML
+    private TextField theDuc;
+
+
 
 
     @FXML
@@ -143,7 +171,7 @@ public class Controller {
     }
 
     @FXML
-    private void lamMoi(){
+    private void lamMoiTT(){
 //        System.out.println("Làm mới được kích hoạt!");
 //        System.out.println("textFie123123ld1: " + hoDem_TF.getText());
         hoDem_TF.clear();
@@ -159,5 +187,26 @@ public class Controller {
         TTP_CB.setValue(null);
         QH_CB.setValue(null);
         PX_CB.setValue(null);
+    }
+    @FXML
+    private void themMoi(){
+        lamMoiTT();
+    }
+
+    @FXML
+    private void lamMoiDiem() {
+        nguVan.clear();
+        toan.clear();
+        vatLi.clear();
+        hoaHoc.clear();
+        sinhHoc.clear();
+        lichSu.clear();
+        diaLy.clear();
+        DGCD.clear();
+        ngoaiNgu.clear();
+        congNghe.clear();
+        tinHoc.clear();
+        theDuc.clear();
+
     }
 }
