@@ -2,6 +2,7 @@ package com.qlhs.qlhs;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -72,9 +73,6 @@ public class Controller {
     @FXML
     private TextField theDuc;
 
-
-
-
     @FXML
     private GridPane gridPane;
 
@@ -89,8 +87,39 @@ public class Controller {
     private Pane thongTinHocSinh;
     @FXML
     private Pane bangDiem;
+
+    @FXML
+    private TableView<Student> tableView;
+
+    @FXML
+    private TableColumn<Student, String> sttColumn;
+    @FXML
+    private TableColumn<Student, String> maHSColumn;
+    @FXML
+    private TableColumn<Student, String> hoDemColumn;
+    @FXML
+    private TableColumn<Student, String> tenColumn;
+    @FXML
+    private TableColumn<Student, String> ngaySinhColumn;
+    @FXML
+    private TableColumn<Student, String> gioiTinhColumn;
+    @FXML
+    private TableColumn<Student, String> maDinhDanhColumn;
+    @FXML
+    private TableColumn<Student, String> sdtColumn;
+    @FXML
+    private TableColumn<Student, String> emailColumn;
+    @FXML
+    private TableColumn<Student, String> lopColumn;
+    @FXML
+    private TableColumn<Student, String> diaChiColumn;
+    @FXML
+    private TableColumn<Student, String> ghiChuColumn;
+
     @FXML
     private void initialize() {
+
+
         // Thêm các lựa chọn vào ChoiceBox
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
 
@@ -110,6 +139,23 @@ public class Controller {
             }
         });
         loadProvincesFromCSV();
+
+        // Set up the columns to use the Student class fields
+        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
+        hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
+        tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+        gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
+        sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
+        diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+        ghiChuColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChu"));
+
+        // Load data from the database
+        ObservableList<Student> students = StudentDAO.getStudents();
+        tableView.setItems(students);
 
     }
     public void loadProvincesFromCSV() {
