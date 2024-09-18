@@ -1,33 +1,38 @@
 package com.qlhs.qlhs;
 //
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-//import javafx.scene.control.cell.PropertyValueFactory;
-//import javafx.scene.layout.Pane;
-//import javafx.scene.layout.StackPane;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 //
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 //
-//import javafx.scene.layout.GridPane;
-//import java.io.FileReader;
-//
-//import javafx.fxml.FXML;
+import javafx.scene.layout.GridPane;
+import java.io.FileReader;
+
+import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import javafx.stage.Stage;
-//
-//import java.io.BufferedReader;
-//import java.io.FileReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TTController {
 //
@@ -57,30 +62,30 @@ public class TTController {
     private ComboBox<String> PX_CB;  // ComboBox for Phường Xã
 //
 //
-////    @FXML
-////    private TextField nguVan;
-////    @FXML
-////    private TextField toan;
-////    @FXML
-////    private TextField vatLi;
-////    @FXML
-////    private TextField hoaHoc;
-////    @FXML
-////    private TextField sinhHoc;
-////    @FXML
-////    private TextField lichSu;
-////    @FXML
-////    private TextField diaLy;
-////    @FXML
-////    private TextField GDCD;
-////    @FXML
-////    private TextField ngoaiNgu;
-////    @FXML
-////    private TextField congNghe;
-////    @FXML
-////    private TextField tinHoc;
-////    @FXML
-////    private TextField theDuc;
+//    @FXML
+//    private TextField nguVan;
+//    @FXML
+//    private TextField toan;
+//    @FXML
+//    private TextField vatLi;
+//    @FXML
+//    private TextField hoaHoc;
+//    @FXML
+//    private TextField sinhHoc;
+//    @FXML
+//    private TextField lichSu;
+//    @FXML
+//    private TextField diaLy;
+//    @FXML
+//    private TextField GDCD;
+//    @FXML
+//    private TextField ngoaiNgu;
+//    @FXML
+//    private TextField congNghe;
+//    @FXML
+//    private TextField tinHoc;
+//    @FXML
+//    private TextField theDuc;
 ////
     private static final Map<String, Set<String>> provinceDistrictMap = new HashMap<>();  // Tỉnh -> Các quận/huyện
     private static final Map<String, Set<String>> districtWardMap = new HashMap<>();      // Quận/huyện -> Các xã/phường
@@ -115,46 +120,7 @@ public class TTController {
     @FXML
     private TableColumn<Student, String> ghiChuTTColumn;
 ////
-////    @FXML
-////    private TableView<Mark> tableDiemView;
-////    @FXML
-////    private TableColumn<Mark, String> sttDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> maHSDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> hoDemDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> tenDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> ngaySinhDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> gioiTinhDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> ngoaiNguColumn;
-////    @FXML
-////    private TableColumn<Mark, String> congNgheColumn;
-////    @FXML
-////    private TableColumn<Mark, String> tinHocColumn;
-////    @FXML
-////    private TableColumn<Mark, String> theDucColumn;
-////    @FXML
-////    private TableColumn<Mark, String> diaLyColumn;
-////    @FXML
-////    private TableColumn<Mark, String> nguVanColumn;
-////    @FXML
-////    private TableColumn<Mark, String> toanColumn;
-////    @FXML
-////    private TableColumn<Mark, String> vatLiColumn;
-////    @FXML
-////    private TableColumn<Mark, String> sinhHocColumn;
-////    @FXML
-////    private TableColumn<Mark, String> lichSuColumn;
-////    @FXML
-////    private TableColumn<Mark, String> ghiChuDiemColumn;
-////    @FXML
-////    private TableColumn<Mark, String> GDCDColumn;
-////    @FXML
-////    private TableColumn<Mark, String> hoaHocColumn;
+
 //
     @FXML
     private void initialize() {
@@ -173,51 +139,27 @@ public class TTController {
             }
         });
         loadProvincesFromCSV();
-    }
 
-////
-////
-////        // Set up the columns to use the Student class fields
-////        sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
-////        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
-////        hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
-////        tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
-////        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
-////        gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
-////        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
-////        sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
-////        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-////        lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
-////        diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-////        ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
-////
-////        // Load data from the database
-////        ObservableList<Student> students = StudentDAO.getStudents();
-////        tableTTView.setItems(students);
+        // Set up the columns to use the Student class fields
+        sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
+        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
+        hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
+        tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+        gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
+        sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
+        diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+        ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
+
+        // Load data from the database
+        ObservableList<Student> students = StudentDAO.getStudents();
+        tableTTView.setItems(students);
+
+    }
 //
-//        //
-////        nguVanColumn.setCellValueFactory(new PropertyValueFactory<>("nguVan"));
-////        toanColumn.setCellValueFactory(new PropertyValueFactory<>("toan"));
-////        vatLiColumn.setCellValueFactory(new PropertyValueFactory<>("vatLi"));
-////        hoaHocColumn.setCellValueFactory(new PropertyValueFactory<>("hoaHoc"));
-////        sinhHocColumn.setCellValueFactory(new PropertyValueFactory<>("sinhHoc"));
-////        lichSuColumn.setCellValueFactory(new PropertyValueFactory<>("lichSu"));
-////        diaLyColumn.setCellValueFactory(new PropertyValueFactory<>("diaLy"));
-////        GDCDColumn.setCellValueFactory(new PropertyValueFactory<>("GDCD"));
-////        ngoaiNguColumn.setCellValueFactory(new PropertyValueFactory<>("ngoaiNgu"));
-////        congNgheColumn.setCellValueFactory(new PropertyValueFactory<>("congNghe"));
-////        tinHocColumn.setCellValueFactory(new PropertyValueFactory<>("tinHoc"));
-////        theDucColumn.setCellValueFactory(new PropertyValueFactory<>("theDuc"));
-////        ghiChuDiemColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
-////        //
-////        ObservableList<Mark> marks = MarkDAO.getMark();
-////        tableDiemView.setItems(marks);
-//
-//        // If you want to print the students, you can use the printStudents() method
-////        MarkDAO.printStudents();
-//
-////    }
-////
     public void loadProvincesFromCSV() {
         String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
 
