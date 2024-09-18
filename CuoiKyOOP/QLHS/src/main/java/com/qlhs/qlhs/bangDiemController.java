@@ -121,8 +121,6 @@ public class bangDiemController {
 
     @FXML
     private void initialize() {
-//
-//
         // Thêm các lựa chọn vào ChoiceBox
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         bang_CB.setValue("Bảng điểm");
@@ -162,7 +160,7 @@ public class bangDiemController {
         hocLucColumn.setCellValueFactory(new PropertyValueFactory<>("hocLuc"));
         hanhKiemColumn.setCellValueFactory(new PropertyValueFactory<>("hanhKiem"));
         ghiChuColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
-        //
+
         ObservableList<bangDiem> bangDiems = bangDiemDAO.getBangDiem();
         tableDiemView.setItems(bangDiems);
 

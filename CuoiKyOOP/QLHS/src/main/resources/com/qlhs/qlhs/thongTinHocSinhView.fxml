@@ -42,18 +42,12 @@
             </rowConstraints>
 
             <children>
-                <Button mnemonicParsing="false" onAction="#themMoi" prefHeight="25.0" prefWidth="70.0" text="Thêm mới" GridPane.columnIndex="1">
+                <Button fx:id="themMoi_Btn" mnemonicParsing="false" onAction="#themMoi" prefHeight="25.0" prefWidth="70.0" text="Thêm mới" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets left="150.0" />
                     </GridPane.margin>
                 </Button>
                 <Label text="Mã Học Sinh">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-
-                <Label text="Mã học sinh" GridPane.columnIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -195,6 +189,11 @@
                   <Insets left="60.0" />
                </GridPane.margin>
             </RadioButton>
+            <Label fx:id="maHS_Lb" prefHeight="17.0" prefWidth="136.0" text="23xxxxxx" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
 
             </children>
         </GridPane>

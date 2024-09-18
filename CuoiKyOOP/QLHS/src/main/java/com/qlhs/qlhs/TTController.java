@@ -17,9 +17,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 //
+import java.time.format.DateTimeFormatter;
 import javafx.scene.layout.GridPane;
 import java.io.FileReader;
-
+import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,9 +34,12 @@ import java.io.FileReader;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.poi.ss.formula.functions.T;
 
 public class TTController {
 
+    @FXML
+    private Label maHS_Lb;
     @FXML
     private TextField hoDem_TF;
     @FXML
@@ -241,6 +245,43 @@ public class TTController {
     }
     @FXML
     private void themMoi(){
+        ObservableList<Student> students = StudentDAO.getStudents();
+
+        List<Integer> danhSachMaHS = new ArrayList<>();
+
+//        if(LocalDate.now() == LocalDate.now()){
+
+//        }
+        // Lấy ngày hiện tại
+        LocalDate today = LocalDate.now();
+
+        // Chuỗi ngày cần so sánh
+        ConfigReader configReader = new ConfigReader();
+        String endOfSchoolYear = configReader.getEndOfSchoolYear();
+
+        int nam = Integer.parseInt(endOfSchoolYear.substring(2, 4));
+
+        LocalDate compareDate = LocalDate.parse(endOfSchoolYear, DateTimeFormatter.ISO_LOCAL_DATE);
+
+        for (Student student : students) {
+            if (student != null) {
+                danhSachMaHS.add(Integer.parseInt(student.getMaHS()));
+            }
+            if (danhSachMaHS.size()>1) {
+                danhSachMaHS.removeFirst();
+            }
+        }
+        System.out.println(danhSachMaHS);
+        // So sánh ngày hiện tại với ngày chuỗi
+        if (today.isAfter(compareDate)) {
+            if(danhSachMaHS.getFirst() / 1000000 < nam){ // chia lấy nguyên cho 1000000 để lấy ra năm
+                danhSachMaHS.removeFirst();
+                danhSachMaHS.add(nam * 1000000 - 1); // vd mã năm là 24 thì sẽ là 24*1000000-1 = 23999999 để xuống dưới sẽ cộng thêm 1 và ra mã 24000000
+            }
+        }
+
+        maHS_Lb.setText(String.valueOf(danhSachMaHS.getFirst()+1));
+
         lamMoiTT();
     }
 

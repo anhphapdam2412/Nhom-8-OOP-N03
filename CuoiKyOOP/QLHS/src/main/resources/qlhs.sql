@@ -42,6 +42,6 @@ VALUES
 
 INSERT INTO bangDiem (maHS, nguVan, toan, vatLi, hoaHoc, sinhHoc, lichSu, diaLy, GDCD, ngoaiNgu,maNN, congNghe, tinHoc, theDuc,hocLuc,hanhKiem, ghiChuDiem) 
 VALUES
-('HS001', 8.5, 9.0, 7.5, 8.0, 7.8, 6.5, 7.2, 8.0, 8.5,'N1', 7.0, 8.0, 'A','T','T', 'Excellent performance'),
-('HS002', 7.5, 6.8, 8.0, 7.0, 8.2, 6.9, 7.5, 7.8, 7.0,'N2', 7.5, 7.9, 'B','T','K', 'Good performance');
+('23103060', 8.5, 9.0, 7.5, 8.0, 7.8, 6.5, 7.2, 8.0, 8.5,'N1', 7.0, 8.0, 'A','T','T', 'Excellent performance'),
+('23103040', 7.5, 6.8, 8.0, 7.0, 8.2, 6.9, 7.5, 7.8, 7.0,'N2', 7.5, 7.9, 'B','T','K', 'Good performance');
 
