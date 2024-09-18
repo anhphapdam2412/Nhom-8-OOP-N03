@@ -315,29 +315,29 @@ public class TTController {
 ////        theDuc.clear();
 ////
 ////    }
-private void loadFXML(String fxmlFile) throws IOException {
-    String fxmlPath = "";
-    switch (fxmlFile) {
-        case "Thông tin học sinh":
-            fxmlPath = "thongTinHocSinh.fxml";
-            break;
-        case "Bảng điểm":
-            fxmlPath = "bangDiemView.fxml";
-            break;
-        default:
-            throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
-    }
+    private void loadFXML(String fxmlFile) throws IOException {
+        String fxmlPath = "";
+        switch (fxmlFile) {
+            case "Thông tin học sinh":
+                fxmlPath = "thongTinHocSinh.fxml";
+                break;
+            case "Bảng điểm":
+                fxmlPath = "bangDiemView.fxml";
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
+        }
 
-    System.out.println("Loading FXML: " + fxmlPath); // Debugging line
-    if (!fxmlPath.isEmpty()) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) bang_CB.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show(); // Ensure the stage is visible
-        } catch (IOException e) {
-            e.printStackTrace();
+        System.out.println("Loading FXML: " + fxmlPath); // Debugging line
+        if (!fxmlPath.isEmpty()) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+                Stage stage = (Stage) bang_CB.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show(); // Ensure the stage is visible
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-}
 }
