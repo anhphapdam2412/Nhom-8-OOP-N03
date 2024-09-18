@@ -1,5 +1,6 @@
 package com.qlhs.qlhs;
 //
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,7 @@ import java.io.FileReader;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class bangDiemController {
 
@@ -71,6 +73,20 @@ public class bangDiemController {
     @FXML
     private TableView<Mark> tableDiemView;
     @FXML
+    private TableColumn<Mark, String> sttColumn;
+    @FXML
+    private TableColumn<Mark, String> maHSColumn;
+    @FXML
+    private TableColumn<Mark, String> hoDemColumn;
+    @FXML
+    private TableColumn<Mark, String> tenColumn;
+    @FXML
+    private TableColumn<Mark, String> ngaySinhColumn;
+    @FXML
+    private TableColumn<Mark, String> gioiTinhColumn;
+    @FXML
+    private TableColumn<Mark, String> maDinhDanhColumn;
+    @FXML
     private TableColumn<Mark, String> ngoaiNguColumn;
     @FXML
     private TableColumn<Mark, String> congNgheColumn;
@@ -91,7 +107,7 @@ public class bangDiemController {
     @FXML
     private TableColumn<Mark, String> lichSuColumn;
     @FXML
-    private TableColumn<Mark, String> ghiChuDiemColumn;
+    private TableColumn<Mark, String> ghiChuColumn;
     @FXML
     private TableColumn<Mark, String> GDCDColumn;
     @FXML
@@ -105,8 +121,8 @@ public class bangDiemController {
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         bang_CB.setValue("Bảng điểm");
 
-        hanhKiem_CB.getItems().addAll("Tốt","Khá","Trung Bình","Yếu","Kém");
-        maNN_CB.getItems().addAll("N1","N2","N3");
+        hanhKiem_CB.getItems().addAll("Tốt", "Khá", "Trung Bình", "Yếu", "Kém");
+        maNN_CB.getItems().addAll("N1", "N2", "N3");
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
         bang_CB.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             try {
@@ -115,6 +131,15 @@ public class bangDiemController {
                 e.printStackTrace();
             }
         });
+
+        // Set up the columns to use the Mark class fields
+        sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
+        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHocSinh"));
+        hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
+        tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+        gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
         nguVanColumn.setCellValueFactory(new PropertyValueFactory<>("nguVan"));
         toanColumn.setCellValueFactory(new PropertyValueFactory<>("toan"));
         vatLiColumn.setCellValueFactory(new PropertyValueFactory<>("vatLi"));
@@ -127,10 +152,12 @@ public class bangDiemController {
         congNgheColumn.setCellValueFactory(new PropertyValueFactory<>("congNghe"));
         tinHocColumn.setCellValueFactory(new PropertyValueFactory<>("tinHoc"));
         theDucColumn.setCellValueFactory(new PropertyValueFactory<>("theDuc"));
-        ghiChuDiemColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
+        ghiChuColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
         //
         ObservableList<Mark> marks = MarkDAO.getMark();
         tableDiemView.setItems(marks);
+//        ObservableList<Student> students = StudentDAO.getStudents();
+//        tableDiemView.setItems(students);
 
     }
 

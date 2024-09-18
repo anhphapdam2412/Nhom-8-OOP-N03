@@ -28,9 +28,9 @@ congNghe float,
 tinHoc float,
 theDuc char,
 ngoaiNgu float,
-maNN char,
-hocLuc char,
-hanhKiem char,
+maNN char(2),
+hocLuc char(2),
+hanhKiem char(2),
 ghiChuDiem text
 );
 

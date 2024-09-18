@@ -171,10 +171,10 @@
                 <TableColumn fx:id="tinHocColumn" prefWidth="37.0" text="TH" />
                 <TableColumn fx:id="theDucColumn" prefWidth="37.0" text="TD" />
                 <TableColumn fx:id="ngoaiNguColumn" prefWidth="37.0" text="NN" />
-            <TableColumn fx:id="ngoaiNguColumn1" prefWidth="54.0" text="Mã NN" />
-            <TableColumn fx:id="ngoaiNguColumn11" prefWidth="37.0" text="HL" />
-            <TableColumn fx:id="ngoaiNguColumn12" prefWidth="41.0" text="HK" />
-                <TableColumn fx:id="ghiChuDiemColumn" prefWidth="66.0" text="Ghi chú" />
+                <TableColumn fx:id="maNgoaiNguColumn" prefWidth="54.0" text="Mã NN" />
+                <TableColumn fx:id="hocLucColumn" prefWidth="37.0" text="HL" />
+                <TableColumn fx:id="hanhKiemColumn" prefWidth="41.0" text="HK" />
+                <TableColumn fx:id="ghiChuColumn" prefWidth="66.0" text="Ghi chú" />
             </columns>
         </TableView>
         <!--         <ChoiceBox fx:id="bangDiem_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />-->

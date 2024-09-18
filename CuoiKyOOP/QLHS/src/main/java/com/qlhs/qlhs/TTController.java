@@ -78,6 +78,7 @@ public class TTController {
     @FXML
     private ChoiceBox<String> bang_CB;
 
+
     @FXML
     private TableView<Student> tableTTView;
     @FXML
