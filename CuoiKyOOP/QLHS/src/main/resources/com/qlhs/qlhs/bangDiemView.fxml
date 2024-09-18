@@ -39,8 +39,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="0.0" prefWidth="84.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="0.0" prefWidth="30.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="77.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="43.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="99.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="91.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="51.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -108,25 +108,25 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="" GridPane.columnIndex="2" />
-                <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="5" />
-                <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="8" />
-                <TextField GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                <TextField maxWidth="30.0" minWidth="30.0" prefWidth="30.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                <TextField maxWidth="30.0" minWidth="30.0" prefWidth="30.0" GridPane.columnIndex="11" />
-            <ComboBox prefWidth="150.0" promptText="Mã NN" GridPane.columnIndex="13" GridPane.rowIndex="2" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="16" />
-            <Label prefHeight="17.0" prefWidth="79.0" text="Hạnh kiểm" GridPane.columnIndex="15">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Đạt" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                <TextField fx:id="nguVan_TF" GridPane.columnIndex="2" />
+                <TextField fx:id="toan_TF" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="vatLi_TF" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <TextField fx:id="hoaHoc_TF" GridPane.columnIndex="5" />
+                <TextField fx:id="sinhHoc_TF" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <TextField fx:id="lichSu_TF" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <TextField fx:id="diaLy_TF" GridPane.columnIndex="8" />
+                <TextField fx:id="GDCD_TF" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                <TextField fx:id="ngoaiNgu_TF" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                <TextField fx:id="congNghe_TF" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                <TextField fx:id="tinHoc_TF" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" GridPane.columnIndex="11" />
+                <ComboBox fx:id="maNN_CB" prefWidth="150.0" promptText="Mã NN" GridPane.columnIndex="13" GridPane.rowIndex="2" />
+                <ComboBox fx:id="hanhKiem_CB" prefWidth="150.0" GridPane.columnIndex="16" />
+                <Label prefHeight="17.0" prefWidth="79.0" text="Hạnh kiểm" GridPane.columnIndex="15">
+                   <font>
+                      <Font size="14.0" />
+                   </font>
+                </Label>
+                <RadioButton fx:id="theDuc_Btn" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Đạt" GridPane.columnIndex="11" GridPane.rowIndex="1" />
             </children>
         </GridPane>
         <Button layoutX="443.0" layoutY="331.0" mnemonicParsing="false" onAction="#lamMoiDiem" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">

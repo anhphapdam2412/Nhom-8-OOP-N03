@@ -59,7 +59,11 @@ public class bangDiemController {
     @FXML
     private TextField tinHoc_TF;
     @FXML
-    private TextField theDuc_TF;
+    private RadioButton theDuc_Btn;
+    @FXML
+    private ComboBox<String> hanhKiem_CB;
+    @FXML
+    private ComboBox<String> maNN_CB;
 
     @FXML
     private ChoiceBox<String> bang_CB;
@@ -101,6 +105,8 @@ public class bangDiemController {
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         bang_CB.setValue("Bảng điểm");
 
+        hanhKiem_CB.getItems().addAll("Tốt","Khá","Trung Bình","Yếu","Kém");
+        maNN_CB.getItems().addAll("N1","N2","N3");
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
         bang_CB.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             try {
@@ -170,7 +176,9 @@ public class bangDiemController {
         ngoaiNgu_TF.clear();
         congNghe_TF.clear();
         tinHoc_TF.clear();
-        theDuc_TF.clear();
+        theDuc_Btn.setSelected(false);
+        hanhKiem_CB.setValue(null);
+        maNN_CB.setValue(null);
 
     }
 }
