@@ -71,47 +71,53 @@ public class bangDiemController {
     private ChoiceBox<String> bang_CB;
 
     @FXML
-    private TableView<Mark> tableDiemView;
+    private TableView<bangDiem> tableDiemView;
     @FXML
-    private TableColumn<Mark, String> sttColumn;
+    private TableColumn<bangDiem, String> sttColumn;
     @FXML
-    private TableColumn<Mark, String> maHSColumn;
+    private TableColumn<bangDiem, String> maHSColumn;
     @FXML
-    private TableColumn<Mark, String> hoDemColumn;
+    private TableColumn<bangDiem, String> hoDemColumn;
     @FXML
-    private TableColumn<Mark, String> tenColumn;
+    private TableColumn<bangDiem, String> tenColumn;
     @FXML
-    private TableColumn<Mark, String> ngaySinhColumn;
+    private TableColumn<bangDiem, String> ngaySinhColumn;
     @FXML
-    private TableColumn<Mark, String> gioiTinhColumn;
+    private TableColumn<bangDiem, String> gioiTinhColumn;
     @FXML
-    private TableColumn<Mark, String> maDinhDanhColumn;
+    private TableColumn<bangDiem, String> maDinhDanhColumn;
     @FXML
-    private TableColumn<Mark, String> ngoaiNguColumn;
+    private TableColumn<bangDiem, String> ngoaiNguColumn;
     @FXML
-    private TableColumn<Mark, String> congNgheColumn;
+    private TableColumn<bangDiem, String> congNgheColumn;
     @FXML
-    private TableColumn<Mark, String> tinHocColumn;
+    private TableColumn<bangDiem, String> tinHocColumn;
     @FXML
-    private TableColumn<Mark, String> theDucColumn;
+    private TableColumn<bangDiem, String> theDucColumn;
     @FXML
-    private TableColumn<Mark, String> diaLyColumn;
+    private TableColumn<bangDiem, String> diaLyColumn;
     @FXML
-    private TableColumn<Mark, String> nguVanColumn;
+    private TableColumn<bangDiem, String> nguVanColumn;
     @FXML
-    private TableColumn<Mark, String> toanColumn;
+    private TableColumn<bangDiem, String> toanColumn;
     @FXML
-    private TableColumn<Mark, String> vatLiColumn;
+    private TableColumn<bangDiem, String> vatLiColumn;
     @FXML
-    private TableColumn<Mark, String> sinhHocColumn;
+    private TableColumn<bangDiem, String> sinhHocColumn;
     @FXML
-    private TableColumn<Mark, String> lichSuColumn;
+    private TableColumn<bangDiem, String> lichSuColumn;
     @FXML
-    private TableColumn<Mark, String> ghiChuColumn;
+    private TableColumn<bangDiem, String> ghiChuColumn;
     @FXML
-    private TableColumn<Mark, String> GDCDColumn;
+    private TableColumn<bangDiem, String> GDCDColumn;
     @FXML
-    private TableColumn<Mark, String> hoaHocColumn;
+    private TableColumn<bangDiem, String> hoaHocColumn;
+    @FXML
+    private TableColumn<bangDiem, String> hocLucColumn;
+    @FXML
+    private TableColumn<bangDiem, String> hanhKiemColumn;
+    @FXML
+    private TableColumn<bangDiem, String> maNNColumn;
 
     @FXML
     private void initialize() {
@@ -134,7 +140,7 @@ public class bangDiemController {
 
         // Set up the columns to use the Mark class fields
         sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
-        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHocSinh"));
+        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
         hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
         tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
         ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
@@ -152,12 +158,13 @@ public class bangDiemController {
         congNgheColumn.setCellValueFactory(new PropertyValueFactory<>("congNghe"));
         tinHocColumn.setCellValueFactory(new PropertyValueFactory<>("tinHoc"));
         theDucColumn.setCellValueFactory(new PropertyValueFactory<>("theDuc"));
+        maNNColumn.setCellValueFactory(new PropertyValueFactory<>("maNN"));
+        hocLucColumn.setCellValueFactory(new PropertyValueFactory<>("hocLuc"));
+        hanhKiemColumn.setCellValueFactory(new PropertyValueFactory<>("hanhKiem"));
         ghiChuColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
         //
-        ObservableList<Mark> marks = MarkDAO.getMark();
-        tableDiemView.setItems(marks);
-//        ObservableList<Student> students = StudentDAO.getStudents();
-//        tableDiemView.setItems(students);
+        ObservableList<bangDiem> bangDiems = bangDiemDAO.getBangDiem();
+        tableDiemView.setItems(bangDiems);
 
     }
 

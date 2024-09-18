@@ -1,8 +1,8 @@
 package com.qlhs.qlhs;
 
-public class Mark {
+public class Diem {
 
-    private final String maHocSinh;
+    private final String maHS;
     private final String nguVan;
     private final String toan;
     private final String vatLi;
@@ -11,14 +11,17 @@ public class Mark {
     private final String lichSu;
     private final String diaLy;
     private final String GDCD;
-    private final String ngoaiNgu;
     private final String congNghe;
     private final String tinHoc;
     private final String theDuc;
+    private final String ngoaiNgu;
+    private final String maNN;
+    private final String hocLuc;
+    private final String hanhKiem;
     private final String ghiChuDiem;
 
-    public Mark(String maHocSinh, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String ngoaiNgu, String congNghe, String tinHoc, String theDuc, String ghiChuDiem) {
-        this.maHocSinh = maHocSinh;
+    public Diem(String maHS, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem) {
+        this.maHS = maHS;
         this.nguVan = nguVan;
         this.toan = toan;
         this.vatLi = vatLi;
@@ -27,15 +30,18 @@ public class Mark {
         this.lichSu = lichSu;
         this.diaLy = diaLy;
         this.GDCD = GDCD;
-        this.ngoaiNgu = ngoaiNgu;
         this.congNghe = congNghe;
         this.tinHoc = tinHoc;
         this.theDuc = theDuc;
+        this.ngoaiNgu = ngoaiNgu;
+        this.maNN = maNN;
+        this.hocLuc = hocLuc;
+        this.hanhKiem = hanhKiem;
         this.ghiChuDiem = ghiChuDiem;
     }
 
-    public String getMaHocSinh() {
-        return maHocSinh;
+    public String getMaHS() {
+        return maHS;
     }
 
     public String getNguVan() {
@@ -70,10 +76,6 @@ public class Mark {
         return GDCD;
     }
 
-    public String getNgoaiNgu() {
-        return ngoaiNgu;
-    }
-
     public String getCongNghe() {
         return congNghe;
     }
@@ -84,6 +86,22 @@ public class Mark {
 
     public String getTheDuc() {
         return theDuc;
+    }
+
+    public String getNgoaiNgu() {
+        return ngoaiNgu;
+    }
+
+    public String getMaNN() {
+        return maNN;
+    }
+
+    public String getHocLuc() {
+        return hocLuc;
+    }
+
+    public String getHanhKiem() {
+        return hanhKiem;
     }
 
     public String getGhiChuDiem() {

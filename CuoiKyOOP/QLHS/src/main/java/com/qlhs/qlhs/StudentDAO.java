@@ -23,7 +23,7 @@ public class StudentDAO {
             int stt = 0;
             while (rs.next()) {
                 stt = stt + 1;
-                String maHS = rs.getString("maHocSinh");
+                String maHS = rs.getString("maHS");
                 String hoDem = rs.getString("hoDem");
                 String ten = rs.getString("ten");
                 String ngaySinh = rs.getString("ngaySinh");

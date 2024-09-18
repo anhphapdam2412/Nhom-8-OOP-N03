@@ -171,7 +171,7 @@
                 <TableColumn fx:id="tinHocColumn" prefWidth="37.0" text="TH" />
                 <TableColumn fx:id="theDucColumn" prefWidth="37.0" text="TD" />
                 <TableColumn fx:id="ngoaiNguColumn" prefWidth="37.0" text="NN" />
-                <TableColumn fx:id="maNgoaiNguColumn" prefWidth="54.0" text="Mã NN" />
+                <TableColumn fx:id="maNNColumn" prefWidth="54.0" text="Mã NN" />
                 <TableColumn fx:id="hocLucColumn" prefWidth="37.0" text="HL" />
                 <TableColumn fx:id="hanhKiemColumn" prefWidth="41.0" text="HK" />
                 <TableColumn fx:id="ghiChuColumn" prefWidth="66.0" text="Ghi chú" />
