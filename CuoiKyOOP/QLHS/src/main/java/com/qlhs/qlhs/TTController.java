@@ -217,29 +217,29 @@ public class TTController {
             PX_CB.getItems().addAll(wards);  // Thêm các xã/phường tương ứng
         }
     }
-////
-////    @FXML
-////    private void lamMoiTT(){
-//////        System.out.println("Làm mới được kích hoạt!");
-//////        System.out.println("textFie123123ld1: " + hoDem_TF.getText());
-////        hoDem_TF.clear();
-//////        System.out.println("textFiel123167567567d1: " + hoDem_TF.getText());
-////        ten_TF.clear();
-////        SDT_TF.clear();
-////        maDinhDanh_TF.clear();
-////        email_TF.clear();
-////        lop_TF.clear();
-////        chiTiet_TF.clear();
-////        gioiTinh_Btn.setSelected(false);
-////        ngaySinh_Date.setValue(null);
-////        TTP_CB.setValue(null);
-////        QH_CB.setValue(null);
-////        PX_CB.setValue(null);
-////    }
-////    @FXML
-////    private void themMoi(){
-////        lamMoiTT();
-////    }
+
+    @FXML
+    private void lamMoiTT(){
+//        System.out.println("Làm mới được kích hoạt!");
+//        System.out.println("textFie123123ld1: " + hoDem_TF.getText());
+        hoDem_TF.clear();
+//        System.out.println("textFiel123167567567d1: " + hoDem_TF.getText());
+        ten_TF.clear();
+        SDT_TF.clear();
+        maDinhDanh_TF.clear();
+        email_TF.clear();
+        lop_TF.clear();
+        chiTiet_TF.clear();
+        gioiTinh_Btn.setSelected(false);
+        ngaySinh_Date.setValue(null);
+        TTP_CB.setValue(null);
+        QH_CB.setValue(null);
+        PX_CB.setValue(null);
+    }
+    @FXML
+    private void themMoi(){
+        lamMoiTT();
+    }
 ////
 ////    @FXML
 ////    private void lamMoiDiem() {
