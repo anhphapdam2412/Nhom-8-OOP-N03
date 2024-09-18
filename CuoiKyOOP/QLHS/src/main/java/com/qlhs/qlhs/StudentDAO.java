@@ -7,19 +7,22 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StudentDAO {
 
+    static List<String> tempStudentList = new ArrayList<>();
     public static ObservableList<Student> getStudents() {
         ObservableList<Student> studentList = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM thongTinHocSinh";
 
-        try (Connection conn = DatabaseConnector.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
+        try (Connection conn = DatabaseConnector.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            int stt = 0;
             while (rs.next()) {
+                stt = stt + 1;
                 String maHS = rs.getString("maHocSinh");
                 String hoDem = rs.getString("hoDem");
                 String ten = rs.getString("ten");
@@ -30,9 +33,14 @@ public class StudentDAO {
                 String email = rs.getString("email");
                 String lop = rs.getString("lop");
                 String diaChi = rs.getString("diaChi");
-                String ghiChu = rs.getString("ghiChu");
+                String ghiChu = rs.getString("ghiChuTT");
 
-                Student student = new Student(maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu);
+
+                Student student = new Student(Integer.toString(stt), maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu);
+
+                List<String> tempStudent = new ArrayList<>(Arrays.asList(Integer.toString(stt), maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu));
+
+                tempStudentList.add(String.valueOf(tempStudent));
                 studentList.add(student);
             }
         } catch (SQLException e) {
@@ -40,5 +48,8 @@ public class StudentDAO {
         }
 
         return studentList;
+    }
+    public static List<String> getID(){
+        return tempStudentList;
     }
 }
