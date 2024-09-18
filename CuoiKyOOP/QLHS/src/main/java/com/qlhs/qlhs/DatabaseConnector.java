@@ -22,15 +22,4 @@ public class DatabaseConnector {
         return connection;
     }
 
-    // Close the connection properly
-    public static void closeConnection(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println("Database connection closed.");
-            } catch (SQLException e) {
-                System.err.println("Failed to close the database connection: " + e.getMessage());
-            }
-        }
-    }
 }

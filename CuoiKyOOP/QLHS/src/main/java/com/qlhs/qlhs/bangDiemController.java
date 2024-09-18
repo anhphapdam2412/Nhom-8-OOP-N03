@@ -6,34 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-//
-import java.io.BufferedReader;
-import java.io.FileReader;
+import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.util.*;
-//
-import javafx.scene.layout.GridPane;
-import java.io.FileReader;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.stage.Stage;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.Objects;
 
 
 public class bangDiemController {
@@ -128,7 +106,7 @@ public class bangDiemController {
         hanhKiem_CB.getItems().addAll("Tốt", "Khá", "Trung Bình", "Yếu", "Kém");
         maNN_CB.getItems().addAll("N1", "N2", "N3");
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
-        bang_CB.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+        bang_CB.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
             try {
                 loadFXML(newVal);
             } catch (IOException e) {
@@ -167,31 +145,20 @@ public class bangDiemController {
     }
 
     private void loadFXML(String fxmlFile) throws IOException {
-        String fxmlPath = "";
-        switch (fxmlFile) {
-            case "Thông tin học sinh":
-                fxmlPath = "thongTinHocSinhView.fxml";
-
-                break;
-            case "Bảng điểm":
-                fxmlPath = "bangDiemView.fxml";
-
-
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
-        }
+        String fxmlPath = switch (fxmlFile) {
+            case "Thông tin học sinh" -> "thongTinHocSinhView.fxml";
+            case "Bảng điểm" -> "bangDiemView.fxml";
+            default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
+        };
 
         System.out.println("Loading FXML: " + fxmlPath); // Debugging line
-        if (!fxmlPath.isEmpty()) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-                Stage stage = (Stage) bang_CB.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show(); // Ensure the stage is visible
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+            Stage stage = (Stage) bang_CB.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show(); // Ensure the stage is visible
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

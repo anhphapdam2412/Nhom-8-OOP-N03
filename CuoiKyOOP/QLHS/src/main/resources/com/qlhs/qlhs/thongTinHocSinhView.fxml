@@ -53,25 +53,25 @@
                     </font>
                 </Label>
 
-                <TextField fx:id="hoDem_TF" prefHeight="25.0" prefWidth="174.0" promptText="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField onKeyReleased="#handleKeyReleased" fx:id="hoDem_TF" prefHeight="25.0" prefWidth="174.0" promptText="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </TextField>
 
-                <TextField fx:id="ten_TF" prefHeight="25.0" prefWidth="174.0" promptText="A" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField onKeyReleased="#handleKeyReleased" fx:id="ten_TF" prefHeight="25.0" prefWidth="174.0" promptText="A" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </TextField>
 
-                <Label text="Họ Đệm" GridPane.rowIndex="1">
+                <Label fx:id="hoDemHopLe" text="Họ Đệm" GridPane.rowIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
 
-                <Label text="Tên" GridPane.rowIndex="2">
+                <Label fx:id="tenHopLe" text="Tên" GridPane.rowIndex="2">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -91,20 +91,20 @@
                 <DatePicker fx:id="ngaySinh_Date" accessibleRole="COMBO_BOX" prefHeight="25.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
 
-                <Label text="Mã Định Danh" GridPane.rowIndex="5">
+                <Label fx:id="maDinhDanhHopLe" text="Mã Định Danh" GridPane.rowIndex="5">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="maDinhDanh_TF" prefHeight="25.0" prefWidth="178.0" promptText="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField onKeyReleased="#handleKeyReleased" fx:id="maDinhDanh_TF" prefHeight="25.0" prefWidth="178.0" promptText="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                <Label text="Số Điện Thoại" GridPane.columnIndex="3">
+                <Label fx:id="sdtHopLe" text="Số Điện Thoại" GridPane.columnIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
 
-                <TextField fx:id="SDT_TF" prefHeight="25.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="4">
+                <TextField fx:id="SDT_TF" onKeyReleased="#handleKeyReleased" prefHeight="25.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="4">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>

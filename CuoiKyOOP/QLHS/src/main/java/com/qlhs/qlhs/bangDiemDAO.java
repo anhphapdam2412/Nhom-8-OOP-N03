@@ -16,31 +16,7 @@ public class bangDiemDAO {
             for (Diem diem : diems) {
                 if (student.getMaHS().equals(diem.getMaHS())) {
                     // Create a new bangDiem object combining student and diem info
-                    bangDiem studentMark = new bangDiem(
-                            student.getStt(),
-                            student.getMaHS(),
-                            student.getHoDem(),
-                            student.getTen(),
-                            student.getNgaySinh(),
-                            student.getGioiTinh(),
-                            student.getMaDinhDanh(),
-                            diem.getNguVan(),
-                            diem.getToan(),
-                            diem.getVatLi(),
-                            diem.getHoaHoc(),
-                            diem.getSinhHoc(),
-                            diem.getLichSu(),
-                            diem.getDiaLy(),
-                            diem.getGDCD(),
-                            diem.getCongNghe(),
-                            diem.getTinHoc(),
-                            diem.getTheDuc(),
-                            diem.getNgoaiNgu(),
-                            diem.getMaNN(),
-                            diem.getHocLuc(),
-                            diem.getHanhKiem(),
-                            diem.getGhiChuDiem()
-                    );
+                    bangDiem studentMark = new bangDiem(student.getStt(), student.getMaHS(), student.getHoDem(), student.getTen(), student.getNgaySinh(), student.getGioiTinh(), student.getMaDinhDanh(), diem.getNguVan(), diem.getToan(), diem.getVatLi(), diem.getHoaHoc(), diem.getSinhHoc(), diem.getLichSu(), diem.getDiaLy(), diem.getGDCD(), diem.getCongNghe(), diem.getTinHoc(), diem.getTheDuc(), diem.getNgoaiNgu(), diem.getMaNN(), diem.getHocLuc(), diem.getHanhKiem(), diem.getGhiChuDiem());
                     combinedList.add(studentMark);
                     break;
                 }

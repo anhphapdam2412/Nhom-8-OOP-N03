@@ -1,43 +1,27 @@
 package com.qlhs.qlhs;
 //
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-//
+import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
-//
-import java.time.format.DateTimeFormatter;
-import javafx.scene.layout.GridPane;
-import java.io.FileReader;
 import java.time.LocalDate;
-import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.stage.Stage;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.poi.ss.formula.functions.T;
 
 public class TTController {
 
+    private static final Map<String, Set<String>> provinceDistrictMap = new HashMap<>();  // Tỉnh -> Các quận/huyện
+    private static final Map<String, Set<String>> districtWardMap = new HashMap<>();      // Quận/huyện -> Các xã/phường
     @FXML
     private Label maHS_Lb;
     @FXML
@@ -66,9 +50,6 @@ public class TTController {
     private ComboBox<String> PX_CB;  // ComboBox for Phường Xã
     @FXML
     private TextField ghiChuTT_TF;
-
-    private static final Map<String, Set<String>> provinceDistrictMap = new HashMap<>();  // Tỉnh -> Các quận/huyện
-    private static final Map<String, Set<String>> districtWardMap = new HashMap<>();      // Quận/huyện -> Các xã/phường
     @FXML
     private RadioButton luuTTP;
     @FXML
@@ -77,6 +58,15 @@ public class TTController {
     private RadioButton luuPX;
     @FXML
     private RadioButton luuLop;
+
+    @FXML
+    private Label sdtHopLe;
+    @FXML
+    private Label maDinhDanhHopLe;
+    @FXML
+    private Label hoDemHopLe;
+    @FXML
+    private Label tenHopLe;
 
 
     @FXML
@@ -111,7 +101,7 @@ public class TTController {
     private TableColumn<Student, String> ghiChuTTColumn;
 ////
 
-//
+    //
     @FXML
     private void initialize() {
 //
@@ -121,7 +111,7 @@ public class TTController {
         bang_CB.setValue("Thông tin học sinh");
 
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
-        bang_CB.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+        bang_CB.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
             try {
                 loadFXML(newVal);
             } catch (IOException e) {
@@ -149,7 +139,8 @@ public class TTController {
         tableTTView.setItems(students);
 
     }
-//
+
+    //
     public void loadProvincesFromCSV() {
         String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
 
@@ -179,10 +170,10 @@ public class TTController {
         TTP_CB.getItems().addAll(provinceDistrictMap.keySet());
 
         // Thêm sự kiện chọn tỉnh/thành phố để cập nhật Quận/Huyện
-        TTP_CB.setOnAction(event -> updateDistricts());
+        TTP_CB.setOnAction(_ -> updateDistricts());
 
         // Thêm sự kiện chọn Quận/Huyện để cập nhật Xã/Phường
-        QH_CB.setOnAction(event -> updateWards());
+        QH_CB.setOnAction(_ -> updateWards());
     }
 
     // Cập nhật danh sách Quận/Huyện khi chọn Tỉnh/Thành Phố
@@ -209,12 +200,8 @@ public class TTController {
     }
 
     @FXML
-    private void lamMoiTT(){
-        String isLuu = "";
-//        System.out.println("Làm mới được kích hoạt!");
-//        System.out.println("textFie123123ld1: " + hoDem_TF.getText());
+    private void lamMoiTT() {
         hoDem_TF.clear();
-//        System.out.println("textFiel123167567567d1: " + hoDem_TF.getText());
         ten_TF.clear();
         SDT_TF.clear();
         maDinhDanh_TF.clear();
@@ -224,8 +211,8 @@ public class TTController {
         ngaySinh_Date.setValue(null);
         ghiChuTT_TF.clear();
 
-        isLuu = luuLop.getText();
-        if (isLuu == null){
+        var isLuu = luuLop.getText();
+        if (isLuu == null) {
             lop_TF.clear();
         }
 
@@ -243,8 +230,9 @@ public class TTController {
             PX_CB.setValue(null);
         }
     }
+
     @FXML
-    private void themMoi(){
+    private void themMoi() {
         ObservableList<Student> students = StudentDAO.getStudents();
 
         List<Integer> danhSachMaHS = new ArrayList<>();
@@ -267,47 +255,66 @@ public class TTController {
             if (student != null) {
                 danhSachMaHS.add(Integer.parseInt(student.getMaHS()));
             }
-            if (danhSachMaHS.size()>1) {
+            if (danhSachMaHS.size() > 1) {
                 danhSachMaHS.removeFirst();
             }
         }
         System.out.println(danhSachMaHS);
         // So sánh ngày hiện tại với ngày chuỗi
         if (today.isAfter(compareDate)) {
-            if(danhSachMaHS.getFirst() / 1000000 < nam){ // chia lấy nguyên cho 1000000 để lấy ra năm
+            if (danhSachMaHS.getFirst() / 1000000 < nam) { // chia lấy nguyên cho 1000000 để lấy ra năm
                 danhSachMaHS.removeFirst();
                 danhSachMaHS.add(nam * 1000000 - 1); // vd mã năm là 24 thì sẽ là 24*1000000-1 = 23999999 để xuống dưới sẽ cộng thêm 1 và ra mã 24000000
             }
         }
 
-        maHS_Lb.setText(String.valueOf(danhSachMaHS.getFirst()+1));
+        maHS_Lb.setText(String.valueOf(danhSachMaHS.getFirst() + 1));
 
         lamMoiTT();
     }
 
     private void loadFXML(String fxmlFile) throws IOException {
-        String fxmlPath = "";
-        switch (fxmlFile) {
-            case "Thông tin học sinh":
-                fxmlPath = "thongTinHocSinh.fxml";
-                break;
-            case "Bảng điểm":
-                fxmlPath = "bangDiemView.fxml";
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
-        }
+        String fxmlPath = switch (fxmlFile) {
+            case "Thông tin học sinh" -> "thongTinHocSinh.fxml";
+            case "Bảng điểm" -> "bangDiemView.fxml";
+            default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
+        };
 
         System.out.println("Loading FXML: " + fxmlPath); // Debugging line
-        if (!fxmlPath.isEmpty()) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-                Stage stage = (Stage) bang_CB.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show(); // Ensure the stage is visible
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+            Stage stage = (Stage) bang_CB.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show(); // Ensure the stage is visible
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleKeyReleased() {
+        validateField(SDT_TF, sdtHopLe, kiemTraDuLieuNhap::isValidSoDienThoai);
+        validateField(maDinhDanh_TF, maDinhDanhHopLe, kiemTraDuLieuNhap::isValidMaDinhDanh);
+        validateField(hoDem_TF, hoDemHopLe, kiemTraDuLieuNhap::isValidTen);
+        validateField(ten_TF, tenHopLe, kiemTraDuLieuNhap::isValidTen);
+
+    }
+
+    private void validateField(TextField textField, Label label, Validator validator) {
+        String text = textField.getText();
+        if (!text.isEmpty()) {
+            if (validator.isValid(text)) {
+                label.setStyle("-fx-text-fill: black;");
+            } else {
+                label.setStyle("-fx-text-fill: red;");
+            }
+        } else {
+            label.setStyle("-fx-text-fill: black;");
+        }
+    }
+
+    @FunctionalInterface
+    private interface Validator {
+        boolean isValid(String text);
     }
 }

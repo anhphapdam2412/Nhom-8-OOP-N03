@@ -1,13 +1,12 @@
 package com.qlhs.qlhs;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
 
-    private Properties properties = new Properties();
+    private final Properties properties = new Properties();
 
     public ConfigReader() {
         // Sử dụng ClassLoader để tải file properties từ classpath

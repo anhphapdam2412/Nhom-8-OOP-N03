@@ -35,7 +35,7 @@ public class DiemDAO {
                 String hanhKiem = rs.getString("hanhKiem");
                 String ghiChuDiem = rs.getString("ghiChuDiem");
 
-                Diem diem = new Diem(maHS,nguVan,toan,vatLi,hoaHoc,sinhHoc,lichSu,diaLy,GDCD,congNghe,tinHoc,theDuc,ngoaiNgu,maNN,hocLuc,hanhKiem,ghiChuDiem);
+                Diem diem = new Diem(maHS, nguVan, toan, vatLi, hoaHoc, sinhHoc, lichSu, diaLy, GDCD, congNghe, tinHoc, theDuc, ngoaiNgu, maNN, hocLuc, hanhKiem, ghiChuDiem);
 
                 danhSachDiem.add(diem);
             }

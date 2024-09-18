@@ -7,13 +7,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class StudentDAO {
 
-    static List<String> tempStudentList = new ArrayList<>();
     public static ObservableList<Student> getStudents() {
         ObservableList<Student> studentList = FXCollections.observableArrayList();
 
@@ -38,9 +35,6 @@ public class StudentDAO {
 
                 Student student = new Student(Integer.toString(stt), maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu);
 
-                List<String> tempStudent = new ArrayList<>(Arrays.asList(Integer.toString(stt), maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu));
-
-                tempStudentList.add(String.valueOf(tempStudent));
                 studentList.add(student);
             }
         } catch (SQLException e) {
@@ -48,8 +42,5 @@ public class StudentDAO {
         }
 
         return studentList;
-    }
-    public static List<String> getID(){
-        return tempStudentList;
     }
 }

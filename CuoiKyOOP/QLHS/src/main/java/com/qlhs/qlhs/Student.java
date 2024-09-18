@@ -15,8 +15,7 @@ public class Student {
     private final String ghiChuTT;
 
     // Constructor
-    public Student(String stt,String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh,
-                   String maDinhDanh, String sdt, String email, String lop, String diaChi, String ghiChuTT) {
+    public Student(String stt, String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String maDinhDanh, String sdt, String email, String lop, String diaChi, String ghiChuTT) {
         this.stt = stt;
         this.maHS = maHS;
         this.hoDem = hoDem;
