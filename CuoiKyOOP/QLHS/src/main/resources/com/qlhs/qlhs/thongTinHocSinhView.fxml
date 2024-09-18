@@ -174,23 +174,23 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="lop_TF1" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <RadioButton mnemonicParsing="false" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                <TextField fx:id="ghiChuTT_TF" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <RadioButton fx:id="luuTTP" mnemonicParsing="false" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="180.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <RadioButton fx:id="luuQH" mnemonicParsing="false" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="180.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <RadioButton fx:id="luuPX" mnemonicParsing="false" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="180.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Lưu" GridPane.columnIndex="7">
+            <RadioButton fx:id="luuLop" mnemonicParsing="false" text="Lưu" GridPane.columnIndex="7">
                <GridPane.margin>
                   <Insets left="60.0" />
                </GridPane.margin>
@@ -232,12 +232,12 @@
                 <TableColumn fx:id="tenColumn" minWidth="0.0" prefWidth="60.0" text="Tên" />
                 <TableColumn fx:id="ngaySinhColumn" prefWidth="75.0" text="Ngày Sinh" />
                 <TableColumn fx:id="gioiTinhColumn" prefWidth="40.0" text="Nam" />
-                <TableColumn fx:id="maDinhDanhColumn" prefWidth="110.0" text="Mã Định Danh" />
+                <TableColumn fx:id="maDinhDanhColumn" prefWidth="100.0" text="Mã Định Danh" />
                 <TableColumn fx:id="sdtColumn" prefWidth="90.0" text="SĐT" />
-                <TableColumn fx:id="emailColumn" prefWidth="110.0" text="Email" />
+                <TableColumn fx:id="emailColumn" prefWidth="130.0" text="Email" />
+                <TableColumn fx:id="diaChiColumn" prefWidth="230.0" text="Địa chỉ" />
                 <TableColumn fx:id="lopColumn" prefWidth="40.0" text="Lớp" />
-                <TableColumn fx:id="diaChiColumn" prefWidth="170.0" text="Địa chỉ" />
-                <TableColumn fx:id="ghiChuTTColumn" prefWidth="223.0" text="Ghi Chú" />
+                <TableColumn fx:id="ghiChuTTColumn" prefWidth="163.0" text="Ghi Chú" />
             </columns>
         </TableView>
 

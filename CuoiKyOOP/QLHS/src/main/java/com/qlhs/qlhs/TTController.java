@@ -60,9 +60,20 @@ public class TTController {
     private ComboBox<String> QH_CB;  // ComboBox for Quận Huyện
     @FXML
     private ComboBox<String> PX_CB;  // ComboBox for Phường Xã
+    @FXML
+    private TextField ghiChuTT_TF;
 
     private static final Map<String, Set<String>> provinceDistrictMap = new HashMap<>();  // Tỉnh -> Các quận/huyện
     private static final Map<String, Set<String>> districtWardMap = new HashMap<>();      // Quận/huyện -> Các xã/phường
+    @FXML
+    private RadioButton luuTTP;
+    @FXML
+    private RadioButton luuQH;
+    @FXML
+    private RadioButton luuPX;
+    @FXML
+    private RadioButton luuLop;
+
 
     @FXML
     private ChoiceBox<String> bang_CB;
@@ -194,6 +205,7 @@ public class TTController {
 
     @FXML
     private void lamMoiTT(){
+        String isLuu = "";
 //        System.out.println("Làm mới được kích hoạt!");
 //        System.out.println("textFie123123ld1: " + hoDem_TF.getText());
         hoDem_TF.clear();
@@ -202,13 +214,29 @@ public class TTController {
         SDT_TF.clear();
         maDinhDanh_TF.clear();
         email_TF.clear();
-        lop_TF.clear();
         chiTiet_TF.clear();
         gioiTinh_Btn.setSelected(false);
         ngaySinh_Date.setValue(null);
-        TTP_CB.setValue(null);
-        QH_CB.setValue(null);
-        PX_CB.setValue(null);
+        ghiChuTT_TF.clear();
+
+        isLuu = luuLop.getText();
+        if (isLuu == null){
+            lop_TF.clear();
+        }
+
+        isLuu = luuTTP.getText();
+        if (isLuu == null) {
+            TTP_CB.setValue(null);
+        }
+        isLuu = luuQH.getText();
+        if (isLuu == null) {
+            QH_CB.setValue(null);
+
+        }
+        isLuu = luuPX.getText();
+        if (isLuu == null) {
+            PX_CB.setValue(null);
+        }
     }
     @FXML
     private void themMoi(){
