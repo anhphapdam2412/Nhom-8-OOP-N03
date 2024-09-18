@@ -35,6 +35,32 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class bangDiemController {
+
+    @FXML
+    private TextField nguVan_TF;
+    @FXML
+    private TextField toan_TF;
+    @FXML
+    private TextField vatLi_TF;
+    @FXML
+    private TextField hoaHoc_TF;
+    @FXML
+    private TextField sinhHoc_TF;
+    @FXML
+    private TextField lichSu_TF;
+    @FXML
+    private TextField diaLy_TF;
+    @FXML
+    private TextField GDCD_TF;
+    @FXML
+    private TextField ngoaiNgu_TF;
+    @FXML
+    private TextField congNghe_TF;
+    @FXML
+    private TextField tinHoc_TF;
+    @FXML
+    private TextField theDuc_TF;
+
     @FXML
     private ChoiceBox<String> bang_CB;
 
@@ -131,4 +157,20 @@ public class bangDiemController {
         }
     }
 
+    @FXML
+    private void lamMoiDiem() {
+        nguVan_TF.clear();
+        toan_TF.clear();
+        vatLi_TF.clear();
+        hoaHoc_TF.clear();
+        sinhHoc_TF.clear();
+        lichSu_TF.clear();
+        diaLy_TF.clear();
+        GDCD_TF.clear();
+        ngoaiNgu_TF.clear();
+        congNghe_TF.clear();
+        tinHoc_TF.clear();
+        theDuc_TF.clear();
+
+    }
 }

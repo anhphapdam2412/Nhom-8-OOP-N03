@@ -35,7 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TTController {
-//
+
     @FXML
     private TextField hoDem_TF;
     @FXML
@@ -60,33 +60,7 @@ public class TTController {
     private ComboBox<String> QH_CB;  // ComboBox for Quận Huyện
     @FXML
     private ComboBox<String> PX_CB;  // ComboBox for Phường Xã
-//
-//
-//    @FXML
-//    private TextField nguVan;
-//    @FXML
-//    private TextField toan;
-//    @FXML
-//    private TextField vatLi;
-//    @FXML
-//    private TextField hoaHoc;
-//    @FXML
-//    private TextField sinhHoc;
-//    @FXML
-//    private TextField lichSu;
-//    @FXML
-//    private TextField diaLy;
-//    @FXML
-//    private TextField GDCD;
-//    @FXML
-//    private TextField ngoaiNgu;
-//    @FXML
-//    private TextField congNghe;
-//    @FXML
-//    private TextField tinHoc;
-//    @FXML
-//    private TextField theDuc;
-////
+
     private static final Map<String, Set<String>> provinceDistrictMap = new HashMap<>();  // Tỉnh -> Các quận/huyện
     private static final Map<String, Set<String>> districtWardMap = new HashMap<>();      // Quận/huyện -> Các xã/phường
 
@@ -240,23 +214,7 @@ public class TTController {
     private void themMoi(){
         lamMoiTT();
     }
-////
-////    @FXML
-////    private void lamMoiDiem() {
-////        nguVan.clear();
-////        toan.clear();
-////        vatLi.clear();
-////        hoaHoc.clear();
-////        sinhHoc.clear();
-////        lichSu.clear();
-////        diaLy.clear();
-////        GDCD.clear();
-////        ngoaiNgu.clear();
-////        congNghe.clear();
-////        tinHoc.clear();
-////        theDuc.clear();
-////
-////    }
+
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = "";
         switch (fxmlFile) {

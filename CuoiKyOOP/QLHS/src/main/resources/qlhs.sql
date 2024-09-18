@@ -24,10 +24,13 @@ sinhHoc float,
 lichSu float,
 diaLy float,
 GDCD float,
-ngoaiNgu float,
 congNghe float,
 tinHoc float,
 theDuc char,
+ngoaiNgu float,
+maNN char,
+hocLuc char,
+hanhKiem char,
 ghiChuDiem text
 );
 
@@ -37,8 +40,8 @@ VALUES
 ('HS001', 'Nguyen Van', 'A', '2005-09-01', 1, 'ID001', '0912345678', 'nguyenvana@example.com', '12A1', '123 Main St', 'None'),
 ('HS002', 'Tran Thi', 'B', '2006-03-15', 0, 'ID002', '0987654321', 'tranthib@example.com', '12A2', '456 Maple St', 'None');
 
-INSERT INTO bangDiem (maHocSinh, nguVan, toan, vatLi, hoaHoc, sinhHoc, lichSu, diaLy, GDCD, ngoaiNgu, congNghe, tinHoc, theDuc, ghiChuDiem) 
+INSERT INTO bangDiem (maHocSinh, nguVan, toan, vatLi, hoaHoc, sinhHoc, lichSu, diaLy, GDCD, ngoaiNgu,maNN, congNghe, tinHoc, theDuc, ghiChuDiem) 
 VALUES
-('HS001', 8.5, 9.0, 7.5, 8.0, 7.8, 6.5, 7.2, 8.0, 8.5, 7.0, 8.0, 'A', 'Excellent performance'),
-('HS002', 7.5, 6.8, 8.0, 7.0, 8.2, 6.9, 7.5, 7.8, 7.0, 7.5, 7.9, 'B', 'Good performance');
+('HS001', 8.5, 9.0, 7.5, 8.0, 7.8, 6.5, 7.2, 8.0, 8.5,'N1', 7.0, 8.0, 'A', 'Excellent performance'),
+('HS002', 7.5, 6.8, 8.0, 7.0, 8.2, 6.9, 7.5, 7.8, 7.0,'N2', 7.5, 7.9, 'B', 'Good performance');
 
