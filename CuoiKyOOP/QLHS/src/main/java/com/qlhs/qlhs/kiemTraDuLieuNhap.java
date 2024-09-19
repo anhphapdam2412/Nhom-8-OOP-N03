@@ -12,4 +12,17 @@ public class kiemTraDuLieuNhap {
     public static boolean isValidTen(String ten) {
         return ten.matches("[a-zA-Z\\s]+");
     }
+
+    public static boolean isValidDiem(String diem) {
+        try {
+            // Chuyển đổi chuỗi thành số thực
+            double value = Double.parseDouble(diem);
+
+            // Kiểm tra xem giá trị có nằm trong khoảng từ 0.0 đến 10.0 không
+            return value >= 0.0 && value <= 10.0;
+        } catch (NumberFormatException e) {
+            // Trường hợp chuỗi không phải là một số hợp lệ
+            return false;
+        }
+    }
 }

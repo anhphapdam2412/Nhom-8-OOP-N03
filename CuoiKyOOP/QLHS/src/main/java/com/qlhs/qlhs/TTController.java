@@ -304,12 +304,12 @@ public class TTController {
         String text = textField.getText();
         if (!text.isEmpty()) {
             if (validator.isValid(text)) {
-                label.setStyle("-fx-text-fill: black;");
+                label.setStyle("-fx-text-fill: #ffffff;");
             } else {
-                label.setStyle("-fx-text-fill: red;");
+                label.setStyle("-fx-text-fill: #ff6363;");
             }
         } else {
-            label.setStyle("-fx-text-fill: black;");
+            label.setStyle("-fx-text-fill: #ffffff;");
         }
     }
 

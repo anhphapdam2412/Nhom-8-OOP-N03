@@ -10,8 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Objects;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 
 public class bangDiemController {
@@ -45,8 +49,34 @@ public class bangDiemController {
     @FXML
     private ComboBox<String> maNN_CB;
 
+
+    @FXML
+    private Label diemNguVanHopLe;
+    @FXML
+    private Label diemToanHopLe;
+    @FXML
+    private Label diemVatLiHopLe;
+    @FXML
+    private Label diemHoaHocHopLe;
+    @FXML
+    private Label diemSinhHocHopLe;
+    @FXML
+    private Label diemLichSuHopLe;
+    @FXML
+    private Label diemDiaLyHopLe;
+    @FXML
+    private Label diemGDCDHopLe;
+    @FXML
+    private Label diemCongNgheHopLe;
+    @FXML
+    private Label diemTinHocHopLe;
+    @FXML
+    private Label diemNgoaiNguHopLe;
+
+
     @FXML
     private ComboBox<String> bang_CB;
+
 
     @FXML
     private TableView<bangDiem> tableDiemView;
@@ -180,4 +210,36 @@ public class bangDiemController {
         maNN_CB.setValue(null);
 
     }
+    @FXML
+    private void handleKeyReleased() {
+        validateField(toan_TF, diemToanHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(nguVan_TF, diemNguVanHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(vatLi_TF, diemVatLiHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(hoaHoc_TF, diemHoaHocHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(sinhHoc_TF, diemSinhHocHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(lichSu_TF, diemLichSuHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(diaLy_TF, diemDiaLyHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(GDCD_TF, diemGDCDHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(congNghe_TF, diemCongNgheHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(tinHoc_TF, diemTinHocHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(ngoaiNgu_TF, diemNgoaiNguHopLe, kiemTraDuLieuNhap::isValidDiem);
+    }
+    private void validateField(TextField textField, Label label, bangDiemController.Validator validator) {
+        String text = textField.getText();
+        if (!text.isEmpty()) {
+            if (validator.isValid(text)) {
+                label.setStyle("-fx-text-fill: #ffffff;");
+            } else {
+                label.setStyle("-fx-text-fill: #ff6363;");
+            }
+        } else {
+            label.setStyle("-fx-text-fill: #ffffff;");
+        }
+    }
+
+    @FunctionalInterface
+    private interface Validator {
+        boolean isValid(String text);
+    }
 }
+
