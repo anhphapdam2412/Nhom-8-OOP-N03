@@ -46,7 +46,7 @@ public class bangDiemController {
     private ComboBox<String> maNN_CB;
 
     @FXML
-    private ChoiceBox<String> bang_CB;
+    private ComboBox<String> bang_CB;
 
     @FXML
     private TableView<bangDiem> tableDiemView;

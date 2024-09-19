@@ -1,0 +1,222 @@
+/* Dark mode styling */
+
+/* Styling for MenuBar */
+.menu-bar {
+    -fx-background-color: #3b3b3b; /* Dark background for the MenuBar */
+}
+
+.menu-bar .menu {
+    -fx-text-fill: white; /* White text for Menu items */
+}
+
+.menu-bar .menu-item {
+    -fx-text-fill: white; /* White text for individual menu items */
+}
+
+.root {
+    -fx-background-color: #2b2b2b;
+    -fx-text-fill: #dcdcdc;
+}
+
+Label {
+    -fx-text-fill: #dcdcdc;
+}
+
+TextField {
+    -fx-background-color: #3c3c3c;
+    -fx-text-fill: #dcdcdc;
+    -fx-prompt-text-fill: #7d7d7d;
+    -fx-border-color: #555555;
+}
+
+Button {
+    -fx-background-color: #39393900;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #777777;
+}
+Button:hover {
+    -fx-background-color: #393939;
+}
+
+DatePicker {
+    -fx-background-color: #3c3c3c;
+    -fx-text-fill: magenta;
+    -fx-prompt-text-fill: white;
+    -fx-border-color: rgb(81, 81, 81);
+    -fx-fill: grey;
+}
+/* dark-mode.css */
+.combo-box {
+    -fx-background-color: #2b2b2b; /* Dark background for ComboBox */
+    -fx-border-color: #5a5a5a; /* Border color for ComboBox */
+    -fx-text-fill: #ffffff; /* Text color for ComboBox */
+}
+
+.combo-box-popup {
+    -fx-background-color: #2b2b2b; /* Dark background for ComboBox dropdown */
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #2b2b2b;
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box:hover {
+    -fx-background-color: #3b3b3b; /* Darker on hover */
+}
+
+.combo-box:focused {
+    -fx-background-color: #404040; /* Darker when focused */
+    -fx-border-color: #6a6a6a;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 0 5px;
+}
+
+TableColumn {
+    -fx-text-fill: #dcdcdc;
+}
+
+RadioButton {
+    -fx-text-fill: #dcdcdc;
+}
+.date-picker {
+    -fx-background-color: #2b2b2b; /* Dark background color */
+    -fx-text-fill: white; /* Text color */
+}
+
+.date-picker .content {
+    -fx-background-color: #2b2b2b; /* Dark background for the popup calendar */
+}
+
+.date-picker .text-field {
+    -fx-background-color: #2b2b2b; /* Dark background for the text field */
+    -fx-text-fill: white; /* Text color inside the text field */
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-base: #1d1d1d ;
+    -fx-mark-highlight-color: white; ;
+}
+.date-picker-popup{
+    -fx-text-fill: white;
+}
+.date-picker .spinner-label {
+    -fx-text-fill: white;
+}
+
+.date-picker .combo-box {
+    -fx-background-insets:0px ;
+    -fx-border-width: 0px;
+}
+
+
+.date-picker .arrow-button{
+    -fx-background-radius:0px ;
+    -fx-background-color: #232323;
+}
+
+.date-picker .arrow-button .arrow{
+    -fx-background-radius:0px ;
+    -fx-background-color: #1783CC;
+}
+
+.date-picker .arrow-button:hover .arrow{
+    -fx-background-radius:0px ;
+    -fx-background-color: rgb(81, 81, 81);
+}
+.date-picker .text-field{
+    -fx-background-radius:0px ;
+    -fx-border-color: transparent;
+}
+.date-picker .button {
+    -fx-background-color: transparent;
+    -fx-border-color:transparent;
+    -fx-pref-height: 35px;
+    -fx-pref-width: 26px;
+    -fx-text-fill: white;
+}
+
+.date-picker .button .arrow:pressed {
+    -fx-border-color:transparent;
+    -fx-pref-height: 35px;
+    -fx-pref-width: 35px;
+}
+
+.date-picker .cell {
+    -fx-background-color: #1d1d1d;
+    -fx-pref-width:35px ;
+    -fx-pref-height:25px ;
+    -fx-text-fill: #b2b2b2;
+}
+
+.date-picker .cell:hover {
+    -fx-background-color: #1783CC;
+    -fx-pref-width:20px ;
+    -fx-pref-height:25px ;
+    -fx-text-fill: white;
+}
+
+.date-picker .cell:focused {
+    -fx-background-color:#11659e;
+    -fx-pref-width:20px ;
+    -fx-pref-height:25px ;
+    -fx-text-fill: #d7d7d7;
+}
+
+.date-picker-popup  {
+    -fx-border-color: rgb(81, 81, 81);
+    -fx-background-color: rgb(81, 81, 81);
+    -fx-text-fill: white;
+}
+
+#maHS_Lb{
+    -fx-background-color: #3c3c3c;
+    -fx-padding: 6px;
+
+}
+/* dark-mode.css */
+.table-view {
+    -fx-background-color: #2b2b2b; /* Dark background for the TableView */
+    -fx-border-color: #5a5a5a; /* Border color for the TableView */
+
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #3b3b3b; /* Dark background for column headers */
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #3b3b3b;
+    -fx-border-color: #5a5a5a;
+    -fx-text-fill: #ffffff; /* Text color for the headers */
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #2b2b2b; /* Background color for rows */
+    -fx-text-fill: #ffffff; /* Text color for rows */
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #2e2e2e; /* Slightly different color for odd rows */
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #4b4b4b; /* Background color for selected rows */
+    -fx-text-fill: #ffffff; /* Text color for selected rows */
+}
+
+.table-view .table-cell {
+    -fx-border-color: #4a4a4a; /* Border for table cells */
+    -fx-text-fill: #ffffff;
+
+}
+
+.table-view .table-cell:focused {
+    -fx-background-color: #3e3e3e; /* Focused cell background */
+    -fx-text-fill: #ffffff;
+}
+
+

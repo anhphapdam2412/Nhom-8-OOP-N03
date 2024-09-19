@@ -70,7 +70,7 @@ public class TTController {
 
 
     @FXML
-    private ChoiceBox<String> bang_CB;
+    private ComboBox<String> bang_CB;
 
 
     @FXML
