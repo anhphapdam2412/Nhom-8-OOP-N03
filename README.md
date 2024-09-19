@@ -1,3 +1,11 @@
+#Nhóm 8:
+Thành viên:
+1.Đàm Anh Pháp
+MSV:23010360
+2.Phạm Đức Tài
+MSV:23010379
+
+
 # Final Project
 Quản Lý Học Sinh
 
