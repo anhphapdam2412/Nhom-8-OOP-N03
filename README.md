@@ -38,4 +38,4 @@ Người dùng có thể tìm kiếm học sinh theo tên, mã số hoặc lớp
 
 ### UML
 
-<img src="https://imgur.com/swfgfkg">
+<blockquote class="imgur-embed-pub" lang="en" data-id="swfgfkg"><a href="https://imgur.com/swfgfkg">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
