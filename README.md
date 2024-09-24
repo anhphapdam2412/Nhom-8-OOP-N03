@@ -1,4 +1,4 @@
-#Nhóm 8:
+# Nhóm 8:
 Thành viên:
 1.Đàm Anh Pháp 
 
@@ -35,3 +35,7 @@ Cho phép người dùng cập nhật thông tin học sinh hiện có.
 ### Tìm Kiếm Học Sinh
 
 Người dùng có thể tìm kiếm học sinh theo tên, mã số hoặc lớp.
+
+### UML
+
+<img src="https://imgur.com/a/8ucuqAp">
