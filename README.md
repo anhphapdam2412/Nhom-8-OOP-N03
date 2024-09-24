@@ -38,4 +38,4 @@ Người dùng có thể tìm kiếm học sinh theo tên, mã số hoặc lớp
 
 ### UML
 
-![alt]([http://~](https://imgur.com/swfgfkg))
+<img src="https://imgur.com/swfgfkg">
