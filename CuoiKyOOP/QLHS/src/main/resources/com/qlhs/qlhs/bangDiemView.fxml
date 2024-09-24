@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.bangDiemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.BangDiemController">
     <children>
         <Label layoutX="486.0" layoutY="14.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
             <font>
@@ -115,11 +115,11 @@
                 <TextField fx:id="lichSu_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                 <TextField fx:id="diaLy_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" />
                 <TextField fx:id="GDCD_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                <TextField fx:id="ngoaiNgu_TF" maxWidth="30.0" minWidth="40.0" prefWidth="30.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                <TextField fx:id="ngoaiNgu_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
                 <TextField fx:id="congNghe_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                <TextField fx:id="tinHoc_TF" maxWidth="30.0" minWidth="40.0" prefWidth="30.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="11" />
+                <TextField fx:id="tinHoc_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" />
                 <ComboBox fx:id="maNN_CB" prefWidth="150.0" promptText="Mã NN" GridPane.columnIndex="13" GridPane.rowIndex="2" />
-                <ComboBox fx:id="hanhKiem_CB" prefWidth="150.0" promptText="Hạnh kiểm" GridPane.columnIndex="16" />
+                <ComboBox fx:id="hanhKiem_CB" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" promptText="HK" GridPane.columnIndex="16" />
                 <Label prefHeight="17.0" prefWidth="79.0" text="Hạnh kiểm" GridPane.columnIndex="15">
                    <font>
                       <Font size="14.0" />
@@ -149,15 +149,15 @@
             </font>
         </Label>
         <TextField layoutX="963.0" layoutY="369.0" prefHeight="30.0" prefWidth="227.0" promptText="toán &gt; 9" />
-        <TableView fx:id="tableDiemView" layoutX="10.0" layoutY="403.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="390.0" prefWidth="1180.0">
+        <TableView fx:id="tableDiemView" layoutX="10.0" layoutY="403.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="385.0" prefWidth="1180.0">
             <columns>
                 <TableColumn fx:id="sttColumn" prefWidth="40.0" text="STT" />
                 <TableColumn fx:id="maHSColumn" text="Mã HS" />
                 <TableColumn fx:id="hoDemColumn" prefWidth="140.0" text="Họ Đệm" />
                 <TableColumn fx:id="tenColumn" minWidth="0.0" prefWidth="60.0" text="Tên" />
                 <TableColumn fx:id="ngaySinhColumn" prefWidth="75.0" text="Ngày Sinh" />
-                <TableColumn fx:id="gioiTinhColumn" prefWidth="40.0" text="Nam" />
-                <TableColumn fx:id="maDinhDanhColumn" prefWidth="90.0" text="Mã Định Danh" />
+                <TableColumn fx:id="gioiTinhColumn" prefWidth="54.0" text="Nam" />
+                <TableColumn fx:id="lopColumn" prefWidth="61.0" text="Lớp" />
                 <TableColumn fx:id="nguVanColumn" prefWidth="37.0" text="NV" />
                 <TableColumn fx:id="toanColumn" prefWidth="37.0" text="T" />
                 <TableColumn fx:id="vatLiColumn" prefWidth="37.0" text="VL" />
@@ -173,68 +173,53 @@
                 <TableColumn fx:id="maNNColumn" prefWidth="54.0" text="Mã NN" />
                 <TableColumn fx:id="hocLucColumn" prefWidth="37.0" text="HL" />
                 <TableColumn fx:id="hanhKiemColumn" prefWidth="41.0" text="HK" />
-                <TableColumn fx:id="ghiChuColumn" prefWidth="66.0" text="Ghi chú" />
+                <TableColumn fx:id="ghiChuColumn" prefWidth="79.0" text="Ghi chú" />
             </columns>
         </TableView>
         <!--         <ChoiceBox fx:id="bangDiem_CB" layoutX="10.0" layoutY="375.0" prefHeight="25.0" prefWidth="138.0" />-->
         <GridPane layoutX="10.0" layoutY="107.0" minWidth="1180.0" prefHeight="25.0" prefWidth="1180.0">
             <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="80.0" prefWidth="80.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="127.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="55.0" prefWidth="113.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="315.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="17.0" prefWidth="54.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="129.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="33.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="72.0" prefWidth="94.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="131.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="17.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="68.0" prefWidth="105.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="36.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="55.0" prefWidth="294.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="55.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="17.0" prefWidth="103.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="89.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="72.0" prefWidth="110.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="244.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Mã HS" GridPane.columnIndex="1">
+                <Label fx:id="maHS_Lb" prefHeight="38.0" prefWidth="120.0" text="Mã HS" GridPane.columnIndex="1">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
-                <Label prefWidth="42.0" text="Lớp" GridPane.columnIndex="5">
+                <Label fx:id="lop_Lb" prefHeight="26.0" prefWidth="67.0" text="Lớp" GridPane.columnIndex="5">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
-                <Label text="Ngày Sinh" GridPane.columnIndex="8">
+                <Label fx:id="ngaySinh_Lb" prefHeight="26.0" prefWidth="129.0" text="Ngày Sinh" GridPane.columnIndex="10">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
-                <Label text="Họ và tên" GridPane.columnIndex="3">
+                <Label fx:id="hoTen_Lb" prefHeight="26.0" prefWidth="334.0" text="Họ và tên" GridPane.columnIndex="3">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
-                <Label text="Label" GridPane.columnIndex="2">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </Label>
-                <Label text="Label" GridPane.columnIndex="4">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </Label>
-                <Label text="Label" GridPane.columnIndex="6">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </Label>
-                <Label text="Label" GridPane.columnIndex="9">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </Label>
+            <Label fx:id="gioiTinh_Lb" prefHeight="26.0" prefWidth="83.0" text="Giới Tính" GridPane.columnIndex="8">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
             </children>
         </GridPane>
         <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />

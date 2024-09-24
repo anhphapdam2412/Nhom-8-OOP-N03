@@ -1,6 +1,9 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Controller;
 //
 
+import com.qlhs.qlhs.Model.BangDiem;
+import com.qlhs.qlhs.Model.BangDiemDAO;
+import com.qlhs.qlhs.KiemTraDuLieuNhap;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +13,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
-public class bangDiemController {
+public class BangDiemController {
 
     @FXML
     private TextField nguVan_TF;
@@ -51,6 +50,17 @@ public class bangDiemController {
 
 
     @FXML
+    private Label maHS_Lb;
+    @FXML
+    private Label hoTen_Lb;
+    @FXML
+    private Label gioiTinh_Lb;
+    @FXML
+    private Label ngaySinh_Lb;
+    @FXML
+    private Label lop_Lb;
+
+    @FXML
     private Label diemNguVanHopLe;
     @FXML
     private Label diemToanHopLe;
@@ -79,53 +89,53 @@ public class bangDiemController {
 
 
     @FXML
-    private TableView<bangDiem> tableDiemView;
+    private TableView<BangDiem> tableDiemView;
     @FXML
-    private TableColumn<bangDiem, String> sttColumn;
+    private TableColumn<BangDiem, String> sttColumn;
     @FXML
-    private TableColumn<bangDiem, String> maHSColumn;
+    private TableColumn<BangDiem, String> maHSColumn;
     @FXML
-    private TableColumn<bangDiem, String> hoDemColumn;
+    private TableColumn<BangDiem, String> hoDemColumn;
     @FXML
-    private TableColumn<bangDiem, String> tenColumn;
+    private TableColumn<BangDiem, String> tenColumn;
     @FXML
-    private TableColumn<bangDiem, String> ngaySinhColumn;
+    private TableColumn<BangDiem, String> ngaySinhColumn;
     @FXML
-    private TableColumn<bangDiem, String> gioiTinhColumn;
+    private TableColumn<BangDiem, String> gioiTinhColumn;
     @FXML
-    private TableColumn<bangDiem, String> maDinhDanhColumn;
+    private TableColumn<BangDiem, String> lopColumn;
     @FXML
-    private TableColumn<bangDiem, String> ngoaiNguColumn;
+    private TableColumn<BangDiem, String> ngoaiNguColumn;
     @FXML
-    private TableColumn<bangDiem, String> congNgheColumn;
+    private TableColumn<BangDiem, String> congNgheColumn;
     @FXML
-    private TableColumn<bangDiem, String> tinHocColumn;
+    private TableColumn<BangDiem, String> tinHocColumn;
     @FXML
-    private TableColumn<bangDiem, String> theDucColumn;
+    private TableColumn<BangDiem, String> theDucColumn;
     @FXML
-    private TableColumn<bangDiem, String> diaLyColumn;
+    private TableColumn<BangDiem, String> diaLyColumn;
     @FXML
-    private TableColumn<bangDiem, String> nguVanColumn;
+    private TableColumn<BangDiem, String> nguVanColumn;
     @FXML
-    private TableColumn<bangDiem, String> toanColumn;
+    private TableColumn<BangDiem, String> toanColumn;
     @FXML
-    private TableColumn<bangDiem, String> vatLiColumn;
+    private TableColumn<BangDiem, String> vatLiColumn;
     @FXML
-    private TableColumn<bangDiem, String> sinhHocColumn;
+    private TableColumn<BangDiem, String> sinhHocColumn;
     @FXML
-    private TableColumn<bangDiem, String> lichSuColumn;
+    private TableColumn<BangDiem, String> lichSuColumn;
     @FXML
-    private TableColumn<bangDiem, String> ghiChuColumn;
+    private TableColumn<BangDiem, String> ghiChuColumn;
     @FXML
-    private TableColumn<bangDiem, String> GDCDColumn;
+    private TableColumn<BangDiem, String> GDCDColumn;
     @FXML
-    private TableColumn<bangDiem, String> hoaHocColumn;
+    private TableColumn<BangDiem, String> hoaHocColumn;
     @FXML
-    private TableColumn<bangDiem, String> hocLucColumn;
+    private TableColumn<BangDiem, String> hocLucColumn;
     @FXML
-    private TableColumn<bangDiem, String> hanhKiemColumn;
+    private TableColumn<BangDiem, String> hanhKiemColumn;
     @FXML
-    private TableColumn<bangDiem, String> maNNColumn;
+    private TableColumn<BangDiem, String> maNNColumn;
 
     @FXML
     private void initialize() {
@@ -133,7 +143,7 @@ public class bangDiemController {
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         bang_CB.setValue("Bảng điểm");
 
-        hanhKiem_CB.getItems().addAll("Tốt", "Khá", "Trung Bình", "Yếu", "Kém");
+        hanhKiem_CB.getItems().addAll("T", "K", "TB", "Y", "K");
         maNN_CB.getItems().addAll("N1", "N2", "N3");
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
         bang_CB.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
@@ -143,7 +153,7 @@ public class bangDiemController {
                 e.printStackTrace();
             }
         });
-
+        // Add listener for mouse click on the table
         // Set up the columns to use the Mark class fields
         sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
         maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
@@ -151,7 +161,7 @@ public class bangDiemController {
         tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
         ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
         gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
-        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
+        lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
         nguVanColumn.setCellValueFactory(new PropertyValueFactory<>("nguVan"));
         toanColumn.setCellValueFactory(new PropertyValueFactory<>("toan"));
         vatLiColumn.setCellValueFactory(new PropertyValueFactory<>("vatLi"));
@@ -169,11 +179,39 @@ public class bangDiemController {
         hanhKiemColumn.setCellValueFactory(new PropertyValueFactory<>("hanhKiem"));
         ghiChuColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
 
-        ObservableList<bangDiem> bangDiems = bangDiemDAO.getBangDiem();
-        tableDiemView.setItems(bangDiems);
+        ObservableList<BangDiem> BangDiems = BangDiemDAO.getBangDiem();
+        tableDiemView.setItems(BangDiems);
 
+        tableDiemView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Nhấp đúp chuột
+                BangDiem selectedDiem = tableDiemView.getSelectionModel().getSelectedItem();
+                if (selectedDiem != null) {
+                    displayDiemDetails(selectedDiem);
+                }
+            }
+        });
     }
-
+    private void displayDiemDetails(BangDiem bangDiem) {
+        nguVan_TF.setText(bangDiem.getNguVan());
+        toan_TF.setText(bangDiem.getToan());
+        vatLi_TF.setText(bangDiem.getVatLi());
+        hoaHoc_TF.setText(bangDiem.getHoaHoc());
+        sinhHoc_TF.setText(bangDiem.getSinhHoc());
+        lichSu_TF.setText(bangDiem.getLichSu());
+        diaLy_TF.setText(bangDiem.getDiaLy());
+        GDCD_TF.setText(bangDiem.getGDCD());
+        ngoaiNgu_TF.setText(bangDiem.getNgoaiNgu());
+        congNghe_TF.setText(bangDiem.getCongNghe());
+        tinHoc_TF.setText(bangDiem.getTinHoc());
+        theDuc_Btn.setSelected("Đ".equals(bangDiem.getTheDuc()));
+        maNN_CB.setValue(bangDiem.getMaNN());
+        hanhKiem_CB.setValue(bangDiem.getHanhKiem());
+        maHS_Lb.setText(bangDiem.getMaHS());
+        lop_Lb.setText(bangDiem.getLop());
+        ngaySinh_Lb.setText(bangDiem.getNgaySinh());
+        hoTen_Lb.setText(bangDiem.getHoDem()+" "+bangDiem.getTen());
+        gioiTinh_Lb.setText("1".equals(bangDiem.getGioiTinh())?"Nam":"Nữ");
+    }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
             case "Thông tin học sinh" -> "thongTinHocSinhView.fxml";
@@ -208,23 +246,23 @@ public class bangDiemController {
         theDuc_Btn.setSelected(false);
         hanhKiem_CB.setValue(null);
         maNN_CB.setValue(null);
-
     }
+    
     @FXML
     private void handleKeyReleased() {
-        validateField(toan_TF, diemToanHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(nguVan_TF, diemNguVanHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(vatLi_TF, diemVatLiHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(hoaHoc_TF, diemHoaHocHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(sinhHoc_TF, diemSinhHocHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(lichSu_TF, diemLichSuHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(diaLy_TF, diemDiaLyHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(GDCD_TF, diemGDCDHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(congNghe_TF, diemCongNgheHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(tinHoc_TF, diemTinHocHopLe, kiemTraDuLieuNhap::isValidDiem);
-        validateField(ngoaiNgu_TF, diemNgoaiNguHopLe, kiemTraDuLieuNhap::isValidDiem);
+        validateField(toan_TF, diemToanHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(nguVan_TF, diemNguVanHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(vatLi_TF, diemVatLiHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(hoaHoc_TF, diemHoaHocHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(sinhHoc_TF, diemSinhHocHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(lichSu_TF, diemLichSuHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(diaLy_TF, diemDiaLyHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(GDCD_TF, diemGDCDHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(congNghe_TF, diemCongNgheHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(tinHoc_TF, diemTinHocHopLe, KiemTraDuLieuNhap::isValidDiem);
+        validateField(ngoaiNgu_TF, diemNgoaiNguHopLe, KiemTraDuLieuNhap::isValidDiem);
     }
-    private void validateField(TextField textField, Label label, bangDiemController.Validator validator) {
+    private void validateField(TextField textField, Label label, BangDiemController.Validator validator) {
         String text = textField.getText();
         if (!text.isEmpty()) {
             if (validator.isValid(text)) {

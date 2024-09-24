@@ -1,6 +1,9 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Controller;
 //
 
+import com.qlhs.qlhs.KiemTraDuLieuNhap;
+import com.qlhs.qlhs.Model.Student;
+import com.qlhs.qlhs.Model.StudentDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +23,8 @@ import java.util.*;
 
 public class TTController {
 
-    private static final Map<String, Set<String>> provinceDistrictMap = new HashMap<>();  // Tỉnh -> Các quận/huyện
-    private static final Map<String, Set<String>> districtWardMap = new HashMap<>();      // Quận/huyện -> Các xã/phường
+    private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>();  // Tỉnh -> Các quận/huyện
+    private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Các xã/phường
     @FXML
     private Label maHS_Lb;
     @FXML
@@ -105,7 +108,11 @@ public class TTController {
     @FXML
     private void initialize() {
 //
-//
+        tableTTView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                System.out.println("Dòng đã chọn: " + newSelection);
+            }
+        });
         // Thêm các lựa chọn vào ChoiceBox
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         bang_CB.setValue("Thông tin học sinh");
@@ -119,27 +126,74 @@ public class TTController {
             }
         });
         loadProvincesFromCSV();
-
-        // Set up the columns to use the Student class fields
-        sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
-        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
-        hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
-        tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
-        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
-        gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
-        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
-        sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
-        diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-        ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
-
-        // Load data from the database
-        ObservableList<Student> students = StudentDAO.getStudents();
-        tableTTView.setItems(students);
+        displayStudent();
 
     }
 
+    // Set up the columns to use the Student class fields
+    private void displayStudent(){
+            sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
+            maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
+            hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
+            tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
+            ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+            gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+            maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
+            sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+            emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+            lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
+            diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+            ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
+
+        // Load data from the database
+        ObservableList<Student> students = StudentDAO.getStudents();
+            tableTTView.setItems(students);
+
+        // Add listener for mouse click on the table
+            tableTTView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Double click
+                Student selectedStudent = tableTTView.getSelectionModel().getSelectedItem();
+                if (selectedStudent != null) {
+                    displayStudentDetails(selectedStudent);
+                }
+            }
+        });
+    }
+    // Method to display details of the selected student
+    private void displayStudentDetails(Student student) {
+        // Here you can set the text fields with the student details
+        maHS_Lb.setText(student.getMaHS());
+        hoDem_TF.setText(student.getHoDem());
+        ten_TF.setText(student.getTen());
+        SDT_TF.setText(student.getSdt());
+        email_TF.setText(student.getEmail());
+        lop_TF.setText(student.getLop());
+        gioiTinh_Btn.setSelected("1".equals(student.getGioiTinh()));
+        String ngaySinhStr = student.getNgaySinh();
+        if (ngaySinhStr != null && !ngaySinhStr.isEmpty()) {
+            LocalDate ngaySinh = LocalDate.parse(ngaySinhStr);
+            ngaySinh_Date.setValue(ngaySinh);
+        } else {
+            ngaySinh_Date.setValue(null); // Hoặc thiết lập một giá trị mặc định
+        }
+        String diaChi = student.getDiaChi();
+        String[] diaChiParts = diaChi.split(",\\s*"); // Tách chuỗi theo dấu phẩy và khoảng trắng
+
+        if (diaChiParts.length >= 4) {
+            // Set giá trị cho ComboBox
+            TTP_CB.setValue(diaChiParts[0]); // Tỉnh
+            QH_CB.setValue(diaChiParts[1]);  // Quận/Huyện
+            PX_CB.setValue(diaChiParts[2]);   // Phường/Xã
+
+            // Set giá trị cho TextField
+            chiTiet_TF.setText(diaChiParts[3].trim()); // Khu, chi tiết
+        } else {
+            // Xử lý trường hợp chuỗi không đủ phần
+            System.out.println("Địa chỉ không hợp lệ.");
+        }
+        maDinhDanh_TF.setText(student.getMaDinhDanh());
+        ghiChuTT_TF.setText(student.getGhiChuTT());
+    }
     //
     public void loadProvincesFromCSV() {
         String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
@@ -154,11 +208,11 @@ public class TTController {
                     String ward = values[4];      // Cột phường/xã
 
                     // Thêm quận/huyện vào tỉnh/thành phố
-                    provinceDistrictMap.putIfAbsent(province, new HashSet<>());
+                    provinceDistrictMap.putIfAbsent(province, new TreeSet<>());
                     provinceDistrictMap.get(province).add(district);
 
                     // Thêm xã/phường vào quận/huyện
-                    districtWardMap.putIfAbsent(district, new HashSet<>());
+                    districtWardMap.putIfAbsent(district, new TreeSet<>());
                     districtWardMap.get(district).add(ward);
                 }
             }
@@ -198,7 +252,10 @@ public class TTController {
             PX_CB.getItems().addAll(wards);  // Thêm các xã/phường tương ứng
         }
     }
-
+    @FXML
+    private void luuTT(){
+        displayStudent();
+    }
     @FXML
     private void lamMoiTT() {
         hoDem_TF.clear();
@@ -211,39 +268,37 @@ public class TTController {
         ngaySinh_Date.setValue(null);
         ghiChuTT_TF.clear();
 
-        var isLuu = luuLop.getText();
-        if (isLuu == null) {
+        boolean isLuu;
+        isLuu = luuLop.isSelected();
+        if (!isLuu) {
             lop_TF.clear();
         }
 
-        isLuu = luuTTP.getText();
-        if (isLuu == null) {
+        isLuu = luuTTP.isSelected();
+        if (!isLuu) {
             TTP_CB.setValue(null);
         }
-        isLuu = luuQH.getText();
-        if (isLuu == null) {
+
+        isLuu = luuQH.isSelected();
+        if (!isLuu) {
             QH_CB.setValue(null);
 
         }
-        isLuu = luuPX.getText();
-        if (isLuu == null) {
+        isLuu = luuPX.isSelected();
+        if (!isLuu) {
             PX_CB.setValue(null);
         }
     }
 
     @FXML
     private void themMoi() {
+        lamMoiTT();
         ObservableList<Student> students = StudentDAO.getStudents();
 
         List<Integer> danhSachMaHS = new ArrayList<>();
 
-//        if(LocalDate.now() == LocalDate.now()){
-
-//        }
-        // Lấy ngày hiện tại
         LocalDate today = LocalDate.now();
 
-        // Chuỗi ngày cần so sánh
         ConfigReader configReader = new ConfigReader();
         String endOfSchoolYear = configReader.getEndOfSchoolYear();
 
@@ -270,7 +325,6 @@ public class TTController {
 
         maHS_Lb.setText(String.valueOf(danhSachMaHS.getFirst() + 1));
 
-        lamMoiTT();
     }
 
     private void loadFXML(String fxmlFile) throws IOException {
@@ -293,10 +347,10 @@ public class TTController {
 
     @FXML
     private void handleKeyReleased() {
-        validateField(SDT_TF, sdtHopLe, kiemTraDuLieuNhap::isValidSoDienThoai);
-        validateField(maDinhDanh_TF, maDinhDanhHopLe, kiemTraDuLieuNhap::isValidMaDinhDanh);
-        validateField(hoDem_TF, hoDemHopLe, kiemTraDuLieuNhap::isValidTen);
-        validateField(ten_TF, tenHopLe, kiemTraDuLieuNhap::isValidTen);
+        validateField(SDT_TF, sdtHopLe, KiemTraDuLieuNhap::isValidSoDienThoai);
+        validateField(maDinhDanh_TF, maDinhDanhHopLe, KiemTraDuLieuNhap::isValidMaDinhDanh);
+        validateField(hoDem_TF, hoDemHopLe, KiemTraDuLieuNhap::isValidTen);
+        validateField(ten_TF, tenHopLe, KiemTraDuLieuNhap::isValidTen);
 
     }
 

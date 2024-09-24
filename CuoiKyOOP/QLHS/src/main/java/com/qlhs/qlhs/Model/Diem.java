@@ -1,4 +1,4 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Model;
 
 public class Diem {
 

@@ -1,4 +1,4 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Controller;
 
 import java.io.IOException;
 import java.io.InputStream;

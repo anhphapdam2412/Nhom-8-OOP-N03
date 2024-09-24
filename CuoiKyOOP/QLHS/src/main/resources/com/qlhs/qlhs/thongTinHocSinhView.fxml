@@ -10,14 +10,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.TTController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.TTController">
     <children>
 
         <GridPane layoutX="7.0" layoutY="99.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="218.0" prefWidth="1180.0">
@@ -174,7 +173,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="TTP_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="160.0" promptText="Tỉnh/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                <ComboBox fx:id="TTP_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Tỉnh/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></ComboBox>
@@ -187,7 +186,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="QH_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="160.0" promptText="Quận/Huyện" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                <ComboBox fx:id="QH_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Quận/Huyện/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></ComboBox>
@@ -200,7 +199,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="PX_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="160.0" promptText="Phường/Xã/TT" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                <ComboBox fx:id="PX_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Phường/Xã/Thị Trấn" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></ComboBox>
@@ -232,7 +231,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="lop_TF" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" prefHeight="30.0" prefWidth="40.0" promptText="12A" GridPane.columnIndex="7">
+                <TextField fx:id="lop_TF" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="7">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></TextField>
@@ -250,25 +249,25 @@
                </GridPane.margin></TextField>
             <RadioButton fx:id="luuTTP" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="169.0" right="2.0" />
+                  <Insets left="175.0" right="2.0" />
                </GridPane.margin>
             </RadioButton>
             <RadioButton fx:id="luuQH" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="169.0" right="2.0" />
+                  <Insets left="175.0" right="2.0" />
                </GridPane.margin>
             </RadioButton>
             <RadioButton fx:id="luuPX" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="169.0" right="2.0" />
+                  <Insets left="175.0" right="2.0" />
                </GridPane.margin>
             </RadioButton>
             <RadioButton fx:id="luuLop" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Lưu" GridPane.columnIndex="7">
                <GridPane.margin>
-                  <Insets left="50.0" right="2.0" />
+                  <Insets left="70.0" right="2.0" />
                </GridPane.margin>
             </RadioButton>
-            <Label id="maHS_Lb" fx:id="maHS_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="121.0" text="23xxxxxx" GridPane.columnIndex="1">
+            <Label id="maHSTT_Lb" fx:id="maHS_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="121.0" text="23xxxxxx" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -286,7 +285,7 @@
             </font>
         </Button>
 
-        <Button fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+        <Button onAction="#luuTT" fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
             <font>
                 <Font size="15.0" />
             </font>

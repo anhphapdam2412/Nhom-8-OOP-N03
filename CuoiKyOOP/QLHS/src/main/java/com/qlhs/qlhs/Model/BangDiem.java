@@ -1,13 +1,13 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Model;
 
-public class bangDiem {
+public class BangDiem {
     private final String stt;
     private final String maHS;
     private final String hoDem;
     private final String ten;
     private final String ngaySinh;
     private final String gioiTinh;
-    private final String maDinhDanh;
+    private final String lop;
     private final String nguVan;
     private final String toan;
     private final String vatLi;
@@ -25,14 +25,14 @@ public class bangDiem {
     private final String hanhKiem;
     private final String ghiChuDiem;
 
-    public bangDiem(String stt, String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String maDinhDanh, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem) {
+    public BangDiem(String stt, String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String lop, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem) {
         this.stt = stt;
         this.maHS = maHS;
         this.hoDem = hoDem;
         this.ten = ten;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
-        this.maDinhDanh = maDinhDanh;
+        this.lop = lop;
         this.nguVan = nguVan;
         this.toan = toan;
         this.vatLi = vatLi;
@@ -75,8 +75,8 @@ public class bangDiem {
         return gioiTinh;
     }
 
-    public String getMaDinhDanh() {
-        return maDinhDanh;
+    public String getLop() {
+        return lop;
     }
 
     public String getNguVan() {
@@ -142,5 +142,6 @@ public class bangDiem {
     public String getGhiChuDiem() {
         return ghiChuDiem;
     }
+
 }
 

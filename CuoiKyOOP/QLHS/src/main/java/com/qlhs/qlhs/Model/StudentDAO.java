@@ -1,5 +1,6 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Model;
 
+import com.qlhs.qlhs.Controller.DatabaseConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

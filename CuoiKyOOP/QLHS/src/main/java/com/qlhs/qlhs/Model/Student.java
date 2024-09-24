@@ -1,4 +1,4 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Model;
 
 public class Student {
     private final String stt;
@@ -78,4 +78,5 @@ public class Student {
     public String getGhiChuTT() {
         return ghiChuTT;
     }
+
 }
