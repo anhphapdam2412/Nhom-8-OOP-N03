@@ -3,7 +3,6 @@ package com.qlhs.qlhs.Controller;
 
 import com.qlhs.qlhs.Model.BangDiem;
 import com.qlhs.qlhs.Model.BangDiemDAO;
-import com.qlhs.qlhs.KiemTraDuLieuNhap;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -214,8 +213,8 @@ public class BangDiemController {
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
-            case "Thông tin học sinh" -> "thongTinHocSinhView.fxml";
-            case "Bảng điểm" -> "bangDiemView.fxml";
+            case "Thông tin học sinh" -> "/com/qlhs/qlhs/thongTinHocSinhView.fxml";
+            case "Bảng điểm" -> "/com/qlhs/qlhs/bangDiemView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
 

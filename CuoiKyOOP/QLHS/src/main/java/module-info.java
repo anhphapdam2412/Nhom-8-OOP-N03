@@ -12,6 +12,7 @@ module com.qlhs.qlhs {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
     requires java.sql;
+    requires java.desktop;
 
     opens com.qlhs.qlhs to javafx.fxml;
     exports com.qlhs.qlhs;

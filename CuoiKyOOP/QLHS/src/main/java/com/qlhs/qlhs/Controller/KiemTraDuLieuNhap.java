@@ -1,4 +1,4 @@
-package com.qlhs.qlhs;
+package com.qlhs.qlhs.Controller;
 
 public class KiemTraDuLieuNhap {
     public static boolean isValidSoDienThoai(String phoneNumber) {

@@ -1,7 +1,6 @@
 package com.qlhs.qlhs.Controller;
 //
 
-import com.qlhs.qlhs.KiemTraDuLieuNhap;
 import com.qlhs.qlhs.Model.Student;
 import com.qlhs.qlhs.Model.StudentDAO;
 import javafx.collections.ObservableList;
@@ -20,6 +19,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
+import javax.swing.*;
 
 public class TTController {
 
@@ -63,14 +67,13 @@ public class TTController {
     private RadioButton luuLop;
 
     @FXML
-    private Label sdtHopLe;
+    private Label sdt_Lb;
     @FXML
-    private Label maDinhDanhHopLe;
+    private Label maDinhDanh_Lb;
     @FXML
-    private Label hoDemHopLe;
+    private Label hoDem_Lb;
     @FXML
-    private Label tenHopLe;
-
+    private Label ten_Lb;
 
     @FXML
     private ComboBox<String> bang_CB;
@@ -102,12 +105,15 @@ public class TTController {
     private TableColumn<Student, String> diaChiColumn;
     @FXML
     private TableColumn<Student, String> ghiChuTTColumn;
-////
 
-    //
+
+    public boolean choPhepLuu=false;
+    public List<Integer> danhSachMaHS = new ArrayList<>();
+
     @FXML
     private void initialize() {
 //
+
         tableTTView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 System.out.println("Dòng đã chọn: " + newSelection);
@@ -132,18 +138,18 @@ public class TTController {
 
     // Set up the columns to use the Student class fields
     private void displayStudent(){
-            sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
-            maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
-            hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
-            tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
-            ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
-            gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
-            maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
-            sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
-            emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-            lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
-            diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-            ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
+        sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
+        maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
+        hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
+        tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+        gioiTinhColumn.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        maDinhDanhColumn.setCellValueFactory(new PropertyValueFactory<>("maDinhDanh"));
+        sdtColumn.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        lopColumn.setCellValueFactory(new PropertyValueFactory<>("lop"));
+        diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+        ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
 
         // Load data from the database
         ObservableList<Student> students = StudentDAO.getStudents();
@@ -152,6 +158,7 @@ public class TTController {
         // Add listener for mouse click on the table
             tableTTView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // Double click
+
                 Student selectedStudent = tableTTView.getSelectionModel().getSelectedItem();
                 if (selectedStudent != null) {
                     displayStudentDetails(selectedStudent);
@@ -254,10 +261,62 @@ public class TTController {
     }
     @FXML
     private void luuTT(){
+        if (ngaySinh_Date.getValue() == null) {
+            showSuccessDialog("Chưa nhập ngày");
+        }
+        else {
+
+            ObservableList<Student> students = StudentDAO.getStudents();
+
+            // kiểm tra xem đã tồn tại học sinh nào chưa, nếu chưa thì tạo 1 học sinh giả
+            if (students.size() == 0) {
+                danhSachMaHS.add(0);
+            }
+            for (Student student : students) {
+                if (student != null) {
+                    danhSachMaHS.add(Integer.parseInt(student.getMaHS()));
+                }
+            }
+
+            String script = "";
+            String maHS = maHS_Lb.getText();
+            String hoDem = hoDem_TF.getText();
+            String ten = ten_TF.getText();
+            String sdt = SDT_TF.getText();
+            String email = email_TF.getText();
+            String lop = lop_TF.getText();
+            String diaChi = TTP_CB.getValue() + ", " + QH_CB.getValue() + ", " + PX_CB.getValue() + ", " + (!chiTiet_TF.getText().isEmpty() ? chiTiet_TF.getText() : null);
+            String ghiChu = ghiChuTT_TF.getText();
+            String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
+            String gioiTinh = gioiTinh_Btn.isSelected() ? "1" : "0";
+            String maDinhDanh = maDinhDanh_TF.getText();
+
+            boolean isUpdate = false;
+            for (int ma : danhSachMaHS){
+                if (ma == Integer.parseInt(maHS)){
+                    isUpdate = true;
+
+                    break;
+                }
+            }
+            if (isUpdate) {
+                System.out.println("update");
+                script = "UPDATE thongTinHocSinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ? WHERE maHS = ?;";
+            }else{
+                System.out.println("ínert");
+
+                script = "INSERT INTO thongTinHocSinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT,maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            }
+
+            LuuVaoDatabase.luuTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu, script);
+        }
+
         displayStudent();
     }
     @FXML
     private void lamMoiTT() {
+        displayStudent();
         hoDem_TF.clear();
         ten_TF.clear();
         SDT_TF.clear();
@@ -295,8 +354,6 @@ public class TTController {
         lamMoiTT();
         ObservableList<Student> students = StudentDAO.getStudents();
 
-        List<Integer> danhSachMaHS = new ArrayList<>();
-
         LocalDate today = LocalDate.now();
 
         ConfigReader configReader = new ConfigReader();
@@ -306,12 +363,13 @@ public class TTController {
 
         LocalDate compareDate = LocalDate.parse(endOfSchoolYear, DateTimeFormatter.ISO_LOCAL_DATE);
 
+        // kiểm tra xem đã tồn tại học sinh nào chưa, nếu chưa thì tạo 1 học sinh giả
+        if (students.size() == 0) {
+            danhSachMaHS.add(0);
+        }
         for (Student student : students) {
             if (student != null) {
                 danhSachMaHS.add(Integer.parseInt(student.getMaHS()));
-            }
-            if (danhSachMaHS.size() > 1) {
-                danhSachMaHS.removeFirst();
             }
         }
         System.out.println(danhSachMaHS);
@@ -323,14 +381,14 @@ public class TTController {
             }
         }
 
-        maHS_Lb.setText(String.valueOf(danhSachMaHS.getFirst() + 1));
+        maHS_Lb.setText(String.valueOf(danhSachMaHS.getLast() + 1));
 
     }
 
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
-            case "Thông tin học sinh" -> "thongTinHocSinh.fxml";
-            case "Bảng điểm" -> "bangDiemView.fxml";
+            case "Thông tin học sinh" -> "/com/qlhs/qlhs/thongTinHocSinhView.fxml";
+            case "Bảng điểm" -> "/com/qlhs/qlhs/bangDiemView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
 
@@ -338,6 +396,7 @@ public class TTController {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
             Stage stage = (Stage) bang_CB.getScene().getWindow();
+
             stage.setScene(new Scene(root));
             stage.show(); // Ensure the stage is visible
         } catch (IOException e) {
@@ -347,10 +406,10 @@ public class TTController {
 
     @FXML
     private void handleKeyReleased() {
-        validateField(SDT_TF, sdtHopLe, KiemTraDuLieuNhap::isValidSoDienThoai);
-        validateField(maDinhDanh_TF, maDinhDanhHopLe, KiemTraDuLieuNhap::isValidMaDinhDanh);
-        validateField(hoDem_TF, hoDemHopLe, KiemTraDuLieuNhap::isValidTen);
-        validateField(ten_TF, tenHopLe, KiemTraDuLieuNhap::isValidTen);
+        validateField(SDT_TF, sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai);
+        validateField(maDinhDanh_TF, maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh);
+        validateField(hoDem_TF, hoDem_Lb, KiemTraDuLieuNhap::isValidTen);
+        validateField(ten_TF, ten_Lb, KiemTraDuLieuNhap::isValidTen);
 
     }
 
@@ -359,16 +418,28 @@ public class TTController {
         if (!text.isEmpty()) {
             if (validator.isValid(text)) {
                 label.setStyle("-fx-text-fill: #ffffff;");
+                choPhepLuu = true;
             } else {
                 label.setStyle("-fx-text-fill: #ff6363;");
+                choPhepLuu = false;
             }
         } else {
             label.setStyle("-fx-text-fill: #ffffff;");
+            choPhepLuu = false;
         }
     }
 
     @FunctionalInterface
     private interface Validator {
         boolean isValid(String text);
+    }
+
+    private void showSuccessDialog(String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null); // Không cần tiêu đề
+        alert.setContentText(message); // Nội dung thông báo
+
+        alert.showAndWait(); // Hiển thị hộp thoại và chờ người dùng phản hồi
     }
 }

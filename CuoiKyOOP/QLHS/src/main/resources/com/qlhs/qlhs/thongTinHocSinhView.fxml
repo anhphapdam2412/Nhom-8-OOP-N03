@@ -73,7 +73,7 @@
                </GridPane.margin>
                 </TextField>
 
-                <Label fx:id="hoDemHopLe" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Họ Đệm" GridPane.rowIndex="1">
+                <Label fx:id="hoDem_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Họ Đệm" GridPane.rowIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -82,7 +82,7 @@
                </GridPane.margin>
                 </Label>
 
-                <Label fx:id="tenHopLe" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tên" GridPane.rowIndex="2">
+                <Label fx:id="ten_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tên" GridPane.rowIndex="2">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -103,7 +103,7 @@
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></RadioButton>
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Ngày Sinh" GridPane.rowIndex="4">
+                <Label fx:id="ngaySinh_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Ngày Sinh" GridPane.rowIndex="4">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -117,7 +117,7 @@
                </GridPane.margin></DatePicker>
 
 
-                <Label fx:id="maDinhDanhHopLe" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Định Danh" GridPane.rowIndex="5">
+                <Label fx:id="maDinhDanh_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Định Danh" GridPane.rowIndex="5">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -130,7 +130,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></TextField>
 
-                <Label fx:id="sdtHopLe" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Số Điện Thoại" GridPane.columnIndex="3">
+                <Label fx:id="sdt_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Số Điện Thoại" GridPane.columnIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -320,13 +320,12 @@
                 <TableColumn fx:id="ghiChuTTColumn" prefWidth="163.0" text="Ghi Chú" />
             </columns>
         </TableView>
-
-        <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />
-      <Label layoutX="486.0" layoutY="14.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
+    <Label layoutX="486.0" layoutY="14.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
+     <font>
+        <Font size="29.0" />
+     </font>
+    </Label>
     </children>
+    <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />
 
 </AnchorPane>

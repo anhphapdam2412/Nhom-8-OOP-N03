@@ -222,8 +222,8 @@
             </Label>
             </children>
         </GridPane>
-        <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />
     </children>
+        <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />
 
 
 </AnchorPane>
