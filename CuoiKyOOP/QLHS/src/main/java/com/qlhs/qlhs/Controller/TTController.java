@@ -1,6 +1,5 @@
 package com.qlhs.qlhs.Controller;
 //
-
 import com.qlhs.qlhs.Model.Student;
 import com.qlhs.qlhs.Model.StudentDAO;
 import javafx.collections.ObservableList;
@@ -20,17 +19,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
-import javax.swing.*;
 
 public class TTController {
 
     private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>();  // Tỉnh -> Các quận/huyện
     private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Các xã/phường
     @FXML
-    private Label maHS_Lb;
+    private TextField maHS_TF;
     @FXML
     private TextField hoDem_TF;
     @FXML
@@ -74,6 +69,8 @@ public class TTController {
     private Label hoDem_Lb;
     @FXML
     private Label ten_Lb;
+    @FXML
+    private Label maHS_Lb;
 
     @FXML
     private ComboBox<String> bang_CB;
@@ -169,7 +166,7 @@ public class TTController {
     // Method to display details of the selected student
     private void displayStudentDetails(Student student) {
         // Here you can set the text fields with the student details
-        maHS_Lb.setText(student.getMaHS());
+        maHS_TF.setText(student.getMaHS());
         hoDem_TF.setText(student.getHoDem());
         ten_TF.setText(student.getTen());
         SDT_TF.setText(student.getSdt());
@@ -261,15 +258,24 @@ public class TTController {
     }
     @FXML
     private void luuTT(){
-        if (ngaySinh_Date.getValue() == null) {
-            showSuccessDialog("Chưa nhập ngày");
+        danhSachKiemTra();
+        System.out.println(choPhepLuu);
+        if(maHS_TF.getText().equals("23xxxxxx")){
+            HopThoai.baoLoi("Chưa có mã học sinh");
+        }
+        else if(!choPhepLuu){
+            HopThoai.baoLoi("Vui lòng điền đúng và đủ thông tin");
+
+        }
+        else if (ngaySinh_Date.getValue() == null) {
+            HopThoai.baoLoi("Chưa nhập ngày sinh");
         }
         else {
 
             ObservableList<Student> students = StudentDAO.getStudents();
 
             // kiểm tra xem đã tồn tại học sinh nào chưa, nếu chưa thì tạo 1 học sinh giả
-            if (students.size() == 0) {
+            if (students.isEmpty()) {
                 danhSachMaHS.add(0);
             }
             for (Student student : students) {
@@ -278,8 +284,8 @@ public class TTController {
                 }
             }
 
-            String script = "";
-            String maHS = maHS_Lb.getText();
+            String script;
+            String maHS = maHS_TF.getText();
             String hoDem = hoDem_TF.getText();
             String ten = ten_TF.getText();
             String sdt = SDT_TF.getText();
@@ -300,16 +306,11 @@ public class TTController {
                 }
             }
             if (isUpdate) {
-                System.out.println("update");
                 script = "UPDATE thongTinHocSinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ? WHERE maHS = ?;";
             }else{
-                System.out.println("ínert");
-
                 script = "INSERT INTO thongTinHocSinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT,maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
             }
-
-            LuuVaoDatabase.luuTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu, script);
+            LuuVaoDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu, script);
         }
 
         displayStudent();
@@ -381,7 +382,7 @@ public class TTController {
             }
         }
 
-        maHS_Lb.setText(String.valueOf(danhSachMaHS.getLast() + 1));
+        maHS_TF.setText(String.valueOf(danhSachMaHS.getLast() + 1));
 
     }
 
@@ -406,11 +407,15 @@ public class TTController {
 
     @FXML
     private void handleKeyReleased() {
+        danhSachKiemTra();
+    }
+
+    private void danhSachKiemTra(){
+        validateField(maHS_TF, maHS_Lb, KiemTraDuLieuNhap::isValidMaHS);
         validateField(SDT_TF, sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai);
         validateField(maDinhDanh_TF, maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh);
         validateField(hoDem_TF, hoDem_Lb, KiemTraDuLieuNhap::isValidTen);
         validateField(ten_TF, ten_Lb, KiemTraDuLieuNhap::isValidTen);
-
     }
 
     private void validateField(TextField textField, Label label, Validator validator) {
@@ -424,7 +429,7 @@ public class TTController {
                 choPhepLuu = false;
             }
         } else {
-            label.setStyle("-fx-text-fill: #ffffff;");
+            label.setStyle("-fx-text-fill: #ff6363;");
             choPhepLuu = false;
         }
     }
@@ -434,12 +439,5 @@ public class TTController {
         boolean isValid(String text);
     }
 
-    private void showSuccessDialog(String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null); // Không cần tiêu đề
-        alert.setContentText(message); // Nội dung thông báo
 
-        alert.showAndWait(); // Hiển thị hộp thoại và chờ người dùng phản hồi
-    }
 }

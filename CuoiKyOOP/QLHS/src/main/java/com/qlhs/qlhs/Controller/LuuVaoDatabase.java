@@ -9,12 +9,9 @@ import static com.qlhs.qlhs.Controller.DatabaseConnector.connect;
 
 public class LuuVaoDatabase {
     // Insert a student record into the database
-    public static void luuTT(String maHS, String hoDem, String ten, String ngaySinh,
+    public static void capNhatTT(String maHS, String hoDem, String ten, String ngaySinh,
                              String gioiTinh, String maDinhDanh, String sdt,
                              String email, String lop, String diaChi, String ghiChuTT, String script) {
-
-
-
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(script)) {
 

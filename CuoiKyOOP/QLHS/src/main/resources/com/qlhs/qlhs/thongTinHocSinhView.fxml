@@ -45,8 +45,11 @@
                     <GridPane.margin>
                         <Insets left="130.0" right="2.0" />
                     </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Học Sinh">
+                <Label fx:id="maHS_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Học Sinh">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -114,7 +117,10 @@
                 <DatePicker fx:id="ngaySinh_Date" accessibleRole="COMBO_BOX" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
-               </GridPane.margin></DatePicker>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></DatePicker>
 
 
                 <Label fx:id="maDinhDanh_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Định Danh" GridPane.rowIndex="5">
@@ -176,7 +182,10 @@
                 <ComboBox fx:id="TTP_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Tỉnh/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
-               </GridPane.margin></ComboBox>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
 
                 <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3">
                     <font>
@@ -189,7 +198,10 @@
                 <ComboBox fx:id="QH_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Quận/Huyện/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
-               </GridPane.margin></ComboBox>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
 
                 <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Phường/Xã/TT" GridPane.columnIndex="3" GridPane.rowIndex="4">
                     <font>
@@ -202,7 +214,10 @@
                 <ComboBox fx:id="PX_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Phường/Xã/Thị Trấn" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
-               </GridPane.margin></ComboBox>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
 
                 <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Chi tiết" GridPane.columnIndex="3" GridPane.rowIndex="5">
                     <font>
@@ -251,30 +266,45 @@
                <GridPane.margin>
                   <Insets left="175.0" right="2.0" />
                </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
             <RadioButton fx:id="luuQH" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="175.0" right="2.0" />
                </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
             <RadioButton fx:id="luuPX" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="175.0" right="2.0" />
                </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
             <RadioButton fx:id="luuLop" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Lưu" GridPane.columnIndex="7">
                <GridPane.margin>
                   <Insets left="70.0" right="2.0" />
                </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </RadioButton>
-            <Label id="maHSTT_Lb" fx:id="maHS_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="121.0" text="23xxxxxx" GridPane.columnIndex="1">
+            <TextField fx:id="maHS_TF" editable="false" maxHeight="30.0" maxWidth="121.0" minHeight="30.0" minWidth="121.0" prefHeight="30.0" prefWidth="121.0" text="23xxxxxx" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
-            </Label>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
 
             </children>
         </GridPane>
@@ -283,18 +313,27 @@
             <font>
                 <Font size="15.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
 
-        <Button onAction="#luuTT" fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+        <Button fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" onAction="#luuTT" prefHeight="35.0" prefWidth="81.0" text="Lưu">
             <font>
                 <Font size="15.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
 
         <Button layoutX="677.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
 
         <Label layoutX="895.0" layoutY="374.0" text="Tìm Kiếm">
@@ -320,12 +359,15 @@
                 <TableColumn fx:id="ghiChuTTColumn" prefWidth="163.0" text="Ghi Chú" />
             </columns>
         </TableView>
-    <Label layoutX="486.0" layoutY="14.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
-     <font>
-        <Font size="29.0" />
-     </font>
-    </Label>
+        <Label layoutX="486.0" layoutY="14.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
+         <font>
+            <Font size="29.0" />
+         </font>
+        </Label>
+        <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
     </children>
-    <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />
 
 </AnchorPane>

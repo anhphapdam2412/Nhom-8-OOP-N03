@@ -25,4 +25,7 @@ public class KiemTraDuLieuNhap {
             return false;
         }
     }
+    public static boolean isValidMaHS(String maHS) {
+        return !maHS.equals("23xxxxxx");
+    }
 }

@@ -219,4 +219,30 @@ RadioButton {
     -fx-text-fill: #ffffff;
 }
 
+.table-view .scroll-bar {
+    -fx-background-color: #2b2b2b;}
+
+.scroll-bar {
+    -fx-background-color: #2c2c2c; /* Màu nền của thanh cuộn */
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #555555; /* Màu của thanh kéo */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent; /* Loại bỏ màu nền của các nút mũi tên */
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: #ffffff; /* Màu của mũi tên */
+}
+
+.scroll-bar .track {
+    -fx-background-color: #333333; /* Màu nền của đường chạy */
+}
 
