@@ -5,15 +5,10 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="aopalliance-1.0" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../../Downloads/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" exported="" name="mysql-connector-j-9.0.0" level="application" />
+    <orderEntry type="library" exported="" name="javafx-swt1" level="application" />
+    <orderEntry type="library" exported="" name="aopalliance-1.0" level="application" />
+    <orderEntry type="library" exported="" name="poi-ooxml-schemas-3.10.1" level="application" />
+    <orderEntry type="library" name="poi-ooxml-3.10.1" level="application" />
   </component>
 </module>
