@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -118,27 +119,42 @@
                 <TextField fx:id="ngoaiNgu_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
                 <TextField fx:id="congNghe_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="2" />
                 <TextField fx:id="tinHoc_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" />
-                <ComboBox fx:id="maNN_CB" prefWidth="150.0" promptText="Mã NN" GridPane.columnIndex="13" GridPane.rowIndex="2" />
-                <ComboBox fx:id="hanhKiem_CB" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" promptText="HK" GridPane.columnIndex="16" />
+                <ComboBox fx:id="maNN_CB" prefWidth="150.0" promptText="Mã NN" GridPane.columnIndex="13" GridPane.rowIndex="2">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
+                <ComboBox fx:id="hanhKiem_CB" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" promptText="HK" GridPane.columnIndex="16">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
                 <Label prefHeight="17.0" prefWidth="79.0" text="Hạnh kiểm" GridPane.columnIndex="15">
                    <font>
                       <Font size="14.0" />
                    </font>
                 </Label>
-                <RadioButton fx:id="theDuc_Btn" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Đạt" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                <RadioButton fx:id="theDuc_Btn" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Đạt" GridPane.columnIndex="11" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
             </children>
         </GridPane>
         <Button layoutX="443.0" layoutY="333.0" mnemonicParsing="false" onAction="#lamMoiDiem" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">
             <font>
                 <Font size="15.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
         <Button layoutX="563.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Lưu">
             <font>
                 <Font size="15.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
-        <Button layoutX="677.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
+        <Button disable="true" layoutX="677.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>
@@ -222,8 +238,11 @@
             </Label>
             </children>
         </GridPane>
+        <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
     </children>
-        <ComboBox fx:id="bang_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0" />
 
 
 </AnchorPane>

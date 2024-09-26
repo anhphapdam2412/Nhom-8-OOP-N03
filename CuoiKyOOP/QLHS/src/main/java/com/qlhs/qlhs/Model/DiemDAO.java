@@ -1,6 +1,6 @@
 package com.qlhs.qlhs.Model;
 
-import com.qlhs.qlhs.Controller.DatabaseConnector;
+import com.qlhs.qlhs.Controller.KetNoiCSDL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,7 +16,7 @@ public class DiemDAO {
 
         String query = "SELECT * FROM bangDiem";
 
-        try (Connection conn = DatabaseConnector.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = KetNoiCSDL.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 String maHS = rs.getString("maHS");
                 String nguVan = rs.getString("nguVan");

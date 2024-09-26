@@ -24,5 +24,8 @@ public class ConfigReader {
     public String getEndOfSchoolYear() {
         return properties.getProperty("endOfSchoolYear");
     }
+    public String getURL() {return properties.getProperty("db.url");}
+    public String getUSER() {return properties.getProperty("db.user");}
+    public String getPASSWORD() {return properties.getProperty("db.password");}
 }
 
