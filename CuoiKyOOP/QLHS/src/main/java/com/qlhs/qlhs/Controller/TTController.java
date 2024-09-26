@@ -321,6 +321,7 @@ public class TTController {
         }
 
         displayStudent();
+       
     }
     @FXML
     private void lamMoiTT() {
