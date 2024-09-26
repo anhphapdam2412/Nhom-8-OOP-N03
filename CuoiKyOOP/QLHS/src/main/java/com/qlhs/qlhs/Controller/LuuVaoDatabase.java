@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static com.qlhs.qlhs.Controller.DatabaseConnector.connect;
+import static com.qlhs.qlhs.Controller.KetNoiCSDL.connect;
 
 public class LuuVaoDatabase {
     // Insert a student record into the database

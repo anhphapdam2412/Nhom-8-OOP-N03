@@ -105,7 +105,10 @@
                 <RadioButton fx:id="gioiTinh_Btn" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Nam (mặc định là Nữ)" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
-               </GridPane.margin></RadioButton>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
                 <Label fx:id="ngaySinh_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Ngày Sinh" GridPane.rowIndex="4">
                     <font>
                         <Font size="14.0" />
