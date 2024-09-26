@@ -28,4 +28,19 @@ public class KiemTraDuLieuNhap {
     public static boolean isValidMaHS(String maHS) {
         return !maHS.equals("23xxxxxx");
     }
+    public static boolean isValidTTP(String TTP) {
+        return TTP != null;
+    }
+    public static boolean isValidQH(String QH) {
+        return QH != null;
+    }
+    public static boolean isValidPX(String PX) {
+        return PX != null;
+    }
+    public static boolean isValidLop(String lop) {
+        return lop != null;
+    }
+    public static boolean isValidNgaySinh(String ngaySinh) {
+        return ngaySinh != "null";
+    }
 }

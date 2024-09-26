@@ -71,6 +71,17 @@ public class TTController {
     private Label ten_Lb;
     @FXML
     private Label maHS_Lb;
+    @FXML
+    private Label lop_Lb;
+    @FXML
+    private Label TTP_Lb;
+    @FXML
+    private Label QH_Lb;
+    @FXML
+    private Label PX_Lb;
+    @FXML
+    private Label ngaySinh_Lb;
+
 
     @FXML
     private ComboBox<String> bang_CB;
@@ -259,16 +270,12 @@ public class TTController {
     @FXML
     private void luuTT(){
         danhSachKiemTra();
-        System.out.println(choPhepLuu);
         if(maHS_TF.getText().equals("23xxxxxx")){
             HopThoai.baoLoi("Chưa có mã học sinh");
         }
         else if(!choPhepLuu){
-            HopThoai.baoLoi("Vui lòng điền đúng và đủ thông tin");
+            HopThoai.baoLoi("Vui lòng điền đúng và đủ thông tin cho các mục màu đỏ");
 
-        }
-        else if (ngaySinh_Date.getValue() == null) {
-            HopThoai.baoLoi("Chưa nhập ngày sinh");
         }
         else {
 
@@ -348,6 +355,7 @@ public class TTController {
         if (!isLuu) {
             PX_CB.setValue(null);
         }
+
     }
 
     @FXML
@@ -373,7 +381,6 @@ public class TTController {
                 danhSachMaHS.add(Integer.parseInt(student.getMaHS()));
             }
         }
-        System.out.println(danhSachMaHS);
         // So sánh ngày hiện tại với ngày chuỗi
         if (today.isAfter(compareDate)) {
             if (danhSachMaHS.getFirst() / 1000000 < nam) { // chia lấy nguyên cho 1000000 để lấy ra năm
@@ -383,7 +390,7 @@ public class TTController {
         }
 
         maHS_TF.setText(String.valueOf(danhSachMaHS.getLast() + 1));
-
+        danhSachKiemTra();
     }
 
     private void loadFXML(String fxmlFile) throws IOException {
@@ -393,7 +400,6 @@ public class TTController {
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
 
-        System.out.println("Loading FXML: " + fxmlPath); // Debugging line
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
             Stage stage = (Stage) bang_CB.getScene().getWindow();
@@ -411,26 +417,46 @@ public class TTController {
     }
 
     private void danhSachKiemTra(){
-        validateField(maHS_TF, maHS_Lb, KiemTraDuLieuNhap::isValidMaHS);
-        validateField(SDT_TF, sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai);
-        validateField(maDinhDanh_TF, maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh);
-        validateField(hoDem_TF, hoDem_Lb, KiemTraDuLieuNhap::isValidTen);
-        validateField(ten_TF, ten_Lb, KiemTraDuLieuNhap::isValidTen);
+        validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS) ;
+        validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop);
+        validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai);
+        validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh);
+        validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen);
+        validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen);
+        validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidTTP);
+        validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidQH);
+        validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX);
+        String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
+        validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
+
+
+        if (validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS)&&
+                validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai)&&
+                validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh)&&
+                validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen)&&
+                validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen)&&
+                validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidTTP)&&
+                validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidQH)&&
+                validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)&&
+                validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop)&&
+                validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh))
+        {
+            choPhepLuu = true;
+        }
     }
 
-    private void validateField(TextField textField, Label label, Validator validator) {
-        String text = textField.getText();
-        if (!text.isEmpty()) {
+    private boolean validateField(String text, Label label, Validator validator) {
+        if (text!=null && !text.isEmpty()) {
             if (validator.isValid(text)) {
                 label.setStyle("-fx-text-fill: #ffffff;");
-                choPhepLuu = true;
+                return true;
             } else {
                 label.setStyle("-fx-text-fill: #ff6363;");
-                choPhepLuu = false;
+                return false;
             }
         } else {
             label.setStyle("-fx-text-fill: #ff6363;");
-            choPhepLuu = false;
+            return false;
         }
     }
 
