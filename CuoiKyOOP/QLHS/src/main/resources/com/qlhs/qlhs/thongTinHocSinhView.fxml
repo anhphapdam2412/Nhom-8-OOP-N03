@@ -174,7 +174,7 @@
                </GridPane.margin>
                 </TextField>
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tỉnh/Thành Phố" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <Label fx:id="TTP_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tỉnh/Thành Phố" GridPane.columnIndex="3" GridPane.rowIndex="2">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -190,7 +190,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                <Label fx:id="QH_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -206,7 +206,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Phường/Xã/TT" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                <Label fx:id="PX_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Phường/Xã/TT" GridPane.columnIndex="3" GridPane.rowIndex="4">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -241,7 +241,7 @@
                 </TextField>
 
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6">
+                <Label fx:id="lop_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6">
                     <font>
                         <Font size="14.0" />
                     </font>
