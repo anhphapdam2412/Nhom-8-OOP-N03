@@ -39,3 +39,11 @@ Người dùng có thể tìm kiếm học sinh theo tên, mã số hoặc lớp
 ### UML
 
 ![My Image](CuoiKyOOP/UML/QLHS.png)
+<br>
+![My Image](CuoiKyOOP/UML/CapNhatThongTin.png)
+<br>
+![My Image](CuoiKyOOP/UML/CapNhatDiem.png)
+<br>
+![My Image](CuoiKyOOP/UML/TimKiem.png)
+# Giao diện người dùng
+![My Image](CuoiKyOOP/giaodien/giaodien.png)
