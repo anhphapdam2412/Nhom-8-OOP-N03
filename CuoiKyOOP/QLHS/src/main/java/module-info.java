@@ -22,4 +22,6 @@ module com.qlhs.qlhs {
     requires org.apache.xmlbeans;
     requires org.apache.poi.ooxml.schemas;
     opens com.qlhs.qlhs.Model to javafx.fxml;
+    exports com.qlhs.qlhs.View;
+    opens com.qlhs.qlhs.View to javafx.fxml;
 }

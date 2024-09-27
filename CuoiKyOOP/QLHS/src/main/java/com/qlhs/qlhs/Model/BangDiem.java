@@ -51,9 +51,7 @@ public class BangDiem {
         this.ghiChuDiem = ghiChuDiem;
     }
 
-    public String getStt() {
-        return stt;
-    }
+    public String getStt() {return stt;}
 
     public String getMaHS() {
         return maHS;

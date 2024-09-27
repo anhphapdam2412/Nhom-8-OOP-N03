@@ -1,4 +1,4 @@
-package com.qlhs.qlhs.Controller;
+package com.qlhs.qlhs.View;
 
 import javafx.scene.control.Alert;
 

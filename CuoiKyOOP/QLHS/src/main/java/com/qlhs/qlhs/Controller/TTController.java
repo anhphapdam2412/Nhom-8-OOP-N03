@@ -2,6 +2,7 @@ package com.qlhs.qlhs.Controller;
 //
 import com.qlhs.qlhs.Model.Student;
 import com.qlhs.qlhs.Model.StudentDAO;
+import com.qlhs.qlhs.View.HopThoai;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -161,10 +162,10 @@ public class TTController {
 
         // Load data from the database
         ObservableList<Student> students = StudentDAO.getStudents();
-            tableTTView.setItems(students);
+        tableTTView.setItems(students);
 
         // Add listener for mouse click on the table
-            tableTTView.setOnMouseClicked(event -> {
+        tableTTView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // Double click
 
                 Student selectedStudent = tableTTView.getSelectionModel().getSelectedItem();
@@ -268,7 +269,7 @@ public class TTController {
         }
     }
     @FXML
-    private void luuTT(){
+    private void capNhatTT(){
         danhSachKiemTra();
         if(maHS_TF.getText().equals("23xxxxxx")){
             HopThoai.baoLoi("Chưa có mã học sinh");
@@ -291,7 +292,7 @@ public class TTController {
                 }
             }
 
-            String script;
+            String script,script2 = "";
             String maHS = maHS_TF.getText();
             String hoDem = hoDem_TF.getText();
             String ten = ten_TF.getText();
@@ -315,9 +316,10 @@ public class TTController {
             if (isUpdate) {
                 script = "UPDATE thongTinHocSinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ? WHERE maHS = ?;";
             }else{
-                script = "INSERT INTO thongTinHocSinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT,maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                script = "INSERT INTO thongTinHocSinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT,maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                script2 = "INSERT INTO bangdiem (maHS) VALUES (?);";
             }
-            LuuVaoDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu, script);
+            CapNhatDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu, script, script2);
         }
 
         displayStudent();
@@ -425,7 +427,7 @@ public class TTController {
         validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen);
         validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidTTP);
         validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidQH);
-        validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX);
+//        validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX);
         String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
         validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
 
@@ -437,7 +439,7 @@ public class TTController {
                 validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen)&&
                 validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidTTP)&&
                 validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidQH)&&
-                validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)&&
+//                validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)&&
                 validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop)&&
                 validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh))
         {

@@ -34,7 +34,7 @@ public class StudentDAO {
                 String ghiChu = rs.getString("ghiChuTT");
 
 
-                Student student = new Student(Integer.toString(stt), maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu);
+                Student student = new Student(String.valueOf(stt),maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu);
 
                 studentList.add(student);
             }

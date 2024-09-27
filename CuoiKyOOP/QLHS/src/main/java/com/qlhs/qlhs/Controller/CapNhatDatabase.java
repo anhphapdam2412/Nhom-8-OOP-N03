@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 import static com.qlhs.qlhs.Controller.KetNoiCSDL.connect;
 
-public class LuuVaoDatabase {
+public class CapNhatDatabase {
     // Insert a student record into the database
     public static void capNhatTT(String maHS, String hoDem, String ten, String ngaySinh,
                              String gioiTinh, String maDinhDanh, String sdt,
-                             String email, String lop, String diaChi, String ghiChuTT, String script) {
+                             String email, String lop, String diaChi, String ghiChuTT, String script, String script2) {
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(script)) {
 
@@ -27,10 +27,24 @@ public class LuuVaoDatabase {
             preparedStatement.setString(10, ghiChuTT);
             preparedStatement.setString(11, maHS);
 
+
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println(rowsAffected + " record(s) inserted.");
         } catch (SQLException e) {
             System.err.println("Error inserting record: " + e.getMessage());
         }
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(script2)) {
+
+            preparedStatement.setString(1, maHS);
+
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " record(s) inserted.");
+        } catch (SQLException e) {
+            System.err.println("Error inserting record: " + e.getMessage());
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 package com.qlhs.qlhs.Model;
 
 public class Student {
-    private final String stt;
+    private final  String stt;
     private final String maHS;
     private final String hoDem;
     private final String ten;
@@ -31,9 +31,8 @@ public class Student {
     }
 
     // Getters and Setters for each field
-    public String getStt() {
-        return stt;
-    }
+
+    public String getStt() {return stt;}
 
     public String getMaHS() {
         return maHS;

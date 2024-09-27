@@ -321,7 +321,7 @@
          </cursor>
         </Button>
 
-        <Button fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" onAction="#luuTT" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+        <Button fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" onAction="#capNhatTT" prefHeight="35.0" prefWidth="81.0" text="Lưu">
             <font>
                 <Font size="15.0" />
             </font>

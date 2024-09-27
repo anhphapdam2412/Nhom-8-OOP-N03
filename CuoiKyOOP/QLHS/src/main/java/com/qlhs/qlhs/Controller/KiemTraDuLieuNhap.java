@@ -34,9 +34,6 @@ public class KiemTraDuLieuNhap {
     public static boolean isValidQH(String QH) {
         return QH != null;
     }
-    public static boolean isValidPX(String PX) {
-        return PX != null;
-    }
     public static boolean isValidLop(String lop) {
         return lop != null;
     }
