@@ -1,7 +1,7 @@
 public class InitializationAndCleanupExercise9 {
     //Hàm tạo 1
     public InitializationAndCleanupExercise9() {
-        this("k");
+        this("Nguyen dep trai");
     } 
     
     //Hàm tạo 2
