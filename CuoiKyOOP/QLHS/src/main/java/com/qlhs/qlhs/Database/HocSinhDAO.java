@@ -1,6 +1,6 @@
 package com.qlhs.qlhs.Database;
 
-import com.qlhs.qlhs.Model.Student;
+import com.qlhs.qlhs.Model.HocSinh;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class StudentDAO {
+public class HocSinhDAO {
 
-    public static ObservableList<Student> getStudents() {
-        ObservableList<Student> studentList = FXCollections.observableArrayList();
+    public static ObservableList<HocSinh> getDSHocSinh() {
+        ObservableList<HocSinh> studentList = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM thongTinHocSinh";
 
@@ -32,9 +32,10 @@ public class StudentDAO {
                 String lop = rs.getString("lop");
                 String diaChi = rs.getString("diaChi");
                 String ghiChu = rs.getString("ghiChuTT");
+                String trangThai = rs.getString("trangThai");
 
 
-                Student student = new Student(String.valueOf(stt),maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu);
+                HocSinh student = new HocSinh(String.valueOf(stt),maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai);
 
                 studentList.add(student);
             }

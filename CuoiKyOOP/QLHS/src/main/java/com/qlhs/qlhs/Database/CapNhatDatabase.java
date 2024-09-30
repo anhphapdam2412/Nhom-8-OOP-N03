@@ -13,7 +13,7 @@ public class CapNhatDatabase {
     // Cập nhật thông tin học sinh
     public static void capNhatTT(String maHS, String hoDem, String ten, String ngaySinh,
                                  String gioiTinh, String maDinhDanh, String sdt,
-                                 String email, String lop, String diaChi, String ghiChuTT,
+                                 String email, String lop, String diaChi, String ghiChuTT, String trangThai,
                                  String script, String script2) {
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
@@ -36,7 +36,8 @@ public class CapNhatDatabase {
             preparedStatement1.setString(8, lop);
             preparedStatement1.setString(9, diaChi);
             preparedStatement1.setString(10, ghiChuTT);
-            preparedStatement1.setString(11, maHS);
+            preparedStatement1.setString(12, maHS);
+            preparedStatement1.setBoolean(11, Boolean.parseBoolean(trangThai));
 
             int rowsAffected1 = preparedStatement1.executeUpdate();
             System.out.println(rowsAffected1 + " record(s) updated in table 1.");

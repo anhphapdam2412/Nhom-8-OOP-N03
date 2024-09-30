@@ -2,19 +2,19 @@ package com.qlhs.qlhs.Database;
 
 import com.qlhs.qlhs.Model.BangDiem;
 import com.qlhs.qlhs.Model.Diem;
-import com.qlhs.qlhs.Model.Student;
+import com.qlhs.qlhs.Model.HocSinh;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class BangDiemDAO {
 
     public static ObservableList<BangDiem> getBangDiem() {
-        ObservableList<Student> students = StudentDAO.getStudents();
+        ObservableList<HocSinh> students = HocSinhDAO.getDSHocSinh();
         ObservableList<Diem> diems = DiemDAO.getDiem();
 
         ObservableList<BangDiem> combinedList = FXCollections.observableArrayList();
 
-        for (Student student : students) {
+        for (HocSinh student : students) {
             // Find the corresponding mark for the student
             for (Diem diem : diems) {
                 if (student.getMaHS().equals(diem.getMaHS())) {

@@ -1,6 +1,6 @@
 package com.qlhs.qlhs.Model;
 
-public class Student {
+public class HocSinh {
     private final  String stt;
     private final String maHS;
     private final String hoDem;
@@ -13,9 +13,10 @@ public class Student {
     private final String lop;
     private final String diaChi;
     private final String ghiChuTT;
+    private final String trangThai;
 
     // Constructor
-    public Student(String stt, String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String maDinhDanh, String sdt, String email, String lop, String diaChi, String ghiChuTT) {
+    public HocSinh(String stt, String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String maDinhDanh, String sdt, String email, String lop, String diaChi, String ghiChuTT, String trangThai) {
         this.stt = stt;
         this.maHS = maHS;
         this.hoDem = hoDem;
@@ -28,6 +29,7 @@ public class Student {
         this.lop = lop;
         this.diaChi = diaChi;
         this.ghiChuTT = ghiChuTT;
+        this.trangThai = trangThai;
     }
 
     // Getters and Setters for each field
@@ -77,5 +79,7 @@ public class Student {
     public String getGhiChuTT() {
         return ghiChuTT;
     }
+
+    public String getTrangThai() {return trangThai;}
 
 }

@@ -249,7 +249,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="lop_TF" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="7">
+                <TextField fx:id="lop_TF" onKeyReleased="#handleKeyReleased" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="7">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></TextField>

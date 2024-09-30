@@ -1,5 +1,7 @@
 package com.qlhs.qlhs.Controller;
 
+import javafx.scene.control.Label;
+
 public class KiemTraDuLieuNhap {
     public static boolean isValidSoDienThoai(String phoneNumber) {
         return phoneNumber.substring(0, 1).matches("0") && phoneNumber.matches("\\d{10}");
@@ -39,5 +41,24 @@ public class KiemTraDuLieuNhap {
     }
     public static boolean isValidNgaySinh(String ngaySinh) {
         return ngaySinh != "null";
+    }
+
+    public static boolean validateField(String text, Label label, Validator validator) {
+        if (text!=null && !text.isEmpty()) {
+            if (validator.isValid(text)) {
+                label.setStyle("-fx-text-fill: #ffffff;");
+                return true;
+            } else {
+                label.setStyle("-fx-text-fill: #ff6363;");
+                return false;
+            }
+        } else {
+            label.setStyle("-fx-text-fill: #ff6363;");
+            return false;
+        }
+    }
+    @FunctionalInterface
+    public interface Validator {
+        boolean isValid(String text);
     }
 }
