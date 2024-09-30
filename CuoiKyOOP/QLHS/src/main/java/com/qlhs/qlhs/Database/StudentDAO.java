@@ -1,6 +1,6 @@
-package com.qlhs.qlhs.Model;
+package com.qlhs.qlhs.Database;
 
-import com.qlhs.qlhs.Controller.KetNoiCSDL;
+import com.qlhs.qlhs.Model.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

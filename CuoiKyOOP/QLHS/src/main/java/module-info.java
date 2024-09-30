@@ -24,4 +24,6 @@ module com.qlhs.qlhs {
     opens com.qlhs.qlhs.Model to javafx.fxml;
     exports com.qlhs.qlhs.View;
     opens com.qlhs.qlhs.View to javafx.fxml;
+    exports com.qlhs.qlhs.Database;
+    opens com.qlhs.qlhs.Database to javafx.fxml;
 }

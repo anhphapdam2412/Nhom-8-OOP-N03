@@ -312,7 +312,7 @@
             </children>
         </GridPane>
 
-        <Button layoutX="443.0" layoutY="333.0" mnemonicParsing="false" onAction="#lamMoiTT" prefHeight="35.0" prefWidth="81.0" text="Làm Mới">
+        <Button layoutX="441.0" layoutY="333.0" mnemonicParsing="false" onAction="#lamMoiTT" prefHeight="35.0" prefWidth="90.0" text="Làm Mới">
             <font>
                 <Font size="15.0" />
             </font>
@@ -321,7 +321,7 @@
          </cursor>
         </Button>
 
-        <Button fx:id="luu_Btn" layoutX="563.0" layoutY="333.0" mnemonicParsing="false" onAction="#capNhatTT" prefHeight="35.0" prefWidth="81.0" text="Lưu">
+        <Button fx:id="capNhat_Btn" layoutX="555.0" layoutY="333.0" mnemonicParsing="false" onAction="#capNhatTT" prefHeight="35.0" prefWidth="90.0" text="Cập Nhật">
             <font>
                 <Font size="15.0" />
             </font>
@@ -330,7 +330,7 @@
          </cursor>
         </Button>
 
-        <Button layoutX="677.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="81.0" text="Xóa">
+        <Button layoutX="669.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>

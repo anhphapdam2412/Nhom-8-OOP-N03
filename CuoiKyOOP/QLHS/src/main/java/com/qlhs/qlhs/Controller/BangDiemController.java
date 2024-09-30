@@ -2,7 +2,7 @@ package com.qlhs.qlhs.Controller;
 //
 
 import com.qlhs.qlhs.Model.BangDiem;
-import com.qlhs.qlhs.Model.BangDiemDAO;
+import com.qlhs.qlhs.Database.BangDiemDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
