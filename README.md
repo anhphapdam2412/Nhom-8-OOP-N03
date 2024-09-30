@@ -18,7 +18,7 @@ Quản Lý Học Sinh
 
 ### Thêm Học Sinh
 
-Người dùng có thể thêm học sinh mới vào danh sách bằng cách nhập thông tin cần thiết như tên, lớp, và điểm số.
+Người dùng có thể thêm học sinh mới vào danh sách bằng cách nhập thông tin cần thiết như tên, lớp, địa chỉ,...
 
 ### Xóa Học Sinh
 
