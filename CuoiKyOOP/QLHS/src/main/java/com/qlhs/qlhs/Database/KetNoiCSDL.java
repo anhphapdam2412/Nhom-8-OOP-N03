@@ -1,4 +1,6 @@
-package com.qlhs.qlhs.Controller;
+package com.qlhs.qlhs.Database;
+
+import com.qlhs.qlhs.Controller.ConfigReader;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,7 +1,8 @@
 package com.qlhs.qlhs.Controller;
 //
+import com.qlhs.qlhs.Database.CapNhatDatabase;
 import com.qlhs.qlhs.Model.Student;
-import com.qlhs.qlhs.Model.StudentDAO;
+import com.qlhs.qlhs.Database.StudentDAO;
 import com.qlhs.qlhs.View.HopThoai;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -116,7 +117,7 @@ public class TTController {
     private TableColumn<Student, String> ghiChuTTColumn;
 
 
-    public boolean choPhepLuu=false;
+    public boolean choPhepCapNhat=false;
     public List<Integer> danhSachMaHS = new ArrayList<>();
 
     @FXML
@@ -274,7 +275,7 @@ public class TTController {
         if(maHS_TF.getText().equals("23xxxxxx")){
             HopThoai.baoLoi("Chưa có mã học sinh");
         }
-        else if(!choPhepLuu){
+        else if(!choPhepCapNhat){
             HopThoai.baoLoi("Vui lòng điền đúng và đủ thông tin cho các mục màu đỏ");
 
         }
@@ -315,6 +316,7 @@ public class TTController {
             }
             if (isUpdate) {
                 script = "UPDATE thongTinHocSinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ? WHERE maHS = ?;";
+                script2 = "";
             }else{
                 script = "INSERT INTO thongTinHocSinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT,maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                 script2 = "INSERT INTO bangdiem (maHS) VALUES (?);";
@@ -338,24 +340,24 @@ public class TTController {
         ngaySinh_Date.setValue(null);
         ghiChuTT_TF.clear();
 
-        boolean isLuu;
-        isLuu = luuLop.isSelected();
-        if (!isLuu) {
+        boolean isCapNhat;
+        isCapNhat = luuLop.isSelected();
+        if (!isCapNhat) {
             lop_TF.clear();
         }
 
-        isLuu = luuTTP.isSelected();
-        if (!isLuu) {
+        isCapNhat = luuTTP.isSelected();
+        if (!isCapNhat) {
             TTP_CB.setValue(null);
         }
 
-        isLuu = luuQH.isSelected();
-        if (!isLuu) {
+        isCapNhat = luuQH.isSelected();
+        if (!isCapNhat) {
             QH_CB.setValue(null);
 
         }
-        isLuu = luuPX.isSelected();
-        if (!isLuu) {
+        isCapNhat = luuPX.isSelected();
+        if (!isCapNhat) {
             PX_CB.setValue(null);
         }
 
@@ -444,7 +446,7 @@ public class TTController {
                 validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop)&&
                 validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh))
         {
-            choPhepLuu = true;
+            choPhepCapNhat = true;
         }
     }
 
