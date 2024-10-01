@@ -1,8 +1,11 @@
 package com.qlhs.qlhs.Controller;
 //
 
+import com.qlhs.qlhs.Database.CapNhatDatabase;
 import com.qlhs.qlhs.Model.BangDiem;
 import com.qlhs.qlhs.Database.BangDiemDAO;
+import com.qlhs.qlhs.View.HopThoai;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +49,10 @@ public class BangDiemController {
     private ComboBox<String> hanhKiem_CB;
     @FXML
     private ComboBox<String> maNN_CB;
+    @FXML
+    private TextField diemTb_TF;
+    @FXML
+    private TextField ghiChuDiem_TF;
 
 
     @FXML
@@ -60,27 +67,29 @@ public class BangDiemController {
     private Label lop_Lb;
 
     @FXML
-    private Label diemNguVanHopLe;
+    private Label nguVan_Lb;
     @FXML
-    private Label diemToanHopLe;
+    private Label toan_Lb;
     @FXML
-    private Label diemVatLiHopLe;
+    private Label vatLi_Lb;
     @FXML
-    private Label diemHoaHocHopLe;
+    private Label hoaHoc_Lb;
     @FXML
-    private Label diemSinhHocHopLe;
+    private Label sinhHoc_Lb;
     @FXML
-    private Label diemLichSuHopLe;
+    private Label lichSu_Lb;
     @FXML
-    private Label diemDiaLyHopLe;
+    private Label congNghe_Lb;
     @FXML
-    private Label diemGDCDHopLe;
+    private Label diaLy_Lb;
     @FXML
-    private Label diemCongNgheHopLe;
+    private Label GDCD_Lb;
     @FXML
-    private Label diemTinHocHopLe;
+    private Label tinHoc_Lb;
     @FXML
-    private Label diemNgoaiNguHopLe;
+    private Label hanhKiem_Lb;
+    @FXML
+    private Label ngoaiNgu_Lb;
 
 
     @FXML
@@ -135,6 +144,8 @@ public class BangDiemController {
     private TableColumn<BangDiem, String> hanhKiemColumn;
     @FXML
     private TableColumn<BangDiem, String> maNNColumn;
+    @FXML
+    private TableColumn<BangDiem, String> diemTbColumn;
 
     @FXML
     private void initialize() {
@@ -142,7 +153,7 @@ public class BangDiemController {
         bang_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         bang_CB.setValue("Bảng điểm");
 
-        hanhKiem_CB.getItems().addAll("T", "K", "TB", "Y", "K");
+        hanhKiem_CB.getItems().addAll("T", "K", "TB", "Y", "Kém");
         maNN_CB.getItems().addAll("N1", "N2", "N3");
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
         bang_CB.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
@@ -154,7 +165,18 @@ public class BangDiemController {
         });
         // Add listener for mouse click on the table
         // Set up the columns to use the Mark class fields
-        sttColumn.setCellValueFactory(new PropertyValueFactory<>("stt"));
+        sttColumn.setCellValueFactory(cellData -> {
+            // Lấy chỉ số của học sinh trong danh sách
+            int index = tableDiemView.getItems().indexOf(cellData.getValue()) + 1;
+            return new SimpleStringProperty(String.valueOf(index));
+        });
+        hienThiBangDiem();
+        chonHocSinh();
+        hanhKiem_CB.setOnAction(_ -> kiemTraHK());
+        maNN_CB.setOnAction(_ -> kiemTraMaNN());
+    }
+
+    private void hienThiBangDiem(){
         maHSColumn.setCellValueFactory(new PropertyValueFactory<>("maHS"));
         hoDemColumn.setCellValueFactory(new PropertyValueFactory<>("hoDem"));
         tenColumn.setCellValueFactory(new PropertyValueFactory<>("ten"));
@@ -173,24 +195,38 @@ public class BangDiemController {
         congNgheColumn.setCellValueFactory(new PropertyValueFactory<>("congNghe"));
         tinHocColumn.setCellValueFactory(new PropertyValueFactory<>("tinHoc"));
         theDucColumn.setCellValueFactory(new PropertyValueFactory<>("theDuc"));
+        diemTbColumn.setCellValueFactory(new PropertyValueFactory<>("diemTb"));
         maNNColumn.setCellValueFactory(new PropertyValueFactory<>("maNN"));
         hocLucColumn.setCellValueFactory(new PropertyValueFactory<>("hocLuc"));
         hanhKiemColumn.setCellValueFactory(new PropertyValueFactory<>("hanhKiem"));
         ghiChuColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuDiem"));
 
-        ObservableList<BangDiem> BangDiems = BangDiemDAO.getBangDiem();
-        tableDiemView.setItems(BangDiems);
+        ObservableList<BangDiem> dsDiem = BangDiemDAO.getBangDiem();
 
+        // Lọc danh sách học sinh có trạng thái là 1
+        ObservableList<BangDiem> dsDiemDaLoc = dsDiem.filtered(bangDiem -> Objects.equals(bangDiem.getTrangThai(), "1"));
+
+        // Đặt danh sách đã lọc vào bảng
+        tableDiemView.setItems(dsDiemDaLoc);
+    }
+
+    private void chonHocSinh() {
         tableDiemView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // Nhấp đúp chuột
                 BangDiem selectedDiem = tableDiemView.getSelectionModel().getSelectedItem();
                 if (selectedDiem != null) {
-                    displayDiemDetails(selectedDiem);
+                    hienDiemChiTiet(selectedDiem);
                 }
             }
         });
     }
-    private void displayDiemDetails(BangDiem bangDiem) {
+    private void kiemTraHK() {
+        danhSachKiemTraDiem();
+    }
+    private void kiemTraMaNN() {
+        danhSachKiemTraDiem();
+    }
+    private void hienDiemChiTiet(BangDiem bangDiem) {
         nguVan_TF.setText(bangDiem.getNguVan());
         toan_TF.setText(bangDiem.getToan());
         vatLi_TF.setText(bangDiem.getVatLi());
@@ -202,11 +238,12 @@ public class BangDiemController {
         ngoaiNgu_TF.setText(bangDiem.getNgoaiNgu());
         congNghe_TF.setText(bangDiem.getCongNghe());
         tinHoc_TF.setText(bangDiem.getTinHoc());
-        theDuc_Btn.setSelected("Đ".equals(bangDiem.getTheDuc()));
+        theDuc_Btn.setSelected("D".equals(bangDiem.getTheDuc()));
         maNN_CB.setValue(bangDiem.getMaNN());
         hanhKiem_CB.setValue(bangDiem.getHanhKiem());
         maHS_Lb.setText(bangDiem.getMaHS());
         lop_Lb.setText(bangDiem.getLop());
+        diemTb_TF.setText(bangDiem.getDiemTb());
         ngaySinh_Lb.setText(bangDiem.getNgaySinh());
         hoTen_Lb.setText(bangDiem.getHoDem()+" "+bangDiem.getTen());
         gioiTinh_Lb.setText("1".equals(bangDiem.getGioiTinh())?"Nam":"Nữ");
@@ -228,7 +265,45 @@ public class BangDiemController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void capNhatDiem(){
+        danhSachKiemTraDiem();
+        if(maHS_Lb.getText().equals("")){
+            HopThoai.baoLoi("Chưa có mã học sinh");
+        }
+//        else if(!choPhepCapNhat){
+//            HopThoai.baoLoi("Vui lòng điền đầy đủ thông tin");
+//        }
+        else {
+            String query = "";
+            String maHS = maHS_Lb.getText();
+            String nguVan = nguVan_TF.getText();
+            String toan = toan_TF.getText();
+            String lichSu = lichSu_TF.getText();
+            String sinhHoc = sinhHoc_TF.getText();
+            String tinHoc = tinHoc_TF.getText();
+            String congNghe = congNghe_TF.getText();
+            String ghiChuDiem = ghiChuDiem_TF.getText();
+            String ngoaiNgu = ngoaiNgu_TF.getText();
 
+            String hoaHoc = hoaHoc_TF.getText();
+            String vatLi = vatLi_TF.getText();
+            String GDCD = GDCD_TF.getText();
+
+            String diaLy = diaLy_TF.getText();
+            String theDuc = theDuc_Btn.isSelected()?"D":"T";
+            String maNN = maNN_CB.getValue();
+            String hanhKiem = hanhKiem_CB.getValue();
+
+            query = "UPDATE bangdiem SET nguVan = ?, toan = ?, vatLi = ?, hoaHoc = ?, sinhHoc = ?, " +
+                    "lichSu = ?, diaLy = ?, GDCD = ?, congNghe = ?, tinHoc = ?, theDuc = ?, " +
+                    "ngoaiNgu = ?, maNN = ?, hanhKiem = ?, ghiChuDiem = ? WHERE maHS = ?";
+
+            CapNhatDatabase.capNhatDiem(maHS, nguVan, toan, vatLi, hoaHoc, sinhHoc, lichSu, diaLy, GDCD, congNghe, tinHoc, theDuc, ngoaiNgu, maNN, hanhKiem, ghiChuDiem, query);
+        }
+
+        hienThiBangDiem();
+    }
     @FXML
     private void lamMoiDiem() {
         nguVan_TF.clear();
@@ -246,37 +321,26 @@ public class BangDiemController {
         hanhKiem_CB.setValue(null);
         maNN_CB.setValue(null);
     }
-    
+
     @FXML
     private void handleKeyReleased() {
-        validateField(toan_TF, diemToanHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(nguVan_TF, diemNguVanHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(vatLi_TF, diemVatLiHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(hoaHoc_TF, diemHoaHocHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(sinhHoc_TF, diemSinhHocHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(lichSu_TF, diemLichSuHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(diaLy_TF, diemDiaLyHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(GDCD_TF, diemGDCDHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(congNghe_TF, diemCongNgheHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(tinHoc_TF, diemTinHocHopLe, KiemTraDuLieuNhap::isValidDiem);
-        validateField(ngoaiNgu_TF, diemNgoaiNguHopLe, KiemTraDuLieuNhap::isValidDiem);
+        danhSachKiemTraDiem();
     }
-    private void validateField(TextField textField, Label label, BangDiemController.Validator validator) {
-        String text = textField.getText();
-        if (!text.isEmpty()) {
-            if (validator.isValid(text)) {
-                label.setStyle("-fx-text-fill: #ffffff;");
-            } else {
-                label.setStyle("-fx-text-fill: #ff6363;");
-            }
-        } else {
-            label.setStyle("-fx-text-fill: #ffffff;");
-        }
+    private void danhSachKiemTraDiem() {
+            KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(maNN_CB.getValue(),ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox);
+            KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem);
+            KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox);
     }
 
-    @FunctionalInterface
-    private interface Validator {
-        boolean isValid(String text);
-    }
 }
 

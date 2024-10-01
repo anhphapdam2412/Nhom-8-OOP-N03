@@ -14,7 +14,7 @@ public class CapNhatDatabase {
     public static void capNhatTT(String maHS, String hoDem, String ten, String ngaySinh,
                                  String gioiTinh, String maDinhDanh, String sdt,
                                  String email, String lop, String diaChi, String ghiChuTT, String trangThai,
-                                 String script, String script2) {
+                                 String query, String query2) {
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -25,7 +25,7 @@ public class CapNhatDatabase {
             connection.setAutoCommit(false);  // Bắt đầu transaction
 
             // Cập nhật thông tin học sinh
-            preparedStatement1 = connection.prepareStatement(script);
+            preparedStatement1 = connection.prepareStatement(query);
             preparedStatement1.setString(1, hoDem);
             preparedStatement1.setString(2, ten);
             preparedStatement1.setDate(3, Date.valueOf(ngaySinh));
@@ -42,17 +42,62 @@ public class CapNhatDatabase {
             int rowsAffected1 = preparedStatement1.executeUpdate();
             System.out.println(rowsAffected1 + " record(s) updated in table 1.");
 
-            // Thực hiện script2 (có thể là một câu lệnh khác)
-            if (!Objects.equals(script2, "")){
+            // Thực hiện script2
+            if (!Objects.equals(query2, "")){
 
-                preparedStatement2 = connection.prepareStatement(script2);
+                preparedStatement2 = connection.prepareStatement(query2);
                 preparedStatement2.setString(1, maHS);
                 int rowsAffected2 = preparedStatement2.executeUpdate();
-                System.out.println(rowsAffected2 + " record(s) updated in table 2.");
+                System.out.println(rowsAffected2 + " record(s) updated in table 1.");
             }
-
-
             // Commit nếu cả hai thành công
+            connection.commit();
+        } catch (SQLException e) {
+            // Rollback nếu có lỗi
+            try {
+                connection.rollback();
+                System.err.println("Transaction rolled back due to error: " + e.getMessage());
+            } catch (SQLException rollbackEx) {
+                System.err.println("Error during rollback: " + rollbackEx.getMessage());
+            }
+        }
+    }
+
+    // Cập nhật điểm
+    public static void capNhatDiem(String maHS, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hanhKiem, String ghiChuDiem, String query)
+         {
+        Connection connection = null;
+        PreparedStatement preparedStatement1 = null;
+
+        try {
+            // Kết nối cơ sở dữ liệu
+            connection = connect();
+            connection.setAutoCommit(false);  // Bắt đầu transaction
+
+            // Cập nhật thông tin học sinh
+            preparedStatement1 = connection.prepareStatement(query);
+            preparedStatement1.setString(1, nguVan);
+            preparedStatement1.setString(2, toan);
+            preparedStatement1.setString(3, vatLi);
+            preparedStatement1.setString(4, hoaHoc);
+            preparedStatement1.setString(5, sinhHoc);
+            preparedStatement1.setString(6, lichSu);
+            preparedStatement1.setString(7, diaLy);
+            preparedStatement1.setString(8, GDCD);
+
+            preparedStatement1.setString(9, congNghe);
+            preparedStatement1.setString(10, tinHoc);
+            preparedStatement1.setString(11, theDuc);
+            preparedStatement1.setString(12, ngoaiNgu);
+            preparedStatement1.setString(13, maNN);
+            preparedStatement1.setString(14, hanhKiem);
+            preparedStatement1.setString(15, ghiChuDiem);
+            preparedStatement1.setString(16, maHS);
+
+
+            int rowsAffected1 = preparedStatement1.executeUpdate();
+            System.out.println(rowsAffected1 + " record(s) updated in table 2.");
+            // Commit
             connection.commit();
         } catch (SQLException e) {
             // Rollback nếu có lỗi

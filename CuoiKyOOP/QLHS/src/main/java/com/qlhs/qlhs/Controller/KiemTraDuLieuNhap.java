@@ -21,7 +21,7 @@ public class KiemTraDuLieuNhap {
             double value = Double.parseDouble(diem);
 
             // Kiểm tra xem giá trị có nằm trong khoảng từ 0.0 đến 10.0 không
-            return value >= 0.0 && value <= 10.0;
+            return (value >= 0.0 && value <= 10.0);
         } catch (NumberFormatException e) {
             // Trường hợp chuỗi không phải là một số hợp lệ
             return false;
@@ -30,11 +30,8 @@ public class KiemTraDuLieuNhap {
     public static boolean isValidMaHS(String maHS) {
         return !maHS.equals("23xxxxxx");
     }
-    public static boolean isValidTTP(String TTP) {
-        return TTP != null;
-    }
-    public static boolean isValidQH(String QH) {
-        return QH != null;
+    public static boolean isValidComboBox(String string) {
+        return string != null;
     }
     public static boolean isValidLop(String lop) {
         return lop != null;
@@ -57,6 +54,7 @@ public class KiemTraDuLieuNhap {
             return false;
         }
     }
+
     @FunctionalInterface
     public interface Validator {
         boolean isValid(String text);

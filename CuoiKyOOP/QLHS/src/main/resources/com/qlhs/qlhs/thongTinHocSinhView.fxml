@@ -330,7 +330,7 @@
          </cursor>
         </Button>
 
-        <Button layoutX="669.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Xóa">
+        <Button onAction="#xoaTT" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>

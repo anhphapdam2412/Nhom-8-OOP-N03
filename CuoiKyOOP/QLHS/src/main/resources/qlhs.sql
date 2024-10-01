@@ -29,7 +29,7 @@ congNghe float,
 tinHoc float,
 theDuc char,
 ngoaiNgu float,
-diemTB float(5,2)
+diemTb float(5,2)
 AS ((nguVan + toan + vatLi +hoaHoc+sinhHoc+lichSu+diaLy+GDCD+congNghe+tinHoc+ngoaiNgu) / 11),
 maNN char(2),
 hocLuc char(2)
@@ -41,7 +41,7 @@ AS (
         WHEN diemTB >= 8 THEN 'G'
         ELSE ''
     END),
-hanhKiem char(2),
+hanhKiem char(3),
 ghiChuDiem text
 );
 

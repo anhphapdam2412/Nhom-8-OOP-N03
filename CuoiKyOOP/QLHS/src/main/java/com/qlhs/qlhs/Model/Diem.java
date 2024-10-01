@@ -19,8 +19,9 @@ public class Diem {
     private final String hocLuc;
     private final String hanhKiem;
     private final String ghiChuDiem;
+    private final String diemTb;
 
-    public Diem(String maHS, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem) {
+    public Diem(String maHS, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem, String diemTb) {
         this.maHS = maHS;
         this.nguVan = nguVan;
         this.toan = toan;
@@ -38,7 +39,10 @@ public class Diem {
         this.hocLuc = hocLuc;
         this.hanhKiem = hanhKiem;
         this.ghiChuDiem = ghiChuDiem;
+        this.diemTb = diemTb;
     }
+
+    public String getDiemTb() {return diemTb;}
 
     public String getMaHS() {
         return maHS;
@@ -107,4 +111,6 @@ public class Diem {
     public String getGhiChuDiem() {
         return ghiChuDiem;
     }
+
+
 }

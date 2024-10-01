@@ -22,5 +22,4 @@ public class KetNoiCSDL {
         }
         return connection;
     }
-
 }

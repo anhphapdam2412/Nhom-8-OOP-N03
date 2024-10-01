@@ -1,7 +1,6 @@
 package com.qlhs.qlhs.Model;
 
 public class BangDiem {
-    private final String stt;
     private final String maHS;
     private final String hoDem;
     private final String ten;
@@ -24,9 +23,10 @@ public class BangDiem {
     private final String hocLuc;
     private final String hanhKiem;
     private final String ghiChuDiem;
+    private final String trangThai;
+    private final String diemTb;
 
-    public BangDiem(String stt, String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String lop, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem) {
-        this.stt = stt;
+    public BangDiem(String maHS, String hoDem, String ten, String ngaySinh, String gioiTinh, String lop, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hocLuc, String hanhKiem, String ghiChuDiem, String trangThai, String diemTb) {
         this.maHS = maHS;
         this.hoDem = hoDem;
         this.ten = ten;
@@ -49,9 +49,11 @@ public class BangDiem {
         this.hocLuc = hocLuc;
         this.hanhKiem = hanhKiem;
         this.ghiChuDiem = ghiChuDiem;
+        this.trangThai = trangThai;
+        this.diemTb = diemTb;
     }
 
-    public String getStt() {return stt;}
+    public String getDiemTb() { return diemTb; }
 
     public String getMaHS() {
         return maHS;
@@ -140,6 +142,8 @@ public class BangDiem {
     public String getGhiChuDiem() {
         return ghiChuDiem;
     }
+
+    public String getTrangThai() {return trangThai;}
 
 }
 

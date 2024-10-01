@@ -18,9 +18,7 @@ public class HocSinhDAO {
         String query = "SELECT * FROM thongTinHocSinh";
 
         try (Connection conn = KetNoiCSDL.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-            int stt = 0;
             while (rs.next()) {
-                stt = stt + 1;
                 String maHS = rs.getString("maHS");
                 String hoDem = rs.getString("hoDem");
                 String ten = rs.getString("ten");
@@ -35,7 +33,7 @@ public class HocSinhDAO {
                 String trangThai = rs.getString("trangThai");
 
 
-                HocSinh student = new HocSinh(String.valueOf(stt),maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai);
+                HocSinh student = new HocSinh(maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai);
 
                 studentList.add(student);
             }
