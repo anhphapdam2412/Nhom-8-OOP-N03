@@ -41,5 +41,7 @@ Người dùng có thể tìm kiếm học sinh.
 ![My Image](CuoiKyOOP/UML/CapNhatDiem.png)
 <br>
 ![My Image](CuoiKyOOP/UML/TimKiem.png)
-# Giao diện người dùng
+### Giao diện người dùng
 ![My Image](CuoiKyOOP/giaodien/giaodien.png)
+### I/O
+![My Image](CuoiKyOOP/IO.png)
