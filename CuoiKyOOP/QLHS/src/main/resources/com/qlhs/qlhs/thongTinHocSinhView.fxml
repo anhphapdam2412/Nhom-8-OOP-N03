@@ -249,7 +249,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="lop_TF" onKeyReleased="#handleKeyReleased" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="7">
+                <TextField fx:id="lop_TF" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="7">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin></TextField>
@@ -330,7 +330,7 @@
          </cursor>
         </Button>
 
-        <Button onAction="#xoaTT" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Xóa">
+        <Button fx:id="xoa_Btn" disable="true" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" onAction="#xoaTT" prefHeight="35.0" prefWidth="90.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>
@@ -344,7 +344,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="timKiem_TF" layoutX="963.0" layoutY="369.0" prefHeight="30.0" prefWidth="227.0" promptText="toán &gt; 9" />
+        <TextField fx:id="timKiem_TF" layoutX="963.0" layoutY="369.0" onKeyReleased="#timKiem" prefHeight="30.0" prefWidth="227.0" promptText="Hải" />
 
         <TableView fx:id="tableTTView" layoutX="10.0" layoutY="403.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="391.0" prefWidth="1180.0">
             <columns>

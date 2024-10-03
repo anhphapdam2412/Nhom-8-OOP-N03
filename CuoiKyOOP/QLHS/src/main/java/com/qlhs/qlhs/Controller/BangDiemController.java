@@ -330,37 +330,39 @@ public class BangDiemController {
         danhSachKiemTraDiem();
     }
     private void danhSachKiemTraDiem() {
-            KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(maNN_CB.getValue(),ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox);
-            KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem);
-            KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox);
+        KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(maNN_CB.getValue(),ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox);
+        KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem);
+        KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox);
 
-            if(
-                    KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(maNN_CB.getValue(),ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox)&&
-                    KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem)&&
-                    KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox)
-            ){
-                choPhepCapNhat = true;
-            }
+        if(
+            !KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(maNN_CB.getValue(),ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox)||
+                    !KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem)||
+                    !KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox)
+        ){
+            choPhepCapNhat = false;
+        }else{
+            choPhepCapNhat = true;
+        }
     }
 
 }

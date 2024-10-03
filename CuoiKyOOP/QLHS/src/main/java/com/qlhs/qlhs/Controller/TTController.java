@@ -4,6 +4,8 @@ import com.qlhs.qlhs.Database.CapNhatDatabase;
 import com.qlhs.qlhs.Model.HocSinh;
 import com.qlhs.qlhs.Database.HocSinhDAO;
 import com.qlhs.qlhs.View.HopThoai;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javafx.scene.control.DatePicker;
+import javafx.util.Duration;
 
 public class TTController {
 
@@ -63,6 +66,11 @@ public class TTController {
     private RadioButton luuPX;
     @FXML
     private RadioButton luuLop;
+    @FXML
+    private TextField timKiem_TF;
+
+    @FXML
+    private Button xoa_Btn;
 
     @FXML
     private Label sdt_Lb;
@@ -121,6 +129,8 @@ public class TTController {
     public boolean choPhepCapNhat=false;
     public List<Integer> danhSachMaHS = new ArrayList<>();
 
+    private Timeline debounce;
+
     @FXML
     private void initialize() {
 //
@@ -142,13 +152,23 @@ public class TTController {
                 e.printStackTrace();
             }
         });
+
+        debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
+            if (Objects.equals(timKiem_TF.getText(), "")) {
+                hienThiHSLenManHinh(TimKiem.toanBo());
+            } else {
+                hienThiHSLenManHinh(TimKiem.daLoc(timKiem_TF.getText()));
+            }
+        }));
+        debounce.setCycleCount(1);
+
         layTTTinhTHanhTuCSV();
-        hienThiHSLenManHinh();
+        hienThiHSLenManHinh(TimKiem.toanBo());
         chonHocSinh();
 
     }
 
-    private void hienThiHSLenManHinh() {
+    private void hienThiHSLenManHinh(ObservableList<HocSinh> query) {
         // Thiết lập các cột
         sttColumn.setCellValueFactory(cellData -> {
             // Lấy chỉ số của học sinh trong danh sách
@@ -174,15 +194,8 @@ public class TTController {
         });
 
         ghiChuTTColumn.setCellValueFactory(new PropertyValueFactory<>("ghiChuTT"));
-
-        // Lấy danh sách học sinh từ cơ sở dữ liệu
-        ObservableList<HocSinh> dsHocSinh = HocSinhDAO.getDSHocSinh();
-
-        // Lọc danh sách học sinh có trạng thái là 1
-        ObservableList<HocSinh> dsHocSinhDaLoc = dsHocSinh.filtered(hocSinh -> Objects.equals(hocSinh.getTrangThai(), "1"));
-
         // Đặt danh sách đã lọc vào bảng
-        tableTTView.setItems(dsHocSinhDaLoc);
+        tableTTView.setItems(query);
     }
 
     // Phương thức để thiết lập sự kiện chuột cho bảng
@@ -193,6 +206,7 @@ public class TTController {
                 if (hocSinhDuocChon != null) {
                     hienTTHSChiTiet(hocSinhDuocChon);
                     danhSachKiemTra();
+                    xoa_Btn.setDisable(false);
                 }
             }
         });
@@ -349,14 +363,14 @@ public class TTController {
                 query2 = "INSERT INTO bangdiem (maHS) VALUES (?);";
             }
             CapNhatDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu,trangThai, query, query2);
+            hienThiHSLenManHinh(TimKiem.toanBo());
         }
 
-        hienThiHSLenManHinh();
-       
+
     }
     @FXML
     private void lamMoiTT() {
-        hienThiHSLenManHinh();
+        hienThiHSLenManHinh(TimKiem.toanBo());
         hoDem_TF.clear();
         ten_TF.clear();
         SDT_TF.clear();
@@ -366,6 +380,7 @@ public class TTController {
         gioiTinh_Btn.setSelected(false);
         ngaySinh_Date.setValue(null);
         ghiChuTT_TF.clear();
+        timKiem_TF.clear();
 
         boolean isCapNhat;
         isCapNhat = luuLop.isSelected();
@@ -412,12 +427,16 @@ public class TTController {
             String query2 = "";
 
             CapNhatDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu,trangThai, query, query2);
-            hienThiHSLenManHinh();
+            hienThiHSLenManHinh(TimKiem.toanBo());
+            lamMoiTT();
+            xoa_Btn.setDisable(false);
+
         }
 
     }
     @FXML
     private void themMoi() {
+        xoa_Btn.setDisable(true);
         lamMoiTT();
         ObservableList<HocSinh> dsHocSinh = HocSinhDAO.getDSHocSinh();
 
@@ -473,7 +492,13 @@ public class TTController {
     private void handleKeyReleased() {
         danhSachKiemTra();
     }
-
+    @FXML
+    private void timKiem(){
+        // Hủy timeline hiện tại nếu nó đang chạy
+        debounce.stop();
+        // Khởi động lại timeline, nó sẽ đợi 300ms trước khi thực hiện hành động tìm kiếm
+        debounce.playFromStart();
+    }
     private void danhSachKiemTra(){
         KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS) ;
         KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop);
@@ -488,17 +513,20 @@ public class TTController {
         KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
 
 
-        if (KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS)&&
-                KiemTraDuLieuNhap.validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai)&&
-                KiemTraDuLieuNhap.validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh)&&
-                KiemTraDuLieuNhap.validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen)&&
-                KiemTraDuLieuNhap.validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen)&&
-                KiemTraDuLieuNhap.validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidComboBox)&&
-                KiemTraDuLieuNhap.validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidComboBox)&&
-//                validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)&&
-                KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop)&&
-                KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh))
+        if (
+                !KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS)||
+                !KiemTraDuLieuNhap.validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai)||
+                !KiemTraDuLieuNhap.validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh)||
+                !KiemTraDuLieuNhap.validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen)||
+                !KiemTraDuLieuNhap.validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen)||
+                !KiemTraDuLieuNhap.validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidComboBox)||
+                !KiemTraDuLieuNhap.validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidComboBox)||
+//              !  validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)||
+                !KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop)||
+                !KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh))
         {
+            choPhepCapNhat = false;
+        }else{
             choPhepCapNhat = true;
         }
     }

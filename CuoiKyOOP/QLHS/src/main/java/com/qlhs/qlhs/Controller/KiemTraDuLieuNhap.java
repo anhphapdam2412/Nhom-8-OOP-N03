@@ -12,7 +12,7 @@ public class KiemTraDuLieuNhap {
     }
 
     public static boolean isValidTen(String ten) {
-        return ten.matches("[a-zA-Z\\s]+");
+        return ten.matches("[\\p{L}\\s]+");
     }
 
     public static boolean isValidDiem(String diem) {
