@@ -364,6 +364,7 @@ public class TTController {
             }
             CapNhatDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu,trangThai, query, query2);
             hienThiHSLenManHinh(TimKiem.toanBo());
+            LuuLichSuHoatDong.logThongTin(maHS+hoDem+ten+ngaySinh+gioiTinh+maDinhDanh+sdt+email+lop+diaChi+ghiChu+trangThai);
         }
 
 
