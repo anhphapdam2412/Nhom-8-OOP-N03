@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class LuuLichSuHoatDong {
-    private static final String LOG_FILE_PATH = "log.txt";
+    private static final String LOG_FILE_PATH = "logs/log.txt";
     public static void logThongTin(String string) {
         try {
             if (Files.notExists(Paths.get("logs"))) {
