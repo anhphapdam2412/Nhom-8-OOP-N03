@@ -15,7 +15,7 @@ public class HocSinhDAO {
     public static ObservableList<HocSinh> getDSHocSinh() {
         ObservableList<HocSinh> studentList = FXCollections.observableArrayList();
 
-        String query = "SELECT * FROM thongTinHocSinh";
+        String query = "SELECT * FROM HocSinh";
 
         try (Connection conn = KetNoiCSDL.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {

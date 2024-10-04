@@ -1,8 +1,9 @@
 package com.qlhs.qlhs.Controller;
 //
+
 import com.qlhs.qlhs.Database.CapNhatDatabase;
-import com.qlhs.qlhs.Model.HocSinh;
 import com.qlhs.qlhs.Database.HocSinhDAO;
+import com.qlhs.qlhs.Model.HocSinh;
 import com.qlhs.qlhs.View.HopThoai;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,113 +25,31 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import javafx.scene.control.DatePicker;
-import javafx.util.Duration;
-
 public class TTController {
 
-    private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>();  // Tỉnh -> Các quận/huyện
-    private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Các xã/phường
-    @FXML
-    private TextField maHS_TF;
-    @FXML
-    private TextField hoDem_TF;
-    @FXML
-    private TextField ten_TF;
-    @FXML
-    private TextField SDT_TF;
-    @FXML
-    private TextField maDinhDanh_TF;
-    @FXML
-    private TextField email_TF;
-    @FXML
-    private TextField lop_TF;
-    @FXML
-    private TextField chiTiet_TF;
-    @FXML
-    private RadioButton gioiTinh_Btn;
-    @FXML
-    private DatePicker ngaySinh_Date;
-    @FXML
-    private ComboBox<String> TTP_CB; // ComboBox for Tỉnh Thành Phố
-    @FXML
-    private ComboBox<String> QH_CB;  // ComboBox for Quận Huyện
-    @FXML
-    private ComboBox<String> PX_CB;  // ComboBox for Phường Xã
-    @FXML
-    private TextField ghiChuTT_TF;
-    @FXML
-    private RadioButton luuTTP;
-    @FXML
-    private RadioButton luuQH;
-    @FXML
-    private RadioButton luuPX;
-    @FXML
-    private RadioButton luuLop;
-    @FXML
-    private TextField timKiem_TF;
-
-    @FXML
-    private Button xoa_Btn;
-
-    @FXML
-    private Label sdt_Lb;
-    @FXML
-    private Label maDinhDanh_Lb;
-    @FXML
-    private Label hoDem_Lb;
-    @FXML
-    private Label ten_Lb;
-    @FXML
-    private Label maHS_Lb;
-    @FXML
-    private Label lop_Lb;
-    @FXML
-    private Label TTP_Lb;
-    @FXML
-    private Label QH_Lb;
-    @FXML
-    private Label PX_Lb;
-    @FXML
-    private Label ngaySinh_Lb;
-
-
-    @FXML
-    private ComboBox<String> bang_CB;
-
-
-    @FXML
-    private TableView<HocSinh> tableTTView;
-    @FXML
-    private TableColumn<HocSinh, String> sttColumn;
-    @FXML
-    private TableColumn<HocSinh, String> maHSColumn;
-    @FXML
-    private TableColumn<HocSinh, String> hoDemColumn;
-    @FXML
-    private TableColumn<HocSinh, String> tenColumn;
-    @FXML
-    private TableColumn<HocSinh, String> ngaySinhColumn;
-    @FXML
-    private TableColumn<HocSinh, String> gioiTinhColumn;
-    @FXML
-    private TableColumn<HocSinh, String> maDinhDanhColumn;
-    @FXML
-    private TableColumn<HocSinh, String> sdtColumn;
-    @FXML
-    private TableColumn<HocSinh, String> emailColumn;
-    @FXML
-    private TableColumn<HocSinh, String> lopColumn;
-    @FXML
-    private TableColumn<HocSinh, String> diaChiColumn;
-    @FXML
-    private TableColumn<HocSinh, String> ghiChuTTColumn;
-
-
-    public boolean choPhepCapNhat=false;
+    private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>(); // Tỉnh -> Quận/huyện
+    private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Xã/phường
+    public boolean choPhepCapNhat = false;
     public List<Integer> danhSachMaHS = new ArrayList<>();
 
+    // Các TextField
+    @FXML private TextField maHS_TF, hoDem_TF, ten_TF, SDT_TF, maDinhDanh_TF, email_TF, lop_TF, chiTiet_TF, ghiChuTT_TF, timKiem_TF;
+    @FXML private RadioButton gioiTinh_Btn, luuTTP, luuQH, luuPX, luuLop, luuNgay;
+
+    // Ngày sinh và ComboBox
+    @FXML private DatePicker ngaySinh_Date;
+    @FXML private ComboBox<String> TTP_CB, QH_CB, PX_CB, bang_CB;
+
+    // Các Button và Label
+    @FXML private Button xoa_Btn;
+    @FXML private Label sdt_Lb, maDinhDanh_Lb, hoDem_Lb, ten_Lb, maHS_Lb, lop_Lb, TTP_Lb, QH_Lb, PX_Lb, ngaySinh_Lb;
+
+    // TableView và TableColumn
+    @FXML private TableView<HocSinh> tableTTView;
+    @FXML private TableColumn<HocSinh, String> sttColumn, maHSColumn, hoDemColumn, tenColumn, ngaySinhColumn, gioiTinhColumn, maDinhDanhColumn, sdtColumn, emailColumn, lopColumn, diaChiColumn, ghiChuTTColumn;
+
     private Timeline debounce;
+
 
     @FXML
     private void initialize() {
@@ -153,11 +73,12 @@ public class TTController {
             }
         });
 
+
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(timKiem_TF.getText(), "")) {
                 hienThiHSLenManHinh(TimKiem.toanBo());
             } else {
-                hienThiHSLenManHinh(TimKiem.daLoc(timKiem_TF.getText()));
+                hienThiHSLenManHinh(TimKiem.theoMaHS(timKiem_TF.getText()));
             }
         }));
         debounce.setCycleCount(1);
@@ -211,6 +132,7 @@ public class TTController {
             }
         });
     }
+
     // Điền thông tin học sinh được chọn từ bảng lên các ô điền thông tin
     private void hienTTHSChiTiet(HocSinh hocSinh) {
         maHS_TF.setText(hocSinh.getMaHS());
@@ -240,7 +162,7 @@ public class TTController {
             // Set giá trị cho TextField
             if (!diaChiParts[3].equals("null")) {
 
-            chiTiet_TF.setText(diaChiParts[3].trim()); // Khu, chi tiết
+                chiTiet_TF.setText(diaChiParts[3].trim()); // Khu, chi tiết
             }
         } else {
             // Xử lý trường hợp chuỗi không đủ phần
@@ -249,6 +171,7 @@ public class TTController {
         maDinhDanh_TF.setText(hocSinh.getMaDinhDanh());
         ghiChuTT_TF.setText(hocSinh.getGhiChuTT());
     }
+
     //
     public void layTTTinhTHanhTuCSV() {
         String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
@@ -310,63 +233,41 @@ public class TTController {
             PX_CB.getItems().addAll(wards);  // Thêm các xã/phường tương ứng
         }
     }
+
     @FXML
-    private void capNhatTT(){
+    private void capNhatTT() {
         danhSachKiemTra();
-        if(maHS_TF.getText().equals("23xxxxxx")){
-            HopThoai.baoLoi("Chưa có mã học sinh");
+        if (!choPhepCapNhat || maHS_TF.getText().isEmpty()) {
+            HopThoai.baoLoi("Vui lòng điền đầy đủ thông tin hoặc nhập mã học sinh.");
+            return;
         }
-        else if(!choPhepCapNhat){
-            HopThoai.baoLoi("Vui lòng điền đầy đủ thông tin");
-        }
-        else {
 
-            ObservableList<HocSinh> dsHocSinh = HocSinhDAO.getDSHocSinh();
+        ObservableList<HocSinh> dsHocSinh = HocSinhDAO.getDSHocSinh();
+        dsHocSinh.stream().map(HocSinh::getMaHS).map(Integer::parseInt).forEach(danhSachMaHS::add);
 
-            // kiểm tra xem đã tồn tại học sinh nào chưa, nếu chưa thì tạo 1 học sinh giả
-            if (dsHocSinh.isEmpty()) {
-                danhSachMaHS.add(0);
-            }
-            for (HocSinh hocSinh : dsHocSinh) {
-                if (hocSinh != null) {
-                    danhSachMaHS.add(Integer.parseInt(hocSinh.getMaHS()));
-                }
-            }
+        String maHS = maHS_TF.getText();
+        String hoDem = hoDem_TF.getText();
+        String ten = ten_TF.getText();
+        String sdt = SDT_TF.getText();
+        String email = email_TF.getText();
+        String lop = lop_TF.getText();
+        String diaChi = TTP_CB.getValue() + ", " + QH_CB.getValue() + ", " + PX_CB.getValue() + ", " + (!chiTiet_TF.getText().isEmpty() ? chiTiet_TF.getText() : null);
+        String ghiChu = ghiChuTT_TF.getText();
+        String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
+        Boolean gioiTinh = gioiTinh_Btn.isSelected();
+        String maDinhDanh = maDinhDanh_TF.getText();
+        String trangThai = "true";
 
-            String query,query2 = "";
-            String maHS = maHS_TF.getText();
-            String hoDem = hoDem_TF.getText();
-            String ten = ten_TF.getText();
-            String sdt = SDT_TF.getText();
-            String email = email_TF.getText();
-            String lop = lop_TF.getText();
-            String diaChi = TTP_CB.getValue() + ", " + QH_CB.getValue() + ", " + PX_CB.getValue() + ", " + (!chiTiet_TF.getText().isEmpty() ? chiTiet_TF.getText() : null);
-            String ghiChu = ghiChuTT_TF.getText();
-            String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
-            Boolean gioiTinh = gioiTinh_Btn.isSelected();
-            String maDinhDanh = maDinhDanh_TF.getText();
-            String trangThai = "true";
+        boolean isUpdate = danhSachMaHS.contains(Integer.parseInt(maHS_TF.getText()));
+        String query = isUpdate ? "UPDATE hocsinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ?, trangThai = ? WHERE maHS = ?;"
+                : "INSERT INTO hocsinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT, trangThai, maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String query2 = !isUpdate ? "INSERT INTO diem (maHS) VALUES (?);" : "";
 
-            boolean isUpdate = false;
-            for (int ma : danhSachMaHS){
-                if (ma == Integer.parseInt(maHS)){
-                    isUpdate = true;
-
-                    break;
-                }
-            }
-            if (isUpdate) {
-                query = "UPDATE thongTinHocSinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ?, trangThai = ?  WHERE maHS = ?;";
-                query2 = "";
-            }else{
-                query = "INSERT INTO thongTinHocSinh (hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChuTT, trangThai, maHS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-                query2 = "INSERT INTO bangdiem (maHS) VALUES (?);";
-            }
-            CapNhatDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu,trangThai, query, query2);
-            hienThiHSLenManHinh(TimKiem.toanBo());
-            LuuLichSuHoatDong.logThongTin(maHS+hoDem+ten+ngaySinh+gioiTinh+maDinhDanh+sdt+email+lop+diaChi+ghiChu+trangThai);
-        }
+        CapNhatDatabase.capNhatTT(maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai, query, query2);
+        hienThiHSLenManHinh(TimKiem.toanBo());
+        LuuLichSuHoatDong.logThongTin(maHS + hoDem + ten + ngaySinh + gioiTinh + maDinhDanh + sdt + email + lop + diaChi + ghiChu + trangThai);
     }
+
     @FXML
     private void lamMoiTT() {
         hienThiHSLenManHinh(TimKiem.toanBo());
@@ -377,11 +278,17 @@ public class TTController {
         email_TF.clear();
         chiTiet_TF.clear();
         gioiTinh_Btn.setSelected(false);
-        ngaySinh_Date.setValue(null);
         ghiChuTT_TF.clear();
         timKiem_TF.clear();
 
+
         boolean isCapNhat;
+
+        isCapNhat = luuNgay.isSelected();
+        if (!isCapNhat) {
+            ngaySinh_Date.setValue(null);
+        }
+
         isCapNhat = luuLop.isSelected();
         if (!isCapNhat) {
             lop_TF.clear();
@@ -403,16 +310,16 @@ public class TTController {
         }
 
     }
+
     @FXML
-    private void xoaTT(){
-        if(maHS_TF.getText().equals("23xxxxxx")){
+    private void xoaTT() {
+        if (maHS_TF.getText().equals("23xxxxxx")) {
             HopThoai.baoLoi("Chưa có mã học sinh");
-        }
-        else{
+        } else {
             String maHS = maHS_TF.getText();
             String trangThai = "false";
 
-            String query = "UPDATE thongTinHocSinh SET trangThai = ?  WHERE maHS = ?;";
+            String query = "UPDATE hocsinh SET trangThai = ?  WHERE maHS = ?;";
 
             CapNhatDatabase.xoaTT(maHS, trangThai, query);
             hienThiHSLenManHinh(TimKiem.toanBo());
@@ -422,6 +329,7 @@ public class TTController {
         }
 
     }
+
     @FXML
     private void themMoi() {
         xoa_Btn.setDisable(true);
@@ -460,7 +368,7 @@ public class TTController {
 
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
-            case "Thông tin học sinh" -> "/com/qlhs/qlhs/thongTinHocSinhView.fxml";
+            case "Thông tin học sinh" -> "/com/qlhs/qlhs/HocSinhView.fxml";
             case "Bảng điểm" -> "/com/qlhs/qlhs/bangDiemView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
@@ -480,42 +388,38 @@ public class TTController {
     private void handleKeyReleased() {
         danhSachKiemTra();
     }
+
     @FXML
-    private void timKiem(){
+    private void timKiemHS() {
         // Hủy timeline hiện tại nếu nó đang chạy
         debounce.stop();
         // Khởi động lại timeline, nó sẽ đợi 300ms trước khi thực hiện hành động tìm kiếm
         debounce.playFromStart();
     }
-    private void danhSachKiemTra(){
-        KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS) ;
+
+    private void danhSachKiemTra() {
+        KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS);
         KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop);
         KiemTraDuLieuNhap.validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai);
         KiemTraDuLieuNhap.validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh);
         KiemTraDuLieuNhap.validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen);
         KiemTraDuLieuNhap.validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen);
         KiemTraDuLieuNhap.validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidComboBox);
-        KiemTraDuLieuNhap.validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidComboBox);
+        KiemTraDuLieuNhap.validateField(QH_CB.getValue(), QH_Lb, KiemTraDuLieuNhap::isValidComboBox);
 //        validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX);
         String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
         KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
 
 
-        if (
-                !KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS)||
-                !KiemTraDuLieuNhap.validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai)||
-                !KiemTraDuLieuNhap.validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh)||
-                !KiemTraDuLieuNhap.validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen)||
-                !KiemTraDuLieuNhap.validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen)||
-                !KiemTraDuLieuNhap.validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidComboBox)||
-                !KiemTraDuLieuNhap.validateField(QH_CB.getValue(),QH_Lb, KiemTraDuLieuNhap::isValidComboBox)||
+        choPhepCapNhat = KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS) &&
+                KiemTraDuLieuNhap.validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai) &&
+                KiemTraDuLieuNhap.validateField(maDinhDanh_TF.getText(), maDinhDanh_Lb, KiemTraDuLieuNhap::isValidMaDinhDanh) &&
+                KiemTraDuLieuNhap.validateField(hoDem_TF.getText(), hoDem_Lb, KiemTraDuLieuNhap::isValidTen) &&
+                KiemTraDuLieuNhap.validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen) &&
+                KiemTraDuLieuNhap.validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidComboBox) &&
+                KiemTraDuLieuNhap.validateField(QH_CB.getValue(), QH_Lb, KiemTraDuLieuNhap::isValidComboBox) &&
 //              !  validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)||
-                !KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop)||
-                !KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh))
-        {
-            choPhepCapNhat = false;
-        }else{
-            choPhepCapNhat = true;
-        }
+                KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop) &&
+                KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
     }
 }

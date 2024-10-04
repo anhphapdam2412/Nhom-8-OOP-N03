@@ -5,6 +5,7 @@ import com.qlhs.qlhs.Database.CapNhatDatabase;
 import com.qlhs.qlhs.Model.BangDiem;
 import com.qlhs.qlhs.Database.BangDiemDAO;
 import com.qlhs.qlhs.View.HopThoai;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,6 +54,8 @@ public class BangDiemController {
     private TextField diemTb_TF;
     @FXML
     private TextField ghiChuDiem_TF;
+    @FXML
+    private TextField timKiemDiem_TF;
 
 
     @FXML
@@ -147,8 +150,9 @@ public class BangDiemController {
     @FXML
     private TableColumn<BangDiem, String> diemTbColumn;
 
-
+    private Timeline debounce;
     public boolean choPhepCapNhat = false;
+
 
     @FXML
     private void initialize() {
@@ -173,6 +177,16 @@ public class BangDiemController {
             int index = tableDiemView.getItems().indexOf(cellData.getValue()) + 1;
             return new SimpleStringProperty(String.valueOf(index));
         });
+
+//        debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
+//            if (Objects.equals(timKiemDiem_TF.getText(), "")) {
+//                hienThiBangDiem(TimKiem.toanBo());
+//            } else {
+//                hienThiBangDiem(TimKiem.theoMaHS(timKiemDiem_TF.getText()));
+//            }
+//        }));
+//        debounce.setCycleCount(1);
+
         hienThiBangDiem();
         chonHocSinh();
         hanhKiem_CB.setOnAction(_ -> kiemTraHK());
@@ -253,7 +267,7 @@ public class BangDiemController {
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
-            case "Thông tin học sinh" -> "/com/qlhs/qlhs/thongTinHocSinhView.fxml";
+            case "Thông tin học sinh" -> "/com/qlhs/qlhs/HocSinhView.fxml";
             case "Bảng điểm" -> "/com/qlhs/qlhs/bangDiemView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
@@ -298,7 +312,9 @@ public class BangDiemController {
             String maNN = maNN_CB.getValue();
             String hanhKiem = hanhKiem_CB.getValue();
 
-            query = "UPDATE bangdiem SET nguVan = ?, toan = ?, vatLi = ?, hoaHoc = ?, sinhHoc = ?, " +
+            diemTb_TF.setText(String.format("%.2f",(Float.parseFloat(nguVan )+ Float.parseFloat(toan )+ Float.parseFloat(vatLi )+Float.parseFloat(hoaHoc)+Float.parseFloat(sinhHoc)+Float.parseFloat(lichSu)+Float.parseFloat(diaLy)+Float.parseFloat(GDCD)+Float.parseFloat(congNghe)+Float.parseFloat(tinHoc)+Float.parseFloat(ngoaiNgu)) / 11));
+
+            query = "UPDATE diem SET nguVan = ?, toan = ?, vatLi = ?, hoaHoc = ?, sinhHoc = ?, " +
                     "lichSu = ?, diaLy = ?, GDCD = ?, congNghe = ?, tinHoc = ?, theDuc = ?, " +
                     "ngoaiNgu = ?, maNN = ?, hanhKiem = ?, ghiChuDiem = ? WHERE maHS = ?";
 
@@ -306,6 +322,13 @@ public class BangDiemController {
         }
 
         hienThiBangDiem();
+    }
+    @FXML
+    private void timKiemDiem(){
+        // Hủy timeline hiện tại nếu nó đang chạy
+        debounce.stop();
+        // Khởi động lại timeline, nó sẽ đợi 300ms trước khi thực hiện hành động tìm kiếm
+        debounce.playFromStart();
     }
     @FXML
     private void lamMoiDiem() {
@@ -344,25 +367,19 @@ public class BangDiemController {
         KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem);
         KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox);
 
-        if(
-            !KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(maNN_CB.getValue(),ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox)||
-                    !KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem)||
-                    !KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox)
-        ){
-            choPhepCapNhat = false;
-        }else{
-            choPhepCapNhat = true;
-        }
+        choPhepCapNhat = KiemTraDuLieuNhap.validateField(nguVan_TF.getText(), nguVan_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(toan_TF.getText(), toan_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(vatLi_TF.getText(), vatLi_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(hoaHoc_TF.getText(), hoaHoc_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(sinhHoc_TF.getText(), sinhHoc_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(diaLy_TF.getText(), diaLy_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(lichSu_TF.getText(), lichSu_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(GDCD_TF.getText(), GDCD_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(congNghe_TF.getText(), congNghe_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(tinHoc_TF.getText(), tinHoc_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(maNN_CB.getValue(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidComboBox) &&
+                KiemTraDuLieuNhap.validateField(ngoaiNgu_TF.getText(), ngoaiNgu_Lb, KiemTraDuLieuNhap::isValidDiem) &&
+                KiemTraDuLieuNhap.validateField(hanhKiem_CB.getValue(), hanhKiem_Lb, KiemTraDuLieuNhap::isValidComboBox);
     }
 
 }

@@ -8,17 +8,12 @@ import java.util.Objects;
 
 public class TimKiem {
     static ObservableList<HocSinh> toanBo(){
-        ObservableList<HocSinh> dsHocSinh = HocSinhDAO.getDSHocSinh();
-        ObservableList<HocSinh> dsHocSinhDaLoc;
-
-        // Lọc danh sách học sinh có trạng thái là 1
-        dsHocSinhDaLoc = dsHocSinh.filtered(hocSinh -> Objects.equals(hocSinh.getTrangThai(), "1"));
-        return dsHocSinhDaLoc;
+        return HocSinhDAO.getDSHocSinh().filtered(hocSinh -> Objects.equals(hocSinh.getTrangThai(), "1"));
     }
 
-    static ObservableList<HocSinh> daLoc(String string){
+    static ObservableList<HocSinh> theoMaHS(String string){
         ObservableList<HocSinh> dsHocSinhDaLoc;
-        dsHocSinhDaLoc = toanBo().filtered(hocSinh -> Objects.equals(hocSinh.getTen(), string));
+        dsHocSinhDaLoc = toanBo().filtered(hocSinh -> Objects.equals(hocSinh.getMaHS(), string));
         return dsHocSinhDaLoc;
     }
 }

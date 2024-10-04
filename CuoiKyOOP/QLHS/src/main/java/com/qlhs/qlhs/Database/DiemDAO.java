@@ -14,7 +14,7 @@ public class DiemDAO {
     public static ObservableList<Diem> getDiem() {
         ObservableList<Diem> danhSachDiem = FXCollections.observableArrayList();
 
-        String query = "SELECT * FROM bangDiem";
+        String query = "SELECT * FROM Diem";
 
         try (Connection conn = KetNoiCSDL.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {

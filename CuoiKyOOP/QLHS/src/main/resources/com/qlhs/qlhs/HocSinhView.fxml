@@ -117,7 +117,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <DatePicker fx:id="ngaySinh_Date" accessibleRole="COMBO_BOX" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <DatePicker fx:id="ngaySinh_Date" accessibleRole="COMBO_BOX" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
@@ -308,6 +308,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
+            <RadioButton fx:id="luuNgay" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="176.0" />
+               </GridPane.margin>
+            </RadioButton>
 
             </children>
         </GridPane>
@@ -330,7 +335,7 @@
          </cursor>
         </Button>
 
-        <Button fx:id="xoa_Btn" disable="true" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" onAction="#xoaTT" prefHeight="35.0" prefWidth="90.0" text="Xóa">
+        <Button disable="true" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" onAction="#xoaTT" prefHeight="35.0" prefWidth="90.0" text="Xóa" fx:id="xoa_Btn">
             <font>
                 <Font size="15.0" />
             </font>
@@ -344,7 +349,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="timKiem_TF" layoutX="963.0" layoutY="369.0" onKeyReleased="#timKiem" prefHeight="30.0" prefWidth="227.0" promptText="Hải" />
+        <TextField fx:id="timKiem_TF" layoutX="963.0" layoutY="369.0" onKeyReleased="#timKiemHS" prefHeight="30.0" prefWidth="227.0" promptText="23010360" />
 
         <TableView fx:id="tableTTView" layoutX="10.0" layoutY="403.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="391.0" prefWidth="1180.0">
             <columns>
