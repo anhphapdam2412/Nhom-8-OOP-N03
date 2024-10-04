@@ -215,7 +215,7 @@ public class BangDiemController {
 
     private void chonHocSinh() {
         tableDiemView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Nhấp đúp chuột
+            if (event.getClickCount() == 1) { // Nhấp đúp chuột
                 BangDiem selectedDiem = tableDiemView.getSelectionModel().getSelectedItem();
                 if (selectedDiem != null) {
                     hienDiemChiTiet(selectedDiem);

@@ -12,7 +12,7 @@ public class CapNhatDatabase {
 
     // Cập nhật thông tin học sinh
     public static void capNhatTT(String maHS, String hoDem, String ten, String ngaySinh,
-                                 String gioiTinh, String maDinhDanh, String sdt,
+                                 Boolean gioiTinh, String maDinhDanh, String sdt,
                                  String email, String lop, String diaChi, String ghiChuTT, String trangThai,
                                  String query, String query2) {
         Connection connection = null;
@@ -29,7 +29,8 @@ public class CapNhatDatabase {
             preparedStatement1.setString(1, hoDem);
             preparedStatement1.setString(2, ten);
             preparedStatement1.setDate(3, Date.valueOf(ngaySinh));
-            preparedStatement1.setBoolean(4, Boolean.parseBoolean(gioiTinh));
+            preparedStatement1.setBoolean(4, gioiTinh);
+            System.out.println(gioiTinh);
             preparedStatement1.setString(5, maDinhDanh);
             preparedStatement1.setString(6, sdt);
             preparedStatement1.setString(7, email);
@@ -62,7 +63,38 @@ public class CapNhatDatabase {
             }
         }
     }
+    // Xóa học sinh
+    public static void xoaTT(String maHS, String trangThai, String query)
+    {
+        Connection connection = null;
+        PreparedStatement preparedStatement1 = null;
 
+        try {
+            // Kết nối cơ sở dữ liệu
+            connection = connect();
+            connection.setAutoCommit(false);  // Bắt đầu transaction
+
+            // Xoa học sinh
+            preparedStatement1 = connection.prepareStatement(query);
+            preparedStatement1.setBoolean(1, Boolean.parseBoolean(trangThai));
+
+            preparedStatement1.setString(2, maHS);
+
+
+            int rowsAffected1 = preparedStatement1.executeUpdate();
+            System.out.println(rowsAffected1 + " record(s) updated in table 2.");
+            // Commit
+            connection.commit();
+        } catch (SQLException e) {
+            // Rollback nếu có lỗi
+            try {
+                connection.rollback();
+                System.err.println("Transaction rolled back due to error: " + e.getMessage());
+            } catch (SQLException rollbackEx) {
+                System.err.println("Error during rollback: " + rollbackEx.getMessage());
+            }
+        }
+    }
     // Cập nhật điểm
     public static void capNhatDiem(String maHS, String nguVan, String toan, String vatLi, String hoaHoc, String sinhHoc, String lichSu, String diaLy, String GDCD, String congNghe, String tinHoc, String theDuc, String ngoaiNgu, String maNN, String hanhKiem, String ghiChuDiem, String query)
          {

@@ -201,7 +201,7 @@ public class TTController {
     // Phương thức để thiết lập sự kiện chuột cho bảng
     private void chonHocSinh() {
         tableTTView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Nhấp đúp chuột
+            if (event.getClickCount() == 1) { // Nhấp đúp chuột
                 HocSinh hocSinhDuocChon = tableTTView.getSelectionModel().getSelectedItem();
                 if (hocSinhDuocChon != null) {
                     hienTTHSChiTiet(hocSinhDuocChon);
@@ -343,7 +343,7 @@ public class TTController {
             String diaChi = TTP_CB.getValue() + ", " + QH_CB.getValue() + ", " + PX_CB.getValue() + ", " + (!chiTiet_TF.getText().isEmpty() ? chiTiet_TF.getText() : null);
             String ghiChu = ghiChuTT_TF.getText();
             String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
-            String gioiTinh = gioiTinh_Btn.isSelected() ? "1" : "0";
+            Boolean gioiTinh = gioiTinh_Btn.isSelected();
             String maDinhDanh = maDinhDanh_TF.getText();
             String trangThai = "true";
 
@@ -366,8 +366,6 @@ public class TTController {
             hienThiHSLenManHinh(TimKiem.toanBo());
             LuuLichSuHoatDong.logThongTin(maHS+hoDem+ten+ngaySinh+gioiTinh+maDinhDanh+sdt+email+lop+diaChi+ghiChu+trangThai);
         }
-
-
     }
     @FXML
     private void lamMoiTT() {
@@ -412,26 +410,15 @@ public class TTController {
         }
         else{
             String maHS = maHS_TF.getText();
-            String hoDem = hoDem_TF.getText();
-            String ten = ten_TF.getText();
-            String sdt = SDT_TF.getText();
-            String email = email_TF.getText();
-            String lop = lop_TF.getText();
-            String diaChi = TTP_CB.getValue() + ", " + QH_CB.getValue() + ", " + PX_CB.getValue() + ", " + (!chiTiet_TF.getText().isEmpty() ? chiTiet_TF.getText() : null);
-            String ghiChu = ghiChuTT_TF.getText();
-            String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
-            String gioiTinh = gioiTinh_Btn.isSelected() ? "1" : "0";
-            String maDinhDanh = maDinhDanh_TF.getText();
             String trangThai = "false";
 
-            String query = "UPDATE thongTinHocSinh SET hoDem = ?, ten = ?, ngaySinh = ?, gioiTinh = ?, maDinhDanh = ?, sdt = ?, email = ?, lop = ?, diaChi = ?, ghiChuTT = ?, trangThai = ?  WHERE maHS = ?;";
-            String query2 = "";
+            String query = "UPDATE thongTinHocSinh SET trangThai = ?  WHERE maHS = ?;";
 
-            CapNhatDatabase.capNhatTT(maHS,hoDem,ten,ngaySinh,gioiTinh,maDinhDanh,sdt,email,lop,diaChi,ghiChu,trangThai, query, query2);
+            CapNhatDatabase.xoaTT(maHS, trangThai, query);
             hienThiHSLenManHinh(TimKiem.toanBo());
             lamMoiTT();
             xoa_Btn.setDisable(false);
-
+            maHS_TF.setText("23xxxxxx");
         }
 
     }

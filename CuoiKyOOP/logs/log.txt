@@ -1,3 +1,26 @@
 23010606HoàngGiang2006-09-2200302100051180123123128hoanggiang@mail.com10AHải Dương, Hải Dương, Thạch Khôi, khu 7Học sinh xuất sắctrue
 2301210NgôMai2008-02-1700302140051220123123132ngomai@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 11Tham gia câu lạc bộ văn nghệtrue
 23010604PhạmDương2005-12-2510302080051160123123126phamduong@mail.com12BHải Dương, Hải Dương, Thạch Khôi, khu 5Thường xuyên vắng mặttrue
+24000000mn2024-10-0911231231231230987654123123Bình Dương, Dầu Tiếng, null, nulltrue
+24000000mm2024-10-0911231231231230987654123123Bình Dương, Dầu Tiếng, null, nulltrue
+24000000toánm2024-10-0911231231231230987654123123Bình Dương, Dầu Tiếng, null, nulltrue
+24000000toánm2024-09-3011231231231230987654123123Bình Dương, Dầu Tiếng, null, nulltrue
+2301211aa2024-10-0301231231231230123123123321Bình Phước, Chơn Thành, null, nulltrue
+24000000bb2024-10-0811231231231230123123123123An Giang, An Phú, null, nulltrue
+24000000bb2024-10-0801231231231230123123123123An Giang, An Phú, null, nulltrue
+2301210NgôMai2008-02-1700302140051220123123132ngomai@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 11Tham gia câu lạc bộ văn nghệtrue
+2301210NgôMai2008-02-1710302140051220123123132ngomai@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 11Tham gia câu lạc bộ văn nghệtrue
+2301210NgôMai2008-02-1710302140051220123123132ngomai@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 11Tham gia câu lạc bộ văn nghệtrue
+24000000bb2024-10-0811231231231230123123123123An Giang, An Phú, null, khu 8true
+2301215TrầnSơn2008-03-0100302190051270123123137transon@mail.com11CHải Dương, Hải Dương, Thạch Khôi, khu 16Được tuyên dương trong năm họctrue
+2301218HoàngViệt2005-07-1410302220051300123123140hoangviet@mail.com12CHải Dương, Hải Dương, Thạch Khôi, khu 19Đạt thành tích cao trong thể thaotrue
+2301215TrầnSơn2008-03-0100302190051270123123137transon@mail.com11CHải Dương, Hải Dương, Thạch Khôi, khu 16Được tuyên dương trong năm họctrue
+2301215TrầnSơn2008-03-0110302190051270123123137transon@mail.com11CHải Dương, Hải Dương, Thạch Khôi, khu 16Được tuyên dương trong năm họctrue
+23010608BùiKhoa2007-11-0310302120051200123123130null11AHải Dương, Hải Dương, Thạch Khôi, khu 9Đã hoàn thành học kỳ Itrue
+23010609ĐỗLam2006-08-1100302130051210123123131dolam@mail.com10BHải Dương, Hải Dương, Thạch Khôi, khu 10Nghỉ học vì lý do sức khỏetrue
+23010605VũHải2008-07-0810302090051170123123127null11CHải Dương, Hải Dương, Thạch Khôi, khu 6Đã chuyển trườngtrue
+23010606HoàngGiang2006-09-2200302100051180123123128hoanggiang@mail.com10AHải Dương, Hải Dương, Thạch Khôi, khu 7Học sinh xuất sắctrue
+23010606HoàngGiang2006-09-2210302100051180123123128hoanggiang@mail.com10AHải Dương, Hải Dương, Thạch Khôi, khu 7Học sinh xuất sắctrue
+23010609ĐỗLam2006-08-1110302130051210123123131dolam@mail.com10BHải Dương, Hải Dương, Thạch Khôi, khu 10Nghỉ học vì lý do sức khỏetrue
+23010605VũHải2008-07-08true0302090051170123123127null11CHải Dương, Hải Dương, Thạch Khôi, khu 6Đã chuyển trườngtrue
+23010608BùiKhoa2007-11-03true0302120051200123123130null11AHải Dương, Hải Dương, Thạch Khôi, khu 9Đã hoàn thành học kỳ Itrue
