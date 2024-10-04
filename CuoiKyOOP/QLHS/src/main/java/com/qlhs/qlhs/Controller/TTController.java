@@ -76,15 +76,15 @@ public class TTController {
 
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(timKiem_TF.getText(), "")) {
-                hienThiHSLenManHinh(TimKiem.toanBo());
+                hienThiHSLenManHinh(TimKiem.boLoc(""));
             } else {
-                hienThiHSLenManHinh(TimKiem.theoMaHS(timKiem_TF.getText()));
+                hienThiHSLenManHinh(TimKiem.boLoc(timKiem_TF.getText()));
             }
         }));
         debounce.setCycleCount(1);
 
         layTTTinhTHanhTuCSV();
-        hienThiHSLenManHinh(TimKiem.toanBo());
+        hienThiHSLenManHinh(TimKiem.boLoc(""));
         chonHocSinh();
 
     }
@@ -264,13 +264,13 @@ public class TTController {
         String query2 = !isUpdate ? "INSERT INTO diem (maHS) VALUES (?);" : "";
 
         CapNhatDatabase.capNhatTT(maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai, query, query2);
-        hienThiHSLenManHinh(TimKiem.toanBo());
+        hienThiHSLenManHinh(TimKiem.boLoc(""));
         LuuLichSuHoatDong.logThongTin(maHS + hoDem + ten + ngaySinh + gioiTinh + maDinhDanh + sdt + email + lop + diaChi + ghiChu + trangThai);
     }
 
     @FXML
     private void lamMoiTT() {
-        hienThiHSLenManHinh(TimKiem.toanBo());
+        hienThiHSLenManHinh(TimKiem.boLoc(""));
         hoDem_TF.clear();
         ten_TF.clear();
         SDT_TF.clear();
@@ -322,7 +322,7 @@ public class TTController {
             String query = "UPDATE hocsinh SET trangThai = ?  WHERE maHS = ?;";
 
             CapNhatDatabase.xoaTT(maHS, trangThai, query);
-            hienThiHSLenManHinh(TimKiem.toanBo());
+            hienThiHSLenManHinh(TimKiem.boLoc(""));
             lamMoiTT();
             xoa_Btn.setDisable(false);
             maHS_TF.setText("23xxxxxx");
