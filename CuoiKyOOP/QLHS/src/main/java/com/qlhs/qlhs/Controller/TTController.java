@@ -265,6 +265,7 @@ public class TTController {
 
         CapNhatDatabase.capNhatTT(maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai, query, query2);
         hienThiHSLenManHinh(TimKiem.boLoc(""));
+        timKiem_TF.setText(null);
         LuuLichSuHoatDong.logThongTin(maHS + hoDem + ten + ngaySinh + gioiTinh + maDinhDanh + sdt + email + lop + diaChi + ghiChu + trangThai);
     }
 
@@ -324,7 +325,7 @@ public class TTController {
             CapNhatDatabase.xoaTT(maHS, trangThai, query);
             hienThiHSLenManHinh(TimKiem.boLoc(""));
             lamMoiTT();
-            xoa_Btn.setDisable(false);
+            xoa_Btn.setDisable(true);
             maHS_TF.setText("23xxxxxx");
         }
 

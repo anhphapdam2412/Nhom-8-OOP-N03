@@ -244,26 +244,26 @@ public class BangDiemController {
         danhSachKiemTraDiem();
     }
     private void hienDiemChiTiet(BangDiem bangDiem) {
-        nguVan_TF.setText(bangDiem.getNguVan());
-        toan_TF.setText(bangDiem.getToan());
-        vatLi_TF.setText(bangDiem.getVatLi());
-        hoaHoc_TF.setText(bangDiem.getHoaHoc());
-        sinhHoc_TF.setText(bangDiem.getSinhHoc());
-        lichSu_TF.setText(bangDiem.getLichSu());
-        diaLy_TF.setText(bangDiem.getDiaLy());
-        GDCD_TF.setText(bangDiem.getGDCD());
-        ngoaiNgu_TF.setText(bangDiem.getNgoaiNgu());
-        congNghe_TF.setText(bangDiem.getCongNghe());
-        tinHoc_TF.setText(bangDiem.getTinHoc());
+        nguVan_TF.setText(String.valueOf(bangDiem.getNguVan()));
+        toan_TF.setText(String.valueOf(bangDiem.getToan()));
+        vatLi_TF.setText(String.valueOf(String.valueOf(bangDiem.getVatLi())));
+        hoaHoc_TF.setText(String.valueOf(bangDiem.getHoaHoc()));
+        sinhHoc_TF.setText(String.valueOf(bangDiem.getSinhHoc()));
+        lichSu_TF.setText(String.valueOf(bangDiem.getLichSu()));
+        diaLy_TF.setText(String.valueOf(bangDiem.getDiaLy()));
+        GDCD_TF.setText(String.valueOf(bangDiem.getGDCD()));
+        ngoaiNgu_TF.setText(String.valueOf(bangDiem.getNgoaiNgu()));
+        congNghe_TF.setText(String.valueOf(bangDiem.getCongNghe()));
+        tinHoc_TF.setText(String.valueOf(bangDiem.getTinHoc()));
         theDuc_Btn.setSelected("D".equals(bangDiem.getTheDuc()));
         maNN_CB.setValue(bangDiem.getMaNN());
         hanhKiem_CB.setValue(bangDiem.getHanhKiem());
-        maHS_Lb.setText(bangDiem.getMaHS());
-        lop_Lb.setText(bangDiem.getLop());
-        diemTb_TF.setText(bangDiem.getDiemTb());
-        ngaySinh_Lb.setText(bangDiem.getNgaySinh());
-        hoTen_Lb.setText(bangDiem.getHoDem()+" "+bangDiem.getTen());
-        gioiTinh_Lb.setText("1".equals(bangDiem.getGioiTinh())?"Nam":"Nữ");
+        maHS_Lb.setText(String.valueOf(bangDiem.getMaHS()));
+        lop_Lb.setText(String.valueOf(bangDiem.getLop()));
+        diemTb_TF.setText(String.valueOf(bangDiem.getDiemTb()));
+        ngaySinh_Lb.setText(String.valueOf(bangDiem.getNgaySinh()));
+        hoTen_Lb.setText(String.valueOf(bangDiem.getHoDem()+" "+bangDiem.getTen()));
+        gioiTinh_Lb.setText(String.valueOf("1".equals(bangDiem.getGioiTinh())?"Nam":"Nữ"));
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
