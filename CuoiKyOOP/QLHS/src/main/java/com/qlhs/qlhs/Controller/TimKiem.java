@@ -48,21 +48,50 @@ public class TimKiem {
                     switch (fieldName) {
                         case "tên":
                         case "ten":
+                        case "name":
+                        case "t":
+                        case "n":
+                        case "last name":
+                        case "lname":
+                        case "ln":
                             matches = compareString(hocSinh.getTen(), searchValue, operator);
                             break;
                         case "họ đệm":
                         case "ho dem":
+                        case "hodem":
+                        case "hd":
+                        case "surname":
+                        case "sname":
+                        case "sn":
+                        case "middle name":
+                        case "mname":
+                        case "mn":
+                        case "first name":
+                        case "fname":
+                        case "fn":
                             matches = compareString(hocSinh.getHoDem(), searchValue, operator);
                             break;
-                        case "mã hs":
+                        case "mã học sinh":
+                        case "ma hoc sinh":
+                        case "mahocsinh":
+                        case "mhs":
                         case "mahs":
+                        case "studend id":
+                        case "studendid":
+                        case "sid":
                             matches = compareString(hocSinh.getMaHS(), searchValue, operator);
                             break;
+
                         case "số điện thoại":
+                        case "sodienthoai":
+                        case "so dien thoai":
                         case "sdt":
+                        case "phonenumber":
+                        case "pn":
                             matches = compareString(hocSinh.getSdt(), searchValue, operator);
                             break;
                         case "email":
+                        case "em":
                             if (operator.equals("=") && searchValue.isEmpty()) {
                                 // Kiểm tra nếu trường email rỗng
                                 matches = (hocSinh.getEmail() == null || hocSinh.getEmail().isEmpty());
@@ -73,22 +102,40 @@ public class TimKiem {
                             break;
                         case "lớp":
                         case "lop":
+                        case "l":
+                        case "class":
+                        case "cl":
                             matches = compareString(hocSinh.getLop(), searchValue, operator);
                             break;
                         case "địa chỉ":
                         case "dia chi":
+                        case "diachi":
+                        case "dc":
+                        case "address":
+                        case "add":
                             matches = compareString(hocSinh.getDiaChi(), searchValue, operator);
                             break;
                         case "ghi chú":
                         case "ghi chu":
+                        case "ghichu":
+                        case "gc":
+                        case "note":
                             matches = compareString(hocSinh.getGhiChuTT(), searchValue, operator);
                             break;
                         case "ngày sinh":
                         case "ngay sinh":
+                        case "ngaysinh":
+                        case "ns":
+                        case "birth":
+                        case "birth day":
+                        case "bd":
                             matches = compareString(hocSinh.getNgaySinh(), searchValue, operator);
                             break;
                         case "giới tính":
                         case "gioi tinh":
+                        case "gioitinh":
+                        case "gt":
+                        case "sex":
                             matches = compareString(hocSinh.getGioiTinh(),
                                     (searchValue.equals("1") || searchValue.equals("nam")) ? "1" :
                                             (searchValue.equals("0") || searchValue.equals("nu")) ? "0" : null,
@@ -96,6 +143,9 @@ public class TimKiem {
                             break;
                         case "mã định danh":
                         case "ma dinh danh":
+                        case "madinhdanh":
+                        case "mdd":
+                        case "id":
                             matches = compareString(hocSinh.getMaDinhDanh(), searchValue, operator);
                             break;
                         default:
