@@ -6,12 +6,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class KetNoiCSDL {
+public class DatabaseConnection {
 
     static ConfigReader configReader = new ConfigReader();
     private static final String URL = configReader.getURL();
     private static final String USER = configReader.getUSER();
     private static final String PASSWORD = configReader.getPASSWORD();
+
     public static Connection connect() {
         Connection connection = null;
         try {
@@ -23,4 +24,3 @@ public class KetNoiCSDL {
         return connection;
     }
 }
-

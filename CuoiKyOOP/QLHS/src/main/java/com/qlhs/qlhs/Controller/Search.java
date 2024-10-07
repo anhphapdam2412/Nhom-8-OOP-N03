@@ -1,28 +1,28 @@
 package com.qlhs.qlhs.Controller;
 
-import com.qlhs.qlhs.Database.BangDiemDAO;
-import com.qlhs.qlhs.Database.HocSinhDAO;
-import com.qlhs.qlhs.Model.BangDiem;
-import com.qlhs.qlhs.Model.HocSinh;
+import com.qlhs.qlhs.Database.GradeReportDAO;
+import com.qlhs.qlhs.Database.StudentDAO;
+import com.qlhs.qlhs.Model.Grade;
+import com.qlhs.qlhs.Model.Student;
 import javafx.collections.ObservableList;
 
 import java.util.Objects;
 
-public class TimKiem {
+public class Search {
 
-    static ObservableList<HocSinh> boLoc(String input) {
-        ObservableList<HocSinh> dsHocSinhDaLoc;
-        ObservableList<HocSinh> allStudents = HocSinhDAO.getDSHocSinh().filtered(hocSinh -> Objects.equals(hocSinh.getTrangThai(), "1"));
+    static ObservableList<Student> filter(String input) {
+        ObservableList<Student> filteredStudents;
+        ObservableList<Student> allStudents = StudentDAO.getStudentList().filtered(student -> Objects.equals(student.getStatus(), "1"));
 
-        // Tách các điều kiện tìm kiếm bằng dấu phẩy
+        // Split search terms by comma
         String[] searchTerms = input.split(",");
 
-        dsHocSinhDaLoc = allStudents.filtered(hocSinh -> {
-            // Mặc định là true, sẽ kiểm tra từng điều kiện
+        filteredStudents = allStudents.filtered(student -> {
+            // Default to true; will check each condition
             for (String term : searchTerms) {
                 String trimmedTerm = term.trim();
 
-                // Kiểm tra điều kiện có toán tử
+                // Check for operator in the condition
                 String operator = null;
                 if (trimmedTerm.contains(">=")) {
                     operator = ">=";
@@ -36,13 +36,13 @@ public class TimKiem {
                     operator = "=";
                 }
 
-                // Tách trường và giá trị
+                // Split field and value
                 String[] parts = trimmedTerm.split("[><=]+");
                 if (parts.length == 2) {
-                    String fieldName = parts[0].trim().toLowerCase(); // Trường tìm kiếm
-                    String searchValue = parts[1].trim(); // Giá trị tìm kiếm
+                    String fieldName = parts[0].trim().toLowerCase(); // Field to search
+                    String searchValue = parts[1].trim(); // Search value
 
-                    // Kiểm tra điều kiện dựa trên toán tử
+                    // Check condition based on operator
                     boolean matches = false;
 
                     switch (fieldName) {
@@ -54,7 +54,7 @@ public class TimKiem {
                         case "last name":
                         case "lname":
                         case "ln":
-                            matches = compareString(hocSinh.getTen(), searchValue, operator);
+                            matches = compareString(student.getLastName(), searchValue, operator);
                             break;
                         case "họ đệm":
                         case "ho dem":
@@ -69,17 +69,17 @@ public class TimKiem {
                         case "first name":
                         case "fname":
                         case "fn":
-                            matches = compareString(hocSinh.getHoDem(), searchValue, operator);
+                            matches = compareString(student.getFirstName(), searchValue, operator);
                             break;
                         case "mã học sinh":
                         case "ma hoc sinh":
                         case "mahocsinh":
                         case "mhs":
                         case "mahs":
-                        case "studend id":
+                        case "student id":
                         case "studendid":
                         case "sid":
-                            matches = compareString(hocSinh.getMaHS(), searchValue, operator);
+                            matches = compareString(student.getStudentID(), searchValue, operator);
                             break;
 
                         case "số điện thoại":
@@ -88,16 +88,16 @@ public class TimKiem {
                         case "sdt":
                         case "phonenumber":
                         case "pn":
-                            matches = compareString(hocSinh.getSdt(), searchValue, operator);
+                            matches = compareString(student.getPhoneNumber(), searchValue, operator);
                             break;
                         case "email":
                         case "em":
                             if (operator.equals("=") && searchValue.isEmpty()) {
-                                // Kiểm tra nếu trường email rỗng
-                                matches = (hocSinh.getEmail() == null || hocSinh.getEmail().isEmpty());
+                                // Check if email field is empty
+                                matches = (student.getEmail() == null || student.getEmail().isEmpty());
                             } else {
-                                // So sánh bình thường nếu searchValue không rỗng
-                                matches = compareString(hocSinh.getEmail(), searchValue, operator);
+                                // Normal comparison if searchValue is not empty
+                                matches = compareString(student.getEmail(), searchValue, operator);
                             }
                             break;
                         case "lớp":
@@ -105,7 +105,7 @@ public class TimKiem {
                         case "l":
                         case "class":
                         case "cl":
-                            matches = compareString(hocSinh.getLop(), searchValue, operator);
+                            matches = compareString(student.getLastName(), searchValue, operator);
                             break;
                         case "địa chỉ":
                         case "dia chi":
@@ -113,14 +113,14 @@ public class TimKiem {
                         case "dc":
                         case "address":
                         case "add":
-                            matches = compareString(hocSinh.getDiaChi(), searchValue, operator);
+                            matches = compareString(student.getAddress(), searchValue, operator);
                             break;
                         case "ghi chú":
                         case "ghi chu":
                         case "ghichu":
                         case "gc":
                         case "note":
-                            matches = compareString(hocSinh.getGhiChuTT(), searchValue, operator);
+                            matches = compareString(student.getNotes(), searchValue, operator);
                             break;
                         case "ngày sinh":
                         case "ngay sinh":
@@ -129,14 +129,14 @@ public class TimKiem {
                         case "birth":
                         case "birth day":
                         case "bd":
-                            matches = compareString(hocSinh.getNgaySinh(), searchValue, operator);
+                            matches = compareString(student.getDateOfBirth(), searchValue, operator);
                             break;
                         case "giới tính":
                         case "gioi tinh":
                         case "gioitinh":
                         case "gt":
                         case "sex":
-                            matches = compareString(hocSinh.getGioiTinh(),
+                            matches = compareString(student.getGender(),
                                     (searchValue.equals("1") || searchValue.equals("nam")) ? "1" :
                                             (searchValue.equals("0") || searchValue.equals("nu")) ? "0" : null,
                                     operator);
@@ -146,7 +146,7 @@ public class TimKiem {
                         case "madinhdanh":
                         case "mdd":
                         case "id":
-                            matches = compareString(hocSinh.getMaDinhDanh(), searchValue, operator);
+                            matches = compareString(student.getID(), searchValue, operator);
                             break;
                         default:
                             matches = false;
@@ -154,70 +154,69 @@ public class TimKiem {
                     }
 
                     if (!matches) {
-                        return false; // Nếu một điều kiện không khớp, loại bỏ học sinh này
+                        return false; // If one condition does not match, exclude this student
                     }
                 } else {
-                    // Tìm kiếm tự do nếu không có toán tử
-                    boolean matches = (hocSinh.getMaHS() != null && hocSinh.getMaHS().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getHoDem() != null && hocSinh.getHoDem().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getTen() != null && hocSinh.getTen().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getSdt() != null && hocSinh.getSdt().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getEmail() != null && hocSinh.getEmail().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getLop() != null && hocSinh.getLop().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getDiaChi() != null && hocSinh.getDiaChi().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getGhiChuTT() != null && hocSinh.getGhiChuTT().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getNgaySinh() != null && String.valueOf(hocSinh.getNgaySinh()).contains(trimmedTerm)) ||
-                            (hocSinh.getGioiTinh() != null && hocSinh.getGioiTinh().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
-                            (hocSinh.getMaDinhDanh() != null && hocSinh.getMaDinhDanh().toLowerCase().contains(trimmedTerm.toLowerCase()));
+                    // Free search if no operator
+                    boolean matches = (student.getStudentID() != null && student.getStudentID().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getFirstName() != null && student.getFirstName().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getLastName() != null && student.getLastName().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getPhoneNumber() != null && student.getPhoneNumber().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getEmail() != null && student.getEmail().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getLastName() != null && student.getLastName().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getAddress() != null && student.getAddress().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getNotes() != null && student.getNotes().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getDateOfBirth() != null && String.valueOf(student.getDateOfBirth()).contains(trimmedTerm)) ||
+                            (student.getGender() != null && student.getGender().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            (student.getID() != null && student.getID().toLowerCase().contains(trimmedTerm.toLowerCase()));
 
                     if (!matches) {
-                        return false; // Nếu một điều kiện không khớp, loại bỏ học sinh này
+                        return false; // If one condition does not match, exclude this student
                     }
                 }
             }
 
-            return true; // Nếu tất cả các điều kiện đều khớp
+            return true; // If all conditions match
         });
 
-        return dsHocSinhDaLoc;
+        return filteredStudents;
     }
 
-    // Hàm hỗ trợ so sánh giá trị kiểu chuỗi với toán tử
+    // Helper function to compare string values with operator
     private static boolean compareString(String actualValue, String searchValue, String operator) {
         if (actualValue == null || searchValue == null) return false;
 
-        // Lấy độ dài của chuỗi cần so sánh
+        // Get the length of the string to compare
         int searchLength = searchValue.length();
 
-        // Cắt chuỗi actualValue theo độ dài của searchValue để so sánh
+        // Truncate actualValue based on the length of searchValue for comparison
         String truncatedActualValue = actualValue.length() >= searchLength
-                ? actualValue.substring(0, searchLength)  // Cắt chuỗi nếu độ dài đủ
-                : actualValue;  // Nếu actualValue ngắn hơn thì so sánh toàn bộ
+                ? actualValue.substring(0, searchLength)  // Truncate if length is sufficient
+                : actualValue;  // If actualValue is shorter, compare the whole string
 
-        // Với dấu '=', thực hiện tìm kiếm tương đối (so sánh theo số ký tự tương ứng)
+        // For '=', perform relative search (compare by corresponding characters)
         if ("=".equals(operator)) {
             return truncatedActualValue.toLowerCase().contains(searchValue.toLowerCase());
         }
 
-        // So sánh số ký tự tương ứng
+        // Compare corresponding characters
         int compare = truncatedActualValue.compareToIgnoreCase(searchValue);
         return checkCondition(operator, compare);
     }
 
-    // Hàm kiểm tra toán tử và giá trị so sánh
+    // Check operator and comparison value
     private static boolean checkCondition(String operator, int compare) {
         switch (operator) {
             case ">":
                 return compare > 0;
             case "<":
                 return compare < 0;
-            case ">=":  // Thêm điều kiện cho '>='
+            case ">=":  // Add condition for '>='
                 return compare >= 0;
-            case "<=":  // Thêm điều kiện cho '<='
+            case "<=":  // Add condition for '<='
                 return compare <= 0;
             default:
                 return false;
         }
     }
 }
-

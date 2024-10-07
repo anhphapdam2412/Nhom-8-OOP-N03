@@ -9,11 +9,11 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class LuuLichSuHoatDong {
+public class ActivityLog {
     private static final String LOG_FILE_PATH = "logs/log.txt";
     private static final long MAX_LOG_SIZE = 5 * 1024 * 1024; // 5 MB
 
-    public static void logThongTin(String message) {
+    public static void logInformation(String message) {
         try {
             if (Files.notExists(Paths.get("logs"))) {
                 Files.createDirectory(Paths.get("logs"));
@@ -33,23 +33,22 @@ public class LuuLichSuHoatDong {
                 writer.write("[" + timestamp + "] " + message);
                 writer.newLine();
             }
-            System.out.println("Log ghi thành công!");
+            System.out.println("Log written successfully!");
 
         } catch (IOException e) {
-            System.err.println("Lỗi khi ghi log: " + e.getMessage());
+            System.err.println("Error writing log: " + e.getMessage());
         }
     }
 
-    // Hàm lấy timestamp để ghi vào file log
+    // Function to get timestamp for logging
     private static String getCurrentTimestamp() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return LocalDateTime.now().format(formatter);
     }
 
-    // Hàm lấy timestamp cho tên file (dùng khi file log quá lớn)
+    // Function to get timestamp for file name (used when the log file is too large)
     private static String getCurrentTimestampForFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
         return LocalDateTime.now().format(formatter);
     }
 }
-
