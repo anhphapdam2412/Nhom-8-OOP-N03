@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.TTController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.StudentController">
     <children>
 
         <GridPane layoutX="7.0" layoutY="99.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="218.0" prefWidth="1180.0">
@@ -94,7 +94,7 @@
                </GridPane.margin>
                 </Label>
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Giới Tính" GridPane.rowIndex="3">
+                <Label fx:id="gioiTinh_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Giới Tính" GridPane.rowIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -102,7 +102,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <RadioButton fx:id="gioiTinh_Btn" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Nam (mặc định là Nữ)" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <RadioButton fx:id="nam_Btn" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Nam" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
@@ -311,6 +311,11 @@
             <RadioButton fx:id="luuNgay" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="176.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="nu_Btn" mnemonicParsing="false" text="Nữ" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="100.0" />
                </GridPane.margin>
             </RadioButton>
 

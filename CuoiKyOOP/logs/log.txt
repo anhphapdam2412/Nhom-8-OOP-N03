@@ -45,3 +45,21 @@
 [2024-10-05 11:08:44] 23010609ĐinhOanh2006-10-17false0302340051420123123152null11AHải Dương, Hải Dương, Thạch Khôi, khu 31Đạt danh hiệu học sinh giỏitrue
 [2024-10-05 11:09:15] 23010610LýPhương2007-11-09true0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
 [2024-10-05 11:10:07] 23010610LýPhương2007-11-09true0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 17:30:07] 23010610LýPhương2007-11-09false0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 17:30:10] 23010610LýPhương2007-11-09true0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 17:35:11] 23010601TrầnChâu2006-05-11false0302260051340123123144null11BHải Dương, Hải Dương, Thạch Khôi, khu 23Học sinh gương mẫutrue
+[2024-10-05 17:35:13] 230106086HoàngGiang2005-05-20false0302480051560123123166null12AHải Dương, Hải Dương, Thạch Khôi, khu 45Đạt danh hiệu học sinh giỏi Toántrue
+[2024-10-05 17:52:30] 24000000gv2024-10-09true123123123123098778998776Bà Rịa - Vũng Tàu, Long Điền, null, nulltrue
+[2024-10-05 18:00:48] 24000000vc2024-10-03true123123123123098712312332Bình Dương, Dĩ An, null, nulltrue
+[2024-10-05 18:01:12] 24000000bv2024-10-01true123123123123098678345632Bình Dương, Dầu Tiếng, null, nulltrue
+[2024-10-07 10:11:30] 24000000bc2024-10-03false123123123123012312312312Bình Dương, Dĩ An, null, nulltrue
+[2024-10-07 10:17:21] 24000001nv2024-10-08true123321123321012312312332Bà Rịa - Vũng Tàu, Côn Đảo, null, nulltrue
+[2024-10-07 10:18:57] 24000000rr2024-10-02false12312321332101231231233Bà Rịa - Vũng Tàu, Long Điền, null, nulltrue
+[2024-10-07 10:19:28] 24000000hh2024-10-02true12312312312309876542133An Giang, Thoại Sơn, null, nulltrue
+[2024-10-07 10:20:44] 24000000ii2024-10-02true12312312312309862432424An Giang, Chợ Mới, null, nulltrue
+[2024-10-07 10:21:45] 24000000nn2024-10-02false12312312312301231231233Bình Dương, Bến Cát, null, nulltrue
+[2024-10-07 10:21:46] 24000000nn2024-10-02false12312312312301231231233Bình Dương, Bến Cát, null, nulltrue
+[2024-10-07 10:21:49] 24000000nn2024-10-02false12312312312301231231233Bình Dương, Bến Cát, null, nulltrue
+[2024-10-07 10:23:27] 24000000bv2024-10-02true412313531451032112332132Bà Rịa - Vũng Tàu, Long Điền, null, nulltrue
+[2024-10-07 10:30:52] 24000000bn2024-10-02false12312312332101231231233Bà Rịa - Vũng Tàu, Vũng Tàu, null, nulltrue
+[2024-10-07 10:32:27] 24000000gg2024-10-09true12312312312301231231231Bình Dương, Phú Giáo, null, nulltrue

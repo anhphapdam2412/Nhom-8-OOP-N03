@@ -27,21 +27,25 @@ public class KiemTraDuLieuNhap {
             return false;
         }
     }
+
     public static boolean isValidMaHS(String maHS) {
         return !maHS.equals("23xxxxxx");
     }
+
     public static boolean isValidComboBox(String string) {
         return string != null;
     }
+
     public static boolean isValidLop(String lop) {
         return lop != null;
     }
+
     public static boolean isValidNgaySinh(String ngaySinh) {
         return ngaySinh != "null";
     }
 
     public static boolean validateField(String text, Label label, Validator validator) {
-        if (text!=null && !text.isEmpty()) {
+        if (text != null && !text.isEmpty()) {
             if (validator.isValid(text)) {
                 label.setStyle("-fx-text-fill: #ffffff;");
                 return true;
@@ -53,6 +57,10 @@ public class KiemTraDuLieuNhap {
             label.setStyle("-fx-text-fill: #ff6363;");
             return false;
         }
+    }
+
+    public static boolean isValidSex(String sex) {
+        return !sex.equals("falsefalse");
     }
 
     @FunctionalInterface

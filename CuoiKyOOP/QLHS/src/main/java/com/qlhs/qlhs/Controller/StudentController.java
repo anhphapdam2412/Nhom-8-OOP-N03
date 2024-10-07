@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,7 +26,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class TTController {
+public class StudentController {
 
     private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>(); // Tỉnh -> Quận/huyện
     private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Xã/phường
@@ -34,19 +35,20 @@ public class TTController {
 
     // Các TextField
     @FXML private TextField maHS_TF, hoDem_TF, ten_TF, SDT_TF, maDinhDanh_TF, email_TF, lop_TF, chiTiet_TF, ghiChuTT_TF, timKiem_TF;
-    @FXML private RadioButton gioiTinh_Btn, luuTTP, luuQH, luuPX, luuLop, luuNgay;
+    @FXML private RadioButton nam_Btn, luuTTP, luuQH, luuPX, luuLop, luuNgay, nu_Btn;
 
     // Ngày sinh và ComboBox
     @FXML private DatePicker ngaySinh_Date;
     @FXML private ComboBox<String> TTP_CB, QH_CB, PX_CB, bang_CB;
 
     // Các Button và Label
-    @FXML private Button xoa_Btn;
-    @FXML private Label sdt_Lb, maDinhDanh_Lb, hoDem_Lb, ten_Lb, maHS_Lb, lop_Lb, TTP_Lb, QH_Lb, PX_Lb, ngaySinh_Lb;
+    @FXML private Button themMoi_Btn, xoa_Btn;
+    @FXML private Label gioiTinh_Lb, sdt_Lb, maDinhDanh_Lb, hoDem_Lb, ten_Lb, maHS_Lb, lop_Lb, TTP_Lb, QH_Lb, PX_Lb, ngaySinh_Lb;
 
     // TableView và TableColumn
     @FXML private TableView<HocSinh> tableTTView;
     @FXML private TableColumn<HocSinh, String> sttColumn, maHSColumn, hoDemColumn, tenColumn, ngaySinhColumn, gioiTinhColumn, maDinhDanhColumn, sdtColumn, emailColumn, lopColumn, diaChiColumn, ghiChuTTColumn;
+
 
     private Timeline debounce;
 
@@ -72,6 +74,12 @@ public class TTController {
                 e.printStackTrace();
             }
         });
+
+        // Tạo ToggleGroup để chỉ cho phép chọn một nút
+        ToggleGroup group = new ToggleGroup();
+        nam_Btn.setToggleGroup(group);
+        nu_Btn.setToggleGroup(group);
+
 
 
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
@@ -128,6 +136,7 @@ public class TTController {
                     hienTTHSChiTiet(hocSinhDuocChon);
                     danhSachKiemTra();
                     xoa_Btn.setDisable(false);
+                    themMoi_Btn.setDisable(false);
                 }
             }
         });
@@ -141,7 +150,11 @@ public class TTController {
         SDT_TF.setText(hocSinh.getSdt());
         email_TF.setText(hocSinh.getEmail());
         lop_TF.setText(hocSinh.getLop());
-        gioiTinh_Btn.setSelected("1".equals(hocSinh.getGioiTinh()));
+        if ("1".equals(hocSinh.getGioiTinh())) {
+            nam_Btn.setSelected(true);
+        } else {
+            nu_Btn.setSelected(true);
+        }
         String ngaySinhStr = hocSinh.getNgaySinh();
         if (ngaySinhStr != null && !ngaySinhStr.isEmpty()) {
             LocalDate ngaySinh = LocalDate.parse(ngaySinhStr);
@@ -254,7 +267,7 @@ public class TTController {
         String diaChi = TTP_CB.getValue() + ", " + QH_CB.getValue() + ", " + PX_CB.getValue() + ", " + (!chiTiet_TF.getText().isEmpty() ? chiTiet_TF.getText() : null);
         String ghiChu = ghiChuTT_TF.getText();
         String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
-        Boolean gioiTinh = gioiTinh_Btn.isSelected();
+        Boolean gioiTinh = nam_Btn.isSelected();
         String maDinhDanh = maDinhDanh_TF.getText();
         String trangThai = "true";
 
@@ -266,6 +279,8 @@ public class TTController {
         CapNhatDatabase.capNhatTT(maHS, hoDem, ten, ngaySinh, gioiTinh, maDinhDanh, sdt, email, lop, diaChi, ghiChu, trangThai, query, query2);
         hienThiHSLenManHinh(TimKiem.boLoc(""));
         timKiem_TF.setText(null);
+        themMoi_Btn.setDisable(false);
+
         LuuLichSuHoatDong.logThongTin(maHS + hoDem + ten + ngaySinh + gioiTinh + maDinhDanh + sdt + email + lop + diaChi + ghiChu + trangThai);
     }
 
@@ -278,10 +293,10 @@ public class TTController {
         maDinhDanh_TF.clear();
         email_TF.clear();
         chiTiet_TF.clear();
-        gioiTinh_Btn.setSelected(false);
+        nam_Btn.setSelected(false);
         ghiChuTT_TF.clear();
         timKiem_TF.clear();
-
+        nu_Btn.setSelected(false);
 
         boolean isCapNhat;
 
@@ -347,24 +362,26 @@ public class TTController {
         LocalDate compareDate = LocalDate.parse(endOfSchoolYear, DateTimeFormatter.ISO_LOCAL_DATE);
 
         // kiểm tra xem đã tồn tại học sinh nào chưa, nếu chưa thì tạo 1 học sinh giả
-        if (dsHocSinh.isEmpty()) {
-            danhSachMaHS.add(0);
-        }
         for (HocSinh hocSinh : dsHocSinh) {
             if (hocSinh != null) {
                 danhSachMaHS.add(Integer.parseInt(hocSinh.getMaHS()));
             }
         }
+        if (dsHocSinh.isEmpty()) {
+            danhSachMaHS.add(0);
+        }
         // So sánh ngày hiện tại với ngày chuỗi
         if (today.isAfter(compareDate)) {
-            if (danhSachMaHS.getFirst() / 1000000 < nam) { // chia lấy nguyên cho 1000000 để lấy ra năm
-                danhSachMaHS.removeFirst();
+            if (danhSachMaHS.getLast() / 1000000 < nam) { // chia lấy nguyên cho 1000000 để lấy ra năm
                 danhSachMaHS.add(nam * 1000000 - 1); // vd mã năm là 24 thì sẽ là 24*1000000-1 = 23999999 để xuống dưới sẽ cộng thêm 1 và ra mã 24000000
+                danhSachMaHS.removeFirst();
             }
         }
 
         maHS_TF.setText(String.valueOf(danhSachMaHS.getLast() + 1));
         danhSachKiemTra();
+        themMoi_Btn.setDisable(true);
+
     }
 
     private void loadFXML(String fxmlFile) throws IOException {
@@ -399,6 +416,7 @@ public class TTController {
     }
 
     private void danhSachKiemTra() {
+        System.out.println(String.valueOf(nam_Btn.isSelected())+String.valueOf(nu_Btn.isSelected()));
         KiemTraDuLieuNhap.validateField(maHS_TF.getText(), maHS_Lb, KiemTraDuLieuNhap::isValidMaHS);
         KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop);
         KiemTraDuLieuNhap.validateField(SDT_TF.getText(), sdt_Lb, KiemTraDuLieuNhap::isValidSoDienThoai);
@@ -407,6 +425,7 @@ public class TTController {
         KiemTraDuLieuNhap.validateField(ten_TF.getText(), ten_Lb, KiemTraDuLieuNhap::isValidTen);
         KiemTraDuLieuNhap.validateField(TTP_CB.getValue(), TTP_Lb, KiemTraDuLieuNhap::isValidComboBox);
         KiemTraDuLieuNhap.validateField(QH_CB.getValue(), QH_Lb, KiemTraDuLieuNhap::isValidComboBox);
+        KiemTraDuLieuNhap.validateField(String.valueOf(nam_Btn.isSelected())+String.valueOf(nu_Btn.isSelected()),gioiTinh_Lb, KiemTraDuLieuNhap::isValidSex);
 //        validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX);
         String ngaySinh = String.valueOf(ngaySinh_Date.getValue());
         KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
@@ -421,6 +440,7 @@ public class TTController {
                 KiemTraDuLieuNhap.validateField(QH_CB.getValue(), QH_Lb, KiemTraDuLieuNhap::isValidComboBox) &&
 //              !  validateField(PX_CB.getValue(),PX_Lb, KiemTraDuLieuNhap::isValidPX)||
                 KiemTraDuLieuNhap.validateField(lop_TF.getText(), lop_Lb, KiemTraDuLieuNhap::isValidLop) &&
+                KiemTraDuLieuNhap.validateField(String.valueOf(nam_Btn.isSelected())+String.valueOf(nu_Btn.isSelected()),gioiTinh_Lb, KiemTraDuLieuNhap::isValidSex)&&
                 KiemTraDuLieuNhap.validateField(ngaySinh, ngaySinh_Lb, KiemTraDuLieuNhap::isValidNgaySinh);
     }
 }
