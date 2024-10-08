@@ -8,7 +8,7 @@ public class GradeReport {
     private final String gender;
     private final String className;
     private final String literature;
-    private final String maths;
+    private final String math;
     private final String physics;
     private final String chemistry;
     private final String biology;
@@ -16,7 +16,7 @@ public class GradeReport {
     private final String geography;
     private final String civicEdu;
     private final String technology;
-    private final String computerScience;
+    private final String it;
     private final String physicalEdu;
     private final String foreignLang;
     private final String languageCode;
@@ -24,9 +24,9 @@ public class GradeReport {
     private final String conduct;
     private final String gradeNotes;
     private final String status;
-    private final String averageGrade;
+    private final String avgGrade;
 
-    public GradeReport(String studentID, String lastName, String firstName, String dateOfBirth, String gender, String className, String literature, String maths, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String computerScience, String physicalEdu, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String status, String averageGrade) {
+    public GradeReport(String studentID, String lastName, String firstName, String dateOfBirth, String gender, String className, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEdu, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String status, String avgGrade) {
         this.studentID = studentID;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -34,7 +34,7 @@ public class GradeReport {
         this.gender = gender;
         this.className = className;
         this.literature = literature;
-        this.maths = maths;
+        this.math = math;
         this.physics = physics;
         this.chemistry = chemistry;
         this.biology = biology;
@@ -42,7 +42,7 @@ public class GradeReport {
         this.geography = geography;
         this.civicEdu = civicEdu;
         this.technology = technology;
-        this.computerScience = computerScience;
+        this.it = it;
         this.physicalEdu = physicalEdu;
         this.foreignLang = foreignLang;
         this.languageCode = languageCode;
@@ -50,11 +50,11 @@ public class GradeReport {
         this.conduct = conduct;
         this.gradeNotes = gradeNotes;
         this.status = status;
-        this.averageGrade = averageGrade;
+        this.avgGrade = avgGrade;
     }
 
     public String getAverageGrade() {
-        return averageGrade;
+        return avgGrade;
     }
 
     public String getStudentID() {
@@ -86,7 +86,7 @@ public class GradeReport {
     }
 
     public String getMaths() {
-        return maths;
+        return math;
     }
 
     public String getPhysics() {
@@ -118,7 +118,7 @@ public class GradeReport {
     }
 
     public String getComputerScience() {
-        return computerScience;
+        return it;
     }
 
     public String getPhysicalEdu() {

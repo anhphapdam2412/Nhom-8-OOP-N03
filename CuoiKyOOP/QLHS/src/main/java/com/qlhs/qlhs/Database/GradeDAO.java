@@ -20,7 +20,7 @@ public class GradeDAO {
             while (rs.next()) {
                 String studentID = rs.getString("studentID");
                 String literature = rs.getString("literature");
-                String maths = rs.getString("maths");
+                String math = rs.getString("math");
                 String physics = rs.getString("physics");
                 String chemistry = rs.getString("chemistry");
                 String biology = rs.getString("biology");
@@ -28,16 +28,16 @@ public class GradeDAO {
                 String geography = rs.getString("geography");
                 String civicEdu = rs.getString("civicEdu");
                 String technology = rs.getString("technology");
-                String cptScience = rs.getString("cptScience");
+                String it = rs.getString("it");
                 String physicalEdu = rs.getString("physicalEdu");
                 String foreignLang = rs.getString("foreignLang");
                 String languageCode = rs.getString("languageCode");
                 String academicPerformance = rs.getString("academicPerformance");
                 String conduct = rs.getString("conduct");
                 String gradeNotes = rs.getString("gradeNotes");
-                String averageGrade = rs.getString("averageGrade");
+                String avgGrade = rs.getString("avgGrade");
 
-                Grade diem = new Grade(studentID, literature, maths, physics, chemistry, biology, history, geography, civicEdu, technology, cptScience, physicalEdu, foreignLang, languageCode, academicPerformance, conduct, gradeNotes, averageGrade);
+                Grade diem = new Grade(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, academicPerformance, conduct, gradeNotes, avgGrade);
 
                 gradeList.add(diem);
             }

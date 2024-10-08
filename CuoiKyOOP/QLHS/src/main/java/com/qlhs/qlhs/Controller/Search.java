@@ -105,7 +105,7 @@ public class Search {
                         case "l":
                         case "class":
                         case "cl":
-                            matches = compareString(student.getLastName(), searchValue, operator);
+                            matches = compareString(student.getClassName(), searchValue, operator);
                             break;
                         case "địa chỉ":
                         case "dia chi":

@@ -58,7 +58,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="maths_Lb" text="Toán" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label fx:id="math_Lb" text="Toán" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -98,7 +98,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="computerScience_Lb" text="Tin học" GridPane.columnIndex="10">
+                <Label fx:id="it_Lb" text="Tin học" GridPane.columnIndex="10">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -109,7 +109,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="literature_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" />
-                <TextField fx:id="maths_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="math_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <TextField fx:id="physics_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <TextField fx:id="chemistry_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="5" />
                 <TextField fx:id="biology_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="5" GridPane.rowIndex="1" />
@@ -118,7 +118,7 @@
                 <TextField fx:id="civicEdu_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="1" />
                 <TextField fx:id="foreignLanguage_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
                 <TextField fx:id="technology_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                <TextField fx:id="computerScience_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" />
+                <TextField fx:id="it_TF" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="11" />
                 <ComboBox fx:id="languageCode_CB" prefWidth="150.0" promptText="Mã NN" GridPane.columnIndex="13" GridPane.rowIndex="2">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -141,7 +141,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="averageGrade_TF" editable="false" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="16" GridPane.rowIndex="2" />
+            <TextField fx:id="avgGrade_TF" editable="false" maxWidth="30.0" minWidth="40.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="16" GridPane.rowIndex="2" />
             <Label text="Ghi chú" GridPane.columnIndex="15" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
@@ -187,7 +187,7 @@
                 <TableColumn fx:id="genderColumn" prefWidth="54.0" text="Nam" />
                 <TableColumn fx:id="classNameColumn" prefWidth="30.0" text="Lớp" />
                 <TableColumn fx:id="literatureColumn" prefWidth="37.0" text="NV" />
-                <TableColumn fx:id="mathsColumn" prefWidth="37.0" text="T" />
+                <TableColumn fx:id="mathColumn" prefWidth="37.0" text="T" />
                 <TableColumn fx:id="physicsColumn" prefWidth="37.0" text="VL" />
                 <TableColumn fx:id="chemistryColumn" prefWidth="37.0" text="HH" />
                 <TableColumn fx:id="biologyColumn" prefWidth="37.0" text="SH" />
@@ -195,10 +195,10 @@
                 <TableColumn fx:id="geographyColumn" prefWidth="37.0" text="ĐL" />
                 <TableColumn fx:id="civicEduColumn" prefWidth="46.0" text="GDCD" />
                 <TableColumn fx:id="technologyColumn" prefWidth="37.0" text="CN" />
-                <TableColumn fx:id="computerScienceColumn" prefWidth="37.0" text="TH" />
+                <TableColumn fx:id="itColumn" prefWidth="37.0" text="TH" />
                 <TableColumn fx:id="physicalEducationColumn" prefWidth="37.0" text="TD" />
                 <TableColumn fx:id="foreignLanguageColumn" prefWidth="37.0" text="NN" />
-                <TableColumn fx:id="averageGradeColumn" prefWidth="37.0" text="TB" />
+                <TableColumn fx:id="avgGradeColumn" prefWidth="37.0" text="TB" />
                 <TableColumn fx:id="languageCodeColumn" prefWidth="54.0" text="Mã NN" />
                 <TableColumn fx:id="academicPerformanceColumn" prefWidth="37.0" text="HL" />
                 <TableColumn fx:id="conductColumn" prefWidth="41.0" text="HK" />

@@ -4,7 +4,7 @@ public class Grade {
 
     private final String studentID;
     private final String literature;
-    private final String maths;
+    private final String math;
     private final String physics;
     private final String chemistry;
     private final String biology;
@@ -12,19 +12,19 @@ public class Grade {
     private final String geography;
     private final String civicEdu;
     private final String technology;
-    private final String computerScience;
+    private final String it;
     private final String physicalEducation;
     private final String foreignLanguage;
     private final String languageCode;
     private final String academicPerformance;
     private final String conduct;
     private final String gradeNotes;
-    private final String averageGrade;
+    private final String avgGrade;
 
-    public Grade(String studentID, String literature, String maths, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String computerScience, String physicalEducation, String foreignLanguage, String languageCode, String academicPerformance, String conduct, String gradeNotes, String averageGrade) {
+    public Grade(String studentID, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEducation, String foreignLanguage, String languageCode, String academicPerformance, String conduct, String gradeNotes, String avgGrade) {
         this.studentID = studentID;
         this.literature = literature;
-        this.maths = maths;
+        this.math = math;
         this.physics = physics;
         this.chemistry = chemistry;
         this.biology = biology;
@@ -32,18 +32,18 @@ public class Grade {
         this.geography = geography;
         this.civicEdu = civicEdu;
         this.technology = technology;
-        this.computerScience = computerScience;
+        this.it = it;
         this.physicalEducation = physicalEducation;
         this.foreignLanguage = foreignLanguage;
         this.languageCode = languageCode;
         this.academicPerformance = academicPerformance;
         this.conduct = conduct;
         this.gradeNotes = gradeNotes;
-        this.averageGrade = averageGrade;
+        this.avgGrade = avgGrade;
     }
 
     public String getAverageGrade() {
-        return averageGrade;
+        return avgGrade;
     }
 
     public String getStudentID() {
@@ -55,7 +55,7 @@ public class Grade {
     }
 
     public String getMaths() {
-        return maths;
+        return math;
     }
 
     public String getPhysics() {
@@ -87,7 +87,7 @@ public class Grade {
     }
 
     public String getComputerScience() {
-        return computerScience;
+        return it;
     }
 
     public String getPhysicalEducation() {

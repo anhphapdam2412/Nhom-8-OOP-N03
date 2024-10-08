@@ -9,6 +9,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -340,7 +341,7 @@
          </cursor>
         </Button>
 
-        <Button disable="true" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="35.0" prefWidth="90.0" text="Xóa" fx:id="xoa_Btn">
+        <Button fx:id="delete_Btn" disable="true" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="35.0" prefWidth="90.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>
@@ -349,12 +350,12 @@
          </cursor>
         </Button>
 
-        <Label layoutX="895.0" layoutY="374.0" text="Tìm Kiếm">
+        <Label layoutX="826.0" layoutY="374.0" text="Tìm Kiếm">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="search_TF" layoutX="963.0" layoutY="369.0" onKeyReleased="#search" prefHeight="30.0" prefWidth="227.0" promptText="23010360" />
+        <TextField fx:id="search_TF" layoutX="895.0" layoutY="369.0" onKeyReleased="#search" prefHeight="30.0" prefWidth="295.0" promptText="VD: tên=Nam, ngay sinh&gt;2005-12 , lop=A" />
 
         <TableView fx:id="studentTableView" layoutX="10.0" layoutY="403.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="391.0" prefWidth="1180.0">
             <columns>
@@ -381,6 +382,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
+      <TextArea layoutX="895.0" layoutY="284.0" prefHeight="78.0" prefWidth="295.0" text="Tất cả: &quot;Phương&quot;; &quot;12A&quot;;&quot;Hải Dương&quot;&#10;Nhiều điều kiện: &quot;23010360, Cường, 12A&quot;&#10;Theo trường: &quot;tên=Phương, ghichu=bảo lưu&quot;&#10;Lọc (&gt;,&lt;,=): &quot;name&gt;a,class&lt;10,gc=bảo lưu&quot;" />
     </children>
 
 </AnchorPane>
