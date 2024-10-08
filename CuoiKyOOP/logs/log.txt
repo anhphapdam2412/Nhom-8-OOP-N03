@@ -24,3 +24,42 @@
 23010609ĐỗLam2006-08-1110302130051210123123131dolam@mail.com10BHải Dương, Hải Dương, Thạch Khôi, khu 10Nghỉ học vì lý do sức khỏetrue
 23010605VũHải2008-07-08true0302090051170123123127null11CHải Dương, Hải Dương, Thạch Khôi, khu 6Đã chuyển trườngtrue
 23010608BùiKhoa2007-11-03true0302120051200123123130null11AHải Dương, Hải Dương, Thạch Khôi, khu 9Đã hoàn thành học kỳ Itrue
+[2024-10-04 22:36:36] 23010607LêHuy2005-04-08false0302110051190123123129lehuy@mail.com12CHải Dương, Hải Dương, Thạch Khôi, khu 8Đạt giải thưởng học tậptrue
+[2024-10-04 23:02:10] 23010603TrầnChâu2007-05-10false0302070051150123123125null10CHải Dương, Hải Dương, Thạch Khôi, khu 4Chờ xác nhận học bạtrue
+[2024-10-04 23:23:59] 23010602NguyễnBình2006-03-15false0302060051140123123124nguyenbinh@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 3Tham gia hoạt động ngoại khóatrue
+[2024-10-04 23:24:03] 23010601ĐàmAnh2005-01-02false0302050051130123123123dama@mail.com12AHải Dương, Hải Dương, Thạch Khôi, khu 2Không có ghi chútrue
+[2024-10-04 23:24:05] 23010606HoàngGiang2006-09-22false0302100051180123123128hoanggiang@mail.com10AHải Dương, Hải Dương, Thạch Khôi, khu 7Học sinh xuất sắctrue
+[2024-10-04 23:24:08] 23010601ĐàmAnh2005-01-02false0302050051130123123123dama@mail.com12AHải Dương, Hải Dương, Thạch Khôi, khu 276Không có ghi chútrue
+[2024-10-04 23:24:09] 23010603TrầnChâu2007-05-10false0302070051150123123125null10CHải Dương, Hải Dương, Thạch Khôi, khu 4Chờ xác nhận học bạtrue
+[2024-10-05 00:34:56] 230106015VũViệt2006-03-29true0302400051480123123158vuviet@mail.com11CHải Dương, Hải Dương, Thạch Khôi, khu 37Chuẩn bị tốt nghiệptrue
+[2024-10-05 00:37:48] 23010607ĐỗMinh2005-06-11true0302320051400123123150dominh@mail.com12AHải Dương, Hải Dương, Thạch Khôi, khu 29Tham gia đội tuyển Toántrue
+[2024-10-05 00:38:34] 24000000av2014-10-16true123123123123013212312312An Giang, Châu Thành, null, nulltrue
+[2024-10-05 01:00:56] 23010633HoàngDũng2005-05-20true0302480051560123123166null12AHải Dương, Hải Dương, Thạch Khôi, khu 45Đạt danh hiệu học sinh giỏi Toántrue
+[2024-10-05 01:23:25] 23010625TrầnDương2008-12-25false0302450051530123123163tranchinh@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 42Đang hoàn thiện học lựctrue
+[2024-10-05 01:23:31] 23010614PhạmDương2007-06-17true0302390051470123123157phamuyen@mail.com10BHải Dương, Hải Dương, Thạch Khôi, khu 36Đạt giải nhì kỳ thi Hóa họctrue
+[2024-10-05 10:39:55] 23010633HoàngDũng2005-05-20false0302480051560123123166null12AHải Dương, Hải Dương, Thạch Khôi, khu 45Đạt danh hiệu học sinh giỏi Toántrue
+[2024-10-05 10:45:00] 23010633HoàngDũng2005-05-20false0302480051560123123166null12AHải Dương, Hải Dương, Thạch Khôi, khu 45Đạt danh hiệu học sinh giỏi Toántrue
+[2024-10-05 11:07:05] 23010622LêYến2006-07-18false0302420051500123123160leyen@mail.com10AHải Dương, Hải Dương, Thạch Khôi, khu 39Tham gia đội tuyển Văn họctrue
+[2024-10-05 11:08:20] 23010621HoàngXuân2005-01-08false0302410051490123123159null12AHải Dương, Hải Dương, Thạch Khôi, khu 38Đạt thành tích tốt trong học tậptrue
+[2024-10-05 11:08:36] 23010609ĐinhOanh2006-10-17false0302340051420123123152null11AHải Dương, Hải Dương, Thạch Khôi, khu 31Đạt danh hiệu học sinh giỏitrue
+[2024-10-05 11:08:44] 23010609ĐinhOanh2006-10-17false0302340051420123123152null11AHải Dương, Hải Dương, Thạch Khôi, khu 31Đạt danh hiệu học sinh giỏitrue
+[2024-10-05 11:09:15] 23010610LýPhương2007-11-09true0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 11:10:07] 23010610LýPhương2007-11-09true0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 17:30:07] 23010610LýPhương2007-11-09false0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 17:30:10] 23010610LýPhương2007-11-09true0302350051430123123153lyphuong@mail.com10CHải Dương, Hải Dương, Thạch Khôi, khu 32Học sinh có tiềm năngtrue
+[2024-10-05 17:35:11] 23010601TrầnChâu2006-05-11false0302260051340123123144null11BHải Dương, Hải Dương, Thạch Khôi, khu 23Học sinh gương mẫutrue
+[2024-10-05 17:35:13] 230106086HoàngGiang2005-05-20false0302480051560123123166null12AHải Dương, Hải Dương, Thạch Khôi, khu 45Đạt danh hiệu học sinh giỏi Toántrue
+[2024-10-05 17:52:30] 24000000gv2024-10-09true123123123123098778998776Bà Rịa - Vũng Tàu, Long Điền, null, nulltrue
+[2024-10-05 18:00:48] 24000000vc2024-10-03true123123123123098712312332Bình Dương, Dĩ An, null, nulltrue
+[2024-10-05 18:01:12] 24000000bv2024-10-01true123123123123098678345632Bình Dương, Dầu Tiếng, null, nulltrue
+[2024-10-07 10:11:30] 24000000bc2024-10-03false123123123123012312312312Bình Dương, Dĩ An, null, nulltrue
+[2024-10-07 10:17:21] 24000001nv2024-10-08true123321123321012312312332Bà Rịa - Vũng Tàu, Côn Đảo, null, nulltrue
+[2024-10-07 10:18:57] 24000000rr2024-10-02false12312321332101231231233Bà Rịa - Vũng Tàu, Long Điền, null, nulltrue
+[2024-10-07 10:19:28] 24000000hh2024-10-02true12312312312309876542133An Giang, Thoại Sơn, null, nulltrue
+[2024-10-07 10:20:44] 24000000ii2024-10-02true12312312312309862432424An Giang, Chợ Mới, null, nulltrue
+[2024-10-07 10:21:45] 24000000nn2024-10-02false12312312312301231231233Bình Dương, Bến Cát, null, nulltrue
+[2024-10-07 10:21:46] 24000000nn2024-10-02false12312312312301231231233Bình Dương, Bến Cát, null, nulltrue
+[2024-10-07 10:21:49] 24000000nn2024-10-02false12312312312301231231233Bình Dương, Bến Cát, null, nulltrue
+[2024-10-07 10:23:27] 24000000bv2024-10-02true412313531451032112332132Bà Rịa - Vũng Tàu, Long Điền, null, nulltrue
+[2024-10-07 10:30:52] 24000000bn2024-10-02false12312312332101231231233Bà Rịa - Vũng Tàu, Vũng Tàu, null, nulltrue
+[2024-10-07 10:32:27] 24000000gg2024-10-09true12312312312301231231231Bình Dương, Phú Giáo, null, nulltrue
