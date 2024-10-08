@@ -3,6 +3,7 @@ package com.qlhs.qlhs.Controller;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
@@ -77,11 +78,31 @@ public class ActivityLog {
 
     // Phương thức xóa các file log cũ
     public static void cleanOldLogs() {
-        // Logic xóa log cũ
-        // (Đã có từ phần trước)
-    }
+        try {
+            // Lấy thời gian hiện tại
+            long currentTimeMillis = System.currentTimeMillis();
 
-    // Các phương thức khác (getCurrentTimestamp, getCurrentTimestampForFile, isOld, ...)
+            // Duyệt qua tất cả các file trong thư mục logs
+            Files.list(Paths.get("logs"))
+                    .filter(Files::isRegularFile) // Chỉ lọc các file thường
+                    .forEach(path -> {
+                        try {
+                            // Lấy thời gian sửa đổi cuối cùng của file
+                            long lastModifiedTime = Files.getLastModifiedTime(path).toMillis();
+                            // Kiểm tra xem file đã quá thời gian quy định chưa
+                            if ((currentTimeMillis - lastModifiedTime) > LOG_RETENTION_PERIOD) {
+                                // Xóa file log cũ
+                                Files.delete(path);
+                                System.out.println("Deleted old log file: " + path.getFileName());
+                            }
+                        } catch (IOException e) {
+                            System.err.println("Error deleting log file: " + e.getMessage());
+                        }
+                    });
+        } catch (IOException e) {
+            System.err.println("Error cleaning old logs: " + e.getMessage());
+        }
+    }
 
     // Phương thức để lấy timestamp cho việc ghi log
     private static String getCurrentTimestamp() {
