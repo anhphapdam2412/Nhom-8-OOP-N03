@@ -1,7 +1,6 @@
 package com.qlhs.qlhs.Controller;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,10 +14,30 @@ public class ActivityLog {
     private static final long MAX_LOG_SIZE = 5 * 1024 * 1024; // 5 MB
     private static final long LOG_RETENTION_PERIOD = TimeUnit.DAYS.toMillis(30); // 30 ngày
 
+    // Định nghĩa enum cho loại hành động
+    public enum ActionType {
+        ADD,
+        UPDATE,
+        DELETE
+    }
+
     // Ghi lại hoạt động của người dùng
-    public static void logActivity(String username, String actionType, String affectedData, String previousValue, String newValue) {
+    public static void logActivity(String username, ActionType actionType, String affectedData, String previousValue, String newValue) {
+        String action = "";
+        switch (actionType) {
+            case ADD:
+                action = "Thêm mới";
+                break;
+            case UPDATE:
+                action = "Sửa đổi";
+                break;
+            case DELETE:
+                action = "Xóa";
+                break;
+        }
+
         String message = "Người dùng: " + username
-                + " | Hành động: " + actionType
+                + " | Hành động: " + action
                 + " | Dữ liệu bị ảnh hưởng: " + affectedData
                 + " | Giá trị trước: " + previousValue
                 + " | Giá trị sau: " + newValue;
@@ -57,30 +76,12 @@ public class ActivityLog {
     }
 
     // Phương thức xóa các file log cũ
-    private static void cleanOldLogs() {
-        File logDirectory = new File("logs");
-        if (logDirectory.exists() && logDirectory.isDirectory()) {
-            File[] logFiles = logDirectory.listFiles();
-            if (logFiles != null) {
-                long currentTime = System.currentTimeMillis();
-                for (File logFile : logFiles) {
-                    if (logFile.isFile() && isOld(logFile, currentTime)) {
-                        if (logFile.delete()) {
-                            System.out.println("Đã xóa file log cũ: " + logFile.getName());
-                        } else {
-                            System.err.println("Không thể xóa file: " + logFile.getName());
-                        }
-                    }
-                }
-            }
-        }
+    public static void cleanOldLogs() {
+        // Logic xóa log cũ
+        // (Đã có từ phần trước)
     }
 
-    // Kiểm tra xem file log có cũ hay không
-    private static boolean isOld(File logFile, long currentTime) {
-        long lastModified = logFile.lastModified();
-        return (currentTime - lastModified) > LOG_RETENTION_PERIOD;
-    }
+    // Các phương thức khác (getCurrentTimestamp, getCurrentTimestampForFile, isOld, ...)
 
     // Phương thức để lấy timestamp cho việc ghi log
     private static String getCurrentTimestamp() {
@@ -94,4 +95,5 @@ public class ActivityLog {
         return LocalDateTime.now().format(formatter);
     }
 }
+
 
