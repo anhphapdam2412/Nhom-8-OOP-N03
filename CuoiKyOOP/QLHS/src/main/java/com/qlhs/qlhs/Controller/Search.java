@@ -1,8 +1,8 @@
 package com.qlhs.qlhs.Controller;
 
-import com.qlhs.qlhs.Database.GradeReportDAO;
+import com.qlhs.qlhs.Database.AcademicTranscriptDAO;
 import com.qlhs.qlhs.Database.StudentDAO;
-import com.qlhs.qlhs.Model.GradeReport;
+import com.qlhs.qlhs.Model.AcademicTranscript;
 import com.qlhs.qlhs.Model.Student;
 import javafx.collections.ObservableList;
 
@@ -222,9 +222,9 @@ public class Search {
     }
 
     // Method to filter grades
-    static ObservableList<GradeReport> filterGrade(String query) {
-        ObservableList<GradeReport> filteredGrades;
-        ObservableList<GradeReport> allGrade = GradeReportDAO.getGradeReport().filtered(gradeReport -> Objects.equals(gradeReport.getStatus(), "1"));
+    static ObservableList<AcademicTranscript> filterGrade(String query) {
+        ObservableList<AcademicTranscript> filteredGrades;
+        ObservableList<AcademicTranscript> allGrade = AcademicTranscriptDAO.getAcademicTranscript().filtered(gradeReport -> Objects.equals(gradeReport.getStatus(), "1"));
 
         // Split search terms by comma
         String[] searchTerms = query.split(",");
@@ -405,6 +405,17 @@ public class Search {
                         case "gn":
                             matches = compareString(grade.getGradeNotes(), searchValue, operator);
                             break;
+                        case "danh hiệu":
+                        case "kết quả học tập":
+                        case "dh":
+                        case "danhhieu":
+                        case "ketquahoctap":
+                        case "ketqua":
+                        case "kqht":
+                        case "kq":
+                        case "award":
+                            matches = compareString(grade.getAward(), searchValue, operator);
+                            break;
                         default:
                             matches = false;
                             break;
@@ -429,7 +440,7 @@ public class Search {
     }
 
     // New method to handle free search
-    private static boolean checkFreeSearch(GradeReport grade, String term) {
+    private static boolean checkFreeSearch(AcademicTranscript grade, String term) {
         return (grade.getStudentID() != null && grade.getStudentID().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getLastName() != null && grade.getLastName().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getFirstName() != null && grade.getFirstName().toLowerCase().contains(term.toLowerCase())) ||
@@ -453,6 +464,7 @@ public class Search {
                 (grade.getConduct() != null && grade.getConduct().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getGradeNotes() != null && grade.getGradeNotes().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getStatus() != null && grade.getStatus().toLowerCase().contains(term.toLowerCase())) ||
+                (grade.getAward() != null && grade.getAward().toLowerCase().contains(term.toLowerCase()))||
                 (grade.getAvgGrade() != null && grade.getAvgGrade().toLowerCase().contains(term.toLowerCase()));
     }
 }

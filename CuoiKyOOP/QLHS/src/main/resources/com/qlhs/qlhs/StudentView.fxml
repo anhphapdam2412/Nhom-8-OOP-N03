@@ -17,17 +17,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.StudentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.StudentController">
     <children>
 
-        <GridPane layoutX="7.0" layoutY="99.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="218.0" prefWidth="1180.0">
+        <GridPane layoutX="7.0" layoutY="80.0" maxWidth="1380.0" minWidth="1380.0" prefHeight="218.0" prefWidth="1380.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="125.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="200.0" prefWidth="200.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="0.0" prefWidth="61.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="141.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="230.0" prefWidth="230.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="125.0" prefWidth="111.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="200.0" prefWidth="200.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="61.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="230.0" prefWidth="230.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="75.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="168.0" />
             </columnConstraints>
@@ -42,15 +43,15 @@
             </rowConstraints>
 
             <children>
-                <Button fx:id="addNew_Btn" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#addNewStudent" prefHeight="30.0" prefWidth="90.0" text="Thêm mới" GridPane.columnIndex="1">
+                <Button fx:id="addNew_Btn" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#addNewStudent" prefHeight="30.0" prefWidth="90.0" text="Thêm mới" GridPane.columnIndex="2">
                     <GridPane.margin>
-                        <Insets left="130.0" right="2.0" />
+                        <Insets left="140.0" right="2.0" />
                     </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Label fx:id="studentId_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Học Sinh">
+                <Label fx:id="studentId_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Học Sinh" GridPane.columnIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -59,25 +60,25 @@
                </GridPane.margin>
                 </Label>
 
-                <TextField fx:id="firstName_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="174.0" promptText="Nguyễn Văn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField fx:id="firstName_TF" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="230.0" promptText="Nguyễn Văn" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                 </TextField>
 
-                <TextField fx:id="lastName_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="174.0" promptText="A" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="lastName_TF" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="230.0" promptText="A" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                 </TextField>
 
-                <Label fx:id="firstName_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Họ Đệm" GridPane.rowIndex="1">
+                <Label fx:id="firstName_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Họ Đệm" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -86,7 +87,7 @@
                </GridPane.margin>
                 </Label>
 
-                <Label fx:id="lastName_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tên" GridPane.rowIndex="2">
+                <Label fx:id="lastName_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tên" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -95,7 +96,7 @@
                </GridPane.margin>
                 </Label>
 
-                <Label fx:id="gender_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Giới Tính" GridPane.rowIndex="3">
+                <Label fx:id="gender_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Giới Tính" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -103,14 +104,14 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <RadioButton fx:id="male_Btn" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Nam" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <RadioButton fx:id="male_Btn" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Nam" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></RadioButton>
-                <Label fx:id="dateOfBirth_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Ngày Sinh" GridPane.rowIndex="4">
+                <Label fx:id="dateOfBirth_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Ngày Sinh" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -118,7 +119,7 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <DatePicker fx:id="dateOfBirth_Picker" accessibleRole="COMBO_BOX" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <DatePicker fx:id="dateOfBirth_Picker" accessibleRole="COMBO_BOX" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="169.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
@@ -127,7 +128,7 @@
                </cursor></DatePicker>
 
 
-                <Label fx:id="ID_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Định Danh" GridPane.rowIndex="5">
+                <Label fx:id="ID_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Mã Định Danh" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -135,12 +136,12 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="ID_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="178.0" promptText="030205123456" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <TextField fx:id="ID_TF" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="230.0" promptText="030205123456" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin></TextField>
 
-                <Label fx:id="phoneNumber_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Số Điện Thoại" GridPane.columnIndex="3">
+                <Label fx:id="phoneNumber_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Số Điện Thoại" GridPane.columnIndex="4">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -149,16 +150,16 @@
                </GridPane.margin>
                 </Label>
 
-                <TextField fx:id="phoneNumber_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="4">
+                <TextField fx:id="phoneNumber_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="5">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                 </TextField>
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Email" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Email" GridPane.columnIndex="4" GridPane.rowIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -166,16 +167,16 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="email_TF" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="174.0" promptText="example@example.com" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                <TextField fx:id="email_TF" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="174.0" promptText="example@example.com" GridPane.columnIndex="5" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                 </TextField>
 
-                <Label fx:id="province_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tỉnh/Thành Phố" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <Label fx:id="province_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Tỉnh/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="2">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -183,15 +184,15 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="province_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Tỉnh/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                <ComboBox fx:id="province_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Tỉnh/Thành Phố" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
 
-                <Label fx:id="district_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Quận/Huyện" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                <Label fx:id="district_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Quận/Huyện" GridPane.columnIndex="4" GridPane.rowIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -199,15 +200,15 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="district_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Quận/Huyện/Thành Phố" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                <ComboBox fx:id="district_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Quận/Huyện/Thành Phố" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
 
-                <Label fx:id="ward_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Phường/Xã/TT" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                <Label fx:id="ward_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Phường/Xã/TT" GridPane.columnIndex="4" GridPane.rowIndex="4">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -215,15 +216,15 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <ComboBox fx:id="ward_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Phường/Xã/Thị Trấn" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                <ComboBox fx:id="ward_CB" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="170.0" promptText="Phường/Xã/Thị Trấn" GridPane.columnIndex="5" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
 
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Chi tiết" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Chi tiết" GridPane.columnIndex="4" GridPane.rowIndex="5">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -232,17 +233,17 @@
                </GridPane.margin>
                 </Label>
 
-                <TextField fx:id="detail_TF" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="174.0" promptText="Số 123, Phố ABC" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                <TextField fx:id="detail_TF" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="174.0" promptText="Số 123, Phố ABC" GridPane.columnIndex="5" GridPane.rowIndex="5">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                 </TextField>
 
 
-                <Label fx:id="className_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="6">
+                <Label fx:id="className_Lb" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="36.0" text="Lớp" GridPane.columnIndex="7">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -250,11 +251,11 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="className_TF" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="7">
+                <TextField fx:id="className_TF" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="60.0" promptText="12A" GridPane.columnIndex="8">
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin></TextField>
-                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="58.0" text="Ghi chú" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                <Label maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="58.0" text="Ghi chú" GridPane.columnIndex="7" GridPane.rowIndex="1">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -262,35 +263,35 @@
                   <Insets left="2.0" right="2.0" />
                </GridPane.margin>
                 </Label>
-                <TextField fx:id="notes_TF" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="70.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                <TextField fx:id="notes_TF" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="70.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin></TextField>
-            <RadioButton fx:id="saveProvinces" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <RadioButton fx:id="saveProvinces" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="175.0" right="2.0" />
+                  <Insets left="180.0" right="2.0" />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </RadioButton>
-            <RadioButton fx:id="saveDistrict" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <RadioButton fx:id="saveDistrict" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="175.0" right="2.0" />
+                  <Insets left="180.0" right="2.0" />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </RadioButton>
-            <RadioButton fx:id="saveWard" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <RadioButton fx:id="saveWard" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="5" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="175.0" right="2.0" />
+                  <Insets left="180.0" right="2.0" />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </RadioButton>
-            <RadioButton fx:id="saveClass" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Lưu" GridPane.columnIndex="7">
+            <RadioButton fx:id="saveClass" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Lưu" GridPane.columnIndex="8">
                <GridPane.margin>
                   <Insets left="70.0" right="2.0" />
                </GridPane.margin>
@@ -298,7 +299,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </RadioButton>
-            <TextField fx:id="studentId_TF" editable="false" maxHeight="30.0" maxWidth="121.0" minHeight="30.0" minWidth="121.0" prefHeight="30.0" prefWidth="121.0" text="23xxxxxx" GridPane.columnIndex="1">
+            <TextField fx:id="studentId_TF" editable="false" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" prefHeight="30.0" prefWidth="130.0" text="23xxxxxx" GridPane.columnIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -309,12 +310,12 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <RadioButton fx:id="saveBirthdate" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <RadioButton fx:id="saveBirthdate" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Lưu" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="176.0" />
+                  <Insets left="180.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton fx:id="female_Btn" mnemonicParsing="false" text="Nữ" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <RadioButton fx:id="female_Btn" mnemonicParsing="false" text="Nữ" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin>
@@ -323,7 +324,7 @@
             </children>
         </GridPane>
 
-        <Button layoutX="441.0" layoutY="333.0" mnemonicParsing="false" onAction="#refreshInfo" prefHeight="35.0" prefWidth="90.0" text="Làm Mới">
+        <Button layoutX="538.0" layoutY="324.0" mnemonicParsing="false" onAction="#refreshInfo" prefHeight="35.0" prefWidth="90.0" text="Làm Mới">
             <font>
                 <Font size="15.0" />
             </font>
@@ -332,7 +333,7 @@
          </cursor>
         </Button>
 
-        <Button layoutX="555.0" layoutY="333.0" mnemonicParsing="false" onAction="#UpdateStudentInfo" prefHeight="35.0" prefWidth="90.0" text="Cập Nhật">
+        <Button layoutX="652.0" layoutY="324.0" mnemonicParsing="false" onAction="#UpdateStudentInfo" prefHeight="35.0" prefWidth="90.0" text="Cập Nhật">
             <font>
                 <Font size="15.0" />
             </font>
@@ -341,7 +342,7 @@
          </cursor>
         </Button>
 
-        <Button fx:id="delete_Btn" disable="true" layoutX="669.0" layoutY="333.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="35.0" prefWidth="90.0" text="Xóa">
+        <Button fx:id="delete_Btn" disable="true" layoutX="766.0" layoutY="324.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="35.0" prefWidth="90.0" text="Xóa">
             <font>
                 <Font size="15.0" />
             </font>
@@ -350,39 +351,39 @@
          </cursor>
         </Button>
 
-        <Label layoutX="826.0" layoutY="374.0" text="Tìm Kiếm">
+        <Label layoutX="970.0" layoutY="374.0" text="Tìm Kiếm">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="search_TF" layoutX="895.0" layoutY="369.0" onKeyReleased="#search" prefHeight="30.0" prefWidth="295.0" promptText="VD: tên=Nam, ngay sinh&gt;2005-12 , lop=A" />
+        <TextField fx:id="search_TF" layoutX="1040.0" layoutY="369.0" onKeyReleased="#search" prefHeight="30.0" prefWidth="350.0" promptText="VD: tên=Nam, ngay sinh&gt;2005-12 , lop=A" />
 
-        <TableView fx:id="studentTableView" layoutX="10.0" layoutY="403.0" maxWidth="1180.0" minWidth="1180.0" prefHeight="391.0" prefWidth="1180.0">
+        <TableView fx:id="studentTableView" layoutX="10.0" layoutY="403.0" maxWidth="1380.0" minWidth="1380.0" prefHeight="385.0" prefWidth="1380.0">
             <columns>
-                <TableColumn fx:id="noColumn" prefWidth="40.0" text="STT" />
-                <TableColumn fx:id="studentIdColumn" text="Mã HS" />
+                <TableColumn fx:id="noColumn" minWidth="50.0" prefWidth="50.0" text="STT" />
+                <TableColumn fx:id="studentIdColumn" prefWidth="100.0" text="Mã HS" />
                 <TableColumn fx:id="firstNameColumn" prefWidth="140.0" text="Họ Đệm" />
-                <TableColumn fx:id="lastNameColumn" minWidth="0.0" prefWidth="60.0" text="Tên" />
-                <TableColumn fx:id="dateOfBirthColumn" prefWidth="75.0" text="Ngày Sinh" />
-                <TableColumn fx:id="genderColumn" prefWidth="40.0" text="Nam" />
-                <TableColumn fx:id="IDColumn" prefWidth="100.0" text="Mã Định Danh" />
+                <TableColumn fx:id="lastNameColumn" prefWidth="70.0" text="Tên" />
+                <TableColumn fx:id="dateOfBirthColumn" prefWidth="90.0" text="Ngày Sinh" />
+                <TableColumn fx:id="genderColumn" prefWidth="60.0" text="Giới tính" />
+                <TableColumn fx:id="IDColumn" prefWidth="120.0" text="Mã Định Danh" />
                 <TableColumn fx:id="phoneNumberColumn" prefWidth="90.0" text="SĐT" />
-                <TableColumn fx:id="emailColumn" prefWidth="130.0" text="Email" />
-                <TableColumn fx:id="addressColumn" prefWidth="230.0" text="Địa chỉ" />
-                <TableColumn fx:id="classNameColumn" prefWidth="40.0" text="Lớp" />
-                <TableColumn fx:id="notesColumn" prefWidth="163.0" text="Ghi Chú" />
+                <TableColumn fx:id="emailColumn" prefWidth="150.0" text="Email" />
+                <TableColumn fx:id="addressColumn" prefWidth="260.0" text="Địa chỉ" />
+                <TableColumn fx:id="classNameColumn" prefWidth="50.0" text="Lớp" />
+                <TableColumn fx:id="notesColumn" prefWidth="180.0" text="Ghi Chú" />
             </columns>
         </TableView>
-        <Label layoutX="486.0" layoutY="14.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
+        <Label layoutX="586.0" layoutY="14.0" maxWidth="228.0" minWidth="228.0" prefWidth="228.0" text="Quản Lý Học Sinh" textFill="#da3d3d">
          <font>
             <Font size="29.0" />
          </font>
         </Label>
-        <ComboBox fx:id="table_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="138.0">
+        <ComboBox fx:id="table_CB" layoutX="10.0" layoutY="369.0" prefHeight="30.0" prefWidth="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
-      <TextArea layoutX="895.0" layoutY="284.0" prefHeight="78.0" prefWidth="295.0" text="Tất cả: &quot;Phương&quot;; &quot;12A&quot;;&quot;Hải Dương&quot;&#10;Nhiều điều kiện: &quot;23010360, Cường, 12A&quot;&#10;Theo trường: &quot;tên=Phương, ghichu=bảo lưu&quot;&#10;Lọc (&gt;,&lt;,&gt;=,&lt;=,=): &quot;name&gt;a,class&gt;=11,gc=bảo lưu&quot;" />
+      <TextArea layoutX="1040.0" layoutY="285.0" prefHeight="78.0" prefWidth="350.0" text="Tất cả: &quot;Phương&quot;; &quot;12A&quot;;&quot;Hải Dương&quot;&#10;Nhiều điều kiện: &quot;23010360, Cường, 12A&quot;&#10;Theo trường: &quot;tên=Phương, ghichu=bảo lưu&quot;&#10;Lọc (&gt;,&lt;,&gt;=,&lt;=,=): &quot;name&gt;a,class&gt;=11,gc=bảo lưu&quot;" />
     </children>
 
 </AnchorPane>

@@ -1,6 +1,6 @@
 package com.qlhs.qlhs.Model;
 
-public class GradeReport {
+public class AcademicTranscript {
     private final String studentID;
     private final String lastName;
     private final String firstName;
@@ -25,8 +25,9 @@ public class GradeReport {
     private final String gradeNotes;
     private final String status;
     private final String avgGrade;
+    private final String award;
 
-    public GradeReport(String studentID, String lastName, String firstName, String dateOfBirth, String gender, String className, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEdu, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String status, String avgGrade) {
+    public AcademicTranscript(String studentID, String lastName, String firstName, String dateOfBirth, String gender, String className, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEdu, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String status, String avgGrade,String award) {
         this.studentID = studentID;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -51,6 +52,7 @@ public class GradeReport {
         this.gradeNotes = gradeNotes;
         this.status = status;
         this.avgGrade = avgGrade;
+        this.award = award;
     }
 
     public String getStudentID() {
@@ -148,4 +150,6 @@ public class GradeReport {
     public String getAvgGrade() {
         return avgGrade;
     }
+
+    public String getAward() {return award;}
 }

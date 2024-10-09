@@ -20,8 +20,9 @@ public class Grade {
     private final String conduct;
     private final String gradeNotes;
     private final String avgGrade;
+    private final String award;
 
-    public Grade(String studentID, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEducation, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String avgGrade) {
+    public Grade(String studentID, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEducation, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String avgGrade, String award) {
         this.studentID = studentID;
         this.literature = literature;
         this.math = math;
@@ -40,6 +41,7 @@ public class Grade {
         this.conduct = conduct;
         this.gradeNotes = gradeNotes;
         this.avgGrade = avgGrade;
+        this.award = award;
     }
 
     public String getAvgGrade() {
@@ -113,4 +115,6 @@ public class Grade {
     public String getGradeNotes() {
         return gradeNotes;
     }
+
+    public String getAward() {return award;}
 }

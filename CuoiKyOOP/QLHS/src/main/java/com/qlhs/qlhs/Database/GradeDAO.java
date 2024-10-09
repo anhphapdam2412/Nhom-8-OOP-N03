@@ -36,8 +36,9 @@ public class GradeDAO {
                 String conduct = rs.getString("conduct");
                 String gradeNotes = rs.getString("gradeNotes");
                 String avgGrade = rs.getString("avgGrade");
+                String award = rs.getString("award");
 
-                Grade diem = new Grade(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, academicPerformance, conduct, gradeNotes, avgGrade);
+                Grade diem = new Grade(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, academicPerformance, conduct, gradeNotes, avgGrade, award);
 
                 gradeList.add(diem);
             }

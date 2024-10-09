@@ -1,8 +1,8 @@
 package com.qlhs.qlhs.Controller;
 
-import com.qlhs.qlhs.Database.GradeReportDAO;
+import com.qlhs.qlhs.Database.AcademicTranscriptDAO;
 import com.qlhs.qlhs.Database.UpdateDatabase;
-import com.qlhs.qlhs.Model.GradeReport;
+import com.qlhs.qlhs.Model.AcademicTranscript;
 import com.qlhs.qlhs.Model.Student;
 import com.qlhs.qlhs.View.Dialog;
 import javafx.animation.KeyFrame;
@@ -21,7 +21,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.Objects;
 
-public class GradeReportController {
+public class AcademicTranscriptController {
 
     @FXML
     private TextField literature_TF;
@@ -101,55 +101,55 @@ public class GradeReportController {
 
 
     @FXML
-    private TableView<GradeReport> gradeReportTableView;
+    private TableView<AcademicTranscript> gradeReportTableView;
     @FXML
-    private TableColumn<GradeReport, String> noColumn;
+    private TableColumn<AcademicTranscript, String> noColumn;
     @FXML
-    private TableColumn<GradeReport, String> studentIDColumn;
+    private TableColumn<AcademicTranscript, String> studentIDColumn;
     @FXML
-    private TableColumn<GradeReport, String> firstNameColumn;
+    private TableColumn<AcademicTranscript, String> firstNameColumn;
     @FXML
-    private TableColumn<GradeReport, String> lastNameColumn;
+    private TableColumn<AcademicTranscript, String> lastNameColumn;
     @FXML
-    private TableColumn<GradeReport, String> dateOfBirthColumn;
+    private TableColumn<AcademicTranscript, String> dateOfBirthColumn;
     @FXML
-    private TableColumn<GradeReport, String> genderColumn;
+    private TableColumn<AcademicTranscript, String> genderColumn;
     @FXML
-    private TableColumn<GradeReport, String> classNameColumn;
+    private TableColumn<AcademicTranscript, String> classNameColumn;
     @FXML
-    private TableColumn<GradeReport, String> foreignLangColumn;
+    private TableColumn<AcademicTranscript, String> foreignLangColumn;
     @FXML
-    private TableColumn<GradeReport, String> technologyColumn;
+    private TableColumn<AcademicTranscript, String> technologyColumn;
     @FXML
-    private TableColumn<GradeReport, String> itColumn;
+    private TableColumn<AcademicTranscript, String> itColumn;
     @FXML
-    private TableColumn<GradeReport, String> physicalEduColumn;
+    private TableColumn<AcademicTranscript, String> physicalEduColumn;
     @FXML
-    private TableColumn<GradeReport, String> geographyColumn;
+    private TableColumn<AcademicTranscript, String> geographyColumn;
     @FXML
-    private TableColumn<GradeReport, String> literatureColumn;
+    private TableColumn<AcademicTranscript, String> literatureColumn;
     @FXML
-    private TableColumn<GradeReport, String> mathColumn;
+    private TableColumn<AcademicTranscript, String> mathColumn;
     @FXML
-    private TableColumn<GradeReport, String> physicsColumn;
+    private TableColumn<AcademicTranscript, String> physicsColumn;
     @FXML
-    private TableColumn<GradeReport, String> biologyColumn;
+    private TableColumn<AcademicTranscript, String> biologyColumn;
     @FXML
-    private TableColumn<GradeReport, String> historyColumn;
+    private TableColumn<AcademicTranscript, String> historyColumn;
     @FXML
-    private TableColumn<GradeReport, String> notesColumn;
+    private TableColumn<AcademicTranscript, String> notesColumn;
     @FXML
-    private TableColumn<GradeReport, String> civicEduColumn;
+    private TableColumn<AcademicTranscript, String> civicEduColumn;
     @FXML
-    private TableColumn<GradeReport, String> chemistryColumn;
+    private TableColumn<AcademicTranscript, String> chemistryColumn;
     @FXML
-    private TableColumn<GradeReport, String> academicPerformanceColumn;
+    private TableColumn<AcademicTranscript, String> academicPerformanceColumn;
     @FXML
-    private TableColumn<GradeReport, String> conductColumn;
+    private TableColumn<AcademicTranscript, String> conductColumn;
     @FXML
-    private TableColumn<GradeReport, String> languageCodeColumn;
+    private TableColumn<AcademicTranscript, String> languageCodeColumn;
     @FXML
-    private TableColumn<GradeReport, String> avgGradeColumn;
+    private TableColumn<AcademicTranscript, String> avgGradeColumn;
 
     private Timeline debounce;
     public boolean choPhepCapNhat = false;
@@ -161,7 +161,7 @@ public class GradeReportController {
         table_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         table_CB.setValue("Bảng điểm");
 
-        conduct_CB.getItems().addAll("T", "K", "TB", "Y", "Kém");
+        conduct_CB.getItems().addAll("T", "Kh", "TB", "Y", "K");
         languageCode_CB.getItems().addAll("N1", "N2", "N3");
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
         table_CB.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
@@ -181,21 +181,21 @@ public class GradeReportController {
 
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(search_TF.getText(), "")) {
-                showGradeReport(Search.filterGrade(""));
+                showAcademicTranscript(Search.filterGrade(""));
             } else {
-                showGradeReport(Search.filterGrade(search_TF.getText()));
+                showAcademicTranscript(Search.filterGrade(search_TF.getText()));
             }
         }));
         debounce.setCycleCount(1);
 
-        showGradeReport(Search.filterGrade(""));
+        showAcademicTranscript(Search.filterGrade(""));
         selectedStudent();
         search_TF.setText(null);
         conduct_CB.setOnAction(_ -> checkconduct());
         languageCode_CB.setOnAction(_ -> checkLanguageCode());
     }
 
-    private void showGradeReport(ObservableList<GradeReport> query){
+    private void showAcademicTranscript(ObservableList<AcademicTranscript> query){
         studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -227,7 +227,7 @@ public class GradeReportController {
     private void selectedStudent() {
         gradeReportTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // Nhấp đúp chuột
-                GradeReport selectedDiem = gradeReportTableView.getSelectionModel().getSelectedItem();
+                AcademicTranscript selectedDiem = gradeReportTableView.getSelectionModel().getSelectedItem();
                 if (selectedDiem != null) {
                     showGradeDetail(selectedDiem);
                 }
@@ -240,33 +240,33 @@ public class GradeReportController {
     private void checkLanguageCode() {
         GradeCheckList();
     }
-    private void showGradeDetail(GradeReport GradeReport) {
-        literature_TF.setText(String.valueOf(GradeReport.getLiterature()));
-        math_TF.setText(String.valueOf(GradeReport.getMath()));
-        physics_TF.setText(String.valueOf(String.valueOf(GradeReport.getPhysics())));
-        chemistry_TF.setText(String.valueOf(GradeReport.getChemistry()));
-        biology_TF.setText(String.valueOf(GradeReport.getBiology()));
-        history_TF.setText(String.valueOf(GradeReport.getHistory()));
-        geography_TF.setText(String.valueOf(GradeReport.getGeography()));
-        civicEdu_TF.setText(String.valueOf(GradeReport.getCivicEdu()));
-        foreignLang_TF.setText(String.valueOf(GradeReport.getForeignLang()));
-        technology_TF.setText(String.valueOf(GradeReport.getTechnology()));
-        it_TF.setText(String.valueOf(GradeReport.getIt()));
-        physicalEdu_Btn.setSelected("D".equals(GradeReport.getPhysicalEdu()));
-        languageCode_CB.setValue(GradeReport.getLanguageCode());
-        conduct_CB.setValue(GradeReport.getConduct());
-        studentID_Lb.setText(String.valueOf(GradeReport.getStudentID()));
-        className_Lb.setText(String.valueOf(GradeReport.getClassName()));
-        avgGrade_TF.setText(String.valueOf(GradeReport.getAvgGrade()));
-        dateOfBirth_Lb.setText(String.valueOf(GradeReport.getDateOfBirth()));
-        fullName_Lb.setText(GradeReport.getFirstName()+" "+GradeReport.getLastName());
-        gender_Lb.setText("1".equals(GradeReport.getGender())?"Nam":"Nữ");
-        gradeNotes_TF.setText(String.valueOf(GradeReport.getGradeNotes()));
+    private void showGradeDetail(AcademicTranscript AcademicTranscript) {
+        literature_TF.setText(String.valueOf(AcademicTranscript.getLiterature()));
+        math_TF.setText(String.valueOf(AcademicTranscript.getMath()));
+        physics_TF.setText(String.valueOf(String.valueOf(AcademicTranscript.getPhysics())));
+        chemistry_TF.setText(String.valueOf(AcademicTranscript.getChemistry()));
+        biology_TF.setText(String.valueOf(AcademicTranscript.getBiology()));
+        history_TF.setText(String.valueOf(AcademicTranscript.getHistory()));
+        geography_TF.setText(String.valueOf(AcademicTranscript.getGeography()));
+        civicEdu_TF.setText(String.valueOf(AcademicTranscript.getCivicEdu()));
+        foreignLang_TF.setText(String.valueOf(AcademicTranscript.getForeignLang()));
+        technology_TF.setText(String.valueOf(AcademicTranscript.getTechnology()));
+        it_TF.setText(String.valueOf(AcademicTranscript.getIt()));
+        physicalEdu_Btn.setSelected("D".equals(AcademicTranscript.getPhysicalEdu()));
+        languageCode_CB.setValue(AcademicTranscript.getLanguageCode());
+        conduct_CB.setValue(AcademicTranscript.getConduct());
+        studentID_Lb.setText(String.valueOf(AcademicTranscript.getStudentID()));
+        className_Lb.setText(String.valueOf(AcademicTranscript.getClassName()));
+        avgGrade_TF.setText(String.valueOf(AcademicTranscript.getAvgGrade()));
+        dateOfBirth_Lb.setText(String.valueOf(AcademicTranscript.getDateOfBirth()));
+        fullName_Lb.setText(AcademicTranscript.getFirstName()+" "+AcademicTranscript.getLastName());
+        gender_Lb.setText("1".equals(AcademicTranscript.getGender())?"Nam":"Nữ");
+        gradeNotes_TF.setText(String.valueOf(AcademicTranscript.getGradeNotes()));
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
             case "Thông tin học sinh" -> "/com/qlhs/qlhs/StudentView.fxml";
-            case "Bảng điểm" -> "/com/qlhs/qlhs/GradeReportView.fxml";
+            case "Bảng điểm" -> "/com/qlhs/qlhs/AcademicTranscriptView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
 
@@ -319,7 +319,7 @@ public class GradeReportController {
             UpdateDatabase.updateGrades(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, conduct, gradeNotes, query);
         }
 
-        showGradeReport(Search.filterGrade(""));
+        showAcademicTranscript(Search.filterGrade(""));
     }
     @FXML
     private void search() {
