@@ -14,14 +14,14 @@ public class Grade {
     private final String technology;
     private final String it;
     private final String physicalEducation;
-    private final String foreignLanguage;
+    private final String foreignLang;
     private final String languageCode;
     private final String academicPerformance;
     private final String conduct;
     private final String gradeNotes;
     private final String avgGrade;
 
-    public Grade(String studentID, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEducation, String foreignLanguage, String languageCode, String academicPerformance, String conduct, String gradeNotes, String avgGrade) {
+    public Grade(String studentID, String literature, String math, String physics, String chemistry, String biology, String history, String geography, String civicEdu, String technology, String it, String physicalEducation, String foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, String avgGrade) {
         this.studentID = studentID;
         this.literature = literature;
         this.math = math;
@@ -34,7 +34,7 @@ public class Grade {
         this.technology = technology;
         this.it = it;
         this.physicalEducation = physicalEducation;
-        this.foreignLanguage = foreignLanguage;
+        this.foreignLang = foreignLang;
         this.languageCode = languageCode;
         this.academicPerformance = academicPerformance;
         this.conduct = conduct;
@@ -42,7 +42,7 @@ public class Grade {
         this.avgGrade = avgGrade;
     }
 
-    public String getAverageGrade() {
+    public String getAvgGrade() {
         return avgGrade;
     }
 
@@ -95,7 +95,7 @@ public class Grade {
     }
 
     public String getForeignLanguage() {
-        return foreignLanguage;
+        return foreignLang;
     }
 
     public String getLanguageCode() {

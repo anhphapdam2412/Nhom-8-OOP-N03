@@ -53,10 +53,6 @@ public class GradeReport {
         this.avgGrade = avgGrade;
     }
 
-    public String getAverageGrade() {
-        return avgGrade;
-    }
-
     public String getStudentID() {
         return studentID;
     }
@@ -85,7 +81,7 @@ public class GradeReport {
         return literature;
     }
 
-    public String getMaths() {
+    public String getMath() {
         return math;
     }
 
@@ -117,7 +113,7 @@ public class GradeReport {
         return technology;
     }
 
-    public String getComputerScience() {
+    public String getIt() {
         return it;
     }
 
@@ -147,5 +143,9 @@ public class GradeReport {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getAvgGrade() {
+        return avgGrade;
     }
 }

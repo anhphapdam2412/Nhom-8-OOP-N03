@@ -19,7 +19,7 @@ public class GradeReportDAO {
             for (Grade grade : grades) {
                 if (student.getStudentID().equals(grade.getStudentID())) {
                     // Create a new GradeReport object combining student and grade info
-                    GradeReport studentGrade = new GradeReport(student.getStudentID(), student.getLastName(), student.getFirstName(), student.getDateOfBirth(), student.getGender(), student.getClassName(), grade.getLiterature(), grade.getMaths(), grade.getPhysics(), grade.getChemistry(), grade.getBiology(), grade.getHistory(), grade.getGeography(), grade.getCivicEducation(), grade.getTechnology(), grade.getComputerScience(), grade.getPhysicalEducation(), grade.getForeignLanguage(), grade.getLanguageCode(), grade.getAcademicPerformance(), grade.getConduct(), grade.getGradeNotes(), student.getStatus(), grade.getGradeNotes());
+                    GradeReport studentGrade = new GradeReport(student.getStudentID(), student.getLastName(), student.getFirstName(), student.getDateOfBirth(), student.getGender(), student.getClassName(), grade.getLiterature(), grade.getMaths(), grade.getPhysics(), grade.getChemistry(), grade.getBiology(), grade.getHistory(), grade.getGeography(), grade.getCivicEducation(), grade.getTechnology(), grade.getComputerScience(), grade.getPhysicalEducation(), grade.getForeignLanguage(), grade.getLanguageCode(), grade.getAcademicPerformance(), grade.getConduct(), grade.getGradeNotes(), student.getStatus(), grade.getAvgGrade());
                     combinedList.add(studentGrade);
                     break;
                 }

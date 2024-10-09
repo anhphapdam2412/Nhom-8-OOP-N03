@@ -84,20 +84,20 @@ public class StudentController {
 
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(search_TF.getText(), "")) {
-                displayStudentsOnScreen(Search.filter(""));
+                showStudent(Search.filter(""));
             } else {
-                displayStudentsOnScreen(Search.filter(search_TF.getText()));
+                showStudent(Search.filter(search_TF.getText()));
             }
         }));
         debounce.setCycleCount(1);
 
         layTTTinhTHanhTuCSV();
-        displayStudentsOnScreen(Search.filter(""));
+        showStudent(Search.filter(""));
         selectStudent();
 
     }
 
-    private void displayStudentsOnScreen(ObservableList<Student> query) {
+    private void showStudent(ObservableList<Student> query) {
         // Thiết lập các cột
         noColumn.setCellValueFactory(cellData -> {
             // Lấy chỉ số của học sinh trong danh sách
@@ -277,16 +277,16 @@ public class StudentController {
         String query2 = !isUpdate ? "INSERT INTO grade (studentId) VALUES (?);" : "";
 
         UpdateDatabase.updateStudentInfo(studentId, firstName, lastName, dateOfBirth, gender, ID, phoneNumber, email, className, address, notes, status, query, query2);
-        displayStudentsOnScreen(Search.filter(""));
+        showStudent(Search.filter(""));
         search_TF.setText(null);
         addNew_Btn.setDisable(false);
 
-        ActivityLog.logInformation(studentId + firstName + lastName+ dateOfBirth + gender + ID + phoneNumber + email + className + address + notes + status);
+        ActivityLog.logInformation("Update: "+studentId+" " + firstName + lastName+ dateOfBirth + gender + ID + phoneNumber + email + className + address + notes + status);
     }
 
     @FXML
     private void refreshInfo() {
-        displayStudentsOnScreen(Search.filter(""));
+        showStudent(Search.filter(""));
         firstName_TF.clear();
         lastName_TF.clear();
         phoneNumber_TF.clear();
@@ -338,7 +338,7 @@ public class StudentController {
             String query = "UPDATE student SET status = ?  WHERE studentId = ?;";
 
             UpdateDatabase.deleteStudentInfo(studentId, status, query);
-            displayStudentsOnScreen(Search.filter(""));
+            showStudent(Search.filter(""));
             refreshInfo();
             delete_Btn.setDisable(true);
             studentId_TF.setText("23xxxxxx");
@@ -387,7 +387,7 @@ public class StudentController {
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
             case "Thông tin học sinh" -> "/com/qlhs/qlhs/StudentView.fxml";
-            case "Bảng điểm" -> "/com/qlhs/qlhs/bangDiemView.fxml";
+            case "Bảng điểm" -> "/com/qlhs/qlhs/GradeView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
 

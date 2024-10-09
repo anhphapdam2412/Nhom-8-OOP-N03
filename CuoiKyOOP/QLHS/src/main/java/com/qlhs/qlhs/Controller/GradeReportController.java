@@ -3,7 +3,9 @@ package com.qlhs.qlhs.Controller;
 import com.qlhs.qlhs.Database.GradeReportDAO;
 import com.qlhs.qlhs.Database.UpdateDatabase;
 import com.qlhs.qlhs.Model.GradeReport;
+import com.qlhs.qlhs.Model.Student;
 import com.qlhs.qlhs.View.Dialog;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -37,13 +40,13 @@ public class GradeReportController {
     @FXML
     private TextField civicEdu_TF;
     @FXML
-    private TextField foreignLanguage_TF;
+    private TextField foreignLang_TF;
     @FXML
     private TextField technology_TF;
     @FXML
     private TextField it_TF;
     @FXML
-    private RadioButton physicalEducation_Btn;
+    private RadioButton physicalEdu_Btn;
     @FXML
     private ComboBox<String> conduct_CB;
     @FXML
@@ -90,7 +93,7 @@ public class GradeReportController {
     @FXML
     private Label conduct_Lb;
     @FXML
-    private Label foreignLanguage_Lb;
+    private Label foreignLang_Lb;
 
 
     @FXML
@@ -114,13 +117,13 @@ public class GradeReportController {
     @FXML
     private TableColumn<GradeReport, String> classNameColumn;
     @FXML
-    private TableColumn<GradeReport, String> foreignLanguageColumn;
+    private TableColumn<GradeReport, String> foreignLangColumn;
     @FXML
     private TableColumn<GradeReport, String> technologyColumn;
     @FXML
     private TableColumn<GradeReport, String> itColumn;
     @FXML
-    private TableColumn<GradeReport, String> physicalEducationColumn;
+    private TableColumn<GradeReport, String> physicalEduColumn;
     @FXML
     private TableColumn<GradeReport, String> geographyColumn;
     @FXML
@@ -176,25 +179,26 @@ public class GradeReportController {
             return new SimpleStringProperty(String.valueOf(index));
         });
 
-//        debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
-//            if (Objects.equals(search_TF.getText(), "")) {
-//                showGradeReport(TimKiem.mathBo());
-//            } else {
-//                showGradeReport(TimKiem.theoMaHS(search_TF.getText()));
-//            }
-//        }));
-//        debounce.setCycleCount(1);
+        debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
+            if (Objects.equals(search_TF.getText(), "")) {
+                showGradeReport(Search.filterGrade(""));
+            } else {
+                showGradeReport(Search.filterGrade(search_TF.getText()));
+            }
+        }));
+        debounce.setCycleCount(1);
 
-        showGradeReport();
+        showGradeReport(Search.filterGrade(""));
         selectedStudent();
+        search_TF.setText(null);
         conduct_CB.setOnAction(_ -> checkconduct());
         languageCode_CB.setOnAction(_ -> checkLanguageCode());
     }
 
-    private void showGradeReport(){
+    private void showGradeReport(ObservableList<GradeReport> query){
         studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
@@ -206,23 +210,18 @@ public class GradeReportController {
         historyColumn.setCellValueFactory(new PropertyValueFactory<>("history"));
         geographyColumn.setCellValueFactory(new PropertyValueFactory<>("geography"));
         civicEduColumn.setCellValueFactory(new PropertyValueFactory<>("civicEdu"));
-        foreignLanguageColumn.setCellValueFactory(new PropertyValueFactory<>("foreignLanguage"));
+        foreignLangColumn.setCellValueFactory(new PropertyValueFactory<>("foreignLang"));
         technologyColumn.setCellValueFactory(new PropertyValueFactory<>("technology"));
         itColumn.setCellValueFactory(new PropertyValueFactory<>("it"));
-        physicalEducationColumn.setCellValueFactory(new PropertyValueFactory<>("physicalEducation"));
+        physicalEduColumn.setCellValueFactory(new PropertyValueFactory<>("physicalEdu"));
         avgGradeColumn.setCellValueFactory(new PropertyValueFactory<>("avgGrade"));
         languageCodeColumn.setCellValueFactory(new PropertyValueFactory<>("languageCode"));
         academicPerformanceColumn.setCellValueFactory(new PropertyValueFactory<>("academicPerformance"));
         conductColumn.setCellValueFactory(new PropertyValueFactory<>("conduct"));
         notesColumn.setCellValueFactory(new PropertyValueFactory<>("gradeNotes"));
 
-        ObservableList<GradeReport> dsDiem = GradeReportDAO.getGradeReport();
-
-        // Lọc danh sách học sinh có trạng thái là 1
-        ObservableList<GradeReport> dsDiemDaLoc = dsDiem.filtered(GradeReport -> Objects.equals(GradeReport.getStatus(), "1"));
-
         // Đặt danh sách đã lọc vào bảng
-        gradeReportTableView.setItems(dsDiemDaLoc);
+        gradeReportTableView.setItems(query);
     }
 
     private void selectedStudent() {
@@ -243,29 +242,30 @@ public class GradeReportController {
     }
     private void showGradeDetail(GradeReport GradeReport) {
         literature_TF.setText(String.valueOf(GradeReport.getLiterature()));
-        math_TF.setText(String.valueOf(GradeReport.getMaths()));
+        math_TF.setText(String.valueOf(GradeReport.getMath()));
         physics_TF.setText(String.valueOf(String.valueOf(GradeReport.getPhysics())));
         chemistry_TF.setText(String.valueOf(GradeReport.getChemistry()));
         biology_TF.setText(String.valueOf(GradeReport.getBiology()));
         history_TF.setText(String.valueOf(GradeReport.getHistory()));
         geography_TF.setText(String.valueOf(GradeReport.getGeography()));
         civicEdu_TF.setText(String.valueOf(GradeReport.getCivicEdu()));
-        foreignLanguage_TF.setText(String.valueOf(GradeReport.getForeignLang()));
+        foreignLang_TF.setText(String.valueOf(GradeReport.getForeignLang()));
         technology_TF.setText(String.valueOf(GradeReport.getTechnology()));
-        it_TF.setText(String.valueOf(GradeReport.getComputerScience()));
-        physicalEducation_Btn.setSelected("D".equals(GradeReport.getPhysicalEdu()));
+        it_TF.setText(String.valueOf(GradeReport.getIt()));
+        physicalEdu_Btn.setSelected("D".equals(GradeReport.getPhysicalEdu()));
         languageCode_CB.setValue(GradeReport.getLanguageCode());
         conduct_CB.setValue(GradeReport.getConduct());
         studentID_Lb.setText(String.valueOf(GradeReport.getStudentID()));
         className_Lb.setText(String.valueOf(GradeReport.getClassName()));
-        avgGrade_TF.setText(String.valueOf(GradeReport.getAverageGrade()));
+        avgGrade_TF.setText(String.valueOf(GradeReport.getAvgGrade()));
         dateOfBirth_Lb.setText(String.valueOf(GradeReport.getDateOfBirth()));
-        fullName_Lb.setText(String.valueOf(GradeReport.getFirstName()+" "+GradeReport.getLastName()));
-        gender_Lb.setText(String.valueOf("1".equals(GradeReport.getGender())?"Nam":"Nữ"));
+        fullName_Lb.setText(GradeReport.getFirstName()+" "+GradeReport.getLastName());
+        gender_Lb.setText("1".equals(GradeReport.getGender())?"Nam":"Nữ");
+        gradeNotes_TF.setText(String.valueOf(GradeReport.getGradeNotes()));
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
-            case "Thông tin học sinh" -> "/com/qlhs/qlhs/HocSinhView.fxml";
+            case "Thông tin học sinh" -> "/com/qlhs/qlhs/StudentView.fxml";
             case "Bảng điểm" -> "/com/qlhs/qlhs/GradeReportView.fxml";
             default -> throw new IllegalArgumentException("Unexpected value: " + fxmlFile);
         };
@@ -299,30 +299,30 @@ public class GradeReportController {
             String it = it_TF.getText();
             String technology = technology_TF.getText();
             String gradeNotes = gradeNotes_TF.getText();
-            String foreignLanguage = foreignLanguage_TF.getText();
+            String foreignLang = foreignLang_TF.getText();
 
             String chemistry = chemistry_TF.getText();
             String physics = physics_TF.getText();
             String civicEdu = civicEdu_TF.getText();
 
             String geography = geography_TF.getText();
-            String physicalEducation = physicalEducation_Btn.isSelected()?"D":"T";
+            String physicalEdu = physicalEdu_Btn.isSelected()?"D":"T";
             String languageCode = languageCode_CB.getValue();
             String conduct = conduct_CB.getValue();
 
-            avgGrade_TF.setText(String.format("%.2f",(Float.parseFloat(literature )+ Float.parseFloat(math )+ Float.parseFloat(physics )+Float.parseFloat(chemistry)+Float.parseFloat(biology)+Float.parseFloat(history)+Float.parseFloat(geography)+Float.parseFloat(civicEdu)+Float.parseFloat(technology)+Float.parseFloat(it)+Float.parseFloat(foreignLanguage)) / 11));
+            avgGrade_TF.setText(String.format("%.2f",(Float.parseFloat(literature )+ Float.parseFloat(math )+ Float.parseFloat(physics )+Float.parseFloat(chemistry)+Float.parseFloat(biology)+Float.parseFloat(history)+Float.parseFloat(geography)+Float.parseFloat(civicEdu)+Float.parseFloat(technology)+Float.parseFloat(it)+Float.parseFloat(foreignLang)) / 11));
 
             query = "UPDATE grade SET literature = ?, math = ?, physics = ?, chemistry = ?, biology = ?, " +
-                    "history = ?, geography = ?, civicEdu = ?, technology = ?, it = ?, physicalEducation = ?, " +
-                    "foreignLanguage = ?, languageCode = ?, conduct = ?, gradeNotes = ? WHERE studentID = ?";
+                    "history = ?, geography = ?, civicEdu = ?, technology = ?, it = ?, physicalEdu = ?, " +
+                    "foreignLang = ?, languageCode = ?, conduct = ?, gradeNotes = ? WHERE studentID = ?";
 
-            UpdateDatabase.updateGrades(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEducation, foreignLanguage, languageCode, conduct, gradeNotes, query);
+            UpdateDatabase.updateGrades(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, conduct, gradeNotes, query);
         }
 
-        showGradeReport();
+        showGradeReport(Search.filterGrade(""));
     }
     @FXML
-    private void search(){
+    private void search() {
         // Hủy timeline hiện tại nếu nó đang chạy
         debounce.stop();
         // Khởi động lại timeline, nó sẽ đợi 300ms trước khi thực hiện hành động tìm kiếm
@@ -338,11 +338,12 @@ public class GradeReportController {
         history_TF.clear();
         geography_TF.clear();
         civicEdu_TF.clear();
-        foreignLanguage_TF.clear();
+        foreignLang_TF.clear();
         technology_TF.clear();
         it_TF.clear();
-        physicalEducation_Btn.setSelected(false);
+        physicalEdu_Btn.setSelected(false);
         conduct_CB.setValue(null);
+        search_TF.clear();
         languageCode_CB.setValue(null);
     }
 
@@ -361,8 +362,8 @@ public class GradeReportController {
         DataValidation.validateField(civicEdu_TF.getText(), civicEdu_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(technology_TF.getText(), technology_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(it_TF.getText(), it_Lb, DataValidation::isValidGrade);
-        DataValidation.validateField(languageCode_CB.getValue(),foreignLanguage_Lb, DataValidation::isValidComboBox);
-        DataValidation.validateField(foreignLanguage_TF.getText(), foreignLanguage_Lb, DataValidation::isValidGrade);
+        DataValidation.validateField(languageCode_CB.getValue(),foreignLang_Lb, DataValidation::isValidComboBox);
+        DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(conduct_CB.getValue(), conduct_Lb, DataValidation::isValidComboBox);
 
         choPhepCapNhat = DataValidation.validateField(literature_TF.getText(), literature_Lb, DataValidation::isValidGrade) &&
@@ -375,8 +376,8 @@ public class GradeReportController {
                 DataValidation.validateField(civicEdu_TF.getText(), civicEdu_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(technology_TF.getText(), technology_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(it_TF.getText(), it_Lb, DataValidation::isValidGrade) &&
-                DataValidation.validateField(languageCode_CB.getValue(), foreignLanguage_Lb, DataValidation::isValidComboBox) &&
-                DataValidation.validateField(foreignLanguage_TF.getText(), foreignLanguage_Lb, DataValidation::isValidGrade) &&
+                DataValidation.validateField(languageCode_CB.getValue(), foreignLang_Lb, DataValidation::isValidComboBox) &&
+                DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(conduct_CB.getValue(), conduct_Lb, DataValidation::isValidComboBox);
     }
 

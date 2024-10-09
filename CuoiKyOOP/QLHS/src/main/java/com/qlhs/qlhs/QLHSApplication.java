@@ -11,7 +11,7 @@ import java.util.Objects;
 public class QLHSApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HocSinhView.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("StudentView.fxml")));
         primaryStage.setTitle("QLHS AP_AT");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

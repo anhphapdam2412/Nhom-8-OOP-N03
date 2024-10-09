@@ -64,3 +64,9 @@
 [2024-10-07 10:30:52] 24000000bn2024-10-02false12312312332101231231233Bà Rịa - Vũng Tàu, Vũng Tàu, null, nulltrue
 [2024-10-07 10:32:27] 24000000gg2024-10-09true12312312312301231231231Bình Dương, Phú Giáo, null, nulltrue
 [2024-10-08 10:10:40] 24000000bv2008-10-02true123123123123012312312332Bình Dương, Dĩ An, null, nulltrue
+[2024-10-08 10:52:22] Update: 23010025 VũChâu2005-01-30false0302290051370123123147null12BHải Dương, Hải Dương, Thạch Khôi, khu 26Đạt thành tích học tập tốttrue
+[2024-10-08 10:52:25] Update: 23010021 NguyễnBìnhChâu2005-03-14true0302250051330123123143nguyenbinh2@mail.com12AHải Dương, Hải Dương, Thạch Khôi, khu 22Chuẩn bị tốt nghiệptrue
+[2024-10-08 10:52:27] Update: 23010029 NgôChâu2008-03-05false0302330051410123123151ngongoc@mail.com10BHải Dương, Hải Dương, Thạch Khôi, khu 30Chờ đánh giá học lựctrue
+[2024-10-08 10:52:29] Update: 23010032 TôChâu2006-02-25true0302360051440123123154toquan@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 33Tham gia các kỳ thi học sinh giỏitrue
+[2024-10-08 10:52:32] Update: 23010030 ĐinhChâu2006-10-17false0302340051420123123152null11AHải Dương, Hải Dương, Thạch Khôi, khu 31Đạt danh hiệu học sinh giỏitrue
+[2024-10-09 00:06:30] Update: 23010055 TrầnPhương2007-03-19false0302590051670123123177tranphuong@mail.com10AHải Dương, Hải Dương, Cẩm Thượng, khu 56Học sinh mới chuyển đếntrue
