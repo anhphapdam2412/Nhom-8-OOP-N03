@@ -45,7 +45,7 @@
             <children>
                 <Button fx:id="addNew_Btn" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#addNewStudent" prefHeight="30.0" prefWidth="90.0" text="Thêm mới" GridPane.columnIndex="2">
                     <GridPane.margin>
-                        <Insets left="140.0" right="2.0" />
+                        <Insets left="140.0" />
                     </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -299,12 +299,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </RadioButton>
-            <TextField fx:id="studentId_TF" editable="false" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" prefHeight="30.0" prefWidth="130.0" text="23xxxxxx" GridPane.columnIndex="2">
+            <TextField fx:id="studentId_TF" editable="false" maxHeight="30.0" maxWidth="132.0" minHeight="30.0" minWidth="132.0" prefHeight="30.0" prefWidth="132.0" text="23xxxxxx" GridPane.columnIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="2.0" right="2.0" />
+                  <Insets />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />

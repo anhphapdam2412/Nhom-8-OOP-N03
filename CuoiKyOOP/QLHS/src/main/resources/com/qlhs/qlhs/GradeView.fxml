@@ -158,7 +158,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" GridPane.columnIndex="14" GridPane.rowIndex="2" />
+            <TextField fx:id="award_TF" editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" GridPane.columnIndex="14" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <Button layoutX="541.0" layoutY="362.0" mnemonicParsing="false" onAction="#refreshGrades" prefHeight="35.0" prefWidth="90.0" text="Làm Mới">

@@ -56,6 +56,8 @@ public class AcademicTranscriptController {
     @FXML
     private TextField gradeNotes_TF;
     @FXML
+    private TextField award_TF ;
+    @FXML
     private TextField search_TF;
 
 
@@ -150,6 +152,8 @@ public class AcademicTranscriptController {
     private TableColumn<AcademicTranscript, String> languageCodeColumn;
     @FXML
     private TableColumn<AcademicTranscript, String> avgGradeColumn;
+    @FXML
+    private TableColumn<AcademicTranscript, String> awardColumn;
 
     private Timeline debounce;
     public boolean choPhepCapNhat = false;
@@ -219,6 +223,7 @@ public class AcademicTranscriptController {
         academicPerformanceColumn.setCellValueFactory(new PropertyValueFactory<>("academicPerformance"));
         conductColumn.setCellValueFactory(new PropertyValueFactory<>("conduct"));
         notesColumn.setCellValueFactory(new PropertyValueFactory<>("gradeNotes"));
+        awardColumn.setCellValueFactory(new PropertyValueFactory<>("award"));
 
         // Đặt danh sách đã lọc vào bảng
         gradeReportTableView.setItems(query);
@@ -262,6 +267,7 @@ public class AcademicTranscriptController {
         fullName_Lb.setText(AcademicTranscript.getFirstName()+" "+AcademicTranscript.getLastName());
         gender_Lb.setText("1".equals(AcademicTranscript.getGender())?"Nam":"Nữ");
         gradeNotes_TF.setText(String.valueOf(AcademicTranscript.getGradeNotes()));
+        award_TF.setText(String.valueOf(AcademicTranscript.getAward()));
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
