@@ -12,5 +12,6 @@
     <orderEntry type="library" exported="" name="poi-ooxml-3.10.1" level="application" />
     <orderEntry type="library" name="JavaFX-22" level="application" />
     <orderEntry type="library" name="javafx-swt" level="application" />
+    <orderEntry type="library" name="commons-dbcp2-2.12.0-sources" level="application" />
   </component>
 </module>

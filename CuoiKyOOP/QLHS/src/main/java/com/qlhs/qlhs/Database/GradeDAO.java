@@ -14,7 +14,7 @@ public class GradeDAO {
     public static ObservableList<Grade> getGrades() {
         ObservableList<Grade> gradeList = FXCollections.observableArrayList();
 
-        String query = "SELECT * FROM Grade";
+        String query = "SELECT * FROM grade";
 
         try (Connection conn = DatabaseConnection.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
