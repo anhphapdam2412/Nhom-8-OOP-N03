@@ -156,7 +156,7 @@ public class AcademicTranscriptController {
     private TableColumn<AcademicTranscript, String> awardColumn;
 
     private Timeline debounce;
-    public boolean choPhepCapNhat = false;
+    public boolean allowUpdate = false;
 
 
     @FXML
@@ -204,7 +204,11 @@ public class AcademicTranscriptController {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        genderColumn.setCellValueFactory(cellData -> {
+            String genderValue = cellData.getValue().getGender(); // Giả sử getGender() trả về 0 hoặc 1
+            String genderText = Objects.equals(genderValue, "0") ? "Nữ" : "Nam"; // Chuyển đổi giá trị
+            return new javafx.beans.property.SimpleStringProperty(genderText);
+        });
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
         literatureColumn.setCellValueFactory(new PropertyValueFactory<>("literature"));
         mathColumn.setCellValueFactory(new PropertyValueFactory<>("math"));
@@ -246,28 +250,29 @@ public class AcademicTranscriptController {
         GradeCheckList();
     }
     private void showGradeDetail(AcademicTranscript AcademicTranscript) {
-        literature_TF.setText(String.valueOf(AcademicTranscript.getLiterature()));
-        math_TF.setText(String.valueOf(AcademicTranscript.getMath()));
-        physics_TF.setText(String.valueOf(String.valueOf(AcademicTranscript.getPhysics())));
-        chemistry_TF.setText(String.valueOf(AcademicTranscript.getChemistry()));
-        biology_TF.setText(String.valueOf(AcademicTranscript.getBiology()));
-        history_TF.setText(String.valueOf(AcademicTranscript.getHistory()));
-        geography_TF.setText(String.valueOf(AcademicTranscript.getGeography()));
-        civicEdu_TF.setText(String.valueOf(AcademicTranscript.getCivicEdu()));
-        foreignLang_TF.setText(String.valueOf(AcademicTranscript.getForeignLang()));
-        technology_TF.setText(String.valueOf(AcademicTranscript.getTechnology()));
-        it_TF.setText(String.valueOf(AcademicTranscript.getIt()));
+        literature_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getLiterature()), "null") ? String.valueOf(AcademicTranscript.getLiterature()) : "");
+        math_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getMath()), "null") ? String.valueOf(AcademicTranscript.getMath()) : "");
+        physics_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getPhysics()), "null") ? String.valueOf(AcademicTranscript.getPhysics()) : "");
+        chemistry_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getChemistry()), "null") ? String.valueOf(AcademicTranscript.getChemistry()) : "");
+        biology_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getBiology()), "null") ? String.valueOf(AcademicTranscript.getBiology()) : "");
+        history_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getHistory()), "null") ? String.valueOf(AcademicTranscript.getHistory()) : "");
+        geography_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getGeography()), "null") ? String.valueOf(AcademicTranscript.getGeography()) : "");
+        civicEdu_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getCivicEdu()), "null") ? String.valueOf(AcademicTranscript.getCivicEdu()) : "");
+        foreignLang_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getForeignLang()), "null") ? String.valueOf(AcademicTranscript.getForeignLang()) : "");
+        technology_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getTechnology()), "null") ? String.valueOf(AcademicTranscript.getTechnology()) : "");
+        it_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getIt()), "null") ? String.valueOf(AcademicTranscript.getIt()) : "");
         physicalEdu_Btn.setSelected("D".equals(AcademicTranscript.getPhysicalEdu()));
-        languageCode_CB.setValue(AcademicTranscript.getLanguageCode());
-        conduct_CB.setValue(AcademicTranscript.getConduct());
-        studentID_Lb.setText(String.valueOf(AcademicTranscript.getStudentID()));
-        className_Lb.setText(String.valueOf(AcademicTranscript.getClassName()));
-        avgGrade_TF.setText(String.valueOf(AcademicTranscript.getAvgGrade()));
-        dateOfBirth_Lb.setText(String.valueOf(AcademicTranscript.getDateOfBirth()));
-        fullName_Lb.setText(AcademicTranscript.getFirstName()+" "+AcademicTranscript.getLastName());
-        gender_Lb.setText("1".equals(AcademicTranscript.getGender())?"Nam":"Nữ");
-        gradeNotes_TF.setText(String.valueOf(AcademicTranscript.getGradeNotes()));
-        award_TF.setText(String.valueOf(AcademicTranscript.getAward()));
+        languageCode_CB.setValue(!Objects.equals(AcademicTranscript.getLanguageCode(), "null") ? AcademicTranscript.getLanguageCode() : "");
+        conduct_CB.setValue(!Objects.equals(AcademicTranscript.getConduct(), "null") ? AcademicTranscript.getConduct() : "");
+        studentID_Lb.setText(!Objects.equals(String.valueOf(AcademicTranscript.getStudentID()), "null") ? String.valueOf(AcademicTranscript.getStudentID()) : "");
+        className_Lb.setText(!Objects.equals(String.valueOf(AcademicTranscript.getClassName()), "null") ? String.valueOf(AcademicTranscript.getClassName()) : "");
+        avgGrade_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getAvgGrade()), "null") ? String.valueOf(AcademicTranscript.getAvgGrade()) : "");
+        dateOfBirth_Lb.setText(!Objects.equals(String.valueOf(AcademicTranscript.getDateOfBirth()), "null") ? String.valueOf(AcademicTranscript.getDateOfBirth()) : "");
+        fullName_Lb.setText((!Objects.equals(AcademicTranscript.getFirstName(), "null") ? AcademicTranscript.getFirstName() : "") + " " +
+                (!Objects.equals(AcademicTranscript.getLastName(), "null") ? AcademicTranscript.getLastName() : ""));
+        gender_Lb.setText("1".equals(AcademicTranscript.getGender()) ? "Nam" : "Nữ");
+        gradeNotes_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getGradeNotes()), "null") ? String.valueOf(AcademicTranscript.getGradeNotes()) : "");
+        award_TF.setText(!Objects.equals(String.valueOf(AcademicTranscript.getAward()), "null") ? String.valueOf(AcademicTranscript.getAward()) : "");
     }
     private void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
@@ -292,11 +297,10 @@ public class AcademicTranscriptController {
         if(studentID_Lb.getText().equals("")){
             Dialog.showError("Chưa có mã học sinh");
         }
-        else if(!choPhepCapNhat){
+        else if(!allowUpdate){
             Dialog.showError("Vui lòng điền đầy đủ thông tin");
         }
         else {
-            String query = "";
             String studentID = studentID_Lb.getText();
             String literature = literature_TF.getText();
             String math = math_TF.getText();
@@ -306,25 +310,20 @@ public class AcademicTranscriptController {
             String technology = technology_TF.getText();
             String gradeNotes = gradeNotes_TF.getText();
             String foreignLang = foreignLang_TF.getText();
-
             String chemistry = chemistry_TF.getText();
             String physics = physics_TF.getText();
             String civicEdu = civicEdu_TF.getText();
-
             String geography = geography_TF.getText();
             String physicalEdu = physicalEdu_Btn.isSelected()?"D":"T";
             String languageCode = languageCode_CB.getValue();
             String conduct = conduct_CB.getValue();
 
-            avgGrade_TF.setText(String.format("%.2f",(Float.parseFloat(literature )+ Float.parseFloat(math )+ Float.parseFloat(physics )+Float.parseFloat(chemistry)+Float.parseFloat(biology)+Float.parseFloat(history)+Float.parseFloat(geography)+Float.parseFloat(civicEdu)+Float.parseFloat(technology)+Float.parseFloat(it)+Float.parseFloat(foreignLang)) / 11));
-
-            query = "UPDATE grade SET literature = ?, math = ?, physics = ?, chemistry = ?, biology = ?, " +
+            String query = "UPDATE grade SET literature = ?, math = ?, physics = ?, chemistry = ?, biology = ?, " +
                     "history = ?, geography = ?, civicEdu = ?, technology = ?, it = ?, physicalEdu = ?, " +
                     "foreignLang = ?, languageCode = ?, conduct = ?, gradeNotes = ? WHERE studentID = ?";
 
             UpdateDatabase.updateGrades(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, conduct, gradeNotes, query);
         }
-
         showAcademicTranscript(Search.filterGrade(""));
     }
     @FXML
@@ -358,6 +357,8 @@ public class AcademicTranscriptController {
         GradeCheckList();
     }
     private void GradeCheckList() {
+        DataValidation.validateField(languageCode_CB.getValue(),foreignLang_Lb, DataValidation::isValidComboBox);
+        DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(literature_TF.getText(), literature_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(math_TF.getText(), math_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(physics_TF.getText(), physics_Lb, DataValidation::isValidGrade);
@@ -368,11 +369,11 @@ public class AcademicTranscriptController {
         DataValidation.validateField(civicEdu_TF.getText(), civicEdu_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(technology_TF.getText(), technology_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(it_TF.getText(), it_Lb, DataValidation::isValidGrade);
-        DataValidation.validateField(languageCode_CB.getValue(),foreignLang_Lb, DataValidation::isValidComboBox);
-        DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade);
         DataValidation.validateField(conduct_CB.getValue(), conduct_Lb, DataValidation::isValidComboBox);
 
-        choPhepCapNhat = DataValidation.validateField(literature_TF.getText(), literature_Lb, DataValidation::isValidGrade) &&
+        allowUpdate = DataValidation.validateField(literature_TF.getText(), literature_Lb, DataValidation::isValidGrade) &&
+                DataValidation.validateField(languageCode_CB.getValue(), foreignLang_Lb, DataValidation::isValidComboBox) &&
+                DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(math_TF.getText(), math_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(physics_TF.getText(), physics_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(chemistry_TF.getText(), chemistry_Lb, DataValidation::isValidGrade) &&
@@ -382,8 +383,6 @@ public class AcademicTranscriptController {
                 DataValidation.validateField(civicEdu_TF.getText(), civicEdu_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(technology_TF.getText(), technology_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(it_TF.getText(), it_Lb, DataValidation::isValidGrade) &&
-                DataValidation.validateField(languageCode_CB.getValue(), foreignLang_Lb, DataValidation::isValidComboBox) &&
-                DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(conduct_CB.getValue(), conduct_Lb, DataValidation::isValidComboBox);
     }
 

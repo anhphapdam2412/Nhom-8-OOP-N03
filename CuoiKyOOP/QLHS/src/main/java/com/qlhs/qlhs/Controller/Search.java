@@ -100,13 +100,7 @@ public class Search {
                                 matches = compareString(student.getEmail(), searchValue, operator);
                             }
                             break;
-                        case "lớp":
-                        case "lop":
-                        case "l":
-                        case "class":
-                        case "cl":
-                            matches = compareString(student.getClassName(), searchValue, operator);
-                            break;
+
                         case "địa chỉ":
                         case "dia chi":
                         case "diachi":
@@ -130,6 +124,13 @@ public class Search {
                         case "birth day":
                         case "bd":
                             matches = compareString(student.getDateOfBirth(), searchValue, operator);
+                            break;
+                        case "lớp":
+                        case "lop":
+                        case "l":
+                        case "class":
+                        case "cl":
+                            matches = compareString(student.getClassName(), searchValue, operator);
                             break;
                         case "giới tính":
                         case "gioi tinh":
@@ -183,7 +184,6 @@ public class Search {
     }
 
 
-
     // Helper function to compare string values with operator
     private static boolean compareString(String actualValue, String searchValue, String operator) {
         if (actualValue == null || searchValue == null) return false;
@@ -225,7 +225,6 @@ public class Search {
     static ObservableList<AcademicTranscript> filterGrade(String query) {
         ObservableList<AcademicTranscript> filteredGrades;
         ObservableList<AcademicTranscript> allGrade = AcademicTranscriptDAO.getAcademicTranscript().filtered(gradeReport -> Objects.equals(gradeReport.getStatus(), "1"));
-
         // Split search terms by comma
         String[] searchTerms = query.split(",");
 
@@ -258,6 +257,67 @@ public class Search {
                     boolean matches = false;
 
                     switch (fieldName) {
+                        case "ngày sinh":
+                        case "ngay sinh":
+                        case "ngaysinh":
+                        case "ns":
+                        case "birth":
+                        case "birth day":
+                        case "bd":
+                            matches = compareString(grade.getDateOfBirth(), searchValue, operator);
+                            break;
+                        case "lớp":
+                        case "lop":
+                        case "l":
+                        case "class":
+                        case "cl":
+                            matches = compareString(grade.getClassName(), searchValue, operator);
+                            break;
+                        case "giới tính":
+                        case "gioi tinh":
+                        case "gioitinh":
+                        case "gt":
+                        case "sex":
+                            matches = compareString(grade.getGender(),
+                                    (searchValue.equals("1") || searchValue.equals("nam")) ? "1" :
+                                            (searchValue.equals("0") || searchValue.equals("nu")) ? "0" : null,
+                                    operator);
+                            break;
+                        case "tên":
+                        case "ten":
+                        case "name":
+                        case "t":
+                        case "n":
+                        case "last name":
+                        case "lname":
+                        case "ln":
+                            matches = compareString(grade.getLastName(), searchValue, operator);
+                            break;
+                        case "họ đệm":
+                        case "ho dem":
+                        case "hodem":
+                        case "hd":
+                        case "surname":
+                        case "sname":
+                        case "sn":
+                        case "middle name":
+                        case "mname":
+                        case "mn":
+                        case "first name":
+                        case "fname":
+                        case "fn":
+                            matches = compareString(grade.getFirstName(), searchValue, operator);
+                            break;
+                        case "mã học sinh":
+                        case "ma hoc sinh":
+                        case "mahocsinh":
+                        case "mhs":
+                        case "mahs":
+                        case "student id":
+                        case "studendid":
+                        case "sid":
+                            matches = compareString(grade.getStudentID(), searchValue, operator);
+                            break;
                         case "điểm trung bình":
                         case "diemtrungbinh":
                         case "dtb":
@@ -267,7 +327,7 @@ public class Search {
                         case "avg":
                         case "avg grade":
                         case "avggrade":
-                            matches = compareFloat(Float.parseFloat(grade.getAvgGrade()), searchValue, operator);
+                            matches = grade.getAvgGrade() != null && compareFloat(Float.parseFloat(grade.getAvgGrade()), searchValue, operator);
                             break;
                         case "ngữ văn":
                         case "nguvan":
@@ -275,12 +335,12 @@ public class Search {
                         case "nv":
                         case "lit":
                         case "literature":
-                            matches = compareFloat(Float.parseFloat(grade.getLiterature()), searchValue, operator);
+                            matches = grade.getLiterature() != null && compareFloat(Float.parseFloat(grade.getLiterature()), searchValue, operator);
                             break;
                         case "toán":
                         case "toan":
                         case "math":
-                            matches = compareFloat(Float.parseFloat(grade.getMath()), searchValue, operator);
+                            matches = grade.getMath() != null && compareFloat(Float.parseFloat(grade.getMath()), searchValue, operator);
                             break;
                         case "vật lí":
                         case "vat li":
@@ -289,7 +349,7 @@ public class Search {
                         case "vl":
                         case "physics":
                         case "phy":
-                            matches = compareFloat(Float.parseFloat(grade.getPhysics()), searchValue, operator);
+                            matches = grade.getPhysics() != null && compareFloat(Float.parseFloat(grade.getPhysics()), searchValue, operator);
                             break;
                         case "hóa học":
                         case "hoa hoc":
@@ -298,7 +358,7 @@ public class Search {
                         case "hh":
                         case "chemistry":
                         case "chem":
-                            matches = compareFloat(Float.parseFloat(grade.getChemistry()), searchValue, operator);
+                            matches = grade.getChemistry() != null && compareFloat(Float.parseFloat(grade.getChemistry()), searchValue, operator);
                             break;
                         case "sinh học":
                         case "sinhhoc":
@@ -307,7 +367,7 @@ public class Search {
                         case "biology":
                         case "bio":
                         case "b":
-                            matches = compareFloat(Float.parseFloat(grade.getBiology()), searchValue, operator);
+                            matches = grade.getBiology() != null && compareFloat(Float.parseFloat(grade.getBiology()), searchValue, operator);
                             break;
                         case "lịch sử":
                         case "lich su":
@@ -317,7 +377,7 @@ public class Search {
                         case "history":
                         case "hist":
                         case "h":
-                            matches = compareFloat(Float.parseFloat(grade.getHistory()), searchValue, operator);
+                            matches = grade.getHistory() != null && compareFloat(Float.parseFloat(grade.getHistory()), searchValue, operator);
                             break;
                         case "địa lý":
                         case "dialy":
@@ -326,7 +386,7 @@ public class Search {
                         case "geography":
                         case "geo":
                         case "g":
-                            matches = compareFloat(Float.parseFloat(grade.getGeography()), searchValue, operator);
+                            matches = grade.getGeography() != null && compareFloat(Float.parseFloat(grade.getGeography()), searchValue, operator);
                             break;
                         case "giáo dục công dân":
                         case "giaoduccongdan":
@@ -337,7 +397,7 @@ public class Search {
                         case "civic edu":
                         case "civic":
                         case "ce":
-                            matches = compareFloat(Float.parseFloat(grade.getCivicEdu()), searchValue, operator);
+                            matches = grade.getCivicEdu() != null && compareFloat(Float.parseFloat(grade.getCivicEdu()), searchValue, operator);
                             break;
                         case "công nghệ":
                         case "congnghe":
@@ -345,7 +405,7 @@ public class Search {
                         case "cn":
                         case "technology":
                         case "tech":
-                            matches = compareFloat(Float.parseFloat(grade.getTechnology()), searchValue, operator);
+                            matches = grade.getTechnology() != null && compareFloat(Float.parseFloat(grade.getTechnology()), searchValue, operator);
                             break;
                         case "tin học":
                         case "tinhoc":
@@ -353,7 +413,7 @@ public class Search {
                         case "tin":
                         case "th":
                         case "it":
-                            matches = compareFloat(Float.parseFloat(grade.getIt()), searchValue, operator);
+                            matches = grade.getIt() != null && compareFloat(Float.parseFloat(grade.getIt()), searchValue, operator);
                             break;
                         case "thể dục":
                         case "theduc":
@@ -362,7 +422,7 @@ public class Search {
                         case "physical education":
                         case "physicaleducation":
                         case "pe":
-                            matches = compareFloat(Float.parseFloat(grade.getPhysicalEdu()), searchValue, operator);
+                            matches = grade.getPhysicalEdu() != null && compareFloat(Float.parseFloat(grade.getPhysicalEdu()), searchValue, operator);
                             break;
                         case "ngoại ngữ":
                         case "ngoaingu":
@@ -371,7 +431,7 @@ public class Search {
                         case "foreign":
                         case "lang":
                         case "fl":
-                            matches = compareFloat(Float.parseFloat(grade.getForeignLang()), searchValue, operator);
+                            matches = grade.getForeignLang() != null && compareFloat(Float.parseFloat(grade.getForeignLang()), searchValue, operator);
                             break;
                         case "mã ngôn ngữ":
                         case "mangonngu":
@@ -379,7 +439,7 @@ public class Search {
                         case "language code":
                         case "lang code":
                         case "lc":
-                            matches = compareString(grade.getLanguageCode(), searchValue, operator);
+                            matches = grade.getLanguageCode() != null && compareString(grade.getLanguageCode(), searchValue, operator);
                             break;
                         case "học lực":
                         case "hocluc":
@@ -388,14 +448,14 @@ public class Search {
                         case "academicperformance":
                         case "performance":
                         case "ap":
-                            matches = compareString(grade.getAcademicPerformance(), searchValue, operator);
+                            matches = grade.getAcademicPerformance() != null && compareString(grade.getAcademicPerformance(), searchValue, operator);
                             break;
                         case "hạnh kiểm":
                         case "hanhkiem":
                         case "hk":
                         case "conduct":
                         case "cd":
-                            matches = compareString(grade.getConduct(), searchValue, operator);
+                            matches = grade.getConduct() != null && compareString(grade.getConduct(), searchValue, operator);
                             break;
                         case "ghi chú điểm":
                         case "ghichudiem":
@@ -403,7 +463,7 @@ public class Search {
                         case "grade notes":
                         case "notes":
                         case "gn":
-                            matches = compareString(grade.getGradeNotes(), searchValue, operator);
+                            matches = grade.getGradeNotes() != null && compareString(grade.getGradeNotes(), searchValue, operator);
                             break;
                         case "danh hiệu":
                         case "kết quả học tập":
@@ -414,7 +474,7 @@ public class Search {
                         case "kqht":
                         case "kq":
                         case "award":
-                            matches = compareString(grade.getAward(), searchValue, operator);
+                            matches = grade.getAward() != null && compareString(grade.getAward(), searchValue, operator);
                             break;
                         default:
                             matches = false;
@@ -464,7 +524,7 @@ public class Search {
                 (grade.getConduct() != null && grade.getConduct().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getGradeNotes() != null && grade.getGradeNotes().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getStatus() != null && grade.getStatus().toLowerCase().contains(term.toLowerCase())) ||
-                (grade.getAward() != null && grade.getAward().toLowerCase().contains(term.toLowerCase()))||
+                (grade.getAward() != null && grade.getAward().toLowerCase().contains(term.toLowerCase())) ||
                 (grade.getAvgGrade() != null && grade.getAvgGrade().toLowerCase().contains(term.toLowerCase()));
     }
 }

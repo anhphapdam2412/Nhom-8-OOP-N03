@@ -19,13 +19,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.swing.*;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 public class StudentController {
 
     private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>(); // Tỉnh -> Quận/huyện
@@ -80,8 +81,6 @@ public class StudentController {
         male_Btn.setToggleGroup(group);
         female_Btn.setToggleGroup(group);
 
-
-
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(search_TF.getText(), "")) {
                 showStudent(Search.filter(""));
@@ -91,7 +90,7 @@ public class StudentController {
         }));
         debounce.setCycleCount(1);
 
-        layTTTinhTHanhTuCSV();
+        getProvinces();
         showStudent(Search.filter(""));
         selectStudent();
 
@@ -108,7 +107,11 @@ public class StudentController {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        genderColumn.setCellValueFactory(cellData -> {
+            String genderValue = cellData.getValue().getGender(); // Giả sử getGender() trả về 0 hoặc 1
+            String genderText = Objects.equals(genderValue, "0") ? "Nữ" : "Nam"; // Chuyển đổi giá trị
+            return new javafx.beans.property.SimpleStringProperty(genderText);
+        });
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -133,8 +136,8 @@ public class StudentController {
             if (event.getClickCount() == 1) { // Nhấp đúp chuột
                 Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
                 if (selectedStudent != null) {
-                    displayStudentDetails(selectedStudent);
-                    CheckList();
+                    showStudentDetails(selectedStudent);
+                    checkList();
                     delete_Btn.setDisable(false);
                     addNew_Btn.setDisable(false);
                 }
@@ -143,7 +146,7 @@ public class StudentController {
     }
 
     // Điền thông tin học sinh được chọn từ bảng lên các ô điền thông tin
-    private void displayStudentDetails(Student student) {
+    private void showStudentDetails(Student student) {
         studentId_TF.setText(student.getStudentID());
         firstName_TF.setText(student.getFirstName());
         lastName_TF.setText(student.getLastName());
@@ -186,7 +189,7 @@ public class StudentController {
     }
 
     //
-    public void layTTTinhTHanhTuCSV() {
+    public void getProvinces() {
         String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -215,16 +218,16 @@ public class StudentController {
         province_CB.getItems().addAll(provinceDistrictMap.keySet());
 
         // Thêm sự kiện chọn tỉnh/thành phố để cập nhật Quận/Huyện
-        province_CB.setOnAction(_ -> capNhatQH());
+        province_CB.setOnAction(_ -> updateDistrict());
 
 
         // Thêm sự kiện chọn Quận/Huyện để cập nhật Xã/Phường
-        district_CB.setOnAction(_ -> capNhatPX());
+        district_CB.setOnAction(_ -> updateWard());
     }
 
     // Cập nhật danh sách Quận/Huyện khi chọn Tỉnh/Thành Phố
-    private void capNhatQH() {
-        CheckList();
+    private void updateDistrict() {
+        checkList();
         district_CB.getItems().clear();  // Xóa các quận/huyện hiện tại
         ward_CB.getItems().clear();  // Xóa các xã/phường hiện tại
 
@@ -236,8 +239,8 @@ public class StudentController {
     }
 
     // Cập nhật danh sách Xã/Phường khi chọn Quận/Huyện
-    private void capNhatPX() {
-        CheckList();
+    private void updateWard() {
+        checkList();
         ward_CB.getItems().clear();  // Xóa các xã/phường hiện tại
 
         String selectedDistrict = district_CB.getValue();
@@ -249,7 +252,7 @@ public class StudentController {
 
     @FXML
     private void UpdateStudentInfo() {
-        CheckList();
+        checkList();
         if (!allowUpdate || studentId_TF.getText().isEmpty()) {
             Dialog.showError("Vui lòng điền đầy đủ thông tin hoặc nhập mã học sinh.");
             return;
@@ -379,7 +382,7 @@ public class StudentController {
         }
 
         studentId_TF.setText(String.valueOf(studentIDs.getLast() + 1));
-        CheckList();
+        checkList();
         addNew_Btn.setDisable(true);
 
     }
@@ -404,7 +407,7 @@ public class StudentController {
 
     @FXML
     private void handleKeyReleased() {
-        CheckList();
+        checkList();
     }
 
     @FXML
@@ -415,7 +418,7 @@ public class StudentController {
         debounce.playFromStart();
     }
 
-    private void CheckList() {
+    private void checkList() {
         DataValidation.validateField(studentId_TF.getText(), studentId_Lb, DataValidation::isValidStudentID);
         DataValidation.validateField(className_TF.getText(), className_Lb, DataValidation::isValidClass);
         DataValidation.validateField(phoneNumber_TF.getText(), phoneNumber_Lb, DataValidation::isValidPhoneNumber);
@@ -425,9 +428,7 @@ public class StudentController {
         DataValidation.validateField(province_CB.getValue(), province_Lb, DataValidation::isValidComboBox);
         DataValidation.validateField(district_CB.getValue(), district_Lb, DataValidation::isValidComboBox);
         DataValidation.validateField(String.valueOf(male_Btn.isSelected())+String.valueOf(female_Btn.isSelected()),gender_Lb, DataValidation::isValidSex);
-//        validateField(ward_CB.getValue(),PX_Lb, DataValidation::isValidPX);
-        String dateOfBirth = String.valueOf(dateOfBirth_Picker.getValue());
-        DataValidation.validateField(dateOfBirth, dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
+        DataValidation.validateField(String.valueOf(dateOfBirth_Picker.getValue()), dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
 
 
         allowUpdate = DataValidation.validateField(studentId_TF.getText(), studentId_Lb, DataValidation::isValidStudentID) &&
@@ -437,9 +438,8 @@ public class StudentController {
                 DataValidation.validateField(lastName_TF.getText(), lastName_Lb, DataValidation::isValidName) &&
                 DataValidation.validateField(province_CB.getValue(), province_Lb, DataValidation::isValidComboBox) &&
                 DataValidation.validateField(district_CB.getValue(), district_Lb, DataValidation::isValidComboBox) &&
-//              !  validateField(ward_CB.getValue(),PX_Lb, DataValidation::isValidPX)||
                 DataValidation.validateField(className_TF.getText(), className_Lb, DataValidation::isValidClass) &&
                 DataValidation.validateField(String.valueOf(male_Btn.isSelected())+String.valueOf(female_Btn.isSelected()),gender_Lb, DataValidation::isValidSex)&&
-                DataValidation.validateField(dateOfBirth, dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
+                DataValidation.validateField(String.valueOf(dateOfBirth_Picker.getValue()), dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
     }
 }

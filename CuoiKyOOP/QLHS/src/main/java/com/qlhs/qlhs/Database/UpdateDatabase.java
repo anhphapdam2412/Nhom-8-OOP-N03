@@ -30,7 +30,6 @@ public class UpdateDatabase {
             preparedStatement1.setString(2, firstName);
             preparedStatement1.setDate(3, Date.valueOf(dateOfBirth));
             preparedStatement1.setBoolean(4, gender);
-            System.out.println(gender);
             preparedStatement1.setString(5, ID);
             preparedStatement1.setString(6, phoneNumber);
             preparedStatement1.setString(7, email);

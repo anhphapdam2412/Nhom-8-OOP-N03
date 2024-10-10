@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qlhs.qlhs.Controller.AcademicTranscriptController">
     <children>
@@ -296,6 +297,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
+      <Text fill="WHITE" layoutX="1041.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tất cả: &quot;Phương&quot;; &quot;12A&quot;;&quot;Hải Dương&quot;" />
+      <Text fill="WHITE" layoutX="1041.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhiều điều kiện: &quot;23010360, Cường, 12A&quot;" />
+      <Text fill="WHITE" layoutX="1041.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Theo trường: &quot;tên=Phương, ghichu=bảo lưu&quot;" />
+      <Text fill="WHITE" layoutX="1041.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toán tử (&gt;,&lt;,&gt;=,&lt;=,=): &quot;nguvan&gt;9,avg&gt;=9,hk=k&quot;" />
     </children>
 
 

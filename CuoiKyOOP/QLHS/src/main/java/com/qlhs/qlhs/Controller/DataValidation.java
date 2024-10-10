@@ -4,7 +4,7 @@ import javafx.scene.control.Label;
 
 public class DataValidation {
     public static boolean isValidPhoneNumber(String phoneNumber) {
-        return phoneNumber.substring(0, 1).matches("0") && phoneNumber.matches("\\d{10}");
+        return phoneNumber != null && phoneNumber.matches("\\d+");
     }
 
     public static boolean isValidID(String identifier) {
