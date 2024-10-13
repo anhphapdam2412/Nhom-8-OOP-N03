@@ -28,6 +28,7 @@ public class DataValidation {
         }
     }
 
+
     public static boolean isValidStudentID(String studentID) {
         return !studentID.equals("23xxxxxx");
     }
@@ -60,7 +61,7 @@ public class DataValidation {
     }
 
     public static boolean isValidSex(String sex) {
-        return !sex.equals("falsefalse");
+        return !sex.equals("false");
     }
 
     @FunctionalInterface

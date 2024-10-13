@@ -13,7 +13,7 @@ public class UpdateDatabase {
     // Update student information
     public static void updateStudentInfo(String studentID, String lastName, String firstName, String dateOfBirth,
                                          Boolean gender, String ID, String phoneNumber,
-                                         String email, String className, String address, String notes, String status,
+                                         String email, String className, String address, String notes, Boolean status,
                                          String query, String query2) {
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
@@ -37,7 +37,7 @@ public class UpdateDatabase {
             preparedStatement1.setString(9, address);
             preparedStatement1.setString(10, notes);
             preparedStatement1.setString(12, studentID);
-            preparedStatement1.setBoolean(11, Boolean.parseBoolean(status));
+            preparedStatement1.setBoolean(11, status);
 
             int rowsAffected1 = preparedStatement1.executeUpdate();
             System.out.println(rowsAffected1 + " record(s) updated in table 1.");
@@ -94,9 +94,9 @@ public class UpdateDatabase {
     }
 
     // Update grades
-    public static void updateGrades(String studentID, String literature, String math, String physics, String chemistry,
-                                    String biology, String history, String geography, String citizenship,
-                                    String technology, String informatics, String physicalEducation, String foreignLanguage,
+    public static void updateGrades(String studentID, Float literature, Float math, Float physics, Float chemistry,
+                                    Float biology, Float history, Float geography, Float civicEdu,
+                                    Float technology, Float informatics, String physicalEdu, Float foreignLanguage,
                                     String foreignLanguageCode, String conduct, String gradeNote, String query) {
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
@@ -108,18 +108,18 @@ public class UpdateDatabase {
 
             // Update student grades
             preparedStatement1 = connection.prepareStatement(query);
-            preparedStatement1.setString(1, literature);
-            preparedStatement1.setString(2, math);
-            preparedStatement1.setString(3, physics);
-            preparedStatement1.setString(4, chemistry);
-            preparedStatement1.setString(5, biology);
-            preparedStatement1.setString(6, history);
-            preparedStatement1.setString(7, geography);
-            preparedStatement1.setString(8, citizenship);
-            preparedStatement1.setString(9, technology);
-            preparedStatement1.setString(10, informatics);
-            preparedStatement1.setString(11, physicalEducation);
-            preparedStatement1.setString(12, foreignLanguage);
+            preparedStatement1.setFloat(1, literature);
+            preparedStatement1.setFloat(2, math);
+            preparedStatement1.setFloat(3, physics);
+            preparedStatement1.setFloat(4, chemistry);
+            preparedStatement1.setFloat(5, biology);
+            preparedStatement1.setFloat(6, history);
+            preparedStatement1.setFloat(7, geography);
+            preparedStatement1.setFloat(8, civicEdu);
+            preparedStatement1.setFloat(9, technology);
+            preparedStatement1.setFloat(10, informatics);
+            preparedStatement1.setString(11, physicalEdu);
+            preparedStatement1.setFloat(12, foreignLanguage);
             preparedStatement1.setString(13, foreignLanguageCode);
             preparedStatement1.setString(14, conduct);
             preparedStatement1.setString(15, gradeNote);

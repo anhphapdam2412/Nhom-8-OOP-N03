@@ -3,7 +3,6 @@ package com.qlhs.qlhs.Controller;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
@@ -14,13 +13,6 @@ public class ActivityLog {
     private static final String LOG_FILE_PATH = "logs/log.txt";
     private static final long MAX_LOG_SIZE = 5 * 1024 * 1024; // 5 MB
     private static final long LOG_RETENTION_PERIOD = TimeUnit.DAYS.toMillis(30); // 30 ngày
-
-    // Định nghĩa enum cho loại hành động
-    public enum ActionType {
-        ADD,
-        UPDATE,
-        DELETE
-    }
 
     // Ghi lại hoạt động của người dùng
     public static void logActivity(String username, ActionType actionType, String affectedData, String previousValue, String newValue) {
@@ -114,6 +106,13 @@ public class ActivityLog {
     private static String getCurrentTimestampForFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
         return LocalDateTime.now().format(formatter);
+    }
+
+    // Định nghĩa enum cho loại hành động
+    public enum ActionType {
+        ADD,
+        UPDATE,
+        DELETE
     }
 }
 

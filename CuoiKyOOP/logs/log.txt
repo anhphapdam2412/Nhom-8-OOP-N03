@@ -80,3 +80,11 @@
 [2024-10-10 14:59:56] Update: 24000005 nbb2024-10-01false123123123123012312312312ABình Dương, Dĩ An, null, nulltrue
 [2024-10-10 16:34:04] Update: 24000000 bb2024-10-09false123123123123012312312312Bình Dương, Phú Giáo, null, nulltrue
 [2024-10-10 16:37:26] Update: 23010055 TrầnPhương2007-03-19false0302590051670123123177tranphuong@mail.com10AHải Dương, Hải Dương, Gia Xuyên, khu 56Học sinh mới chuyển đếntrue
+[2024-10-11 11:10:20] Update: 23010054 NgôBình2006-06-13true0302580051660123123176ngobinh@mail.com11CBình Dương, Phú Giáo, null, khu 55Tham gia đội tuyển Sinh họctrue
+[2024-10-11 11:10:27] Update: 23010051 HoàngLan2007-11-15false0302550051630123123173hoanglan@mail.com11AHải Dương, Hải Dương, Thạch Khôi, khu 52Đang thi học kỳ IItrue
+[2024-10-11 11:10:32] Update: 23010051 HoàngLan2007-11-15true0302550051630123123173hoanglan@mail.com11AHải Dương, Hải Dương, Thạch Khôi, khu 52Đang thi học kỳ IItrue
+[2024-10-11 11:22:38] Update: 23010047 TrầnLinh2007-05-01false0302510051590123123169tranlinh@mail.com11CBình Thuận, Hàm Tân, null, khu 48Học sinh giỏitrue
+[2024-10-11 11:23:55] Update: 24000006 Pham DUcA2024-09-30true055131545422044456454612AAn Giang, Châu Thành, An Hiệp, ///true
+[2024-10-13 12:03:43] Update: 23010058 Nguyễn ThịNgân2005-03-19false0302620051700123123180nguyengan@mail.com9AHải Dương, Hải Dương, Thạch Khôi, Phú TảoLmaotrue
+[2024-10-13 12:28:46] Update: 24000001 av2024-10-02true123123123123012312312312ABình Dương, Dĩ An, null, nulltrue
+[2024-10-13 17:20:53] Update: 23010049 PhạmQuốc2006-08-17false0300000000000123123171phamquoc@mail.com11BHải Dương, Hải Dương, Thạch Khôi, khu 50Đang thi học kỳ Itrue
