@@ -33,9 +33,9 @@ Phần mềm Quản Lý Học Sinh giúp quản lý thông tin học sinh một 
 
 
 # Cách cài đặt, chạy dự án
-- Sao chép mã nguồn từ nhánh `FinalProject` bằng lệnh sau:
+- Sao chép mã nguồn bằng lệnh sau:
 ```bash
-git clone -b FinalProject https://github.com/anhphapdam2412/Nhom-8-OOP-N03.git
+git clone https://github.com/anhphapdam2412/Nhom-8-OOP-N03.git
 ```
 - Mở Folder 'Nhom-8-OOP-N03' bằng Intellij với cây thư mục như hỉnh ảnh.
 - ![My Image](CuoiKyOOP/huongDanChayDuAn.png)<br>
