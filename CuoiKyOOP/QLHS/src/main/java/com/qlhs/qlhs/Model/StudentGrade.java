@@ -9,7 +9,7 @@ public class StudentGrade {
         this.grade = grade;
     }
 
-    // Getters for Student fields
+    // Getters
     public Boolean getStatus() {
         return student.getStatus();
     }
@@ -110,5 +110,7 @@ public class StudentGrade {
     public String getAward() {
         return grade.getAward();
     }
+
+
 }
 

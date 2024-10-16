@@ -28,10 +28,9 @@ public class SchoolController {
     }
 
     public SchoolController(School school) {
-        // Khởi tạo đối tượng bệnh viện
         this.school = new School();
-        this.studentDAO = new StudentDAO();  // Khởi tạo PatientDao
-        initializeStudentList();  // Lấy dữ liệu từ DB khi khởi tạo
+        this.studentDAO = new StudentDAO();
+        initializeStudentList();
         this.gradeDAO = new GradeDAO();
         initializeGradeList();
     }
@@ -57,58 +56,75 @@ public class SchoolController {
     public void UpdateStudentInfo(Student student) {
         List<Integer> studentIDs = new ArrayList<>();
         ArrayList<Student> students = StudentDAO.getStudents();
+
         students.stream().map(Student::getStudentID).map(Integer::parseInt).forEach(studentIDs::add);
-        boolean isUpdate = studentIDs.contains(Integer.parseInt(student.getStudentID()));
 
-        String query = isUpdate ? "UPDATE student SET firstName = ?, lastName = ?, dateOfBirth = ?, gender = ?, ID = ?, phoneNumber = ?, email = ?, className = ?, address = ?, notes = ?, status = ? WHERE studentId = ?;"
-                : "INSERT INTO student (firstName, lastName, dateOfBirth, gender, ID, phoneNumber, email, className, address, notes, status, studentId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        String query2 = !isUpdate ? "INSERT INTO grade (studentId) VALUES (?);" : "";
+        String query ="UPDATE student SET firstName = ?, lastName = ?, dateOfBirth = ?, gender = ?, ID = ?, phoneNumber = ?, email = ?, className = ?, address = ?, notes = ?, status = ? WHERE studentID = ?;";
+        UpdateDatabase.updateStudentInfo(student.getStudentID(), student.getFirstName(), student.getLastName(), student.getDateOfBirth(), student.getGender(), student.getID(), student.getPhoneNumber(), student.getEmail(), student.getClassName(), student.getAddress(), student.getNotes(), student.getStatus(), query);
 
-        UpdateDatabase.updateStudentInfo(student.getStudentID(), student.getFirstName(), student.getLastName(), student.getDateOfBirth(), student.getGender(), student.getID(), student.getPhoneNumber(), student.getEmail(), student.getClassName(), student.getAddress(), student.getNotes(), student.getStatus(), query, query2);
-
-//        ActivityLog.logInformation("Update: "+studentId+" " + firstName + lastName+ dateOfBirth + gender + ID + phoneNumber + email + className + address + notes + status);
+        ActivityLog.logActivity(
+                ActivityLog.ActionType.UPDATE,
+                student.getStudentID() + ", " +
+                        student.getFirstName() + " " + student.getLastName() + ", " +
+                        student.getDateOfBirth() + ", " +
+                        (student.getGender() ? "nam" : "nữ") + ", " +
+                        student.getID() + ", " +
+                        student.getPhoneNumber() + ", " +
+                        student.getEmail() + ", " +
+                        student.getClassName() + ", " +
+                        student.getAddress() + ", " +
+                        student.getNotes() + ", " +
+                        student.getStatus()
+        );
     }
 
-    public void deleteStudent(String studentId) {
+    public void deleteStudent(String studentID) {
         String status = "false";
 
-        String query = "UPDATE student SET status = ?  WHERE studentId = ?;";
-        UpdateDatabase.deleteStudentInfo(studentId, status, query);
+        String query = "UPDATE student SET status = ?  WHERE studentID = ?;";
+        UpdateDatabase.deleteStudentInfo(studentID, status, query);
+
+        ActivityLog.logActivity( ActivityLog.ActionType.DELETE, studentID);
     }
 
     public String addNewStudent() {
-        int studentID = 0;
         List<Student> Students = StudentDAO.getStudents();
-        LocalDate today = LocalDate.now();
+
         ConfigReader configReader = new ConfigReader();
         String endOfSchoolYear = configReader.getEndOfSchoolYear();
 
+        int studentID = 0;
+        String studentIDToString ="";
+
+        String studentQuery = "INSERT INTO student (firstName, lastName, dateOfBirth, gender, ID, phoneNumber, email, className, address, notes, status, studentID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String gradeQuery = "INSERT INTO grade (studentID) VALUES (?);";
+
+        // Lấy 2 số cuối của năm 2024->24
         int thisYear = Integer.parseInt(endOfSchoolYear.substring(2, 4));
 
+        // Lấy ngày kết thúc năm học
         LocalDate compareDate = LocalDate.parse(endOfSchoolYear, DateTimeFormatter.ISO_LOCAL_DATE);
+        // Lấy ngày hiện tại
+        LocalDate today = LocalDate.now();
+
         // kiểm tra xem đã tồn tại học sinh nào chưa, nếu chưa thì tạo 1 học sinh
         if (Students.isEmpty()) {
-            String query = "INSERT INTO student (firstName, lastName, dateOfBirth, gender, ID, phoneNumber, email, className, address, notes, status, studentId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            UpdateDatabase.updateStudentInfo(String.valueOf(thisYear * 1000000), "", "", String.valueOf(today), false, "ID", "", "", "", "", "", false, query, "");
-            return String.valueOf(thisYear * 1000000);
-
+            studentIDToString = String.valueOf(thisYear * 1000000);
         } else {
             for (Student student : Students) {
-                if (student != null) {
-                    studentID = Integer.parseInt(student.getStudentID());
-                }
+                studentID = Integer.parseInt(student.getStudentID()); // Gán ID học sinh cuối
             }
             // So sánh ngày hiện tại với ngày chuỗi
             if (today.isAfter(compareDate)) {
                 if (studentID / 1000000 < thisYear) { // chia lấy nguyên cho 1000000 để lấy ra năm
-                    studentID = thisYear * 1000000; // vd mã năm là 24 thì sẽ là 24*1000000 = 24000000
+                    studentID = thisYear * 1000000 - 1; // vd mã năm là 24 thì sẽ là 24*1000000 = 24000000
                 }
             }
-            String query = "INSERT INTO student (firstName, lastName, dateOfBirth, gender, ID, phoneNumber, email, className, address, notes, status, studentId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            UpdateDatabase.updateStudentInfo(String.valueOf(studentID + 1), "", "", String.valueOf(today), false, "ID", "", "", "", "", "", false, query, "");
-
-            return String.valueOf(studentID + 1);
+            studentIDToString = String.valueOf(studentID+1);
         }
+        UpdateDatabase.updateStudentInfo(studentIDToString, "", "", String.valueOf(today), false, "ID", "", "", "", "", "", false, studentQuery);
+        UpdateDatabase.insertGrade(studentIDToString, gradeQuery);
+        return studentIDToString;
     }
 
     public void UpdateGrade(Grade grade) {
@@ -117,5 +133,25 @@ public class SchoolController {
                 "foreignLang = ?, languageCode = ?, conduct = ?, gradeNotes = ? WHERE studentID = ?";
 
         UpdateDatabase.updateGrades(grade.getStudentID(), grade.getLiterature(), grade.getMath(), grade.getPhysics(), grade.getChemistry(), grade.getBiology(), grade.getHistory(), grade.getGeography(), grade.getCivicEdu(), grade.getTechnology(), grade.getIt(), grade.getPhysicalEdu(), grade.getForeignLang(), grade.getLanguageCode(), grade.getConduct(), grade.getGradeNotes(), query);
+
+        ActivityLog.logActivity(
+                ActivityLog.ActionType.UPDATE_GRADE,
+                grade.getStudentID() + ", Literature: " +
+                        grade.getLiterature() + ", Math: " +
+                        grade.getMath() + ", Physics: " +
+                        grade.getPhysics() + ", Chemistry: " +
+                        grade.getChemistry() + ", Biology: " +
+                        grade.getBiology() + ", History: " +
+                        grade.getHistory() + ", Geography: " +
+                        grade.getGeography() + ", CivicEdu: " +
+                        grade.getCivicEdu() + ", Technology: " +
+                        grade.getTechnology() + ", It: " +
+                        grade.getIt() + ", PhysicalEdu: " +
+                        grade.getPhysicalEdu() + ", ForeignLang: " +
+                        grade.getForeignLang() + ", LanguageCode: " +
+                        grade.getLanguageCode() + ", Conduct: " +
+                        grade.getConduct() + ", GradeNotes: " +
+                        grade.getGradeNotes()
+        );
     }
 }

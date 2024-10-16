@@ -111,6 +111,26 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
+                <Label fx:id="conduct_Lb" prefHeight="17.0" prefWidth="79.0" text="Hạnh kiểm" GridPane.columnIndex="13">
+                   <font>
+                      <Font size="14.0" />
+                   </font>
+                </Label>
+            <Label prefHeight="17.0" prefWidth="79.0" text="Điểm TB" GridPane.columnIndex="13" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Ghi chú" GridPane.columnIndex="15">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Danh hiệu" GridPane.columnIndex="13" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
                 <TextField fx:id="literature_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" />
                 <TextField fx:id="math_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <TextField fx:id="physics_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -119,9 +139,13 @@
                 <TextField fx:id="history_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                 <TextField fx:id="geography_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" />
                 <TextField fx:id="civicEdu_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                <TextField fx:id="foreignLang_TF" maxWidth="45.0" minWidth="45.0" onKeyReleased="#handleKeyReleased" prefWidth="45.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
                 <TextField fx:id="technology_TF" minWidth="40.0" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="8" GridPane.rowIndex="2" />
                 <TextField fx:id="it_TF" maxWidth="45.0" minWidth="45.0" onKeyReleased="#handleKeyReleased" prefWidth="45.0" GridPane.columnIndex="11" />
+                <RadioButton fx:id="physicalEdu_Btn" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Đạt" GridPane.columnIndex="11" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+                <TextField fx:id="foreignLang_TF" maxWidth="45.0" minWidth="45.0" onKeyReleased="#handleKeyReleased" prefWidth="45.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
                 <ComboBox fx:id="languageCode_CB" maxWidth="75.0" minWidth="75.0" prefHeight="27.0" prefWidth="75.0" promptText="Mã NN" GridPane.columnIndex="12" GridPane.rowIndex="2">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -133,32 +157,8 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-                <Label fx:id="conduct_Lb" prefHeight="17.0" prefWidth="79.0" text="Hạnh kiểm" GridPane.columnIndex="13">
-                   <font>
-                      <Font size="14.0" />
-                   </font>
-                </Label>
-                <RadioButton fx:id="physicalEdu_Btn" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Đạt" GridPane.columnIndex="11" GridPane.rowIndex="1">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></RadioButton>
-            <Label prefHeight="17.0" prefWidth="79.0" text="Điểm TB" GridPane.columnIndex="13" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Ghi chú" GridPane.columnIndex="15">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <TextField fx:id="gradeNotes_TF" prefHeight="27.0" prefWidth="56.0" GridPane.columnIndex="16" />
             <TextField fx:id="avgGrade_TF" editable="false" maxWidth="30.0" minWidth="45.0" onKeyReleased="#handleKeyReleased" prefWidth="30.0" GridPane.columnIndex="14" GridPane.rowIndex="1" />
-            <Label text="Danh hiệu" GridPane.columnIndex="13" GridPane.rowIndex="2">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <TextField fx:id="award_TF" editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" GridPane.columnIndex="14" GridPane.rowIndex="2" />
             </children>
         </GridPane>

@@ -46,12 +46,12 @@ public class AcademicTranscriptViewController {
     @FXML
     public void initialize() {
         showAcademicTranscript(Search.filterGrade(""));
-        // Thêm các lựa chọn vào ChoiceBox
+        // Thêm các bảng vào choiceBox
         table_CB.getItems().addAll("Thông tin học sinh", "Bảng điểm");
         table_CB.setValue("Bảng điểm");
-
         conduct_CB.getItems().addAll("T", "Kh", "TB", "Y", "K");
         languageCode_CB.getItems().addAll("N1", "N2", "N3");
+
         // Lắng nghe sự thay đổi lựa chọn trong ChoiceBox
         table_CB.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
             try {
@@ -61,6 +61,7 @@ public class AcademicTranscriptViewController {
             }
         });
 
+        // Đếm thời gian nghỉ sau khi nhập điều kiện tìm kiếm
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(search_TF.getText(), "")) {
                 showAcademicTranscript(Search.filterGrade(""));
@@ -69,14 +70,16 @@ public class AcademicTranscriptViewController {
             }
         }));
         debounce.setCycleCount(1);
+
         selectedStudent();
+
         conduct_CB.setOnAction(_ -> checkconduct());
         languageCode_CB.setOnAction(_ -> checkLanguageCode());
     }
 
     private void selectedStudent() {
         AcademicTranscriptTableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // Nhấp đúp chuột
+            if (event.getClickCount() == 1) {
                 StudentGrade selectedGrade = AcademicTranscriptTableView.getSelectionModel().getSelectedItem();
                 if (selectedGrade != null) {
                     showGradeDetail(selectedGrade);
@@ -184,7 +187,7 @@ public class AcademicTranscriptViewController {
     @FXML
     private void updateGrade() {
         GradeCheckList();
-        Grade newGrade;
+
         if (studentID_Lb.getText().equals("")) {
             Dialog.showError("Chưa có mã học sinh");
             return;
@@ -210,7 +213,7 @@ public class AcademicTranscriptViewController {
         String conduct = conduct_CB.getValue();
 
         // Creating the Grade object
-        newGrade = new Grade(
+        Grade newGrade = new Grade(
                 studentID,
                 literature,
                 math,

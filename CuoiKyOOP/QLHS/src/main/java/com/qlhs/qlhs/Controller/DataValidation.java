@@ -7,8 +7,8 @@ public class DataValidation {
         return phoneNumber != null && phoneNumber.matches("\\d+");
     }
 
-    public static boolean isValidID(String identifier) {
-        return identifier.matches("\\d{12}");
+    public static boolean isValidID(String ID) {
+        return ID.matches("\\d{12}");
     }
 
     public static boolean isValidName(String name) {

@@ -9,15 +9,13 @@ import java.util.Objects;
 import static com.qlhs.qlhs.Database.DatabaseConnection.connect;
 
 public class UpdateDatabase {
-
+    static Connection connection = null;
+    static PreparedStatement preparedStatement = null;
     // Update student information
-    public static void updateStudentInfo(String studentID, String lastName, String firstName, String dateOfBirth,
-                                         Boolean gender, String ID, String phoneNumber,
+    public static void updateStudentInfo(String studentId, String lastName, String firstName, String dateOfBirth,
+                                         Boolean gender, String Id, String phoneNumber,
                                          String email, String className, String address, String notes, Boolean status,
-                                         String query, String query2) {
-        Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
+                                         String query) {
 
         try {
             // Connect to the database
@@ -25,29 +23,50 @@ public class UpdateDatabase {
             connection.setAutoCommit(false);  // Begin transaction
 
             // Update student information
-            preparedStatement1 = connection.prepareStatement(query);
-            preparedStatement1.setString(1, lastName);
-            preparedStatement1.setString(2, firstName);
-            preparedStatement1.setDate(3, Date.valueOf(dateOfBirth));
-            preparedStatement1.setBoolean(4, gender);
-            preparedStatement1.setString(5, ID);
-            preparedStatement1.setString(6, phoneNumber);
-            preparedStatement1.setString(7, email);
-            preparedStatement1.setString(8, className);
-            preparedStatement1.setString(9, address);
-            preparedStatement1.setString(10, notes);
-            preparedStatement1.setString(12, studentID);
-            preparedStatement1.setBoolean(11, status);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setDate(3, Date.valueOf(dateOfBirth));
+            preparedStatement.setBoolean(4, gender);
+            preparedStatement.setString(5, Id);
+            preparedStatement.setString(6, phoneNumber);
+            preparedStatement.setString(7, email);
+            preparedStatement.setString(8, className);
+            preparedStatement.setString(9, address);
+            preparedStatement.setString(10, notes);
+            preparedStatement.setString(12, studentId);
+            preparedStatement.setBoolean(11, status);
 
-            int rowsAffected1 = preparedStatement1.executeUpdate();
-            System.out.println(rowsAffected1 + " record(s) updated in table 1.");
+            int rowsAffected1 = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected1 + " record(s) updated in table student.");
 
+            // Commit if both succeed
+            connection.commit();
+        } catch (SQLException e) {
+            // Rollback if there is an error
+            try {
+                connection.rollback();
+                System.err.println("Transaction rolled back due to error: " + e.getMessage());
+            } catch (SQLException rollbackEx) {
+                System.err.println("Error during rollback: " + rollbackEx.getMessage());
+            }
+        }
+    }
+    public static void insertGrade(String studentId, String query){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            // Connect to the database
+            connection = connect();
+            connection.setAutoCommit(false);  // Begin transaction
             // Execute script2
-            if (!Objects.equals(query2, "")) {
-                preparedStatement2 = connection.prepareStatement(query2);
-                preparedStatement2.setString(1, studentID);
-                int rowsAffected2 = preparedStatement2.executeUpdate();
-                System.out.println(rowsAffected2 + " record(s) updated in table 1.");
+            if (!Objects.equals(query, "")) {
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, studentId);
+
+                int rowsAffected2 = preparedStatement.executeUpdate();
+                System.out.println(rowsAffected2 + " record(s) updated in table grade.");
             }
             // Commit if both succeed
             connection.commit();
@@ -63,9 +82,9 @@ public class UpdateDatabase {
     }
 
     // Delete student
-    public static void deleteStudentInfo(String studentID, String status, String query) {
+    public static void deleteStudentInfo(String studentId, String status, String query) {
         Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement = null;
 
         try {
             // Connect to the database
@@ -73,13 +92,13 @@ public class UpdateDatabase {
             connection.setAutoCommit(false);  // Begin transaction
 
             // Delete student
-            preparedStatement1 = connection.prepareStatement(query);
-            preparedStatement1.setBoolean(1, Boolean.parseBoolean(status));
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setBoolean(1, Boolean.parseBoolean(status));
 
-            preparedStatement1.setString(2, studentID);
+            preparedStatement.setString(2, studentId);
 
-            int rowsAffected1 = preparedStatement1.executeUpdate();
-            System.out.println(rowsAffected1 + " record(s) updated in table 2.");
+            int rowsAffected1 = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected1 + " record(s) updated in table student.");
             // Commit
             connection.commit();
         } catch (SQLException e) {
@@ -94,12 +113,12 @@ public class UpdateDatabase {
     }
 
     // Update grades
-    public static void updateGrades(String studentID, Float literature, Float math, Float physics, Float chemistry,
+    public static void updateGrades(String studentId, Float literature, Float math, Float physics, Float chemistry,
                                     Float biology, Float history, Float geography, Float civicEdu,
                                     Float technology, Float informatics, String physicalEdu, Float foreignLanguage,
                                     String foreignLanguageCode, String conduct, String gradeNote, String query) {
         Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement = null;
 
         try {
             // Connect to the database
@@ -107,26 +126,26 @@ public class UpdateDatabase {
             connection.setAutoCommit(false);  // Begin transaction
 
             // Update student grades
-            preparedStatement1 = connection.prepareStatement(query);
-            preparedStatement1.setFloat(1, literature);
-            preparedStatement1.setFloat(2, math);
-            preparedStatement1.setFloat(3, physics);
-            preparedStatement1.setFloat(4, chemistry);
-            preparedStatement1.setFloat(5, biology);
-            preparedStatement1.setFloat(6, history);
-            preparedStatement1.setFloat(7, geography);
-            preparedStatement1.setFloat(8, civicEdu);
-            preparedStatement1.setFloat(9, technology);
-            preparedStatement1.setFloat(10, informatics);
-            preparedStatement1.setString(11, physicalEdu);
-            preparedStatement1.setFloat(12, foreignLanguage);
-            preparedStatement1.setString(13, foreignLanguageCode);
-            preparedStatement1.setString(14, conduct);
-            preparedStatement1.setString(15, gradeNote);
-            preparedStatement1.setString(16, studentID);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setFloat(1, literature);
+            preparedStatement.setFloat(2, math);
+            preparedStatement.setFloat(3, physics);
+            preparedStatement.setFloat(4, chemistry);
+            preparedStatement.setFloat(5, biology);
+            preparedStatement.setFloat(6, history);
+            preparedStatement.setFloat(7, geography);
+            preparedStatement.setFloat(8, civicEdu);
+            preparedStatement.setFloat(9, technology);
+            preparedStatement.setFloat(10, informatics);
+            preparedStatement.setString(11, physicalEdu);
+            preparedStatement.setFloat(12, foreignLanguage);
+            preparedStatement.setString(13, foreignLanguageCode);
+            preparedStatement.setString(14, conduct);
+            preparedStatement.setString(15, gradeNote);
+            preparedStatement.setString(16, studentId);
 
-            int rowsAffected1 = preparedStatement1.executeUpdate();
-            System.out.println(rowsAffected1 + " record(s) updated in table 2.");
+            int rowsAffected1 = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected1 + " record(s) updated in table grade.");
             // Commit
             connection.commit();
         } catch (SQLException e) {

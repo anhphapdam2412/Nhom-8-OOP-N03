@@ -26,7 +26,7 @@ public class StudentViewController {
     private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Xã/phường
     public boolean allowUpdate = false;
     @FXML
-    private TableColumn<Student, String> noColumn, studentIdColumn, lastNameColumn, firstNameColumn, dateOfBirthColumn, genderColumn, IDColumn, phoneNumberColumn, emailColumn, classNameColumn, addressColumn, notesColumn;
+    private TableColumn<Student, String> noColumn, studentIDColumn, lastNameColumn, firstNameColumn, dateOfBirthColumn, genderColumn, IDColumn, phoneNumberColumn, emailColumn, classNameColumn, addressColumn, notesColumn;
     @FXML
     private RadioButton male_Btn, saveProvinces, saveDistrict, saveWard, saveClass, saveBirthdate, female_Btn;
     // TableView and TableColumn
@@ -42,10 +42,10 @@ public class StudentViewController {
     @FXML
     private Button addNew_Btn, delete_Btn;
     @FXML
-    private Label gender_Lb, phoneNumber_Lb, ID_Lb, lastName_Lb, firstName_Lb, studentId_Lb, className_Lb, province_Lb, district_Lb, dateOfBirth_Lb;
+    private Label gender_Lb, phoneNumber_Lb, ID_Lb, lastName_Lb, firstName_Lb, studentID_Lb, className_Lb, province_Lb, district_Lb, dateOfBirth_Lb;
     // Các TextField
     @FXML
-    private TextField studentId_TF, lastName_TF, firstName_TF, phoneNumber_TF, ID_TF, email_TF, className_TF, detail_TF, notes_TF, search_TF;
+    private TextField studentID_TF, lastName_TF, firstName_TF, phoneNumber_TF, ID_TF, email_TF, className_TF, detail_TF, notes_TF, search_TF;
     private final SchoolController schoolController;
 
     public StudentViewController() {
@@ -79,6 +79,7 @@ public class StudentViewController {
             }
         });
 
+        // Đếm thời gian nghỉ sau khi nhập điều kiện tìm kiếm
         debounce = new Timeline(new KeyFrame(Duration.millis(300), event -> {
             if (Objects.equals(search_TF.getText(), "")) {
                 showStudent(Search.filter(""));
@@ -93,12 +94,12 @@ public class StudentViewController {
     }
 
     public void getProvinces() {
-        String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";  // Đường dẫn tới file CSV
+        String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");  // Giả định CSV sử dụng dấu phẩy
+                String[] values = line.split(",");
                 if (values.length >= 5) {
                     String province = values[0];  // Cột tỉnh/thành phố
                     String district = values[2];  // Cột quận/huyện
@@ -150,6 +151,7 @@ public class StudentViewController {
         }
     }
 
+    // Mở View bảng học sinh hoặc View bảng điểm
     void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
             case "Thông tin học sinh" -> "/com/qlhs/qlhs/StudentView.fxml";
@@ -171,17 +173,16 @@ public class StudentViewController {
     private void showStudent(ObservableList<Student> students) {
         // Thiết lập các cột
         noColumn.setCellValueFactory(cellData -> {
-            // Lấy chỉ số của học sinh trong danh sách
             int index = studentTableView.getItems().indexOf(cellData.getValue()) + 1;
             return new SimpleStringProperty(String.valueOf(index));
         });
-        studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         genderColumn.setCellValueFactory(cellData -> {
-            Boolean genderValue = cellData.getValue().getGender(); // Giả sử getGender() trả về 0 hoặc 1
-            String genderText = Objects.equals(genderValue, false) ? "Nữ" : "Nam"; // Chuyển đổi giá trị
+            Boolean genderValue = cellData.getValue().getGender();
+            String genderText = Objects.equals(genderValue, false) ? "Nữ" : "Nam";
             return new javafx.beans.property.SimpleStringProperty(genderText);
         });
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
@@ -204,13 +205,19 @@ public class StudentViewController {
 
     @FXML
     private void addNewStudent() {
+        studentTableView.setDisable(true);
+        table_CB.setDisable(true);
         delete_Btn.setDisable(true);
-        refreshInfo();
-        studentId_TF.setText(schoolController.addNewStudent());
         addNew_Btn.setDisable(true);
+        studentID_TF.setText(schoolController.addNewStudent());
+        search_TF.setText(null);
+        search_TF.setDisable(true);
+
+        refreshInfo();
         checkList();
     }
 
+    // Kiểm tra điều kiện nhập ngay khi gõ 1 ký tự
     @FXML
     private void handleKeyReleased() {
         checkList();
@@ -218,23 +225,25 @@ public class StudentViewController {
 
     @FXML
     private void deleteStudent() {
-        if (studentId_TF.getText().equals("23xxxxxx")) {
+        if (studentID_TF.getText().equals("23xxxxxx")) {
             Dialog.showError("Chưa có mã học sinh");
         } else {
             boolean confirmed = Dialog.showDeleteConfirmation("Bạn có chắc chắn muốn xóa không?");
             if (confirmed) {
-                schoolController.deleteStudent(studentId_TF.getText());
+                schoolController.deleteStudent(studentID_TF.getText());
 
                 refreshInfo();
+                showStudent(Search.filter(""));
+
                 delete_Btn.setDisable(true);
-                studentId_TF.setText("23xxxxxx");
+                studentID_TF.setText("23xxxxxx");
             }
         }
     }
 
-    //   Điền thông tin học sinh được chọn từ bảng lên các ô điền thông tin
+    // Điền thông tin học sinh được chọn từ bảng lên các ô điền thông tin
     private void showStudentDetails(Student student) {
-        studentId_TF.setText(student.getStudentID());
+        studentID_TF.setText(student.getStudentID());
         firstName_TF.setText(student.getFirstName());
         lastName_TF.setText(student.getLastName());
         phoneNumber_TF.setText(student.getPhoneNumber());
@@ -255,21 +264,16 @@ public class StudentViewController {
         String address = student.getAddress();
         String[] addressParts = address.split(",\\s*"); // Tách chuỗi theo dấu phẩy và khoảng trắng
 
+        // Set giá trị cho các ô địa chỉ
         if (addressParts.length >= 4) {
-            // Set giá trị cho ComboBox
             province_CB.setValue(addressParts[0]); // Tỉnh
             district_CB.setValue(addressParts[1]);  // Quận/Huyện
             if (!addressParts[2].equals("null")) {
                 ward_CB.setValue(addressParts[2]);   // Phường/Xã
             }
-            // Set giá trị cho TextField
             if (!addressParts[3].equals("null")) {
-
                 detail_TF.setText(addressParts[3].trim()); // Khu, chi tiết
             }
-        } else {
-            // Xử lý trường hợp chuỗi không đủ phần
-            System.out.println("Địa chỉ không hợp lệ.");
         }
         ID_TF.setText(student.getID());
         notes_TF.setText(student.getNotes());
@@ -278,13 +282,13 @@ public class StudentViewController {
     @FXML
     private void UpdateStudentInfo() {
         checkList();
-        if (!allowUpdate || studentId_TF.getText().isEmpty()) {
+        if (!allowUpdate || studentID_TF.getText().isEmpty()) {
             Dialog.showError("Vui lòng điền đầy đủ thông tin hoặc nhập mã học sinh.");
             return;
         }
 
         // Lấy dữ liệu từ các TextField
-        String studentId = studentId_TF.getText();
+        String studentID = studentID_TF.getText();
         String firstName = firstName_TF.getText();
         String lastName = lastName_TF.getText();
         String phoneNumber = phoneNumber_TF.getText();
@@ -298,29 +302,19 @@ public class StudentViewController {
         Boolean status = true;
 
         // Tạo một đối tượng Student mới từ các trường nhập liệu
-        Student newStudent = new Student(
-                studentId,
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                ID,
-                phoneNumber,
-                email,
-                className,
-                address,
-                notes,
-                status
-        );
+        Student newStudent = new Student(studentID, firstName, lastName, dateOfBirth, gender, ID, phoneNumber, email, className, address, notes, status);
 
         schoolController.UpdateStudentInfo(newStudent);
 
         showStudent(Search.filter(""));
 
         search_TF.setText(null);
-        addNew_Btn.setDisable(false);
+        addNew_Btn.setDisable(true);
+        search_TF.setDisable(false);
 
-        ActivityLog.logInformation("Update: " + studentId + " " + firstName + lastName + dateOfBirth + gender + ID + phoneNumber + email + className + address + notes + status);
+        studentTableView.setDisable(false);
+        table_CB.setDisable(false);
+        delete_Btn.setDisable(false);
     }
 
     @FXML
@@ -368,13 +362,14 @@ public class StudentViewController {
         debounce.playFromStart();
     }
 
-    //     Phương thức để thiết lập sự kiện chuột cho bảng
+    // Chọn học sinh từ TableView
     private void selectStudent() {
         studentTableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // Nhấp đúp chuột
+            if (event.getClickCount() == 1) {
                 Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
                 if (selectedStudent != null) {
                     showStudentDetails(selectedStudent);
+                    checkList();
                     delete_Btn.setDisable(false);
                     addNew_Btn.setDisable(false);
                 }
@@ -382,8 +377,9 @@ public class StudentViewController {
         });
     }
 
+    // Kiểm tra điều kiện nhập
     private void checkList() {
-        DataValidation.validateField(studentId_TF.getText(), studentId_Lb, DataValidation::isValidStudentID);
+        DataValidation.validateField(studentID_TF.getText(), studentID_Lb, DataValidation::isValidStudentID);
         DataValidation.validateField(className_TF.getText(), className_Lb, DataValidation::isValidClass);
         DataValidation.validateField(phoneNumber_TF.getText(), phoneNumber_Lb, DataValidation::isValidPhoneNumber);
         DataValidation.validateField(ID_TF.getText(), ID_Lb, DataValidation::isValidID);
@@ -394,7 +390,7 @@ public class StudentViewController {
         DataValidation.validateField(String.valueOf(male_Btn.isSelected() || female_Btn.isSelected()), gender_Lb, DataValidation::isValidSex);
         DataValidation.validateField(String.valueOf(dateOfBirth_Picker.getValue()), dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
 
-        allowUpdate = DataValidation.validateField(studentId_TF.getText(), studentId_Lb, DataValidation::isValidStudentID) &&
+        allowUpdate = DataValidation.validateField(studentID_TF.getText(), studentID_Lb, DataValidation::isValidStudentID) &&
                 DataValidation.validateField(phoneNumber_TF.getText(), phoneNumber_Lb, DataValidation::isValidPhoneNumber) &&
                 DataValidation.validateField(ID_TF.getText(), ID_Lb, DataValidation::isValidID) &&
                 DataValidation.validateField(firstName_TF.getText(), firstName_Lb, DataValidation::isValidName) &&

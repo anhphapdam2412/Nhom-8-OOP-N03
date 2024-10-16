@@ -142,7 +142,7 @@ public class Search {
                             matches = compareString(
                                     (student.getGender() ? "1" : "0"),
                                     (searchValue.equals("1") || searchValue.equals("nam")) ? "1" :
-                                            (searchValue.equals("0") || searchValue.equals("nu")) ? "0" : null,
+                                            (searchValue.equals("0") || searchValue.equals("nữ")) ? "0" : null,
                                     operator
                             );
                             break;
@@ -245,10 +245,12 @@ public class Search {
                         case "gioitinh":
                         case "gt":
                         case "sex":
-                            matches = compareString(String.valueOf(studentGrade.getGender()),
+                            matches = compareString(
+                                    (studentGrade.getGender() ? "1" : "0"),
                                     (searchValue.equals("1") || searchValue.equals("nam")) ? "1" :
-                                            (searchValue.equals("0") || searchValue.equals("nu")) ? "0" : null,
-                                    operator);
+                                            (searchValue.equals("0") || searchValue.equals("nữ")) ? "0" : null,
+                                    operator
+                            );
                             break;
                         case "tên":
                         case "ten":
@@ -307,7 +309,7 @@ public class Search {
                         case "toán":
                         case "toan":
                         case "math":
-                            matches = studentGrade.getMath() != null && compareFloat(studentGrade.getMath(), searchValue, operator);
+                            matches = compareFloat(studentGrade.getMath(), searchValue, operator);
                             break;
                         case "vật lí":
                         case "vat li":
@@ -514,7 +516,10 @@ public class Search {
 
         try {
             float parsedValue = Float.parseFloat(searchValue);
+
+            // Use the checkCondition method for all operators
             return checkCondition(operator, actualValue - parsedValue);
+
         } catch (NumberFormatException e) {
             return false; // Return false if searchValue cannot be parsed as float
         }
@@ -527,7 +532,8 @@ public class Search {
             case "<" -> compare < 0;
             case ">=" -> compare >= 0;
             case "<=" -> compare <= 0;
-            default -> false;
+            case "=" -> compare == 0;
+            default -> false; // Return false for unsupported operators
         };
     }
 }

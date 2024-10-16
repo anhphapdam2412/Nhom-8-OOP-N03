@@ -15,25 +15,27 @@ public class ActivityLog {
     private static final long LOG_RETENTION_PERIOD = TimeUnit.DAYS.toMillis(30); // 30 ngày
 
     // Ghi lại hoạt động của người dùng
-    public static void logActivity(String username, ActionType actionType, String affectedData, String previousValue, String newValue) {
-        String action = "";
+    public static void logActivity(ActionType actionType, String newValue) {
+        String action;
+        String message = "";
         switch (actionType) {
-            case ADD:
-                action = "Thêm mới";
-                break;
             case UPDATE:
-                action = "Sửa đổi";
+                action = "UPDATE STUDENT | ";
+                message = "Action: " + action
+                        + "new: " + newValue;
+                break;
+            case UPDATE_GRADE:
+                action = "UPDATE GRADE | ";
+                message = "Action: " + action
+                        + "new: " + newValue;
                 break;
             case DELETE:
-                action = "Xóa";
+                action = "DELETE | ";
+                message = "Action: " + action
+                        + "ID: " + newValue;
                 break;
         }
 
-        String message = "Người dùng: " + username
-                + " | Hành động: " + action
-                + " | Dữ liệu bị ảnh hưởng: " + affectedData
-                + " | Giá trị trước: " + previousValue
-                + " | Giá trị sau: " + newValue;
         logInformation(message);
     }
 
@@ -112,7 +114,8 @@ public class ActivityLog {
     public enum ActionType {
         ADD,
         UPDATE,
-        DELETE
+        DELETE,
+        UPDATE_GRADE
     }
 }
 

@@ -6,8 +6,6 @@ import java.util.List;
 public class School {
     List<Student> students;
     List<Grade> grades;
-    private int nextPatientId;
-    private int nextRoomId;
 
 
     public School() {
@@ -22,7 +20,12 @@ public class School {
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
     }
-//    public static List<Student> getStudents() {
-//        return students;
-//    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
 }
