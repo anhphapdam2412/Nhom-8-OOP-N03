@@ -96,7 +96,7 @@ public class StudentViewController {
     }
 
     public void getProvinces() {
-        String filePath = "../CuoiKyOOP/QLHS/src/main/resources/provinces.csv";
+        String filePath = "../Nhom-8-OOP-N03/CuoiKyOOP/QLHS/src/main/resources/provinces.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;

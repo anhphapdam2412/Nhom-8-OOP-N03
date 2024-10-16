@@ -1,0 +1,11 @@
+[2024-10-16 16:20:35] Action: UPDATE STUDENT | new: 24000000, Pháp Đàm Anh, 2024-10-16, nữ, 123123123123, 0123123123, , 12A, Bà Rịa - Vũng Tàu, Long Điền, null, null, , true
+[2024-10-16 16:20:41] Action: UPDATE STUDENT | new: 24000009, Tài Phạm Đức, 2024-10-10, nam, 123123123123, 12312312312, , 12A, Bà Rịa - Vũng Tàu, Phú Mỹ, null, null, , true
+[2024-10-16 16:20:48] Action: UPDATE STUDENT | new: 24000010, Nam Lê Minh, 2024-10-02, nam, 123123123123, 123123123, , 12A, Bình Dương, Bắc Tân Uyên, null, null, , true
+[2024-10-16 16:20:55] Action: UPDATE STUDENT | new: 24000000, Pháp Đàm Anh, 2024-10-16, nam, 123123123123, 0123123123, , 12A, Bà Rịa - Vũng Tàu, Long Điền, null, null, , true
+[2024-10-16 16:21:34] Action: UPDATE STUDENT | new: 24000011, Thu Nguyễn Lệ, 2024-10-02, nam, 123123123123, 0123123123, , 12A, Bình Dương, Dầu Tiếng, null, null, , true
+[2024-10-16 16:21:38] Action: UPDATE STUDENT | new: 24000011, Thu Nguyễn Lệ, 2024-10-02, nữ, 123123123123, 0123123123, , 12A, Bình Dương, Dầu Tiếng, null, null, , true
+[2024-10-16 16:26:18] Action: UPDATE STUDENT | new: 24000000, Pháp Đàm Anh, 2005-01-02, nam, 030205000000, 0789341913, 23010360@st.phenikaa-uni.edu.vn, CNTT4, Hải Dương, Hải Dương, Thạch Khôi, null, , true
+[2024-10-16 16:26:37] Action: UPDATE STUDENT | new: 24000009, Tài Phạm Đức, 2005-10-06, nam, 123123123123, 12312312312, , 12A, Bà Rịa - Vũng Tàu, Phú Mỹ, null, null, , true
+[2024-10-16 16:29:14] Action: UPDATE STUDENT | new: 24000009, Tài Phạm Đức, 2005-10-06, nam, 123123123123, 098767852, 23010379@st.phenikaa-uni.edu.vn, CNTT4, Hà Nam, Lý Nhân, Phú Phúc, null, , true
+[2024-10-16 16:29:31] Action: UPDATE STUDENT | new: 24000009, Tài Phạm Đức, 2005-10-06, nam, 030205000001, 098767852, 23010379@st.phenikaa-uni.edu.vn, CNTT4, Hà Nam, Lý Nhân, Phú Phúc, null, , true
+[2024-10-16 16:31:10] Action: DELETE | ID: 24000011
