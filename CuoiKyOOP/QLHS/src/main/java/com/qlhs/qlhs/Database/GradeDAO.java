@@ -15,35 +15,49 @@ public class GradeDAO {
 
         String query = "SELECT * FROM grade";
 
-        try (Connection conn = DatabaseConnection.connect(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = DatabaseConnection.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
             while (rs.next()) {
                 String studentID = rs.getString("studentID");
-                float literature = rs.getFloat("literature");
-                float math = rs.getFloat("math");
-                float physics = rs.getFloat("physics");
-                float chemistry = rs.getFloat("chemistry");
-                float biology = rs.getFloat("biology");
-                float history = rs.getFloat("history");
-                float geography = rs.getFloat("geography");
-                float civicEdu = rs.getFloat("civicEdu");
-                float technology = rs.getFloat("technology");
-                float it = rs.getFloat("it");
+                Float literature = getFloatOrNull(rs, "literature");
+                Float math = getFloatOrNull(rs, "math");
+                Float physics = getFloatOrNull(rs, "physics");
+                Float chemistry = getFloatOrNull(rs, "chemistry");
+                Float biology = getFloatOrNull(rs, "biology");
+                Float history = getFloatOrNull(rs, "history");
+                Float geography = getFloatOrNull(rs, "geography");
+                Float civicEdu = getFloatOrNull(rs, "civicEdu");
+                Float technology = getFloatOrNull(rs, "technology");
+                Float it = getFloatOrNull(rs, "it");
                 String physicalEdu = rs.getString("physicalEdu");
-                float foreignLang = rs.getFloat("foreignLang");
+                Float foreignLang = getFloatOrNull(rs, "foreignLang");
                 String languageCode = rs.getString("languageCode");
                 String academicPerformance = rs.getString("academicPerformance");
                 String conduct = rs.getString("conduct");
                 String gradeNotes = rs.getString("gradeNotes");
-                float avgGrade = rs.getFloat("avgGrade");
+                Float avgGrade = getFloatOrNull(rs, "avgGrade");
                 String award = rs.getString("award");
 
-                Grade diem = new Grade(studentID, literature, math, physics, chemistry, biology, history, geography, civicEdu, technology, it, physicalEdu, foreignLang, languageCode, academicPerformance, conduct, gradeNotes, avgGrade, award);
+                Grade grade = new Grade(studentID, literature, math, physics, chemistry, biology, history, geography,
+                        civicEdu, technology, it, physicalEdu, foreignLang, languageCode,
+                        academicPerformance, conduct, gradeNotes, avgGrade, award);
 
-                grades.add(diem);
+                grades.add(grade);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return grades;
+    }
+
+    private static Float getFloatOrNull(ResultSet rs, String columnName) throws SQLException {
+        float value = rs.getFloat(columnName);
+        if (rs.wasNull()) {
+            return null;
+        } else {
+            return value;
+        }
     }
 }

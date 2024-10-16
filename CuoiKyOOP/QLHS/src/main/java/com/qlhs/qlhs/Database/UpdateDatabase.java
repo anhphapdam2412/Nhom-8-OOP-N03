@@ -9,20 +9,22 @@ import java.util.Objects;
 import static com.qlhs.qlhs.Database.DatabaseConnection.connect;
 
 public class UpdateDatabase {
+
     static Connection connection = null;
     static PreparedStatement preparedStatement = null;
-    // Update student information
+
+    // Cập nhật thông tin học sinh
     public static void updateStudentInfo(String studentId, String lastName, String firstName, String dateOfBirth,
                                          Boolean gender, String Id, String phoneNumber,
                                          String email, String className, String address, String notes, Boolean status,
                                          String query) {
 
         try {
-            // Connect to the database
+            // Kết nối tới DB
             connection = connect();
-            connection.setAutoCommit(false);  // Begin transaction
+            connection.setAutoCommit(false);
 
-            // Update student information
+            // Chuẩn bị dữ liệu
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -40,10 +42,9 @@ public class UpdateDatabase {
             int rowsAffected1 = preparedStatement.executeUpdate();
             System.out.println(rowsAffected1 + " record(s) updated in table student.");
 
-            // Commit if both succeed
             connection.commit();
         } catch (SQLException e) {
-            // Rollback if there is an error
+            // Rollback nếu lỗi
             try {
                 connection.rollback();
                 System.err.println("Transaction rolled back due to error: " + e.getMessage());
@@ -52,26 +53,29 @@ public class UpdateDatabase {
             }
         }
     }
+
+    // Thêm bảng điểm cho học sinh
     public static void insertGrade(String studentId, String query){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
-            // Connect to the database
+            // Kết nối tới DB
             connection = connect();
-            connection.setAutoCommit(false);  // Begin transaction
-            // Execute script2
+            connection.setAutoCommit(false);
+
             if (!Objects.equals(query, "")) {
+                // Chuẩn bị dữ liệu
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, studentId);
 
                 int rowsAffected2 = preparedStatement.executeUpdate();
                 System.out.println(rowsAffected2 + " record(s) updated in table grade.");
             }
-            // Commit if both succeed
+
             connection.commit();
         } catch (SQLException e) {
-            // Rollback if there is an error
+            // Rollback nếu lỗi
             try {
                 connection.rollback();
                 System.err.println("Transaction rolled back due to error: " + e.getMessage());
@@ -81,28 +85,26 @@ public class UpdateDatabase {
         }
     }
 
-    // Delete student
+    // Xóa học sinh
     public static void deleteStudentInfo(String studentId, String status, String query) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
-            // Connect to the database
+            // Kết nối tới DB
             connection = connect();
-            connection.setAutoCommit(false);  // Begin transaction
+            connection.setAutoCommit(false);
 
-            // Delete student
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBoolean(1, Boolean.parseBoolean(status));
-
             preparedStatement.setString(2, studentId);
 
             int rowsAffected1 = preparedStatement.executeUpdate();
             System.out.println(rowsAffected1 + " record(s) updated in table student.");
-            // Commit
+
             connection.commit();
         } catch (SQLException e) {
-            // Rollback if there is an error
+            // Rollback nếu lỗi
             try {
                 connection.rollback();
                 System.err.println("Transaction rolled back due to error: " + e.getMessage());
@@ -112,7 +114,7 @@ public class UpdateDatabase {
         }
     }
 
-    // Update grades
+    // Cập nhật bảng điểm
     public static void updateGrades(String studentId, Float literature, Float math, Float physics, Float chemistry,
                                     Float biology, Float history, Float geography, Float civicEdu,
                                     Float technology, Float informatics, String physicalEdu, Float foreignLanguage,
@@ -121,11 +123,11 @@ public class UpdateDatabase {
         PreparedStatement preparedStatement = null;
 
         try {
-            // Connect to the database
+            // Kết nối tới DB
             connection = connect();
-            connection.setAutoCommit(false);  // Begin transaction
+            connection.setAutoCommit(false);
 
-            // Update student grades
+            // Chuẩn bị dữ liệu
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setFloat(1, literature);
             preparedStatement.setFloat(2, math);
@@ -146,10 +148,10 @@ public class UpdateDatabase {
 
             int rowsAffected1 = preparedStatement.executeUpdate();
             System.out.println(rowsAffected1 + " record(s) updated in table grade.");
-            // Commit
+
             connection.commit();
         } catch (SQLException e) {
-            // Rollback if there is an error
+            // Rollback nếu lỗi
             try {
                 connection.rollback();
                 System.err.println("Transaction rolled back due to error: " + e.getMessage());

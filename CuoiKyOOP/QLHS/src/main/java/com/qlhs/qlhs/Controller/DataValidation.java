@@ -17,17 +17,13 @@ public class DataValidation {
 
     public static boolean isValidGrade(String grade) {
         try {
-            // Convert string to double
-            double value = Double.parseDouble(grade);
+            double value = Float.parseFloat(grade);
 
-            // Check if the value is within the range from 0.0 to 10.0
             return (value >= 0.0 && value <= 10.0);
         } catch (NumberFormatException e) {
-            // In case the string is not a valid number
             return false;
         }
     }
-
 
     public static boolean isValidStudentID(String studentID) {
         return !studentID.equals("23xxxxxx");

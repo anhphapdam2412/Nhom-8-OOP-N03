@@ -3,26 +3,26 @@ package com.qlhs.qlhs.Model;
 public class Grade {
 
     private String studentID;
-    private float literature;
-    private float math;
-    private float physics;
-    private float chemistry;
-    private float biology;
-    private float history;
-    private float geography;
-    private float civicEdu;
-    private float technology;
-    private float it;
+    private Float literature;
+    private Float math;
+    private Float physics;
+    private Float chemistry;
+    private Float biology;
+    private Float history;
+    private Float geography;
+    private Float civicEdu;
+    private Float technology;
+    private Float it;
     private String physicalEdu;
-    private float foreignLang;
+    private Float foreignLang;
     private String languageCode;
     private String academicPerformance;
     private String conduct;
     private String gradeNotes;
-    private float avgGrade;
+    private Float avgGrade;
     private String award;
 
-    public Grade(String studentID, float literature, float math, float physics, float chemistry, float biology, float history, float geography, float civicEdu, float technology, float it, String physicalEdu, float foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, float avgGrade, String award) {
+    public Grade(String studentID, Float literature, Float math, Float physics, Float chemistry, Float biology, Float history, Float geography, Float civicEdu, Float technology, Float it, String physicalEdu, Float foreignLang, String languageCode, String academicPerformance, String conduct, String gradeNotes, Float avgGrade, String award) {
         this.studentID = studentID;
         this.literature = literature;
         this.math = math;
@@ -52,83 +52,83 @@ public class Grade {
         this.studentID = studentID;
     }
 
-    public float getLiterature() {
+    public Float getLiterature() {
         return literature;
     }
 
-    public void setLiterature(float literature) {
+    public void setLiterature(Float literature) {
         this.literature = literature;
     }
 
-    public float getMath() {
+    public Float getMath() {
         return math;
     }
 
-    public void setMath(float math) {
+    public void setMath(Float math) {
         this.math = math;
     }
 
-    public float getPhysics() {
+    public Float getPhysics() {
         return physics;
     }
 
-    public void setPhysics(float physics) {
+    public void setPhysics(Float physics) {
         this.physics = physics;
     }
 
-    public float getChemistry() {
+    public Float getChemistry() {
         return chemistry;
     }
 
-    public void setChemistry(float chemistry) {
+    public void setChemistry(Float chemistry) {
         this.chemistry = chemistry;
     }
 
-    public float getBiology() {
+    public Float getBiology() {
         return biology;
     }
 
-    public void setBiology(float biology) {
+    public void setBiology(Float biology) {
         this.biology = biology;
     }
 
-    public float getHistory() {
+    public Float getHistory() {
         return history;
     }
 
-    public void setHistory(float history) {
+    public void setHistory(Float history) {
         this.history = history;
     }
 
-    public float getGeography() {
+    public Float getGeography() {
         return geography;
     }
 
-    public void setGeography(float geography) {
+    public void setGeography(Float geography) {
         this.geography = geography;
     }
 
-    public float getCivicEdu() {
+    public Float getCivicEdu() {
         return civicEdu;
     }
 
-    public void setCivicEdu(float civicEdu) {
+    public void setCivicEdu(Float civicEdu) {
         this.civicEdu = civicEdu;
     }
 
-    public float getTechnology() {
+    public Float getTechnology() {
         return technology;
     }
 
-    public void setTechnology(float technology) {
+    public void setTechnology(Float technology) {
         this.technology = technology;
     }
 
-    public float getIt() {
+    public Float getIt() {
         return it;
     }
 
-    public void setIt(float it) {
+    public void setIt(Float it) {
         this.it = it;
     }
 
@@ -140,11 +140,11 @@ public class Grade {
         this.physicalEdu = physicalEdu;
     }
 
-    public float getForeignLang() {
+    public Float getForeignLang() {
         return foreignLang;
     }
 
-    public void setForeignLang(float foreignLang) {
+    public void setForeignLang(Float foreignLang) {
         this.foreignLang = foreignLang;
     }
 
@@ -180,11 +180,11 @@ public class Grade {
         this.gradeNotes = gradeNotes;
     }
 
-    public float getAvgGrade() {
+    public Float getAvgGrade() {
         return avgGrade;
     }
 
-    public void setAvgGrade(float avgGrade) {
+    public void setAvgGrade(Float avgGrade) {
         this.avgGrade = avgGrade;
     }
 

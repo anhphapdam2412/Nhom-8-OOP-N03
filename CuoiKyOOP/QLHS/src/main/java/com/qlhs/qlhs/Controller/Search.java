@@ -11,20 +11,21 @@ import java.util.Objects;
 
 public class Search {
 
+    // Tìm kiếm thông tin học sinh
     static ObservableList<Student> filter(String query) {
         ObservableList<Student> filteredStudents;
         ObservableList<Student> students = FXCollections.observableArrayList(StudentDAO.getStudents())
                 .filtered(student -> Objects.equals(student.getStatus(), true));
 
-        // Split search terms by comma
+        // Tách chuỗi nhiều điều kiện tìm kiếm ngăn bởi dấu ","
         String[] searchTerms = query.split(",");
 
         filteredStudents = students.filtered(student -> {
-            // Default to true; will check each condition
+            // Tách điều kiện nhỏ bao gồm cả toán tử so sánh
             for (String term : searchTerms) {
                 String trimmedTerm = term.trim();
 
-                // Check for operator in the condition
+                // Kiểm tra toán tử có trong điều kiện
                 String operator = null;
                 if (trimmedTerm.contains(">=")) {
                     operator = ">=";
@@ -38,13 +39,12 @@ public class Search {
                     operator = "=";
                 }
 
-                // Split field and value
+                // Tách trường và giá trị so sánh
                 String[] parts = trimmedTerm.split("[><=]+");
                 if (parts.length == 2) {
-                    String fieldName = parts[0].trim().toLowerCase(); // Field to search
-                    String searchValue = parts[1].trim(); // Search value
+                    String fieldName = parts[0].trim().toLowerCase();
+                    String searchValue = parts[1].trim();
 
-                    // Check condition based on operator
                     boolean matches = false;
 
                     switch (fieldName) {
@@ -159,10 +159,10 @@ public class Search {
                     }
 
                     if (!matches) {
-                        return false; // If one condition does not match, exclude this student
+                        return false;
                     }
                 } else {
-                    // Free search if no operator
+                    // Tìm kiếm tất cả trường nếu không có toán tử so sánh
                     boolean matches = (student.getStudentID() != null && student.getStudentID().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
                             (student.getFirstName() != null && student.getFirstName().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
                             (student.getLastName() != null && student.getLastName().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
@@ -176,7 +176,7 @@ public class Search {
                             (student.getID() != null && student.getID().toLowerCase().contains(trimmedTerm.toLowerCase()));
 
                     if (!matches) {
-                        return false; // If one condition does not match, exclude this student
+                        return false;
                     }
                 }
             }
@@ -188,19 +188,19 @@ public class Search {
     }
 
 
-    // Method to filter studentGrades
+    // Tìm kiếm trong bảng điểm
     static ObservableList<StudentGrade> filterGrade(String query) {
         ObservableList<StudentGrade> filteredGrades;
         ObservableList<StudentGrade> studentGrades = StudentGradeDAO.getStudentGrade().filtered(studentGrade -> Objects.equals(studentGrade.getStatus(), true));
-        // Split search terms by comma
+        // Tách chuỗi nhiều điều kiện tìm kiếm ngăn bởi dấu ","
         String[] searchTerms = query.split(",");
 
         filteredGrades = studentGrades.filtered(studentGrade -> {
-            // Default to true; will check each condition
+            // Tách điều kiện nhỏ bao gồm cả toán tử so sánh
             for (String term : searchTerms) {
                 String trimmedTerm = term.trim();
 
-                // Check for operator in the condition
+                // Kiểm tra toán tử có trong điều kiện
                 String operator = null;
                 if (trimmedTerm.contains(">=")) {
                     operator = ">=";
@@ -214,13 +214,12 @@ public class Search {
                     operator = "=";
                 }
 
-                // Split field and value
+                // Tách trường và giá trị ngăn bởi toán tử so sánh
                 String[] parts = trimmedTerm.split("[><=]+");
-                if (parts.length == 2) {
-                    String fieldName = parts[0].trim().toLowerCase(); // Field to search
-                    String searchValue = parts[1].trim(); // Search value
+                if (parts.length == 2) { // Tìm kiếm nếu có toán tử so sánh
+                    String fieldName = parts[0].trim().toLowerCase();
+                    String searchValue = parts[1].trim();
 
-                    // Check condition based on operator
                     boolean matches = false;
 
                     switch (fieldName) {
@@ -451,32 +450,31 @@ public class Search {
                     }
 
                     if (!matches) {
-                        return false; // If one condition does not match, exclude this student
+                        return false;
                     }
                 } else {
-                    // Free search if no operator
+                    // Tìm kiếm tất cả trường nếu không có toán tử so sánh
                     boolean matches = checkFreeSearch(studentGrade, trimmedTerm);
                     if (!matches) {
-                        return false; // If one condition does not match, exclude this student
+                        return false;
                     }
                 }
             }
 
-            return true; // If all conditions match
+            return true;
         });
-
         return filteredGrades;
     }
 
-    // New method to handle free search
+    // Tìm kiếm tự do cho bảng điểm
     private static boolean checkFreeSearch(StudentGrade studentGrade, String term) {
         return (studentGrade.getStudentID() != null && studentGrade.getStudentID().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getLastName() != null && studentGrade.getLastName().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getFirstName() != null && studentGrade.getFirstName().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getDateOfBirth() != null && studentGrade.getDateOfBirth().toLowerCase().contains(term.toLowerCase())) ||
-                (studentGrade.getGender() != null && (studentGrade.getGender() ? "Nam" : "Nữ").toLowerCase().contains(term.toLowerCase())) || // Gender as boolean
+                (studentGrade.getGender() != null && (studentGrade.getGender() ? "Nam" : "Nữ").toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getClassName() != null && studentGrade.getClassName().toLowerCase().contains(term.toLowerCase())) ||
-                (studentGrade.getLiterature() != null && String.valueOf(studentGrade.getLiterature()).contains(term)) || // Float conversion
+                (studentGrade.getLiterature() != null && String.valueOf(studentGrade.getLiterature()).contains(term)) ||
                 (studentGrade.getMath() != null && String.valueOf(studentGrade.getMath()).contains(term)) ||
                 (studentGrade.getPhysics() != null && String.valueOf(studentGrade.getPhysics()).contains(term)) ||
                 (studentGrade.getChemistry() != null && String.valueOf(studentGrade.getChemistry()).contains(term)) ||
@@ -493,39 +491,35 @@ public class Search {
                 (studentGrade.getConduct() != null && studentGrade.getConduct().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getGradeNotes() != null && studentGrade.getGradeNotes().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getAward() != null && studentGrade.getAward().toLowerCase().contains(term.toLowerCase())) ||
-                (studentGrade.getAvgGrade() != null && String.valueOf(studentGrade.getAvgGrade()).contains(term)); // Float conversion
+                (studentGrade.getAvgGrade() != null && String.valueOf(studentGrade.getAvgGrade()).contains(term));
     }
 
-    // Helper function to compare string values with operator
+    // So sánh chuỗi
     private static boolean compareString(String actualValue, String searchValue, String operator) {
         if (actualValue == null || searchValue == null) return false;
 
-        // Perform relative search if the operator is '='
+        // Tìm kiếm tương đối với toán tử so sánh "="
         if ("=".equals(operator)) {
             return actualValue.toLowerCase().contains(searchValue.toLowerCase());
         }
 
-        // Compare the actual value and the search value lexicographically
         float compare = actualValue.compareToIgnoreCase(searchValue);
         return checkCondition(operator, compare);
     }
 
-    // Helper function to compare float values with operator
-    private static boolean compareFloat(float actualValue, String searchValue, String operator) {
-        if (searchValue == null) return false;
-
+    // So sánh số thực
+    private static boolean compareFloat(Float actualValue, String searchValue, String operator) {
+        if (searchValue == null || actualValue == null) return false;
         try {
             float parsedValue = Float.parseFloat(searchValue);
-
-            // Use the checkCondition method for all operators
             return checkCondition(operator, actualValue - parsedValue);
-
         } catch (NumberFormatException e) {
-            return false; // Return false if searchValue cannot be parsed as float
+            return false;
         }
     }
 
-    // Check operator and comparison value
+
+    // Kiểm tra toán tử so sánh và giá trị so sánh
     private static boolean checkCondition(String operator, float compare) {
         return switch (operator) {
             case ">" -> compare > 0;
@@ -533,7 +527,7 @@ public class Search {
             case ">=" -> compare >= 0;
             case "<=" -> compare <= 0;
             case "=" -> compare == 0;
-            default -> false; // Return false for unsupported operators
+            default -> false;
         };
     }
 }

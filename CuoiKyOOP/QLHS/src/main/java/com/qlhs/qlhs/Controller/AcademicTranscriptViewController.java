@@ -20,28 +20,32 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class AcademicTranscriptViewController {
-    public boolean allowUpdate = false;
-    @FXML
-    private TextField literature_TF, math_TF, physics_TF, chemistry_TF, biology_TF, history_TF, geography_TF, civicEdu_TF, foreignLang_TF, technology_TF, it_TF, avgGrade_TF, gradeNotes_TF, award_TF, search_TF;
-    @FXML
-    private RadioButton physicalEdu_Btn;
-    @FXML
-    private ComboBox<String> conduct_CB, languageCode_CB, table_CB;
-    @FXML
-    private Label studentID_Lb, fullName_Lb, gender_Lb, dateOfBirth_Lb, className_Lb, literature_Lb, math_Lb, physics_Lb, chemistry_Lb, biology_Lb, history_Lb, technology_Lb, geography_Lb, civicEdu_Lb, it_Lb, conduct_Lb, foreignLang_Lb;
+    // TableView và TableColumn
     @FXML
     private TableView<StudentGrade> AcademicTranscriptTableView;
     @FXML
     private TableColumn<StudentGrade, String> noColumn, studentIDColumn, firstNameColumn, lastNameColumn, dateOfBirthColumn, genderColumn, classNameColumn;
     @FXML
     private TableColumn<StudentGrade, String> foreignLangColumn, technologyColumn, itColumn, physicalEduColumn, geographyColumn, literatureColumn, mathColumn, physicsColumn, biologyColumn, historyColumn, notesColumn, civicEduColumn, chemistryColumn, academicPerformanceColumn, conductColumn, languageCodeColumn, avgGradeColumn, awardColumn;
-    private Timeline debounce;
-    private final SchoolController schoolController;
+    // DatePicker và ComboBox
+    @FXML
+    private ComboBox<String> conduct_CB, languageCode_CB, table_CB;
+    // Buttons và Labels
+    @FXML
+    private RadioButton physicalEdu_Btn;
+    @FXML
+    private Label studentID_Lb, fullName_Lb, gender_Lb, dateOfBirth_Lb, className_Lb, literature_Lb, math_Lb, physics_Lb, chemistry_Lb, biology_Lb, history_Lb, technology_Lb, geography_Lb, civicEdu_Lb, it_Lb, conduct_Lb, foreignLang_Lb;
+    // Các TextField
+    @FXML
+    private TextField literature_TF, math_TF, physics_TF, chemistry_TF, biology_TF, history_TF, geography_TF, civicEdu_TF, foreignLang_TF, technology_TF, it_TF, avgGrade_TF, gradeNotes_TF, award_TF, search_TF;
 
+    private final SchoolController schoolController;
     public AcademicTranscriptViewController() {
         this.schoolController = SchoolController.getInstance();
     }
 
+    public boolean allowUpdate = false;
+    private Timeline debounce;
 
     @FXML
     public void initialize() {
@@ -77,6 +81,7 @@ public class AcademicTranscriptViewController {
         languageCode_CB.setOnAction(_ -> checkLanguageCode());
     }
 
+    // Chọn học sinh từ TableView
     private void selectedStudent() {
         AcademicTranscriptTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) {
@@ -88,6 +93,142 @@ public class AcademicTranscriptViewController {
         });
     }
 
+    // Kiểm tra điều kiện nhập
+    @FXML
+    private void handleKeyReleased() {
+        GradeCheckList();
+    }
+    private void checkconduct() {
+        GradeCheckList();
+    }
+
+    private void checkLanguageCode() {
+        GradeCheckList();
+    }
+
+    // Làm mới bảng điểm
+    @FXML
+    private void refreshGrades() {
+        literature_TF.clear();
+        math_TF.clear();
+        physics_TF.clear();
+        chemistry_TF.clear();
+        biology_TF.clear();
+        history_TF.clear();
+        geography_TF.clear();
+        civicEdu_TF.clear();
+        foreignLang_TF.clear();
+        technology_TF.clear();
+        it_TF.clear();
+        physicalEdu_Btn.setSelected(false);
+        conduct_CB.setValue(null);
+        search_TF.clear();
+        languageCode_CB.setValue(null);
+    }
+
+    // Cập nhật bảng điểm
+    @FXML
+    private void updateGrade() {
+        GradeCheckList();
+
+        if (studentID_Lb.getText().equals("")) {
+            Dialog.showError("Chưa có mã học sinh");
+            return;
+        } else if (!allowUpdate) {
+            Dialog.showError("Vui lòng điền đầy đủ thông tin");
+            return;
+        }
+        String studentID = studentID_Lb.getText();
+        Float literature = Float.parseFloat(literature_TF.getText());
+        Float math = Float.parseFloat(math_TF.getText());
+        Float history = Float.parseFloat(history_TF.getText());
+        Float biology = Float.parseFloat(biology_TF.getText());
+        Float it = Float.parseFloat(it_TF.getText());
+        Float technology = Float.parseFloat(technology_TF.getText());
+        String gradeNotes = gradeNotes_TF.getText();
+        Float foreignLang = Float.parseFloat(foreignLang_TF.getText());
+        Float chemistry = Float.parseFloat(chemistry_TF.getText());
+        Float physics = Float.parseFloat(physics_TF.getText());
+        Float civicEdu = Float.parseFloat(civicEdu_TF.getText());
+        Float geography = Float.parseFloat(geography_TF.getText());
+        String physicalEdu = physicalEdu_Btn.isSelected() ? "D" : "T";
+        String languageCode = languageCode_CB.getValue();
+        String conduct = conduct_CB.getValue();
+
+        Grade newGrade = new Grade(
+                studentID,
+                literature,
+                math,
+                physics,
+                chemistry,
+                biology,
+                history,
+                geography,
+                civicEdu,
+                technology,
+                it,
+                physicalEdu,
+                foreignLang,
+                languageCode,
+                "",
+                conduct,
+                gradeNotes,
+                0f,
+                ""
+        );
+        schoolController.UpdateGrade(newGrade);
+        showAcademicTranscript(Search.filterGrade(""));
+    }
+
+    // Tìm kiếm
+    @FXML
+    private void search() {
+        // Hủy timeline hiện tại nếu nó đang chạy
+        debounce.stop();
+        // Khởi động lại timeline, nó sẽ đợi 300ms trước khi thực hiện hành động tìm kiếm
+        debounce.playFromStart();
+    }
+
+    private void showAcademicTranscript(ObservableList<StudentGrade> studentGrades) {
+        // Thiết lập các cột
+        noColumn.setCellValueFactory(cellData -> {
+            // Lấy chỉ số của học sinh trong danh sách
+            int index = AcademicTranscriptTableView.getItems().indexOf(cellData.getValue()) + 1;
+            return new SimpleStringProperty(String.valueOf(index));
+        });
+        studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        genderColumn.setCellValueFactory(cellData -> {
+            Boolean genderValue = cellData.getValue().getGender();
+            String genderText = Objects.equals(genderValue, false) ? "Nữ" : "Nam";
+            return new javafx.beans.property.SimpleStringProperty(genderText);
+        });
+        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
+        literatureColumn.setCellValueFactory(new PropertyValueFactory<>("literature"));
+        mathColumn.setCellValueFactory(new PropertyValueFactory<>("math"));
+        physicsColumn.setCellValueFactory(new PropertyValueFactory<>("physics"));
+        chemistryColumn.setCellValueFactory(new PropertyValueFactory<>("chemistry"));
+        biologyColumn.setCellValueFactory(new PropertyValueFactory<>("biology"));
+        historyColumn.setCellValueFactory(new PropertyValueFactory<>("history"));
+        geographyColumn.setCellValueFactory(new PropertyValueFactory<>("geography"));
+        civicEduColumn.setCellValueFactory(new PropertyValueFactory<>("civicEdu"));
+        foreignLangColumn.setCellValueFactory(new PropertyValueFactory<>("foreignLang"));
+        technologyColumn.setCellValueFactory(new PropertyValueFactory<>("technology"));
+        itColumn.setCellValueFactory(new PropertyValueFactory<>("it"));
+        physicalEduColumn.setCellValueFactory(new PropertyValueFactory<>("physicalEdu"));
+        avgGradeColumn.setCellValueFactory(new PropertyValueFactory<>("avgGrade"));
+        languageCodeColumn.setCellValueFactory(new PropertyValueFactory<>("languageCode"));
+        academicPerformanceColumn.setCellValueFactory(new PropertyValueFactory<>("academicPerformance"));
+        conductColumn.setCellValueFactory(new PropertyValueFactory<>("conduct"));
+        notesColumn.setCellValueFactory(new PropertyValueFactory<>("gradeNotes"));
+        awardColumn.setCellValueFactory(new PropertyValueFactory<>("award"));
+        // Hiển thị lên TableView
+        AcademicTranscriptTableView.setItems(studentGrades);
+    }
+
+    // Hiển thị chi tiết bảng điểm của học sinh lên phần nhập
     private void showGradeDetail(StudentGrade studentGrade) {
         literature_TF.setText(!Objects.equals(String.valueOf(studentGrade.getLiterature()), "null") ? String.valueOf(studentGrade.getLiterature()) : "");
         math_TF.setText(!Objects.equals(String.valueOf(studentGrade.getMath()), "null") ? String.valueOf(studentGrade.getMath()) : "");
@@ -124,17 +265,13 @@ public class AcademicTranscriptViewController {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
             Stage stage = (Stage) table_CB.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.show(); // Ensure the stage is visible
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    private void handleKeyReleased() {
-        GradeCheckList();
-    }
-
+    // Các ô cần kiểm tra
     private void GradeCheckList() {
         DataValidation.validateField(languageCode_CB.getValue(), foreignLang_Lb, DataValidation::isValidComboBox);
         DataValidation.validateField(foreignLang_TF.getText(), foreignLang_Lb, DataValidation::isValidGrade);
@@ -164,137 +301,4 @@ public class AcademicTranscriptViewController {
                 DataValidation.validateField(it_TF.getText(), it_Lb, DataValidation::isValidGrade) &&
                 DataValidation.validateField(conduct_CB.getValue(), conduct_Lb, DataValidation::isValidComboBox);
     }
-
-    @FXML
-    private void refreshGrades() {
-        literature_TF.clear();
-        math_TF.clear();
-        physics_TF.clear();
-        chemistry_TF.clear();
-        biology_TF.clear();
-        history_TF.clear();
-        geography_TF.clear();
-        civicEdu_TF.clear();
-        foreignLang_TF.clear();
-        technology_TF.clear();
-        it_TF.clear();
-        physicalEdu_Btn.setSelected(false);
-        conduct_CB.setValue(null);
-        search_TF.clear();
-        languageCode_CB.setValue(null);
-    }
-
-    @FXML
-    private void updateGrade() {
-        GradeCheckList();
-
-        if (studentID_Lb.getText().equals("")) {
-            Dialog.showError("Chưa có mã học sinh");
-            return;
-        } else if (!allowUpdate) {
-            Dialog.showError("Vui lòng điền đầy đủ thông tin");
-            return;
-        }
-        String studentID = studentID_Lb.getText();
-        float literature = Float.parseFloat(literature_TF.getText());
-        float math = Float.parseFloat(math_TF.getText());
-        float history = Float.parseFloat(history_TF.getText());
-        float biology = Float.parseFloat(biology_TF.getText());
-        float it = Float.parseFloat(it_TF.getText());
-        float technology = Float.parseFloat(technology_TF.getText());
-        String gradeNotes = gradeNotes_TF.getText();
-        float foreignLang = Float.parseFloat(foreignLang_TF.getText());
-        float chemistry = Float.parseFloat(chemistry_TF.getText());
-        float physics = Float.parseFloat(physics_TF.getText());
-        float civicEdu = Float.parseFloat(civicEdu_TF.getText());
-        float geography = Float.parseFloat(geography_TF.getText());
-        String physicalEdu = physicalEdu_Btn.isSelected() ? "D" : "T";
-        String languageCode = languageCode_CB.getValue();
-        String conduct = conduct_CB.getValue();
-
-        // Creating the Grade object
-        Grade newGrade = new Grade(
-                studentID,
-                literature,
-                math,
-                physics,
-                chemistry,
-                biology,
-                history,
-                geography,
-                civicEdu,
-                technology,
-                it,
-                physicalEdu,
-                foreignLang,
-                languageCode,
-                "",
-                conduct,
-                gradeNotes,
-                0,
-                ""
-        );
-        schoolController.UpdateGrade(newGrade);
-        showAcademicTranscript(Search.filterGrade(""));
-    }
-
-    @FXML
-    private void search() {
-        // Hủy timeline hiện tại nếu nó đang chạy
-        debounce.stop();
-        // Khởi động lại timeline, nó sẽ đợi 300ms trước khi thực hiện hành động tìm kiếm
-        debounce.playFromStart();
-    }
-
-    private void checkconduct() {
-        GradeCheckList();
-    }
-
-    private void checkLanguageCode() {
-        GradeCheckList();
-    }
-
-    private void showAcademicTranscript(ObservableList<StudentGrade> studentGrades) {
-        // Thiết lập các cột
-        noColumn.setCellValueFactory(cellData -> {
-            // Lấy chỉ số của học sinh trong danh sách
-            int index = AcademicTranscriptTableView.getItems().indexOf(cellData.getValue()) + 1;
-            return new SimpleStringProperty(String.valueOf(index));
-        });
-        studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        genderColumn.setCellValueFactory(cellData -> {
-            Boolean genderValue = cellData.getValue().getGender();
-            String genderText = Objects.equals(genderValue, false) ? "Nữ" : "Nam";
-            return new javafx.beans.property.SimpleStringProperty(genderText);
-        });
-        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
-
-        // Set up columns for grade fields
-        literatureColumn.setCellValueFactory(new PropertyValueFactory<>("literature"));
-        mathColumn.setCellValueFactory(new PropertyValueFactory<>("math"));
-        physicsColumn.setCellValueFactory(new PropertyValueFactory<>("physics"));
-        chemistryColumn.setCellValueFactory(new PropertyValueFactory<>("chemistry"));
-        biologyColumn.setCellValueFactory(new PropertyValueFactory<>("biology"));
-        historyColumn.setCellValueFactory(new PropertyValueFactory<>("history"));
-        geographyColumn.setCellValueFactory(new PropertyValueFactory<>("geography"));
-        civicEduColumn.setCellValueFactory(new PropertyValueFactory<>("civicEdu"));
-        foreignLangColumn.setCellValueFactory(new PropertyValueFactory<>("foreignLang"));
-        technologyColumn.setCellValueFactory(new PropertyValueFactory<>("technology"));
-        itColumn.setCellValueFactory(new PropertyValueFactory<>("it"));
-        physicalEduColumn.setCellValueFactory(new PropertyValueFactory<>("physicalEdu"));
-        avgGradeColumn.setCellValueFactory(new PropertyValueFactory<>("avgGrade"));
-        languageCodeColumn.setCellValueFactory(new PropertyValueFactory<>("languageCode"));
-        academicPerformanceColumn.setCellValueFactory(new PropertyValueFactory<>("academicPerformance"));
-        conductColumn.setCellValueFactory(new PropertyValueFactory<>("conduct"));
-        notesColumn.setCellValueFactory(new PropertyValueFactory<>("gradeNotes"));
-        awardColumn.setCellValueFactory(new PropertyValueFactory<>("award"));
-
-        // Set the list into the table
-        AcademicTranscriptTableView.setItems(studentGrades);
-    }
-
-
 }

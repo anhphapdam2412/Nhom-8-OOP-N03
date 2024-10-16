@@ -22,23 +22,19 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class StudentViewController {
-    private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>(); // Tỉnh -> Quận/huyện
-    private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Xã/phường
-    public boolean allowUpdate = false;
-    @FXML
-    private TableColumn<Student, String> noColumn, studentIDColumn, lastNameColumn, firstNameColumn, dateOfBirthColumn, genderColumn, IDColumn, phoneNumberColumn, emailColumn, classNameColumn, addressColumn, notesColumn;
-    @FXML
-    private RadioButton male_Btn, saveProvinces, saveDistrict, saveWard, saveClass, saveBirthdate, female_Btn;
-    // TableView and TableColumn
+    // TableView và TableColumn
     @FXML
     private TableView<Student> studentTableView;
-    private Timeline debounce;
-    // Birthdate and ComboBox
+    @FXML
+    private TableColumn<Student, String> noColumn, studentIDColumn, lastNameColumn, firstNameColumn, dateOfBirthColumn, genderColumn, IDColumn, phoneNumberColumn, emailColumn, classNameColumn, addressColumn, notesColumn;
+    // DatePicker và ComboBox
     @FXML
     private DatePicker dateOfBirth_Picker;
     @FXML
     private ComboBox<String> province_CB, district_CB, ward_CB, table_CB;
-    // Buttons and Labels
+    // Buttons và Labels
+    @FXML
+    private RadioButton male_Btn, saveProvinces, saveDistrict, saveWard, saveClass, saveBirthdate, female_Btn;
     @FXML
     private Button addNew_Btn, delete_Btn;
     @FXML
@@ -46,11 +42,17 @@ public class StudentViewController {
     // Các TextField
     @FXML
     private TextField studentID_TF, lastName_TF, firstName_TF, phoneNumber_TF, ID_TF, email_TF, className_TF, detail_TF, notes_TF, search_TF;
-    private final SchoolController schoolController;
 
+    private final SchoolController schoolController;
     public StudentViewController() {
         this.schoolController = SchoolController.getInstance();
     }
+
+    private static final Map<String, Set<String>> provinceDistrictMap = new TreeMap<>(); // Tỉnh -> Quận/huyện
+    private static final Map<String, Set<String>> districtWardMap = new TreeMap<>();      // Quận/huyện -> Xã/phường
+    public boolean allowUpdate = false;
+
+    private Timeline debounce;
 
     @FXML
     public void initialize() {
@@ -151,7 +153,6 @@ public class StudentViewController {
         }
     }
 
-    // Mở View bảng học sinh hoặc View bảng điểm
     void loadFXML(String fxmlFile) throws IOException {
         String fxmlPath = switch (fxmlFile) {
             case "Thông tin học sinh" -> "/com/qlhs/qlhs/StudentView.fxml";
@@ -170,39 +171,6 @@ public class StudentViewController {
         }
     }
 
-    private void showStudent(ObservableList<Student> students) {
-        // Thiết lập các cột
-        noColumn.setCellValueFactory(cellData -> {
-            int index = studentTableView.getItems().indexOf(cellData.getValue()) + 1;
-            return new SimpleStringProperty(String.valueOf(index));
-        });
-        studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        genderColumn.setCellValueFactory(cellData -> {
-            Boolean genderValue = cellData.getValue().getGender();
-            String genderText = Objects.equals(genderValue, false) ? "Nữ" : "Nam";
-            return new javafx.beans.property.SimpleStringProperty(genderText);
-        });
-        IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
-
-        addressColumn.setCellValueFactory(cellData -> {
-            String address = cellData.getValue().getAddress();
-            if (address != null) {
-                address = address.replace(", null", "");
-            }
-            return new SimpleStringProperty(address);
-        });
-        notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
-
-        // Đặt danh sách đã lọc vào bảng
-        studentTableView.setItems(students);
-    }
-
     @FXML
     private void addNewStudent() {
         studentTableView.setDisable(true);
@@ -214,12 +182,6 @@ public class StudentViewController {
         search_TF.setDisable(true);
 
         refreshInfo();
-        checkList();
-    }
-
-    // Kiểm tra điều kiện nhập ngay khi gõ 1 ký tự
-    @FXML
-    private void handleKeyReleased() {
         checkList();
     }
 
@@ -239,44 +201,6 @@ public class StudentViewController {
                 studentID_TF.setText("23xxxxxx");
             }
         }
-    }
-
-    // Điền thông tin học sinh được chọn từ bảng lên các ô điền thông tin
-    private void showStudentDetails(Student student) {
-        studentID_TF.setText(student.getStudentID());
-        firstName_TF.setText(student.getFirstName());
-        lastName_TF.setText(student.getLastName());
-        phoneNumber_TF.setText(student.getPhoneNumber());
-        email_TF.setText(student.getEmail());
-        className_TF.setText(student.getClassName());
-        if (student.getGender()) {
-            male_Btn.setSelected(true);
-        } else {
-            female_Btn.setSelected(true);
-        }
-        String dateOfBirthStr = student.getDateOfBirth();
-        if (dateOfBirthStr != null && !dateOfBirthStr.isEmpty()) {
-            LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr);
-            dateOfBirth_Picker.setValue(dateOfBirth);
-        } else {
-            dateOfBirth_Picker.setValue(null); // Hoặc thiết lập một giá trị mặc định
-        }
-        String address = student.getAddress();
-        String[] addressParts = address.split(",\\s*"); // Tách chuỗi theo dấu phẩy và khoảng trắng
-
-        // Set giá trị cho các ô địa chỉ
-        if (addressParts.length >= 4) {
-            province_CB.setValue(addressParts[0]); // Tỉnh
-            district_CB.setValue(addressParts[1]);  // Quận/Huyện
-            if (!addressParts[2].equals("null")) {
-                ward_CB.setValue(addressParts[2]);   // Phường/Xã
-            }
-            if (!addressParts[3].equals("null")) {
-                detail_TF.setText(addressParts[3].trim()); // Khu, chi tiết
-            }
-        }
-        ID_TF.setText(student.getID());
-        notes_TF.setText(student.getNotes());
     }
 
     @FXML
@@ -354,6 +278,13 @@ public class StudentViewController {
         checkList();
     }
 
+    // Kiểm tra điều kiện nhập
+    @FXML
+    private void handleKeyReleased() {
+        checkList();
+    }
+
+
     @FXML
     private void search() {
         // Hủy timeline hiện tại nếu nó đang chạy
@@ -401,4 +332,75 @@ public class StudentViewController {
                 DataValidation.validateField(String.valueOf(male_Btn.isSelected() || female_Btn.isSelected()), gender_Lb, DataValidation::isValidSex) &&
                 DataValidation.validateField(String.valueOf(dateOfBirth_Picker.getValue()), dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
     }
+
+    private void showStudent(ObservableList<Student> students) {
+        // Thiết lập các cột
+        noColumn.setCellValueFactory(cellData -> {
+            int index = studentTableView.getItems().indexOf(cellData.getValue()) + 1;
+            return new SimpleStringProperty(String.valueOf(index));
+        });
+        studentIDColumn.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        genderColumn.setCellValueFactory(cellData -> {
+            Boolean genderValue = cellData.getValue().getGender();
+            String genderText = Objects.equals(genderValue, false) ? "Nữ" : "Nam";
+            return new javafx.beans.property.SimpleStringProperty(genderText);
+        });
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
+        addressColumn.setCellValueFactory(cellData -> {
+            String address = cellData.getValue().getAddress();
+            if (address != null) {
+                address = address.replace(", null", "");
+            }
+            return new SimpleStringProperty(address);
+        });
+        notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
+
+        // Đặt danh sách đã lọc vào bảng
+        studentTableView.setItems(students);
+    }
+
+    // Điền thông tin học sinh được chọn từ bảng lên các ô điền thông tin
+    private void showStudentDetails(Student student) {
+        studentID_TF.setText(student.getStudentID());
+        firstName_TF.setText(student.getFirstName());
+        lastName_TF.setText(student.getLastName());
+        phoneNumber_TF.setText(student.getPhoneNumber());
+        email_TF.setText(student.getEmail());
+        className_TF.setText(student.getClassName());
+        if (student.getGender()) {
+            male_Btn.setSelected(true);
+        } else {
+            female_Btn.setSelected(true);
+        }
+        String dateOfBirthStr = student.getDateOfBirth();
+        if (dateOfBirthStr != null && !dateOfBirthStr.isEmpty()) {
+            LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr);
+            dateOfBirth_Picker.setValue(dateOfBirth);
+        } else {
+            dateOfBirth_Picker.setValue(null); // Hoặc thiết lập một giá trị mặc định
+        }
+        String address = student.getAddress();
+        String[] addressParts = address.split(",\\s*"); // Tách chuỗi theo dấu phẩy và khoảng trắng
+
+        // Set giá trị cho các ô địa chỉ
+        if (addressParts.length >= 4) {
+            province_CB.setValue(addressParts[0]); // Tỉnh
+            district_CB.setValue(addressParts[1]);  // Quận/Huyện
+            if (!addressParts[2].equals("null")) {
+                ward_CB.setValue(addressParts[2]);   // Phường/Xã
+            }
+            if (!addressParts[3].equals("null")) {
+                detail_TF.setText(addressParts[3].trim()); // Khu, chi tiết
+            }
+        }
+        ID_TF.setText(student.getID());
+        notes_TF.setText(student.getNotes());
+    }
+
 }
