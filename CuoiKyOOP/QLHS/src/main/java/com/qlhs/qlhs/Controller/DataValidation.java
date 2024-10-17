@@ -37,10 +37,6 @@ public class DataValidation {
         return className != null;
     }
 
-    public static boolean isValidBirthOfDate(String birthDate) {
-        return !birthDate.equals("null");
-    }
-
     public static boolean validateField(String text, Label label, Validator validator) {
         if (text != null && !text.isEmpty()) {
             if (validator.isValid(text)) {

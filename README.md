@@ -16,18 +16,18 @@ Phần mềm Quản Lý Học Sinh giúp quản lý thông tin học sinh một 
 
 ## UML
 ### 1 UML Component Diagram
-![My Image](CuoiKyOOP/UML/QLHS.png)<br>
+![My Image](img/UML/QLHS.png)<br>
 ### 2 UML Sequence Diagram
 #### 2.1 Cập nhật thông tin học sinh
-#### ![My Image](CuoiKyOOP/UML/CapNhatThongTin.png)<br>
+#### ![My Image](img/UML/CapNhatThongTin.png)<br>
 #### 2.2 Cập nhật bảng điểm
-![My Image](CuoiKyOOP/UML/CapNhatDiem.png)<br>
+![My Image](img/UML/CapNhatDiem.png)<br>
 #### 2.3 Tìm kiếm
-![My Image](CuoiKyOOP/UML/TimKiem.png)<br>
+![My Image](img/UML/TimKiem.png)<br>
 ## Giao diện người dùng
-![My Image](CuoiKyOOP/giaodien/giaodien.png)<br>
+![My Image](img/giaodien/giaodien.png)<br>
 ## I/O
-![My Image](CuoiKyOOP/IO.png)<br>
+![My Image](img/IO.png)<br>
 
 # Demo
 
@@ -38,4 +38,4 @@ Phần mềm Quản Lý Học Sinh giúp quản lý thông tin học sinh một 
 git clone https://github.com/anhphapdam2412/Nhom-8-OOP-N03.git
 ```
 - Mở Folder 'Nhom-8-OOP-N03' bằng Intellij với cây thư mục như hỉnh ảnh.
-- ![My Image](CuoiKyOOP/huongDanChayDuAn.png)<br>
+- ![My Image](img/huongDanChayDuAn.png)<br>

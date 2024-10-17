@@ -254,25 +254,19 @@ public class StudentViewController {
         search_TF.clear();
         female_Btn.setSelected(false);
 
-        boolean isSave;
-        isSave = saveBirthdate.isSelected();
-        if (!isSave) {
-            dateOfBirth_Picker.setValue(null);
+        if (!saveBirthdate.isSelected()) {
+            dateOfBirth_Picker.setValue(LocalDate.now().minusYears(16));
         }
-        isSave = saveClass.isSelected();
-        if (!isSave) {
+        if (!saveClass.isSelected()) {
             className_TF.clear();
         }
-        isSave = saveProvinces.isSelected();
-        if (!isSave) {
+        if (!saveProvinces.isSelected()) {
             province_CB.setValue(null);
         }
-        isSave = saveDistrict.isSelected();
-        if (!isSave) {
+        if (!saveDistrict.isSelected()) {
             district_CB.setValue(null);
         }
-        isSave = saveWard.isSelected();
-        if (!isSave) {
+        if (!saveWard.isSelected()) {
             ward_CB.setValue(null);
         }
         checkList();
@@ -319,7 +313,6 @@ public class StudentViewController {
         DataValidation.validateField(province_CB.getValue(), province_Lb, DataValidation::isValidComboBox);
         DataValidation.validateField(district_CB.getValue(), district_Lb, DataValidation::isValidComboBox);
         DataValidation.validateField(String.valueOf(male_Btn.isSelected() || female_Btn.isSelected()), gender_Lb, DataValidation::isValidSex);
-        DataValidation.validateField(String.valueOf(dateOfBirth_Picker.getValue()), dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
 
         allowUpdate = DataValidation.validateField(studentID_TF.getText(), studentID_Lb, DataValidation::isValidStudentID) &&
                 DataValidation.validateField(phoneNumber_TF.getText(), phoneNumber_Lb, DataValidation::isValidPhoneNumber) &&
@@ -329,8 +322,7 @@ public class StudentViewController {
                 DataValidation.validateField(province_CB.getValue(), province_Lb, DataValidation::isValidComboBox) &&
                 DataValidation.validateField(district_CB.getValue(), district_Lb, DataValidation::isValidComboBox) &&
                 DataValidation.validateField(className_TF.getText(), className_Lb, DataValidation::isValidClass) &&
-                DataValidation.validateField(String.valueOf(male_Btn.isSelected() || female_Btn.isSelected()), gender_Lb, DataValidation::isValidSex) &&
-                DataValidation.validateField(String.valueOf(dateOfBirth_Picker.getValue()), dateOfBirth_Lb, DataValidation::isValidBirthOfDate);
+                DataValidation.validateField(String.valueOf(male_Btn.isSelected() || female_Btn.isSelected()), gender_Lb, DataValidation::isValidSex);
     }
 
     private void showStudent(ObservableList<Student> students) {
