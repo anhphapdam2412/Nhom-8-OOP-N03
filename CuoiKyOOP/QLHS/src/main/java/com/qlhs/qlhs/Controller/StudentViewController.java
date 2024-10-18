@@ -233,7 +233,7 @@ public class StudentViewController {
         showStudent(Search.filter(""));
 
         search_TF.setText(null);
-        addNew_Btn.setDisable(true);
+        addNew_Btn.setDisable(false);
         search_TF.setDisable(false);
 
         studentTableView.setDisable(false);

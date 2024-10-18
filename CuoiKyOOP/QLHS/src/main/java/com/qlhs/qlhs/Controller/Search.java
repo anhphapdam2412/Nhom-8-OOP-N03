@@ -172,7 +172,7 @@ public class Search {
                             (student.getAddress() != null && student.getAddress().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
                             (student.getNotes() != null && student.getNotes().toLowerCase().contains(trimmedTerm.toLowerCase())) ||
                             (student.getDateOfBirth() != null && String.valueOf(student.getDateOfBirth()).contains(trimmedTerm)) ||
-                            (student.getGender() != null && String.valueOf(student.getGender()).toLowerCase().contains(trimmedTerm.toLowerCase())) ||
+                            ((student.getGender() != null && (student.getGender() ? "nam" : "nữ").toLowerCase().contains(trimmedTerm.toLowerCase()))) ||
                             (student.getID() != null && student.getID().toLowerCase().contains(trimmedTerm.toLowerCase()));
 
                     if (!matches) {
@@ -472,7 +472,7 @@ public class Search {
                 (studentGrade.getLastName() != null && studentGrade.getLastName().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getFirstName() != null && studentGrade.getFirstName().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getDateOfBirth() != null && studentGrade.getDateOfBirth().toLowerCase().contains(term.toLowerCase())) ||
-                (studentGrade.getGender() != null && (studentGrade.getGender() ? "Nam" : "Nữ").toLowerCase().contains(term.toLowerCase())) ||
+                ((studentGrade.getGender() != null && (studentGrade.getGender() ? "nam" : "nữ").toLowerCase().contains(term.toLowerCase()))) ||
                 (studentGrade.getClassName() != null && studentGrade.getClassName().toLowerCase().contains(term.toLowerCase())) ||
                 (studentGrade.getLiterature() != null && String.valueOf(studentGrade.getLiterature()).contains(term)) ||
                 (studentGrade.getMath() != null && String.valueOf(studentGrade.getMath()).contains(term)) ||

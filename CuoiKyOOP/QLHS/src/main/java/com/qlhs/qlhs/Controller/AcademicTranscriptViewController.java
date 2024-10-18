@@ -88,6 +88,7 @@ public class AcademicTranscriptViewController {
                 StudentGrade selectedGrade = AcademicTranscriptTableView.getSelectionModel().getSelectedItem();
                 if (selectedGrade != null) {
                     showGradeDetail(selectedGrade);
+                    GradeCheckList();
                 }
             }
         });

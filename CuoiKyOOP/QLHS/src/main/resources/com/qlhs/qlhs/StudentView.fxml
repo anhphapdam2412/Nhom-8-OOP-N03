@@ -214,12 +214,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></DatePicker>
-                <TextField fx:id="ID_TF" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="230.0" promptText="030205123456" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <TextField fx:id="ID_TF" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="230.0" promptText="030205123456 (chỉ gồm 12 ký tự số)" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></TextField>
 
-                <TextField fx:id="phoneNumber_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="352.0" promptText="0123456789" GridPane.columnIndex="5">
+                <TextField fx:id="phoneNumber_TF" maxHeight="30.0" minHeight="30.0" onKeyReleased="#handleKeyReleased" prefHeight="30.0" prefWidth="352.0" promptText="0123456789 (chỉ gồm ký tự số)" GridPane.columnIndex="5">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>

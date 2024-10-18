@@ -1,0 +1,12 @@
+[2024-10-18 15:13:19] Action: UPDATE STUDENT | new: 24000015, Nguyên Nguyễn Hà, 2005-10-12, nam, 030205000005, 0123123123, nguyen@gmail.com, 12A, An Giang, Châu Phú, Bình Phú, Số 12, , true
+[2024-10-18 15:14:26] Action: UPDATE STUDENT | new: 24000015, Nguyên Nguyễn Hà, 2005-10-12, nam, 030205000005, 0968218863, nguyen@gmail.com, 12B, Bạc Liêu, Phước Long, Long Phước, Số 12, , true
+[2024-10-18 15:14:40] Action: DELETE | ID: 24000013
+[2024-10-18 15:40:29] Action: UPDATE STUDENT | new: 24000016, Quân Hoàng Minh, 2008-10-18, nam, 123123123123, 0123123123, , 12C, Bà Rịa - Vũng Tàu, Long Điền, Phước Hưng, null, , true
+[2024-10-18 15:44:50] Action: UPDATE STUDENT | new: 24000010, Nam Lê Minh, 2024-10-02, nam, 123123123123, 123123123, , 12A, Hải Dương, Gia Lộc, Gia Tân, null, , true
+[2024-10-18 15:45:15] Action: UPDATE STUDENT | new: 24000016, Quân Hoàng Minh, 2008-10-18, nam, 123123123123, 0123123123, , 12C, Hà Nội, Thanh Trì, Tân Triều, Số 12, , true
+[2024-10-18 15:50:30] Action: UPDATE STUDENT | new: 24000015, Nguyên Nguyễn Hà, 2005-10-12, nam, 030205000005, 0968218863, nguyen@gmail.com, 12B, Bạc Liêu, Phước Long, Long Phước, Số 12, , true
+[2024-10-18 15:51:56] Action: UPDATE STUDENT | new: 24000009, Tài Phạm Đức, 2005-10-06, nam, 030205000001, 098767852, 23010379@st.phenikaa-uni.edu.vn, CNTT4, Hà Nam, Lý Nhân, Phú Phúc, null, , true
+[2024-10-18 15:52:22] Action: UPDATE STUDENT | new: 24000017, Dương Nguyễn Hải, 2008-10-18, nam, 321123213123, 1231231231, , 12A, An Giang, Chợ Mới, Hòa Bình, null, , true
+[2024-10-18 15:52:38] Action: UPDATE STUDENT | new: 24000017, Dương Nguyễn Hải, 2008-10-18, nam, 321123213123, 1231231231, , 12A, Hà Nội, Gia Lâm, Dương Quang, null, , true
+[2024-10-18 15:52:59] Action: UPDATE STUDENT | new: 24000010, Nam Lê Minh, 2006-10-20, nam, 123123123123, 123123123, , 12A, Hải Dương, Gia Lộc, Gia Tân, null, , true
+[2024-10-18 16:05:31] Action: UPDATE GRADE | new: 24000009, Literature: 9.0, Math: 9.0, Physics: 9.0, Chemistry: 9.0, Biology: 9.0, History: 9.0, Geography: 9.0, CivicEdu: 9.0, Technology: 9.0, It: 9.0, PhysicalEdu: D, ForeignLang: 9.0, LanguageCode: N2, Conduct: T, GradeNotes: 
