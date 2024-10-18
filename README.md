@@ -30,7 +30,7 @@ Phần mềm Quản Lý Học Sinh giúp quản lý thông tin học sinh một 
 ![My Image](img/IO.png)<br>
 
 # Demo
-https://github.com/anhphapdam2412
+https://youtu.be/oguFGZ_AaO0
 
 # Cách cài đặt, chạy dự án
 - Sao chép mã nguồn bằng lệnh sau:
