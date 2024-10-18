@@ -65,7 +65,7 @@ public class SchoolController {
         ActivityLog.logActivity(
                 ActivityLog.ActionType.UPDATE,
                 student.getStudentID() + ", " +
-                        student.getFirstName() + " " + student.getLastName() + ", " +
+                        student.getLastName() + " " + student.getFirstName() + ", " +
                         student.getDateOfBirth() + ", " +
                         (student.getGender() ? "nam" : "nữ") + ", " +
                         student.getID() + ", " +
