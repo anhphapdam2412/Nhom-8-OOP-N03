@@ -15,3 +15,4 @@
 [2024-10-18 16:13:40] Action: UPDATE STUDENT | new: 24000019, Dũng Ngô Đặng Nhật, 2005-10-15, nam, 123123123123, 0123123123, , 12C, Hà Nam, Lý Nhân, Nhân Mỹ, null, , true
 [2024-10-18 16:13:56] Action: DELETE | ID: 24000016
 [2024-10-18 16:18:27] Action: UPDATE GRADE | new: 24000019, Literature: 9.0, Math: 9.0, Physics: 8.0, Chemistry: 8.0, Biology: 8.0, History: 9.0, Geography: 9.0, CivicEdu: 8.0, Technology: 8.0, It: 9.0, PhysicalEdu: D, ForeignLang: 8.0, LanguageCode: N1, Conduct: T, GradeNotes: 
+[2024-10-18 21:15:25] Action: UPDATE GRADE | new: 23010046, Literature: 10.0, Math: 10.0, Physics: 10.0, Chemistry: 10.0, Biology: 10.0, History: 10.0, Geography: 10.0, CivicEdu: 10.0, Technology: 10.0, It: 8.0, PhysicalEdu: D, ForeignLang: 7.5, LanguageCode: N1, Conduct: T, GradeNotes: Tham gia kỳ thi HSG Toán
